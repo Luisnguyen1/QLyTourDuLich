@@ -12,15 +12,19 @@ import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
-/**
+import DTo.BookVe;
+import java.util.ArrayList;
+
+/**\
+ 
  *
  * @author Thanh Tran
  */
 public class BookVeTour extends javax.swing.JPanel {
 
-    private Component rootPane;
+    ArrayList<BookVe> danhSachVe = new ArrayList<>();
     /**
-     * Creates new form BookVeTour
+     * Creates new form BookVe
      */
     public BookVeTour() {
         initComponents();
@@ -139,63 +143,54 @@ public class BookVeTour extends javax.swing.JPanel {
         jLabel11.setText("      Giá Tour");
         jLabel11.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        txtHoten.setForeground(new java.awt.Color(255, 0, 0));
         txtHoten.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtHotenActionPerformed(evt);
             }
         });
 
-        txtDiachi.setForeground(new java.awt.Color(255, 0, 0));
         txtDiachi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiachiActionPerformed(evt);
             }
         });
 
-        txtSdt.setForeground(new java.awt.Color(255, 0, 0));
         txtSdt.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtSdtActionPerformed(evt);
             }
         });
 
-        txtEmail.setForeground(new java.awt.Color(255, 0, 0));
         txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtEmailActionPerformed(evt);
             }
         });
 
-        txtMaVeTour.setForeground(new java.awt.Color(255, 0, 0));
         txtMaVeTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtMaVeTourActionPerformed(evt);
             }
         });
 
-        txtNoiDi.setForeground(new java.awt.Color(255, 0, 0));
         txtNoiDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNoiDiActionPerformed(evt);
             }
         });
 
-        txtNoiDen.setForeground(new java.awt.Color(255, 0, 0));
         txtNoiDen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtNoiDenActionPerformed(evt);
             }
         });
 
-        txtLoaiTour.setForeground(new java.awt.Color(255, 0, 0));
         txtLoaiTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtLoaiTourActionPerformed(evt);
             }
         });
 
-        txtGiaTour.setForeground(new java.awt.Color(255, 0, 0));
         txtGiaTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtGiaTourActionPerformed(evt);
@@ -402,10 +397,98 @@ public class BookVeTour extends javax.swing.JPanel {
     }//GEN-LAST:event_txtHotenActionPerformed
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
-        
+String hoten = txtHoten.getText();       
+String dchi = txtDiachi.getText();
+String sdt = txtSdt.getText();
+String Email = txtEmail.getText();
+String mavetour = txtMaVeTour.getText();
+String noidi = txtNoiDi.getText();
+String noiden = txtNoiDen.getText();
+String loaitour = txtLoaiTour.getText();
+String giatour = txtGiaTour.getText();
+
+if(hoten.equals("")){
+    JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Thông Tin");
+}
+else if(dchi.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(sdt.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(Email.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(mavetour.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(noidi.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(noiden.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(loaitour.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else if(giatour.equals("")){
+    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+}
+else{
+    long GiaTour = Long.parseLong(giatour);
+    BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
+    
+    danhSachVe.add(bvt);
+    
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    
+    model.addRow(new Object[]{bvt.getHoTen(), bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+    
+    jTable1.setModel(model);
+    
+    JOptionPane.showMessageDialog(null,"Đặt Vé Thành Công");
+    
+    txtHoten.setText("");
+    txtDiachi.setText("");
+    txtSdt.setText("");
+    txtEmail.setText("");
+    txtMaVeTour.setText("");
+    txtNoiDi.setText("");
+    txtNoiDen.setText("");
+    txtLoaiTour.setText("");
+    txtGiaTour.setText("");
+        }
+
     }//GEN-LAST:event_btnDatVeActionPerformed
 
     private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
+int selectedRow = jTable1.getSelectedRow();
+
+if(selectedRow == -1){
+    JOptionPane.showMessageDialog(null,"Vui Lòng Chọn Một Vé Để Xóa");
+}
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+String maVT = (String) model.getValueAt(selectedRow, 4);
+
+BookVe VeCanXoa = null;
+for(BookVe bvt : danhSachVe){
+    if(bvt.getMaVeTour().equals(maVT)){
+        VeCanXoa = bvt;
+        break;
+    }
+}
+
+danhSachVe.remove(VeCanXoa);
+model.removeRow(selectedRow);
+jTable1.setModel(model);
+
+JOptionPane.showMessageDialog(null,"Xóa Vé Thành Công");
+
+if(VeCanXoa == null){
+    JOptionPane.showMessageDialog(null,"Vé Không Tồn Tại");
+
+}
 
     }//GEN-LAST:event_btnXoaVeActionPerformed
 
