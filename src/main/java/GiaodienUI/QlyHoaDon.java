@@ -39,9 +39,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtMaKhachHang = new javax.swing.JTextField();
-        cbxNgayKhuyenMai = new javax.swing.JComboBox<>();
-        cbxThangKhuyenMai = new javax.swing.JComboBox<>();
-        cbxNamKhuyenMai = new javax.swing.JComboBox<>();
+        cbxNgayXuat = new javax.swing.JComboBox<>();
+        cbxThangXuat = new javax.swing.JComboBox<>();
+        cbxNamXuat = new javax.swing.JComboBox<>();
         txtMaHoaDon = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnXoa = new javax.swing.JButton();
@@ -137,24 +137,24 @@ public class QlyHoaDon extends javax.swing.JPanel {
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        cbxNgayKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
-        cbxNgayKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+        cbxNgayXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
+        cbxNgayXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNgayKhuyenMaiActionPerformed(evt);
+                cbxNgayXuatActionPerformed(evt);
             }
         });
 
-        cbxThangKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
-        cbxThangKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+        cbxThangXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxThangXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxThangKhuyenMaiActionPerformed(evt);
+                cbxThangXuatActionPerformed(evt);
             }
         });
 
-        cbxNamKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
-        cbxNamKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
+        cbxNamXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+        cbxNamXuat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNamKhuyenMaiActionPerformed(evt);
+                cbxNamXuatActionPerformed(evt);
             }
         });
 
@@ -198,11 +198,11 @@ public class QlyHoaDon extends javax.swing.JPanel {
                     .addComponent(txtMaKhachHang)
                     .addComponent(txtMaHoaDon, javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(cbxNgayKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxThangKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxThangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbxNamKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxNamXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTongTien))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 19, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -238,9 +238,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxNgayKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxThangKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNamKhuyenMai, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbxNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxThangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxNamXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -307,17 +307,145 @@ public class QlyHoaDon extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxNgayKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayKhuyenMaiActionPerformed
+    private void cbxNgayXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNgayKhuyenMaiActionPerformed
+    }//GEN-LAST:event_cbxNgayXuatActionPerformed
 
-    private void cbxThangKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangKhuyenMaiActionPerformed
+    private void cbxThangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxThangKhuyenMaiActionPerformed
+         String thang = cbxThangXuat.getSelectedItem().toString();
+int day = 0;
 
-    private void cbxNamKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamKhuyenMaiActionPerformed
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayXuat.removeAllItems();
+    cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayXuat.removeAllItems();
+cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayXuat.removeAllItems();
+    cbxNgayXuat.addItem("Ngày");
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayXuat.addItem(Day);
+        Day = "";
+    }
+}
+    }//GEN-LAST:event_cbxThangXuatActionPerformed
+
+    private void cbxNamXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamXuatActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNamKhuyenMaiActionPerformed
+    }//GEN-LAST:event_cbxNamXuatActionPerformed
 
     private void txtMaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHoaDonActionPerformed
         // TODO add your handling code here:
@@ -328,9 +456,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbxNamKhuyenMai;
-    private javax.swing.JComboBox<String> cbxNgayKhuyenMai;
-    private javax.swing.JComboBox<String> cbxThangKhuyenMai;
+    private javax.swing.JComboBox<String> cbxNamXuat;
+    private javax.swing.JComboBox<String> cbxNgayXuat;
+    private javax.swing.JComboBox<String> cbxThangXuat;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
