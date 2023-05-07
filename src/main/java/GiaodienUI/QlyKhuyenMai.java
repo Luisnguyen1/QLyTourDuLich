@@ -113,21 +113,21 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
         jLabel4.setText("  Ngày Khuyến Mãi");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cbxNgayKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
+        cbxNgayKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayKhuyenMaiActionPerformed(evt);
             }
         });
 
-        cbxThangKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
+        cbxThangKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxThangKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxThangKhuyenMaiActionPerformed(evt);
             }
         });
 
-        cbxNamKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
+        cbxNamKhuyenMai.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
         cbxNamKhuyenMai.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNamKhuyenMaiActionPerformed(evt);
@@ -140,21 +140,21 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
         jLabel5.setText("      Hạn Sử Dụng");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
-        cbxNgayHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
+        cbxNgayHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayHanSuDung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayHanSuDungActionPerformed(evt);
             }
         });
 
-        cbxThangHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
+        cbxThangHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxThangHanSuDung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxThangHanSuDungActionPerformed(evt);
             }
         });
 
-        cbxNamHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
+        cbxNamHanSuDung.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
         cbxNamHanSuDung.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNamHanSuDungActionPerformed(evt);
@@ -397,6 +397,135 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
 
     private void cbxThangKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangKhuyenMaiActionPerformed
         // TODO add your handling code here:
+        String thang = cbxThangKhuyenMai.getSelectedItem().toString();
+int day = 0;
+
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayKhuyenMai.removeAllItems();
+    cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayKhuyenMai.removeAllItems();
+cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayKhuyenMai.removeAllItems();
+    cbxNgayKhuyenMai.addItem("Ngày");
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayKhuyenMai.addItem(Day);
+        Day = "";
+    }
+}
+
     }//GEN-LAST:event_cbxThangKhuyenMaiActionPerformed
 
     private void cbxNamKhuyenMaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamKhuyenMaiActionPerformed
@@ -409,6 +538,134 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
 
     private void cbxThangHanSuDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangHanSuDungActionPerformed
         // TODO add your handling code here:
+        String thang = cbxThangHanSuDung.getSelectedItem().toString();
+int day = 0;
+
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayHanSuDung.removeAllItems();
+    cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayHanSuDung.removeAllItems();
+cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayHanSuDung.removeAllItems();
+    cbxNgayHanSuDung.addItem("Ngày");
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayHanSuDung.addItem(Day);
+        Day = "";
+    }
+}
     }//GEN-LAST:event_cbxThangHanSuDungActionPerformed
 
     private void cbxNamHanSuDungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamHanSuDungActionPerformed

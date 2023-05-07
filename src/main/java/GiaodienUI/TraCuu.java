@@ -38,7 +38,7 @@ public class TraCuu extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtMaVeTour = new javax.swing.JTextField();
+        txtDiaDiemTour = new javax.swing.JTextField();
         txtNoiDi = new javax.swing.JTextField();
         txtNoiDen = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -133,9 +133,9 @@ public class TraCuu extends javax.swing.JPanel {
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        txtMaVeTour.addActionListener(new java.awt.event.ActionListener() {
+        txtDiaDiemTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaVeTourActionPerformed(evt);
+                txtDiaDiemTourActionPerformed(evt);
             }
         });
 
@@ -147,21 +147,21 @@ public class TraCuu extends javax.swing.JPanel {
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
 
-        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayDiActionPerformed(evt);
             }
         });
 
-        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxThangDiActionPerformed(evt);
             }
         });
 
-        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
         cbxNamDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNamDiActionPerformed(evt);
@@ -182,7 +182,7 @@ public class TraCuu extends javax.swing.JPanel {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtNoiDi)
-                            .addComponent(txtMaVeTour)))
+                            .addComponent(txtDiaDiemTour)))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -212,7 +212,7 @@ public class TraCuu extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMaVeTour, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                                    .addComponent(txtDiaDiemTour, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(18, 18, 18)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -288,9 +288,9 @@ public class TraCuu extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMaVeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVeTourActionPerformed
+    private void txtDiaDiemTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaDiemTourActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaVeTourActionPerformed
+    }//GEN-LAST:event_txtDiaDiemTourActionPerformed
 
     private void cbxNgayDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayDiActionPerformed
         // TODO add your handling code here:
@@ -298,6 +298,134 @@ public class TraCuu extends javax.swing.JPanel {
 
     private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
         // TODO add your handling code here:
+        String thang = cbxThangDi.getSelectedItem().toString();
+int day = 0;
+
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
     }//GEN-LAST:event_cbxThangDiActionPerformed
 
     private void cbxNamDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamDiActionPerformed
@@ -326,7 +454,7 @@ public class TraCuu extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtMaVeTour;
+    private javax.swing.JTextField txtDiaDiemTour;
     private javax.swing.JTextField txtNoiDen;
     private javax.swing.JTextField txtNoiDi;
     // End of variables declaration//GEN-END:variables
