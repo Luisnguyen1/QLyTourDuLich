@@ -4,6 +4,7 @@
  */
 package GiaodienUI.menu;
 
+import DTo.SideMenuPanel;
 import GiaodienUI.menu.MenuItem;
 import java.awt.Color;
 import java.awt.Component;
@@ -36,6 +37,12 @@ import net.miginfocom.swing.MigLayout;
 public class menu extends JComponent{
     private MenuEvent event;
     private MigLayout layout;
+    private JButton openSide = new JButton();   
+    private static final int BUTTON_LOCATION_X = 300;  // location x 
+    private static final int BUTTON_LOCATION_Y = 50;   // location y 
+    private static final int BUTTON_SIZE_X = 140;      // size height
+    private static final int BUTTON_SIZE_Y = 50;       // size width
+    SideMenuPanel sp;
     private String [][]menuItems = new String[][]
     {
         {"Dashboard"},
@@ -53,12 +60,18 @@ public class menu extends JComponent{
         setLayout(layout);
         setOpaque(true);
         //  Init MenuItem
-        /*JButton openSide = new JButton();
-        add(openSide);*/
+        
         for (int i = 0; i < menuItems.length; i++) {
             addMenu(menuItems[i][0], i);
         }
 
+    }
+    public int openMenu(){
+        if(openSide.isSelected()== true)
+        {
+            return 1;
+        }
+        return 0;
     }
 
     private Icon getIcon(int index) {
