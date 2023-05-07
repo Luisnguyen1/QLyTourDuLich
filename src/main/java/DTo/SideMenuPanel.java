@@ -11,6 +11,7 @@ import java.util.concurrent.TimeUnit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.GroupLayout;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
@@ -21,7 +22,7 @@ public class SideMenuPanel {
     private final int a = 0;
     private int minWidth = 60;
     private int maxWidth = 200;
-    private JPanel side;
+    private JComponent side;
     private JPanel main;
     private boolean isEnabled;
     private int speed = 2;
@@ -64,7 +65,7 @@ public class SideMenuPanel {
         return maxWidth;
     }
 
-    public JPanel getSide() {
+    public JComponent getSide() {
         return side;
     }
 
@@ -84,7 +85,7 @@ public class SideMenuPanel {
         this.maxWidth = max;
     }
 
-    public void setSide(JPanel side) {
+    public void setSide(JComponent side) {
 
         this.side = side;
 

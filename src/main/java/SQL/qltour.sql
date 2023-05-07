@@ -1,53 +1,107 @@
--- phpMyAdmin SQL Dump
--- version 5.2.0
--- https://www.phpmyadmin.net/
---
--- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th4 15, 2023 lúc 05:03 PM
--- Phiên bản máy phục vụ: 10.4.27-MariaDB
--- Phiên bản PHP: 8.0.25
+CREATE TABLE `NHANVIEN`(
+	`MaNV` int(11) PRIMARY KEY,
+	`LoaiNV` text NOT NULL,
+	`TenNV` text NOT NULL,
+	`DiaChi` text NOT NULL,
+	`ChucVu` text NOT NULL
+)
+CREATE TABLE `VE`(
+	`MaVe` int(11) PRIMARY KEY,
+	`NgayTaoVe` DATE NOT NULL,
+	`HanSuDung` DATE NOT NULL,
+	`MaTour` int(11) NOT NULL,
+	`MaKH` int(11) NOT NULL
+)
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-START TRANSACTION;
-SET time_zone = "+00:00";
+CREATE TABLE `KHUYENMAI`(
+	`MaKhuyenMai` int(11) PRIMARY KEY,
+	`TenKM` text NOT NULL,
+	`NgayKM` DATE NOT NULL,
+	`HanSuDung` DATE NOT NULL,
+	`TienGiam` int(11) NOT NULL
+)
 
+CREATE TABLE `CTHD`(
+	`MaHD` int(11) NOT NULL,
+	`MaVe` int(11) NOT NULL,
+	`SoLuongVe` int(11) NOT NULL,
+	`TienVe` int(11) NOT NULL
+	CONSTRAINT FK_MaHD
+	FOREIGN KEY (MaHD)
+	REFERENCES HOADON(MaHD)
+)
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+CREATE TABLE `HOADON`(
+	`MaHD` int(11) PRIMARY KEY,
+	`MaKh` int(11) NOT NULL,
+	`TongTien` int(11) NOT NULL,
+	`NgayXuatHoaDon` DATE NOT NULL,
+	`MaNV` int(11) NOT NULL
+	CONSTRAINT FK_MaNV
+	FOREIGN KEY (MaNV)
+	REFERENCES NHANVIEN(MaNV)
+)
 
---
--- Cơ sở dữ liệu: `qltour`
---
+CREATE TABLE `HUONGDANVIEN`(
+	`MaNV` int(11) NOT NULL,
+	`MaTour` int(11) NOT NULL,
+	CONSTRAINT FK_MaNV
+	FOREIGN KEY (MaNV)
+	REFERENCES NHANVIEN(MaNV)
+	
+	CONSTRAINT FK_MaTour
+	FOREIGN KEY (MaTour)
+	REFERENCES TOUR(MaTour)
+)
 
--- --------------------------------------------------------
+CREATE TABLE `PHUONGTIEN`(
+	`MaPT` int(11) PRIMARY KEY,
+	`LoaiPT` text NOT NULL,
+	`TenPT` text NOT NULL,
+	`SoChoTrong` int(11) NOT NULL,
+	`SoChoConDu` int(11) NOT NULL
+)
 
---
--- Cấu trúc bảng cho bảng `taikhoan`
---
+CREATE TABLE `CHITIETTOUR`(
+	`DiaDiemTour` text NOT NULL,
+	`MaTour` int(11) NOT NULL,
+	`MaKh` int(11) NOT NULL,
+	`DiaDiemDen` text NOT NULL,
+	`DiaDiemKhoiHanh` text NOT NULL,
+	`ThuTuNgay` int(11) NOT NULL,
+	`TienAn` int(11) NOT NULL,
+	`TienPhong` int(11) NOT NULL,
+	`TienDichVu` int (11) NOT NULL
+)
 
-CREATE TABLE `taikhoan` (
-  `tentaikhoan` text NOT NULL,
-  `matkhau` text NOT NULL,
-  `manv` int(11) NOT NULL,
-  `loaitk` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+CREATE TABLE `DIADIEMVUICHOI`(
+	`MaDDVC` int(11) PRIMARY KEY,
+	`TenDDVC` text NOT NULL,
+	`ThuocDiaDiemTour` text NOT NULL
+)
 
-CREATE TABLE `taikhoan` (
-  `tentaikhoan` text NOT NULL,
-  `matkhau` text NOT NULL,
-  `manv` int(11) NOT NULL,
-  `loaitk` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
---
--- Đang đổ dữ liệu cho bảng `taikhoan`
---
+CREATE TABLE`TOUR`(
+	`MaTour` int(11) PRIMARY KEY,
+	`TongSoCho` int(11) NOT NULL,
+	`SoChoConTrong` int(11) NOT NULL,
+	`TenTour` text NOT NULL,
+	`LoaiTour` text NOT NULL,
+	`SoNgay` int(11) NOT NULL,
+	`NgayKhoiHanh` DATE NOT NULL,
+	`GiaTour` int(11) NOT NULL,
+	`NgayKetThuc` DATE NOT NULL,
+	`GhiChu` text NOT NULL
+)
 
-INSERT INTO `taikhoan` (`tentaikhoan`, `matkhau`, `manv`, `loaitk`) VALUES
-('admin', '123456', 1, 'admin');
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+CREATE TABLE `DIADIEM`(
+	`MaDD` int(11) PRIMARY KEY,
+	`TenDD` text NOT NULL,
+	`ThuocTinh` text NOT NULL
+)
+CREATE TABLE `KHACHSAN`(
+	`MaKS` int(11) NOT NULL,
+	`TenKS` text NOT NULL,
+	`TienKS` int(11) NOT NULL,
+	`SDT` int(11) NOT NULL,
+	`TienPhong` int(11) NOT NULL
+)
