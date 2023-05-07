@@ -16,8 +16,8 @@ public class Tour implements Comparable<Tour>{
     public String  DiaDiemdi;
     public String DiaDiemden;
     public int songaydi;
-    public Date ngaydi;
-    public Date ngayve;
+    public int ngaydi;
+    public int ngayve;
     public long giaTour;
     
 
@@ -36,7 +36,7 @@ public class Tour implements Comparable<Tour>{
         giaTour=x.giaTour;
     }
 
-    public Tour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi,Date ngaydi, Date ngayve, int giaTour) {
+    public Tour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi,int ngaydi, int ngayve, long giaTour) {
         this.tenTour = tenTour;
         this.maTour = maTour;
         this.loaiTour = loaiTour;
@@ -131,19 +131,19 @@ public class Tour implements Comparable<Tour>{
         this.songaydi = songaydi;
     }
 
-    public Date getNgaydi() {
+    public int getNgaydi() {
         return ngaydi;
     }
 
-    public void setNgaydi(Date ngaydi) {
+    public void setNgaydi(int ngaydi) {
         this.ngaydi = ngaydi;
     }
 
-    public Date getNgayve() {
+    public int getNgayve() {
         return ngayve;
     }
 
-    public void setNgayve(Date ngayve) {
+    public void setNgayve(int ngayve) {
         this.ngayve = ngayve;
     }
 

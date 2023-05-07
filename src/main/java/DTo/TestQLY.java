@@ -15,6 +15,7 @@ import GiaodienUI.QlyNhanVien;
 import GiaodienUI.QlyPhuongTien;
 import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
+import GiaodienUI.QlyVeTour;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 

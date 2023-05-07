@@ -4,12 +4,21 @@
  */
 package GiaodienUI;
 
+import DTo.NhanVien;
+import DTo.Tour;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyTourDuLich extends javax.swing.JPanel {
-
+    ArrayList<Tour> danhSachNV = new ArrayList<Tour>();
     /**
      * Creates new form QlyVeTour
      */
@@ -897,7 +906,66 @@ if(thang.equals("2")){
     }//GEN-LAST:event_cbxThangVeActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+         // Lấy dữ liệu từ các trường nhập liệu trên GUI
+         try{
+    String tenTour = txtTenTour.getText();
+    String maTour = txtMaTour.getText();
+    String loaiTour = txtLoaiTour.getText();
+    int tongSoCho = Integer.parseInt(txtTongSoCho.getText());
+    int soChoDu = Integer.parseInt(txtSoChoDu.getText());
+    String diaDiemTour = txtDiaDiemTour.getText();
+    String diaDiemDi = txtDiaDiemDi.getText();
+    String diaDiemDen = txtDiaDiemDen.getText();
+    int soNgayDi = Integer.parseInt(txtSoNgayDi.getText());
+    // Lấy ngày tháng năm từ các JComboBox
+    int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
+    int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
+    int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
+    int ngayVe = Integer.parseInt(cbxNgayVe.getSelectedItem().toString());
+    int thangVe = Integer.parseInt(cbxThangVe.getSelectedItem().toString());
+    int namVe = Integer.parseInt(cbxNamVe.getSelectedItem().toString());
+
+    // Tạo đối tượng Date từ ngày tháng năm
+    Calendar calendar = Calendar.getInstance();
+    calendar.set(namDi, thangDi - 1, ngayDi);
+    Date ngayDiDate = calendar.getTime();
+    calendar.set(namVe, thangVe - 1, ngayVe);
+    Date ngayVeDate = calendar.getTime();
+    long giaTour = Long.parseLong(txtGiaTour.getText());
+    
+    // Tạo đối tượng DTO
+    Tour nv = new Tour(tenTour,maTour, loaiTour, tongSoCho, soChoDu,diaDiemTour,diaDiemDi,diaDiemDen,soNgayDi,ngayDi,ngayVe,giaTour);
+
+    // Thêm đối tượng vào danh sách
+    danhSachNV.add(nv);
+    
+    // Tạo đối tượng DefaultTableModel
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+String ngayDiString = dateFormat.format(ngayDiDate);
+String ngayVeString = dateFormat.format(ngayVeDate);       
+model.addRow(new Object[]{nv.getTenTour(),nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(),nv.getDiaDiemTour(),nv.getDiaDiemdi(),nv.getDiaDiemden(),nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
+
+    // thêm đối tượng KhachHang vào model
+
+// cập nhật lại model cho JTable
+jTable1.setModel(model);
+
+// thông báo thành công
+JOptionPane.showMessageDialog(null, "Thêm Tour Thành Công");
+txtTenTour.setText("");
+txtMaTour.setText("");
+txtLoaiTour.setText("");
+txtDiaDiemTour.setText("");
+txtDiaDiemDi.setText("");
+txtDiaDiemDen.setText("");
+txtSoNgayDi.setText("");
+txtSoChoDu.setText("");
+txtTongSoCho.setText("");
+txtSoNgayDi.setText("");
+} catch (NumberFormatException e) {
+    JOptionPane.showMessageDialog(null, "Nhập sai định dạng số");
+}
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
