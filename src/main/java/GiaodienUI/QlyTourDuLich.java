@@ -278,7 +278,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayDiActionPerformed(evt);
@@ -316,7 +316,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        cbxNgayVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
+        cbxNgayVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayVeActionPerformed(evt);
@@ -331,6 +331,11 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         });
 
         cbxNamVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023", " " }));
+        cbxNamVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxNamVeActionPerformed(evt);
+            }
+        });
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -608,7 +613,135 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxNgayDiActionPerformed
 
     private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
-        // TODO add your handling code here:
+String thang = cbxThangDi.getSelectedItem().toString();
+int day = 0;
+
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
     }//GEN-LAST:event_cbxThangDiActionPerformed
 
     private void cbxNamDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamDiActionPerformed
@@ -621,6 +754,146 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
     private void cbxThangVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangVeActionPerformed
         // TODO add your handling code here:
+        String thang = cbxThangVe.getSelectedItem().toString();
+int day = 0;
+
+//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+if(thang.equals("1")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("3")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("5")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("7")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("8")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("10")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("12")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thang.equals("4")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("6")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("9")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thang.equals("11")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thang.equals("2")){
+    cbxNgayVe.removeAllItems();
+        cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+
     }//GEN-LAST:event_cbxThangVeActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -630,6 +903,10 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void cbxNamVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamVeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxNamVeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
