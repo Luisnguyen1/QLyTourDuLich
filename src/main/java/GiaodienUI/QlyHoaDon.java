@@ -255,7 +255,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
             },
             new String [] {
                 "Mã Hóa Đơn", "Mã Khách Hàng", "Ngày Xuất", "Tổng Tiền"

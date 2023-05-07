@@ -30,7 +30,7 @@ js.setTitle("khQuản lý khách hàng");
 QlyVeTour ql = new QlyVeTour();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
-js.setSize(750, 600); // đặt kích thước
+js.setSize(750, 700); // đặt kích thước
 js.setVisible(true);
 
 

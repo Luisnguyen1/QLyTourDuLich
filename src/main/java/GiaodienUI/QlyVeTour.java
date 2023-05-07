@@ -87,7 +87,7 @@ public class QlyVeTour extends javax.swing.JPanel {
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel1.setText("                        Hệ Thống Quản Lý Vé Tour Du Lịch");
+        jLabel1.setText("                        Hệ Thống Quản Lý Tour Du Lịch");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -278,21 +278,21 @@ public class QlyVeTour extends javax.swing.JPanel {
                 .addGap(0, 0, Short.MAX_VALUE))
         );
 
-        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxNgayDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayDiActionPerformed(evt);
             }
         });
 
-        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
         cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxThangDiActionPerformed(evt);
             }
         });
 
-        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023", " " }));
         cbxNamDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNamDiActionPerformed(evt);
@@ -316,21 +316,21 @@ public class QlyVeTour extends javax.swing.JPanel {
             .addComponent(jLabel12, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        cbxNgayVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", " " }));
+        cbxNgayVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31" }));
         cbxNgayVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxNgayVeActionPerformed(evt);
             }
         });
 
-        cbxThangVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", " " }));
+        cbxThangVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
         cbxThangVe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxThangVeActionPerformed(evt);
             }
         });
 
-        cbxNamVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm" }));
+        cbxNamVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023", " " }));
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
