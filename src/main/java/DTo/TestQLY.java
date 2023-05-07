@@ -13,7 +13,7 @@ import GiaodienUI.QlyKhachSan;
 import GiaodienUI.QlyKhuyenMai;
 import GiaodienUI.QlyNhanVien;
 import GiaodienUI.QlyPhuongTien;
-import GiaodienUI.QlyVeTour;
+import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -27,7 +27,7 @@ public class TestQLY {
         // Sử dụng bố cục mặc định của FlowLayout
 JFrame js = new JFrame();
 js.setTitle("khQuản lý khách hàng");
-QlyVeTour ql = new QlyVeTour();
+QlyTourDuLich ql = new QlyTourDuLich();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(750, 700); // đặt kích thước

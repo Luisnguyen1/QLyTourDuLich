@@ -8,12 +8,12 @@ package GiaodienUI;
  *
  * @author Thanh Tran
  */
-public class QlyVeTour extends javax.swing.JPanel {
+public class QlyTourDuLich extends javax.swing.JPanel {
 
     /**
      * Creates new form QlyVeTour
      */
-    public QlyVeTour() {
+    public QlyTourDuLich() {
         initComponents();
     }
 
