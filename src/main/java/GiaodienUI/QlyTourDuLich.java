@@ -10,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -381,12 +382,22 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
         btnXoa.setBorderPainted(false);
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(255, 0, 0));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
         btnSua.setBorderPainted(false);
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnTimKiem.setBackground(new java.awt.Color(255, 0, 0));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -967,7 +978,7 @@ txtSoNgayDi.setText("");
     JOptionPane.showMessageDialog(null, "Nhập sai định dạng số");
 }
     }//GEN-LAST:event_btnThemActionPerformed
-
+   
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -975,6 +986,131 @@ txtSoNgayDi.setText("");
     private void cbxNamVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamVeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNamVeActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        // lấy chỉ số hàng được chọn trong JTable
+int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
+    return;
+}
+
+// lấy ra model của JTable hiện tại
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+String maNV = (String) model.getValueAt(selectedRow, 1);
+
+
+// tìm khách hàng trong danh sách dựa vào mã
+Tour nhanVienCanXoa = null;
+for (Tour nv : danhSachNV) {
+    if (nv.getMaTour().equals(maNV)) {
+        nhanVienCanXoa = nv;
+        break;
+    }
+}
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+if (nhanVienCanXoa == null) {
+    JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
+    return;
+}
+
+// xóa khách hàng khỏi danh sách
+danhSachNV.remove(nhanVienCanXoa);
+
+// xóa hàng được chọn trong model
+model.removeRow(selectedRow);
+
+// cập nhật lại model cho JTable
+jTable1.setModel(model);
+
+// thông báo thành công
+JOptionPane.showMessageDialog(null, "Xóa Nhân Viên Thành Công");
+
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // lấy chỉ số hàng được chọn trong JTable
+int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
+    return;
+}
+
+// lấy ra model của JTable hiện tại
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+String maNV = (String) model.getValueAt(selectedRow, 1);
+
+// tìm khách hàng trong danh sách dựa vào mã
+Tour nhanVienCanSua = null;
+for (Tour nv : danhSachNV) {
+    if (nv.getMaTour().equals(maNV)) {
+        nhanVienCanSua = nv;
+        break;
+    }
+}
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+if (nhanVienCanSua == null) {
+    JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
+    return;
+}
+
+// hiển thị form sửa thông tin khách hàng
+String tenNV = JOptionPane.showInputDialog(null, "Nhập tên Tour", nhanVienCanSua.getTenTour());
+String maTourNew = JOptionPane.showInputDialog(null, "Nhập mã Tour", maNV);
+String loaiTour = JOptionPane.showInputDialog(null, "Nhập loại Tour", nhanVienCanSua.getLoaiTour());
+String Tongsocho = JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", nhanVienCanSua.getTongsocho());
+String sochodu = JOptionPane.showInputDialog(null, "Nhập số chỗ dư", nhanVienCanSua.getSochodu());
+String DiadiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", nhanVienCanSua.getDiaDiemTour());
+String Diadiemdi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi", nhanVienCanSua.getDiaDiemdi());
+String Diadiemden = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", nhanVienCanSua.getDiaDiemden());
+String Songaydi = JOptionPane.showInputDialog(null, "Nhập số ngày đi", nhanVienCanSua.getSongaydi());
+// thêm ComboBox để chọn loại nhân viên
+JComboBox<String> cbxLoaiNhanVien = new JComboBox<>();
+cbxLoaiNhanVien.addItem("Nhân Viên Bán Hàng");
+cbxLoaiNhanVien.addItem("Quản Lý Kho");
+cbxLoaiNhanVien.addItem("Nhân Viên Văn Phòng");
+cbxLoaiNhanVien.setSelectedItem(nhanVienCanSua.getLoainv());
+JOptionPane.showMessageDialog(null, cbxLoaiNhanVien, "Chọn loại nhân viên", JOptionPane.QUESTION_MESSAGE);
+
+String loainv = (String) cbxLoaiNhanVien.getSelectedItem();
+// thêm ComboBox để chọn chức vụ
+JComboBox<String> cbxChucVu = new JComboBox<>();
+cbxChucVu.addItem("Nhân Viên");
+cbxChucVu.addItem("Quản Lý");
+cbxChucVu.setSelectedItem(nhanVienCanSua.getChucvu());
+JOptionPane.showMessageDialog(null, cbxChucVu, "Chọn chức vụ", JOptionPane.QUESTION_MESSAGE);
+
+String chucvu = (String) cbxChucVu.getSelectedItem();
+
+
+// cập nhật thông tin khách hàng
+nhanVienCanSua.setTennv(tenNV);
+nhanVienCanSua.setManv(maNVNew);
+nhanVienCanSua.setDiachi(diaChi);
+nhanVienCanSua.setLoainv(loainv);
+nhanVienCanSua.setChucvu(chucvu);
+
+// cập nhật lại model cho JTable
+model.setValueAt(tenNV, selectedRow, 0);
+model.setValueAt(maNVNew, selectedRow, 1);
+model.setValueAt(diaChi, selectedRow, 2);
+model.setValueAt(loainv, selectedRow, 3);
+model.setValueAt(chucvu, selectedRow, 4);
+
+
+// thông báo thành công
+JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
+    }//GEN-LAST:event_btnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
