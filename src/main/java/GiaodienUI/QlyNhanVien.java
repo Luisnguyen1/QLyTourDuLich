@@ -268,7 +268,11 @@ public class QlyNhanVien extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Họ và Tên", "Mã Nhân Viên", "Địa Chỉ", "Loại Nhân Viên", "Chức Vụ"
