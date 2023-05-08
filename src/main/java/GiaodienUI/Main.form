@@ -126,16 +126,16 @@
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="171" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="202" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="320" max="32767" attributes="0"/>
+                  <EmptySpace pref="547" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="157" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                   <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -145,13 +145,7 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel6">
           <Properties>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="24" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="33" green="ff" red="cc" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="Trang INDEX"/>
+            <Property name="text" type="java.lang.String" value="MainPanel"/>
           </Properties>
         </Component>
       </SubComponents>

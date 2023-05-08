@@ -65,7 +65,7 @@ public class SideMenuPanel {
         return maxWidth;
     }
 
-    public JComponent getSide() {
+    public JPanel getSide() {
         return side;
     }
 

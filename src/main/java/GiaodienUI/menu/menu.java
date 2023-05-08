@@ -51,7 +51,7 @@ public class menu extends JComponent{
     private String [][]menuItems = new String[][]
     {
         {"Dashboard"},
-        {"Du Lịch","Tour Miền Bắc","Tour Miền Trung","Tour Miền Tây Nam Bộ","Tour Miền Đông Nam Bộ"},
+        {"Quản lý đặt vé Tour","Quản lý vé tour","","Tour Miền Tây Nam Bộ","Tour Miền Đông Nam Bộ"},
         {"Tab3"},
         {"Tab4"}
     };
