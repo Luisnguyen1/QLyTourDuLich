@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.NhanVien;
+
 import DTo.Tour;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,6 +36,8 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jButton1 = new javax.swing.JButton();
+        jPasswordField1 = new javax.swing.JPasswordField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -52,7 +54,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jLabel6 = new javax.swing.JLabel();
         txtTenTour = new javax.swing.JTextField();
         txtMaTour = new javax.swing.JTextField();
-        txtLoaiTour = new javax.swing.JTextField();
         txtTongSoCho = new javax.swing.JTextField();
         txtSoChoDu = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -87,9 +88,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
+        cbxLoaiTour = new javax.swing.JComboBox<>();
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+
+        jButton1.setText("jButton1");
+
+        jPasswordField1.setText("jPasswordField1");
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 204));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -405,6 +411,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             }
         });
 
+        cbxLoaiTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loại Tour", "Nhân Viên Bán Hàng", "Quản Lý Kho", "Nhân Viên Văn Phòng", " " }));
+        cbxLoaiTour.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxLoaiTourActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -427,8 +440,8 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                                     .addComponent(txtTongSoCho)
                                     .addComponent(txtSoChoDu)
                                     .addComponent(txtMaTour)
-                                    .addComponent(txtLoaiTour)
-                                    .addComponent(txtTenTour))
+                                    .addComponent(txtTenTour)
+                                    .addComponent(cbxLoaiTour, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                                 .addGap(29, 29, 29)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -503,9 +516,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                             .addComponent(txtMaTour)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtLoaiTour)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(cbxLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTongSoCho)
@@ -913,7 +926,7 @@ if(thang.equals("2")){
          try{
     String tenTour = txtTenTour.getText();
     String maTour = txtMaTour.getText();
-    String loaiTour = txtLoaiTour.getText();
+    String loaiTour = cbxLoaiTour.getSelectedItem().toString();
     int tongSoCho = Integer.parseInt(txtTongSoCho.getText());
     int soChoDu = Integer.parseInt(txtSoChoDu.getText());
     String diaDiemTour = txtDiaDiemTour.getText();
@@ -958,7 +971,7 @@ jTable1.setModel(model);
 JOptionPane.showMessageDialog(null, "Thêm Tour Thành Công");
 txtTenTour.setText("");
 txtMaTour.setText("");
-txtLoaiTour.setText("");
+
 txtDiaDiemTour.setText("");
 txtDiaDiemDi.setText("");
 txtDiaDiemDen.setText("");
@@ -1062,7 +1075,14 @@ if (tourCanSua == null) {
 // hiển thị form sửa thông tin khách hàng
 String tenTour = JOptionPane.showInputDialog(null, "Nhập tên Tour", tourCanSua.getTenTour());
 String maTour = JOptionPane.showInputDialog(null, "Nhập mã Tour", maNV);
-String loaiTour = JOptionPane.showInputDialog(null, "Nhập loại Tour", tourCanSua.getLoaiTour());
+JComboBox<String> cbxLoaiTour = new JComboBox<>();
+cbxLoaiTour.addItem("Nhân Viên Bán Hàng");
+cbxLoaiTour.addItem("Quản Lý Kho");
+cbxLoaiTour.addItem("Nhân Viên Văn Phòng");
+cbxLoaiTour.setSelectedItem(tourCanSua.getLoaiTour());
+JOptionPane.showMessageDialog(null, tourCanSua, "Chọn loại Tour", JOptionPane.QUESTION_MESSAGE);
+String loaiTour = (String) cbxLoaiTour.getSelectedItem();
+
 String tongSoCho = JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", tourCanSua.getTongsocho());
 String soChoDu = JOptionPane.showInputDialog(null, "Nhập số chỗ dư", tourCanSua.getSochodu());
 String diaDiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", tourCanSua.getDiaDiemTour());
@@ -1070,6 +1090,14 @@ String diaDiemDi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi"
 String diaDiemDen = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", tourCanSua.getDiaDiemden());
 String soNgayDi = JOptionPane.showInputDialog(null, "Nhập số ngày đi", tourCanSua.getSongaydi());
 // thêm ComboBox để chọn loại nhân viên
+JComboBox<String> cbxnamDi = new JComboBox<>();
+cbxnamDi.addItem("2023");
+
+cbxnamDi.setSelectedItem(tourCanSua.getNgaydi());
+
+JOptionPane.showMessageDialog(null, tourCanSua, "Chọn năm đi", JOptionPane.QUESTION_MESSAGE);
+String namDiString = (String) cbxnamDi.getSelectedItem();
+int namDi = Integer.parseInt(namDiString);
 JComboBox<String> cbxThangDi = new JComboBox<>();
 int day = 0;
 for(int i = 1; i < 13 ; i++){
@@ -1080,7 +1108,8 @@ for(int i = 1; i < 13 ; i++){
 }
 cbxThangDi.setSelectedItem(tourCanSua.getNgaydi());
 JOptionPane.showMessageDialog(null, cbxThangDi, "Chọn Tháng Đi", JOptionPane.QUESTION_MESSAGE);
-String ThangDi = (String) cbxThangDi.getSelectedItem();
+String TDiString = (String) cbxThangDi.getSelectedItem();
+int ThangDi = Integer.parseInt(TDiString);
 
 JComboBox<String> cbxNgayDi = new JComboBox<>();
 if(thangdi.equals("1")){
@@ -1223,7 +1252,14 @@ JOptionPane.showMessageDialog(null, cbxNgayDi, "Chọn Ngày Đi", JOptionPane.Q
 String ngaydi = (String) cbxNgayDi.getSelectedItem();
 int ngayDi = Integer.parseInt(ngaydi);
 
+JComboBox<String> cbxnamVe = new JComboBox<>();
+cbxnamVe.addItem("2023");
 
+cbxnamVe.setSelectedItem(tourCanSua.getNgaydi());
+
+JOptionPane.showMessageDialog(null, tourCanSua, "Chọn năm về", JOptionPane.QUESTION_MESSAGE);
+String namVeString = (String) cbxnamDi.getSelectedItem();
+int namVe = Integer.parseInt(namVeString);
 JComboBox<String> cbxThangVe = new JComboBox<>();
 for(int i = 1; i < 13 ; i++){
     day = i;
@@ -1233,7 +1269,8 @@ for(int i = 1; i < 13 ; i++){
 }
 cbxThangVe.setSelectedItem(tourCanSua.getNgaydi());
 JOptionPane.showMessageDialog(null, cbxThangVe, "Chọn Tháng Về", JOptionPane.QUESTION_MESSAGE);
-String ThangVe = (String) cbxThangVe.getSelectedItem();
+String TVeString = (String) cbxThangVe.getSelectedItem();
+int ThangVe = Integer.parseInt(TVeString);
 
 JComboBox<String> cbxNgayVe = new JComboBox<>();
 if(thangve.equals("1")){
@@ -1379,7 +1416,14 @@ int ngayVe = Integer.parseInt(ngayve);
 
 String giaTour = JOptionPane.showInputDialog(null, "Nhập Giá Tour", tourCanSua.getGiaTour());
 
-
+ Calendar calendar = Calendar.getInstance();
+    calendar.set(namDi, ThangDi - 1, ngayDi);
+    Date ngayDiDate = calendar.getTime();
+    calendar.set(namVe, ThangVe - 1, ngayVe);
+    Date ngayVeDate = calendar.getTime();
+   SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+String ngayDiString = dateFormat.format(ngayDiDate);
+String ngayVeString = dateFormat.format(ngayVeDate);       
 // cập nhật thông tin khách hàng
 tourCanSua.setTenTour(tenTour);
 tourCanSua.setMaTour(maTour);
@@ -1404,13 +1448,13 @@ model.setValueAt(maTour, selectedRow, 1);
 model.setValueAt(loaiTour, selectedRow, 2);
 model.setValueAt(tongSoCho, selectedRow, 3);
 model.setValueAt(soChoDu, selectedRow, 4);
-model.setValueAt(diaDiemTour, selectedRow, 4);
-model.setValueAt(diaDiemDi, selectedRow, 4);
-model.setValueAt(diaDiemDen, selectedRow, 4);
-model.setValueAt(soNgayDi, selectedRow, 4);
-model.setValueAt(ngayDi, selectedRow, 4);
-model.setValueAt(ngayVe, selectedRow, 4);
-model.setValueAt(giaTour, selectedRow, 4);
+model.setValueAt(diaDiemTour, selectedRow, 5);
+model.setValueAt(diaDiemDi, selectedRow, 6);
+model.setValueAt(diaDiemDen, selectedRow, 7);
+model.setValueAt(soNgayDi, selectedRow, 8);
+model.setValueAt(ngayDiString, selectedRow, 9);
+model.setValueAt(ngayVeString, selectedRow, 10);
+model.setValueAt(giaTour, selectedRow, 11);
 
 
 
@@ -1418,18 +1462,24 @@ model.setValueAt(giaTour, selectedRow, 4);
 JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
+    private void cbxLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLoaiTourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxLoaiTourActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JComboBox<String> cbxLoaiTour;
     private javax.swing.JComboBox<String> cbxNamDi;
     private javax.swing.JComboBox<String> cbxNamVe;
     private javax.swing.JComboBox<String> cbxNgayDi;
     private javax.swing.JComboBox<String> cbxNgayVe;
     private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JComboBox<String> cbxThangVe;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1457,6 +1507,7 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công")
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JPasswordField jPasswordField1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -1468,7 +1519,6 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công")
     private javax.swing.JTextField txtDiaDiemDi;
     private javax.swing.JTextField txtDiaDiemTour;
     private javax.swing.JTextField txtGiaTour;
-    private javax.swing.JTextField txtLoaiTour;
     private javax.swing.JTextField txtMaTour;
     private javax.swing.JTextField txtSoChoDu;
     private javax.swing.JTextField txtSoNgayDi;
