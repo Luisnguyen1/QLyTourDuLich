@@ -35,18 +35,23 @@ import net.miginfocom.swing.MigLayout;
  * @author PC
  */
 public class menu extends JComponent{
+    public MenuEvent getEvent() {
+        return event;
+    }
+
+    public void setEvent(MenuEvent event) {
+        this.event = event;
+    }
+
+    
     private MenuEvent event;
     private MigLayout layout;
-    private JButton openSide = new JButton();   
-    private static final int BUTTON_LOCATION_X = 300;  // location x 
-    private static final int BUTTON_LOCATION_Y = 50;   // location y 
-    private static final int BUTTON_SIZE_X = 140;      // size height
-    private static final int BUTTON_SIZE_Y = 50;       // size width
+    
     SideMenuPanel sp;
     private String [][]menuItems = new String[][]
     {
         {"Dashboard"},
-        {"Du Lịch","Tour Miền Bắc","Tour Miền Trung","Tour Miền Tây Nam Bộ","Tour Miền Đông Nam Bộ"},
+        {"Quản lý đặt vé Tour","Quản lý vé tour","","Tour Miền Tây Nam Bộ","Tour Miền Đông Nam Bộ"},
         {"Tab3"},
         {"Tab4"}
     };
@@ -66,20 +71,13 @@ public class menu extends JComponent{
         }
 
     }
-    public int openMenu(){
-        if(openSide.isSelected()== true)
-        {
-            return 1;
-        }
-        return 0;
-    }
 
     private Icon getIcon(int index) {
-        URL url = getClass().getResource("C:\\Users\\PC\\Documents\\GitHub\\QLyTourDuLich\\src\\main\\java\\GiaodienUI\\menu"+index + ".png");
+        URL url = getClass().getResource(index + ".png");
         if (url != null) {
             return new ImageIcon(url);
         } else {
-            System.out.println("K thay");
+            System.out.println("K thay "+ index);
             return null;
         }
         
