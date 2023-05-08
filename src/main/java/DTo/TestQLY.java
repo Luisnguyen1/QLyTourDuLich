@@ -28,7 +28,11 @@ public class TestQLY {
         // Sử dụng bố cục mặc định của FlowLayout
 JFrame js = new JFrame();
 js.setTitle("khQuản lý khách hàng");
+
+
+
 QlyTourDuLich ql = new QlyTourDuLich();
+
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(750, 700); // đặt kích thước

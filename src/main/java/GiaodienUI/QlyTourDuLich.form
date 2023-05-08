@@ -1,6 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
 <Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <NonVisualComponents>
+    <Component class="javax.swing.JButton" name="jButton1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jButton1"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JPasswordField" name="jPasswordField1">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="jPasswordField1"/>
+      </Properties>
+    </Component>
+  </NonVisualComponents>
   <AuxValues>
     <AuxValue name="FormSettings_autoResourcing" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_autoSetComponentName" type="java.lang.Boolean" value="false"/>
@@ -139,8 +151,8 @@
                                       <Component id="txtTongSoCho" max="32767" attributes="0"/>
                                       <Component id="txtSoChoDu" max="32767" attributes="0"/>
                                       <Component id="txtMaTour" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="txtLoaiTour" alignment="0" max="32767" attributes="0"/>
                                       <Component id="txtTenTour" alignment="0" max="32767" attributes="0"/>
+                                      <Component id="cbxLoaiTour" max="32767" attributes="0"/>
                                   </Group>
                                   <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
                                   <Component id="jSeparator2" min="-2" pref="16" max="-2" attributes="0"/>
@@ -237,9 +249,9 @@
                               <Component id="jPanel4" max="32767" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="txtLoaiTour" max="32767" attributes="0"/>
-                              <Component id="jPanel5" max="32767" attributes="0"/>
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                              <Component id="cbxLoaiTour" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -454,8 +466,6 @@
         <Component class="javax.swing.JTextField" name="txtTenTour">
         </Component>
         <Component class="javax.swing.JTextField" name="txtMaTour">
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtLoaiTour">
         </Component>
         <Component class="javax.swing.JTextField" name="txtTongSoCho">
         </Component>
@@ -894,6 +904,25 @@
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
           </Events>
+        </Component>
+        <Component class="javax.swing.JComboBox" name="cbxLoaiTour">
+          <Properties>
+            <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+              <StringArray count="5">
+                <StringItem index="0" value="Lo&#x1ea1;i Tour"/>
+                <StringItem index="1" value="Nh&#xe2;n Vi&#xea;n B&#xe1;n H&#xe0;ng"/>
+                <StringItem index="2" value="Qu&#x1ea3;n L&#xfd; Kho"/>
+                <StringItem index="3" value="Nh&#xe2;n Vi&#xea;n V&#x103;n Ph&#xf2;ng"/>
+                <StringItem index="4" value=" "/>
+              </StringArray>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxLoaiTourActionPerformed"/>
+          </Events>
+          <AuxValues>
+            <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
+          </AuxValues>
         </Component>
       </SubComponents>
     </Container>
