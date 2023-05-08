@@ -145,7 +145,7 @@ public class Test extends javax.swing.JFrame {
         jLabel6.setFont(new java.awt.Font("Consolas", 0, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(31, 39, 44));
         jLabel6.setText("<html>SideMenuPanel sp = new SideMenuPanel(this);         <br>sp.setMain(mainPanel);          <br>sp.setSide(sidebar);          <br>sp.setMinWidth(55);        <br> sp.setMaxWidth(160);          <br>sp.setMainAnimation(true);          <br>sp.setSpeed(4);          <br>sp.setResponsiveMinWidth(600); </html>");
-        jLabel6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(null), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
+        jLabel6.setBorder(javax.swing.BorderFactory.createCompoundBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)), javax.swing.BorderFactory.createEmptyBorder(10, 10, 10, 10)));
         jLabel6.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
 
         jLabel7.setFont(new java.awt.Font("Segoe UI Semibold", 1, 18)); // NOI18N

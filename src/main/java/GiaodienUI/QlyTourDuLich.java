@@ -19,7 +19,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyTourDuLich extends javax.swing.JPanel {
-    ArrayList<Tour> danhSachNV = new ArrayList<Tour>();
+    ArrayList<Tour> danhSachTour = new ArrayList<Tour>();
     /**
      * Creates new form QlyVeTour
      */
@@ -245,22 +245,17 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 0, 0));
-        jLabel9.setText("    Số Ngày Đi");
+        jLabel9.setText("      Số Ngày Đi");
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel9)
-                .addGap(21, 21, 21))
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel9Layout.createSequentialGroup()
-                .addComponent(jLabel9)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         txtSoNgayDi.addActionListener(new java.awt.event.ActionListener() {
@@ -431,9 +426,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(txtTongSoCho)
                                     .addComponent(txtSoChoDu)
-                                    .addComponent(txtTenTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(txtMaTour)
-                                    .addComponent(txtLoaiTour))
+                                    .addComponent(txtLoaiTour)
+                                    .addComponent(txtTenTour))
                                 .addGap(29, 29, 29)
                                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -536,7 +531,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtSoNgayDi)
+                    .addComponent(txtSoNgayDi, javax.swing.GroupLayout.DEFAULT_SIZE, 26, Short.MAX_VALUE)
                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -571,17 +566,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, "", "", null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "Tên Tour", "Mã Tour", "Loại Tour", "Tổng Số Chỗ", "Số Chỗ Dư", "Địa Điểm Tour", "Địa Điểm Đi", "Địa Điểm Đến", "Số Ngày Đi", "Ngày Đi", "Ngày Về", "Giá Tour"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -612,14 +604,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator5, javax.swing.GroupLayout.PREFERRED_SIZE, 2, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 134, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 116, Short.MAX_VALUE)
                 .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -948,7 +940,7 @@ if(thang.equals("2")){
     Tour nv = new Tour(tenTour,maTour, loaiTour, tongSoCho, soChoDu,diaDiemTour,diaDiemDi,diaDiemDen,soNgayDi,ngayDi,ngayVe,giaTour);
 
     // Thêm đối tượng vào danh sách
-    danhSachNV.add(nv);
+    danhSachTour.add(nv);
     
     // Tạo đối tượng DefaultTableModel
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -975,7 +967,7 @@ txtSoChoDu.setText("");
 txtTongSoCho.setText("");
 txtSoNgayDi.setText("");
 } catch (NumberFormatException e) {
-    JOptionPane.showMessageDialog(null, "Nhập sai định dạng số");
+    JOptionPane.showMessageDialog(null, "Nhập Sai Định Dạng Số");
 }
     }//GEN-LAST:event_btnThemActionPerformed
    
@@ -1005,22 +997,22 @@ String maNV = (String) model.getValueAt(selectedRow, 1);
 
 
 // tìm khách hàng trong danh sách dựa vào mã
-Tour nhanVienCanXoa = null;
-for (Tour nv : danhSachNV) {
+Tour tourCanXoa = null;
+for (Tour nv : danhSachTour) {
     if (nv.getMaTour().equals(maNV)) {
-        nhanVienCanXoa = nv;
+        tourCanXoa = nv;
         break;
     }
 }
 
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-if (nhanVienCanXoa == null) {
+if (tourCanXoa == null) {
     JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
     return;
 }
 
 // xóa khách hàng khỏi danh sách
-danhSachNV.remove(nhanVienCanXoa);
+danhSachTour.remove(tourCanXoa);
 
 // xóa hàng được chọn trong model
 model.removeRow(selectedRow);
@@ -1029,12 +1021,15 @@ model.removeRow(selectedRow);
 jTable1.setModel(model);
 
 // thông báo thành công
-JOptionPane.showMessageDialog(null, "Xóa Nhân Viên Thành Công");
+JOptionPane.showMessageDialog(null, "Xóa Tour Thành Công");
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // lấy chỉ số hàng được chọn trong JTable
+String thangdi = cbxThangDi.getSelectedItem().toString();
+String thangve = cbxThangDi.getSelectedItem().toString();
+
+// lấy chỉ số hàng được chọn trong JTable
 int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -1050,62 +1045,373 @@ DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 String maNV = (String) model.getValueAt(selectedRow, 1);
 
 // tìm khách hàng trong danh sách dựa vào mã
-Tour nhanVienCanSua = null;
-for (Tour nv : danhSachNV) {
+Tour tourCanSua = null;
+for (Tour nv : danhSachTour) {
     if (nv.getMaTour().equals(maNV)) {
-        nhanVienCanSua = nv;
+        tourCanSua = nv;
         break;
     }
 }
 
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-if (nhanVienCanSua == null) {
+if (tourCanSua == null) {
     JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
     return;
 }
 
 // hiển thị form sửa thông tin khách hàng
-String tenNV = JOptionPane.showInputDialog(null, "Nhập tên Tour", nhanVienCanSua.getTenTour());
-String maTourNew = JOptionPane.showInputDialog(null, "Nhập mã Tour", maNV);
-String loaiTour = JOptionPane.showInputDialog(null, "Nhập loại Tour", nhanVienCanSua.getLoaiTour());
-String Tongsocho = JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", nhanVienCanSua.getTongsocho());
-String sochodu = JOptionPane.showInputDialog(null, "Nhập số chỗ dư", nhanVienCanSua.getSochodu());
-String DiadiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", nhanVienCanSua.getDiaDiemTour());
-String Diadiemdi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi", nhanVienCanSua.getDiaDiemdi());
-String Diadiemden = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", nhanVienCanSua.getDiaDiemden());
-String Songaydi = JOptionPane.showInputDialog(null, "Nhập số ngày đi", nhanVienCanSua.getSongaydi());
+String tenTour = JOptionPane.showInputDialog(null, "Nhập tên Tour", tourCanSua.getTenTour());
+String maTour = JOptionPane.showInputDialog(null, "Nhập mã Tour", maNV);
+String loaiTour = JOptionPane.showInputDialog(null, "Nhập loại Tour", tourCanSua.getLoaiTour());
+String tongSoCho = JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", tourCanSua.getTongsocho());
+String soChoDu = JOptionPane.showInputDialog(null, "Nhập số chỗ dư", tourCanSua.getSochodu());
+String diaDiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", tourCanSua.getDiaDiemTour());
+String diaDiemDi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi", tourCanSua.getDiaDiemdi());
+String diaDiemDen = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", tourCanSua.getDiaDiemden());
+String soNgayDi = JOptionPane.showInputDialog(null, "Nhập số ngày đi", tourCanSua.getSongaydi());
 // thêm ComboBox để chọn loại nhân viên
-JComboBox<String> cbxLoaiNhanVien = new JComboBox<>();
-cbxLoaiNhanVien.addItem("Nhân Viên Bán Hàng");
-cbxLoaiNhanVien.addItem("Quản Lý Kho");
-cbxLoaiNhanVien.addItem("Nhân Viên Văn Phòng");
-cbxLoaiNhanVien.setSelectedItem(nhanVienCanSua.getLoainv());
-JOptionPane.showMessageDialog(null, cbxLoaiNhanVien, "Chọn loại nhân viên", JOptionPane.QUESTION_MESSAGE);
+JComboBox<String> cbxThangDi = new JComboBox<>();
+int day = 0;
+for(int i = 1; i < 13 ; i++){
+    day = i;
+    String Day = Integer.toString(day);
+    cbxThangDi.addItem(Day);
+    Day = "";
+}
+cbxThangDi.setSelectedItem(tourCanSua.getNgaydi());
+JOptionPane.showMessageDialog(null, cbxThangDi, "Chọn Tháng Đi", JOptionPane.QUESTION_MESSAGE);
+String ThangDi = (String) cbxThangDi.getSelectedItem();
 
-String loainv = (String) cbxLoaiNhanVien.getSelectedItem();
-// thêm ComboBox để chọn chức vụ
-JComboBox<String> cbxChucVu = new JComboBox<>();
-cbxChucVu.addItem("Nhân Viên");
-cbxChucVu.addItem("Quản Lý");
-cbxChucVu.setSelectedItem(nhanVienCanSua.getChucvu());
-JOptionPane.showMessageDialog(null, cbxChucVu, "Chọn chức vụ", JOptionPane.QUESTION_MESSAGE);
+JComboBox<String> cbxNgayDi = new JComboBox<>();
+if(thangdi.equals("1")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("3")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
 
-String chucvu = (String) cbxChucVu.getSelectedItem();
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("5")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("7")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("8")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("10")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("12")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thangdi.equals("4")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("6")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("9")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangdi.equals("11")){
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thangdi.equals("2")){
+    cbxNgayDi.removeAllItems();
+        cbxNgayDi.addItem("Ngày");
+
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayDi.addItem(Day);
+        Day = "";
+    }
+}
+cbxNgayDi.setSelectedItem(tourCanSua.getNgaydi());
+JOptionPane.showMessageDialog(null, cbxNgayDi, "Chọn Ngày Đi", JOptionPane.QUESTION_MESSAGE);
+String ngaydi = (String) cbxNgayDi.getSelectedItem();
+int ngayDi = Integer.parseInt(ngaydi);
+
+
+JComboBox<String> cbxThangVe = new JComboBox<>();
+for(int i = 1; i < 13 ; i++){
+    day = i;
+    String Day = Integer.toString(day);
+    cbxThangVe.addItem(Day);
+    Day = "";
+}
+cbxThangVe.setSelectedItem(tourCanSua.getNgaydi());
+JOptionPane.showMessageDialog(null, cbxThangVe, "Chọn Tháng Về", JOptionPane.QUESTION_MESSAGE);
+String ThangVe = (String) cbxThangVe.getSelectedItem();
+
+JComboBox<String> cbxNgayVe = new JComboBox<>();
+if(thangve.equals("1")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("3")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("5")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("7")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("8")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("10")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("12")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 32 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+
+//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+if(thangve.equals("4")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("6")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("9")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+else if(thangve.equals("11")){
+    cbxNgayVe.removeAllItems();
+    cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 31 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+
+//Còn lại là tháng 2 có 28 ngày trong năm 2023
+if(thangve.equals("2")){
+    cbxNgayVe.removeAllItems();
+        cbxNgayVe.addItem("Ngày");
+
+    for(int i = 1 ; i < 29 ; i++){
+        day = i;
+        String Day = Integer.toString(day);
+        cbxNgayVe.addItem(Day);
+        Day = "";
+    }
+}
+cbxNgayVe.setSelectedItem(tourCanSua.getNgaydi());
+JOptionPane.showMessageDialog(null, cbxNgayVe, "Chọn Ngày Về", JOptionPane.QUESTION_MESSAGE);
+String ngayve = (String) cbxNgayVe.getSelectedItem();
+int ngayVe = Integer.parseInt(ngayve);
+
+
+String giaTour = JOptionPane.showInputDialog(null, "Nhập Giá Tour", tourCanSua.getGiaTour());
 
 
 // cập nhật thông tin khách hàng
-nhanVienCanSua.setTennv(tenNV);
-nhanVienCanSua.setManv(maNVNew);
-nhanVienCanSua.setDiachi(diaChi);
-nhanVienCanSua.setLoainv(loainv);
-nhanVienCanSua.setChucvu(chucvu);
+tourCanSua.setTenTour(tenTour);
+tourCanSua.setMaTour(maTour);
+tourCanSua.setLoaiTour(loaiTour);
+int tongsocho = Integer.parseInt(tongSoCho);
+int sochodu = Integer.parseInt(soChoDu);
+tourCanSua.setTongsocho(tongsocho);
+tourCanSua.setSochodu(sochodu);
+tourCanSua.setDiaDiemTour(diaDiemTour);
+tourCanSua.setDiaDiemdi(diaDiemDi);
+tourCanSua.setDiaDiemden(diaDiemDen);
+int songaydi = Integer.parseInt(soNgayDi);
+tourCanSua.setSongaydi(songaydi);
+tourCanSua.setNgaydi(ngayDi);
+tourCanSua.setNgayve(ngayVe);
+long giatour = Long.parseLong(giaTour);
+tourCanSua.setGiaTour(giatour);
 
 // cập nhật lại model cho JTable
-model.setValueAt(tenNV, selectedRow, 0);
-model.setValueAt(maNVNew, selectedRow, 1);
-model.setValueAt(diaChi, selectedRow, 2);
-model.setValueAt(loainv, selectedRow, 3);
-model.setValueAt(chucvu, selectedRow, 4);
+model.setValueAt(tenTour, selectedRow, 0);
+model.setValueAt(maTour, selectedRow, 1);
+model.setValueAt(loaiTour, selectedRow, 2);
+model.setValueAt(tongSoCho, selectedRow, 3);
+model.setValueAt(soChoDu, selectedRow, 4);
+model.setValueAt(diaDiemTour, selectedRow, 4);
+model.setValueAt(diaDiemDi, selectedRow, 4);
+model.setValueAt(diaDiemDen, selectedRow, 4);
+model.setValueAt(soNgayDi, selectedRow, 4);
+model.setValueAt(ngayDi, selectedRow, 4);
+model.setValueAt(ngayVe, selectedRow, 4);
+model.setValueAt(giaTour, selectedRow, 4);
+
 
 
 // thông báo thành công
