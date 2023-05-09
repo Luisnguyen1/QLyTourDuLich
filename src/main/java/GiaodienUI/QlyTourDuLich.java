@@ -98,7 +98,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
         jPasswordField1.setText("jPasswordField1");
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(21, 135, 100));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));

@@ -3,6 +3,7 @@ package DTo;
 
 import java.util.Scanner;
 
+
 public class thu {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -32,7 +33,7 @@ public class thu {
                 System.out.println("Nhap so dien thoai: "); long sodienthoai = sc.nextLong();
                 System.out.println("Nhap email: "); String email = sc.nextLine();
                 sc.nextLine();
-                KhachHang kh = new KhachHang(makhachhang, tenkhachhang, diachi, sodienthoai,email);
+                KhachHang kh = new KhachHang(makhachhang,tenkhachhang,diachi,sodienthoai,email);
                 dskh.themKhachHang(kh);
                 
             }else if(luaChon == 2)
