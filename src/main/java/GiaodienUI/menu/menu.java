@@ -52,8 +52,9 @@ public class menu extends JComponent{
     {
         {"Dashboard"},
         {"Du lịch"},
-        {"Quản lý","Quản lý đặt vé Tour","Quản lý vé tour","QUản lý","Tour Miền Tây Nam Bộ","Tour Miền Đông Nam Bộ"},
-        {"Thống kê"},
+        {"Quản lý","Quản lý địa điểm tour","Quản lý địa điểm vui chơi","Quản lý khách sạn","Quản lý nhân viên"
+        ,"Quản lý phương tiện","Quản lý vé tour","Quản lý khách hàng","Quản lý khuyến mãi","Quản lý tour du lịch","Quản lý hóa đơn"},
+        {"Thống kê","Thống kê theo ngày","Thống kê theo tháng"},
         {"Đặt vé"},
         {"Tra cứu"},
         {"Khuyến mãi"},

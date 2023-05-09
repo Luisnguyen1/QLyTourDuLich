@@ -53,9 +53,77 @@ public class Main extends javax.swing.JFrame {
                 if (index == 0) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new index1());
-                } if(index == 1 && subIndex == 1 ) {
-                    showForm(new QlyVeTour());
+                } if(index == 1  ) {
+                    showForm(new DuLich());
                     System.out.println(index +" "+subIndex);
+                }
+                if (index == 2 && subIndex == 1) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyDiaDiemTour());
+                }
+                if (index == 2 && subIndex == 2) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyDiaDiemVuiChoi());
+                }
+                if (index == 2 && subIndex == 3) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhachSan());
+                }
+                if (index == 2 && subIndex == 4) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyNhanVien());
+                }
+                if (index == 2 && subIndex == 5) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyPhuongTien());
+                }
+                if (index == 2 && subIndex == 6) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyVeTour());
+                }
+                if (index == 2 && subIndex == 7) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhachHang());
+                }
+                if (index == 2 && subIndex == 8) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhuyenMai());
+                }
+                if (index == 2 && subIndex == 9) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyTourDuLich());
+                }
+                if (index == 2 && subIndex == 10) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyHoaDon());
+                }
+                if (index == 3 && subIndex == 1) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyThongKeTheoNgay());
+                }
+                if (index == 3 && subIndex == 2) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyThongKeTheoThang());
+                }
+                if (index == 4) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new BookVeTour());
+                }
+                if (index == 5) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new TraCuu());
+                }
+                if (index == 6) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new KhuyenMai());
+                }
+                if (index == 7) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new Contact());
+                }
+                if (index == 8) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new LogOut());
                 }
             }
         }); 
@@ -93,7 +161,6 @@ public class Main extends javax.swing.JFrame {
 
         sideBar.setBackground(new java.awt.Color(21, 110, 71));
 
-        jButton1.setText("jButton2");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);

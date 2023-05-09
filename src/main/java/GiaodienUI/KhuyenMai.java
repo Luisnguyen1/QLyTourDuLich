@@ -6,14 +6,14 @@ package GiaodienUI;
 
 /**
  *
- * @author Thanh Tran
+ * @author LENOVO
  */
-public class Contact extends javax.swing.JPanel {
+public class KhuyenMai extends javax.swing.JPanel {
 
     /**
-     * Creates new form Contact
+     * Creates new form KhuyenMai
      */
-    public Contact() {
+    public KhuyenMai() {
         initComponents();
     }
 
@@ -28,23 +28,23 @@ public class Contact extends javax.swing.JPanel {
 
         jLabel1 = new javax.swing.JLabel();
 
-        jLabel1.setText("Liên hệ Contatct");
+        jLabel1.setText("Đây là Khuyênxs Mãi");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(122, 122, 122)
+                .addGap(129, 129, 129)
                 .addComponent(jLabel1)
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
+                .addGap(47, 47, 47)
                 .addComponent(jLabel1)
-                .addContainerGap(243, Short.MAX_VALUE))
+                .addContainerGap(237, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
