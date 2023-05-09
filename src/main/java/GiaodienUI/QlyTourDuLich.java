@@ -978,9 +978,21 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                     || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
                     || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
                     || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
+                // lấy giá trị của ô thứ 10 trong hàng đang được chọn
+                Object ngayDiObject = jTable1.getValueAt(jTable1.getSelectedRow(), 10);
+// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
+                int ngayDi = Integer.parseInt(ngayDiObject.toString());
+
+// lấy giá trị của ô thứ 11 trong hàng đang được chọn
+                Object ngayVeObject = jTable1.getValueAt(jTable1.getSelectedRow(), 11);
+// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
+                int ngayVe = Integer.parseInt(ngayVeObject.toString());
+
+               
+                long giaTour = Long.parseLong(txtGiaTour.getText());
                 SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayDiString = dateFormat.format(ngayDiDate);
-                String ngayVeString = dateFormat.format(ngayVeDate);
+                String ngayDiString = dateFormat.format(ngayDi);
+                String ngayVeString = dateFormat.format(ngayVe);
                 model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
             }
         }
