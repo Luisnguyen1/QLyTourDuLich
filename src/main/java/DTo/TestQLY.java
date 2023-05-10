@@ -31,11 +31,11 @@ js.setTitle("Quản lý");
 
 
 
-QlyVeTour ql = new QlyVeTour();
+QlyKhachHang ql = new QlyKhachHang();
 
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
-js.setSize(750, 700); // đặt kích thước
+js.setSize(930, 580); // đặt kích thước
 js.setVisible(true);
 
 

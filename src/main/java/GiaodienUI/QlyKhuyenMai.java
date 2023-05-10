@@ -4,12 +4,21 @@
  */
 package GiaodienUI;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import DTo.KhuyenMai;
+import java.util.ArrayList;
 /**
  *
  * @author Thanh Tran
  */
 public class QlyKhuyenMai extends javax.swing.JPanel {
 
+  
+    ArrayList<KhuyenMai> danhSachKM = new ArrayList<>();
     /**
      * Creates new form QlyKhuyenMai
      */
@@ -677,11 +686,77 @@ if(thang.equals("2")){
     }//GEN-LAST:event_txtTienGiamActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+       try{
+        String tenKM = txtTenKhuyenMai.getText();
+        String maKM = txtMaKhuyenMai.getText();
+        long tienGiam = Long.parseLong(txtTienGiam.getText());
+        int ngayKM = Integer.parseInt(cbxNgayKhuyenMai.getSelectedItem().toString());
+        int thangKM = Integer.parseInt(cbxThangKhuyenMai.getSelectedItem().toString());
+        int namKM = Integer.parseInt(cbxNamKhuyenMai.getSelectedItem().toString());
+        int ngayHSD = Integer.parseInt(cbxNgayHanSuDung.getSelectedItem().toString());
+        int thangHSD = Integer.parseInt(cbxThangHanSuDung.getSelectedItem().toString());
+        int namHSD = Integer.parseInt(cbxNamHanSuDung.getSelectedItem().toString());
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namKM,thangKM - 1,ngayKM);
+        Date ngayKMDate = calendar.getTime();
+        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        Date hanSDDate = calendar.getTime();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayKMString = dateFormat.format(ngayKMDate);
+        String hanSDString = dateFormat.format(hanSDDate);
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+       
+        KhuyenMai km = new KhuyenMai(maKM,tenKM,ngayKM,ngayHSD,tienGiam);
+       
+        model.addRow(new Object[]{km.getMakm(),km.getTenkm(),ngayKMString, hanSDString, km.getTiengiam()});
+        
+        jTable1.setModel(model);
+        
+                   JOptionPane.showMessageDialog(null,"Thêm Khuyến Mãi Thành Công");
+                   
+        txtTenKhuyenMai.setText("");
+                txtMaKhuyenMai.setText("");
+        txtTienGiam.setText("");
+        
+       }catch(NumberFormatException e){
+           JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin Và Kiểm Tra Lại");
+       }
+        
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+         int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String maKM = (String) model.getValueAt(selectedRow, 1);
+        
+        KhuyenMai khuyenMaiCanXoa = null;
+        for(KhuyenMai km : danhSachKM){
+            if(km.getMakm().equals(maKM)){
+                khuyenMaiCanXoa = km;
+                break;
+            }
+        }
+        
+        if(khuyenMaiCanXoa == null){
+            JOptionPane.showMessageDialog(null,"Khuyến Mãi Không Tồn Tại");
+        }
+        
+        danhSachKM.remove(khuyenMaiCanXoa);
+        model.removeRow(selectedRow);
+        
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Xóa Khuyến Mãi Thành Công");
+       
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
