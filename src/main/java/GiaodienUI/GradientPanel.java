@@ -30,8 +30,8 @@ public class GradientPanel extends javax.swing.JPanel {
         int h = getHeight();
 
         GradientPaint gp = new GradientPaint(
-                0, 0, new Color(0,204,153),
-                0, h,  new Color(21,110,71,255));
+                0, 0, new Color(41, 51, 92),
+                0, h,  new Color(22, 28, 49));
                 
 
         g2d.setPaint(gp);
