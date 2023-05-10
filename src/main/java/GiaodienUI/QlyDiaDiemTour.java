@@ -220,10 +220,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"hgfhgfh", "hfghgf", "hfghfg", "ghgfhfg"},
-                {null, "hgfhgf", "gfhfgh", "gfhfghf"},
-                {"gfdgfdg", "ghgfh", "hgfhfg", "hgfhgfh"},
-                {null, null, null, null}
+
             },
             new String [] {
                 "Khu Vực", "Tỉnh/Thành phố", "Địa Điểm", "Mã Địa Điểm"

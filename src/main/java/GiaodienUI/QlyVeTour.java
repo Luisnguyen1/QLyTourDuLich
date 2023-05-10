@@ -71,6 +71,8 @@ public class QlyVeTour extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
+        setBackground(new java.awt.Color(35, 43, 78));
+
         jPanel1.setBackground(new java.awt.Color(255, 228, 229));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -365,7 +367,6 @@ public class QlyVeTour extends javax.swing.JPanel {
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
         jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

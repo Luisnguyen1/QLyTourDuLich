@@ -727,31 +727,36 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
+         int selectedRow = jTable1.getSelectedRow();
         
-        if(selectedRow == - 1){
+        if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
             return;
         }
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        String maKM = (String) model.getValueAt(selectedRow,1);
         
-        KhuyenMai kmCanXoa = null;
+        String maKM = (String) model.getValueAt(selectedRow, 1);
+        
+        KhuyenMai khuyenMaiCanXoa = null;
         for(KhuyenMai km : danhSachKM){
             if(km.getMakm().equals(maKM)){
-                kmCanXoa = km;
+                khuyenMaiCanXoa = km;
                 break;
             }
         }
-        danhSachKM.remove(kmCanXoa);
-        model.removeRow(selectedRow);
-        jTable1.setModel(model);
         
-        JOptionPane.showMessageDialog(null, "Xóa Khuyến Mãi Thành Công");
-        if(kmCanXoa == null){
+        if(khuyenMaiCanXoa == null){
             JOptionPane.showMessageDialog(null,"Khuyến Mãi Không Tồn Tại");
         }
+        
+        danhSachKM.remove(khuyenMaiCanXoa);
+        model.removeRow(selectedRow);
+        
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Xóa Khuyến Mãi Thành Công");
+       
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
