@@ -4,12 +4,21 @@
  */
 package GiaodienUI;
 
+import javax.swing.JOptionPane;
+import DTo.VeTour;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import javax.swing.JComboBox;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Thanh Tran
  */
 public class QlyVeTour extends javax.swing.JPanel {
 
+    ArrayList<VeTour> danhSachVT = new ArrayList<>();
     /**
      * Creates new form QlyVeTour
      */
@@ -214,6 +223,11 @@ public class QlyVeTour extends javax.swing.JPanel {
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -221,16 +235,31 @@ public class QlyVeTour extends javax.swing.JPanel {
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(21, 110, 71));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnTimKiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -339,17 +368,14 @@ public class QlyVeTour extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
                 "Mã Vé Tour", "Mã Tour", "Mã Khách Hàng", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Vé Giảm"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -658,6 +684,215 @@ if(thang.equals("2")){
     }
 }
     }//GEN-LAST:event_cbxThangHanSDActionPerformed
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        try{
+        String maVT = txtMaVeTour.getText();
+        String maTour = txtMaTour.getText();
+        String maKH = txtMaKH.getText();
+        long tienGiam = Long.parseLong(txtTienVeGiam.getText());
+        int ngayDV = Integer.parseInt(cbxNgayDatVe.getSelectedItem().toString());
+        int thangDV = Integer.parseInt(cbxThangDatVe.getSelectedItem().toString());
+        int namDV = Integer.parseInt(cbxNamDatVe.getSelectedItem().toString());
+        int ngayHSD = Integer.parseInt(cbxNgayHanSD.getSelectedItem().toString());
+        int thangHSD = Integer.parseInt(cbxThangHanSD.getSelectedItem().toString());
+        int namHSD = Integer.parseInt(cbxNamHanSD.getSelectedItem().toString());
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namDV,thangDV - 1, ngayDV);
+        Date ngayDVDate = calendar.getTime();
+        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        Date hanSDDate = calendar.getTime();
+        
+             VeTour vt = new VeTour (maVT, maTour, maKH, tienGiam, ngayDV, ngayHSD);
+             danhSachVT.add(vt);
+             
+             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+  
+             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+             String ngayDVString = dateFormat.format(ngayDVDate);
+             String hanSDString = dateFormat.format(hanSDDate);
+             
+             model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.getMakh(), ngayDVString, hanSDString, vt.getTiengiam()});
+             jTable1.setModel(model);
+             
+             JOptionPane.showMessageDialog(null, "Thêm Vé Tour Thành Công");
+             
+             txtMaVeTour.setText("");
+             txtMaTour.setText("");
+             txtMaKH.setText("");
+             txtTienVeGiam.setText("");
+        }catch (NumberFormatException e){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin Và Kiểm Tra Lại");
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
+            return;
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String maVT = (String) model.getValueAt(selectedRow, 0);
+        
+        VeTour veTourCanXoa = null;
+        for(VeTour vt : danhSachVT){
+            if(vt.getMavetour().equals(maVT)){
+                veTourCanXoa = vt;
+                break;
+            }
+        }
+        
+        if(veTourCanXoa == null){
+            JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
+        }
+        
+        danhSachVT.remove(veTourCanXoa);
+        model.removeRow(selectedRow);
+        
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Xóa Vé Tour Thành Công");
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Sửa");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String maVT = (String) model.getValueAt(selectedRow,0);
+        
+        VeTour veTourCanSua = null;
+        for(VeTour vt : danhSachVT){
+            if(vt.getMavetour().equals(maVT)){
+                veTourCanSua = vt;
+                break;
+            }
+        }
+        
+        if(veTourCanSua == null){
+            JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
+        }
+        
+        String MaVT = JOptionPane.showInputDialog(null,"Nhập mã vé tour",veTourCanSua.getMavetour());
+        String MaTour = JOptionPane.showInputDialog(null,"Nhập mã tour",veTourCanSua.getMatour());
+        String MaKH = JOptionPane.showInputDialog(null,"Nhập mã khách hàng",veTourCanSua.getMakh());
+        String TienGiam = JOptionPane.showInputDialog(null,"Nhập tiền vé giảm",veTourCanSua.getTiengiam());
+       
+        JComboBox<String> NgayDV = new JComboBox<>();
+        for(int i = 1 ; i < 32 ; i++){
+            NgayDV.addItem(Integer.toString(i));
+        }
+        NgayDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        JOptionPane.showMessageDialog(null,NgayDV,"Chọn ngày đặt vé",JOptionPane.QUESTION_MESSAGE);
+        int ngayDV = Integer.parseInt(NgayDV.getSelectedItem().toString());
+        
+        JComboBox<String> ThangDV = new JComboBox<>();
+        for(int i = 1 ; i < 13 ; i++){
+            ThangDV.addItem(Integer.toString(i));
+        }
+        ThangDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        JOptionPane.showMessageDialog(null, ThangDV,"Chọn tháng đặt vé",JOptionPane.QUESTION_MESSAGE);
+                int thangDV = Integer.parseInt(ThangDV.getSelectedItem().toString());
+
+        JComboBox<String> NamDV = new JComboBox<>();
+        NamDV.addItem("2023");
+        NamDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        JOptionPane.showMessageDialog(null, NamDV,"Chọn năm đặt vé",JOptionPane.QUESTION_MESSAGE);
+                int namDV = Integer.parseInt(NamDV.getSelectedItem().toString());
+
+        JComboBox<String> NgayHSD = new JComboBox<>();
+        for(int i = 1 ; i < 32 ; i++){
+            NgayHSD.addItem(Integer.toString(i));
+        }
+        NgayHSD.setSelectedItem(veTourCanSua.getHansudung());
+        JOptionPane.showMessageDialog(null, NgayHSD,"Chọn ngày hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
+                int ngayHSD = Integer.parseInt(NgayHSD.getSelectedItem().toString());
+
+        JComboBox<String> ThangHSD = new JComboBox<>();
+        for(int i = 1 ; i < 13 ; i++){
+            ThangHSD.addItem(Integer.toString(i));
+        }
+        ThangHSD.setSelectedItem(veTourCanSua.getHansudung());
+        JOptionPane.showMessageDialog(null, ThangHSD,"Chọn tháng hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
+                int thangHSD = Integer.parseInt(ThangHSD.getSelectedItem().toString());
+
+        JComboBox<String> NamHSD = new JComboBox<>();
+        NamHSD.addItem("2023");
+        NamHSD.setSelectedItem(veTourCanSua.getHansudung());
+        JOptionPane.showMessageDialog(null, NamHSD,"Chọn năm hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
+                int namHSD = Integer.parseInt(NamHSD.getSelectedItem().toString());
+        
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namDV,thangDV - 1,ngayDV);
+        Date ngayDVDate = calendar.getTime();
+        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        Date hanSDDate = calendar.getTime();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayDVString = dateFormat.format(ngayDVDate);
+        String hanSDString = dateFormat.format(hanSDDate);
+        
+        veTourCanSua.setMavetour(MaVT);
+                veTourCanSua.setMatour(MaTour);
+        veTourCanSua.setMakh(MaKH);
+        veTourCanSua.setTiengiam(Long.parseLong(TienGiam));
+        veTourCanSua.setNgaydatve(ngayDV);
+        veTourCanSua.setHansudung(ngayHSD);
+
+        model.setValueAt(MaVT,selectedRow,0);
+        model.setValueAt(MaTour,selectedRow,1);
+        model.setValueAt(MaKH,selectedRow,2);
+        model.setValueAt(TienGiam,selectedRow,5);
+        model.setValueAt(ngayDVString,selectedRow,3);
+        model.setValueAt(hanSDString,selectedRow,4);
+        
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Sửa Thông Tin Vé Tour Thành Công");
+        
+    }//GEN-LAST:event_btnSuaActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        String tuKhoa = txtMaVeTour.getText().toLowerCase(); // lấy từ khóa tìm kiếm từ text field và đưa về chữ thường để tìm kiếm chính xác hơn
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0); // xóa tất cả các dòng hiện có trong JTable
+        
+        for (VeTour vt : danhSachVT) { // duyệt qua từng tour trong danh sách
+            if (vt.getMavetour().toLowerCase().contains(tuKhoa) // kiểm tra xem tour có chứa từ khóa tìm kiếm không
+                    || vt.getMatour().toLowerCase().contains(tuKhoa)
+                    || vt.getMakh().toLowerCase().contains(tuKhoa)) {
+                
+                long tienGiam = Long.parseLong(txtTienVeGiam.getText());
+                
+                Object ngayDVObject = jTable1.getValueAt(jTable1.getSelectedRow(), 3);
+// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
+                int ngayDV = Integer.parseInt(ngayDVObject.toString());
+
+// lấy giá trị của ô thứ 11 trong hàng đang được chọn
+                Object ngayHSDObject = jTable1.getValueAt(jTable1.getSelectedRow(), 4);
+// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
+                int ngayHSD = Integer.parseInt(ngayHSDObject.toString());
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String ngayDVString = dateFormat.format(ngayDV);
+                String ngayHSDString = dateFormat.format(ngayHSD);
+                model.addRow(new Object[]{vt.getMavetour(),vt.getMatour(),vt.getMakh(),ngayDVString,ngayHSDString, vt.getTiengiam()});
+            }
+        }
+
+        if (model.getRowCount() == 0) { // nếu không tìm thấy kết quả, hiển thị thông báo
+            JOptionPane.showMessageDialog(null, "Không Tìm Thấy Kết Quả Phù Hợp");
+        }
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

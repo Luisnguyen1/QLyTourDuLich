@@ -27,11 +27,11 @@ public class TestQLY {
     public static void main(String[] args) {
         // Sử dụng bố cục mặc định của FlowLayout
 JFrame js = new JFrame();
-js.setTitle("khQuản lý khách hàng");
+js.setTitle("Quản lý");
 
 
 
-QlyTourDuLich ql = new QlyTourDuLich();
+QlyVeTour ql = new QlyVeTour();
 
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
