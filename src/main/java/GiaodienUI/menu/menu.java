@@ -51,15 +51,15 @@ public class menu extends JComponent{
     private String [][]menuItems = new String[][]
     {
         {"Dashboard"},
-        {"Du lịch"},
-        {"Quản lý","Quản lý địa điểm tour","Quản lý địa điểm vui chơi","Quản lý khách sạn","Quản lý nhân viên"
-        ,"Quản lý phương tiện","Quản lý vé tour","Quản lý khách hàng","Quản lý khuyến mãi","Quản lý tour du lịch","Quản lý hóa đơn","Danh Sách Vé Tour Đã Bán"},
-        {"Thống kê","Thống kê theo ngày","Thống kê theo tháng"},
-        {"Đặt vé"},
-        {"Tra cứu"},
-        {"Khuyến mãi"},
-        {"Liên hệ"},
-        {"Đăng xuất"},
+        {"Du Lịch"},
+        {"Quản Lý","Quản Lý Địa Điểm Tour","Quản Lý Địa Điểm Vui Chơi","Quản Lý Khách Sạn","Quản Lý Nhân Viên"
+        ,"Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Khách Hàng","Quản Lý Khuyến Mãi","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn","Danh Sách Vé Tour Đã Bán"},
+        {"Thống Kê","Thống Kê Theo Ngày","Thống Kê Theo Tháng"},
+        {"Đặt Vé"},
+        {"Tra Cứu"},
+        {"Khuyến Mãi"},
+        {"Liên Hệ"},
+        {"Đăng Xuất"},
     };
 
     public menu() {
