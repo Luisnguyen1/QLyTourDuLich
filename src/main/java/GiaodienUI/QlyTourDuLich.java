@@ -970,48 +970,48 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-          String tuKhoa = txtMaTour.getText().toLowerCase().trim();
+        String tuKhoa = txtMaTour.getText().toLowerCase().trim();
 
-    if (tuKhoa.length() == 0) {
-        JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
-        return;
-    }
-
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    model.setRowCount(0);
-
-    for (int i = 0; i < danhSachTour.size(); i++) {
-        Tour tour = danhSachTour.get(i);
-        if (tour.getTenTour().toLowerCase().contains(tuKhoa)
-                || tour.getMaTour().toLowerCase().contains(tuKhoa)
-                || tour.getLoaiTour().toLowerCase().contains(tuKhoa)
-                || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
-                || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
-                || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
-            
-            Date ngayDi = convertStringToDate(jTable1.getValueAt(i, 9).toString());
-            Date ngayVe = convertStringToDate(jTable1.getValueAt(i, 10).toString());
-
-            if (ngayDi == null || ngayVe == null) {
-                continue;
-            }
-
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String ngayDiString = dateFormat.format(ngayDi);
-            String ngayVeString = dateFormat.format(ngayVe);
-
-            model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
+        if (tuKhoa.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
+            return;
         }
-    }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+
+        for (int i = 0; i < danhSachTour.size(); i++) {
+            Tour tour = danhSachTour.get(i);
+            if (tour.getTenTour().toLowerCase().contains(tuKhoa)
+                    || tour.getMaTour().toLowerCase().contains(tuKhoa)
+                    || tour.getLoaiTour().toLowerCase().contains(tuKhoa)
+                    || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
+                    || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
+                    || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
+
+                Date ngayDi = tour.getNgaydi();
+                Date ngayVe = tour.getNgayve();
+
+                if (ngayDi == null || ngayVe == null) {
+                    continue;
+                }
+
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String ngayDiString = dateFormat.format(ngayDi);
+                String ngayVeString = dateFormat.format(ngayVe);
+
+                model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
+            }
+        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
     private Date convertStringToDate(String dateString) {
-    try {
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        return dateFormat.parse(dateString);
-    } catch (ParseException ex) {
-        return null;
+        try {
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            return dateFormat.parse(dateString);
+        } catch (ParseException ex) {
+            return null;
+        }
     }
-}
     private void cbxNamVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamVeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNamVeActionPerformed
@@ -1287,6 +1287,4 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private javax.swing.JTextField txtTongSoCho;
     // End of variables declaration//GEN-END:variables
 
-   
-    
 }
