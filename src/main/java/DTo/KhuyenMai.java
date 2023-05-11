@@ -46,7 +46,7 @@ public class KhuyenMai {
         this.tenkm = tenkm;
     }
 
-    public Date getNgaykm() {
+    public int getNgaykm() {
         return ngaykm;
     }
 
@@ -54,7 +54,7 @@ public class KhuyenMai {
         this.ngaykm = ngaykm;
     }
 
-    public Date getHansudung() {
+    public int getHansudung() {
         return hansudung;
     }
 
@@ -112,39 +112,10 @@ public class KhuyenMai {
         }
         return Objects.equals(this.hansudung, other.hansudung);
     }
-
+}
     
     
    
     
-    public void nhap() {
-    Scanner sc = new Scanner(System.in);
-    System.out.println("Nhap ma khuyen mai: ");
-    makm = sc.nextLine();
-    System.out.println("Nhap ten khuyen mai: ");
-    tenkm = sc.nextLine();
-
-    SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-    try {
-        System.out.println("Nhap ngay khuyen mai (dd/MM/yyyy): ");
-        ngaykm = sdf.parse(sc.nextLine());
-        System.out.println("Nhap han su dung (dd/MM/yyyy): ");
-        hansudung = sdf.parse(sc.nextLine());
-    } catch (ParseException ex) {
-        System.out.println("Nhap sai dinh dang ngay thang");
-    }
-
-    System.out.println("Nhap tien giam: ");
-    tiengiam = sc.nextLong();
-}
     
-    public void xuat()
-    {
-        System.out.println("Ma khuyen mai la: "+this.makm);
-        System.out.println("Ten khuyen mai la: "+this.tenkm);
-        System.out.println("Ngay khuyen mai la: "+this.ngaykm);
-        System.out.println("Han su dung la: "+this.hansudung);
-        System.out.println("Tien giam la: "+this.tiengiam);
-    }
-}
     
