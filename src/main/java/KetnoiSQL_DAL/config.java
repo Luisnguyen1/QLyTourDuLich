@@ -7,6 +7,7 @@ package KetnoiSQL_DAL;
 import DTo.HoaDon;
 import DTo.NhanVien;
 import DTo.TaiKhoan;
+import DTo.Tour;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -147,7 +148,130 @@ public class config {
            
         }
     }
+    public void UpdateSQL_Tour(Tour Tour, int i,String MaNV_OLD) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
+            String selectAll = "SELECT * FROM tour";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
 
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, Tour.getMaTour());
+                stmt.setInt(2, Tour.getTongsocho());
+                stmt.setInt(3, Tour.getSochodu());
+                stmt.setString(4, Tour.getTenTour());
+                stmt.setString(5, Tour.getDiaDiemTour());
+                stmt.setString(6, Tour.getDiaDiemdi());
+                stmt.setString(7, Tour.getDiaDiemden());
+                stmt.setString(8, Tour.getLoaiTour());
+                stmt.setInt(9, Tour.getSongaydi());
+                stmt.setInt(10, Tour.getNgaydi());
+                stmt.setLong(11, Tour.getGiaTour());             ;
+                stmt.setInt(12, Tour.getNgayve());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM tour WHERE MaTour = "+Tour.getMaTour();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                // crate statement to insert student
+                
+                
+        }
+        if (i == 3) {//sửa
+           try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM tour WHERE MaTour = "+Tour.getMaTour();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM tour WHERE MaTour = "+Tour.getMaTour();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            // Khởi tạo kết nối đến cơ sở dữ liệu
+        
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
+            String selectAll = "SELECT * FROM tour";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, Tour.getMaTour());
+                stmt.setInt(2, Tour.getTongsocho());
+                stmt.setInt(3, Tour.getSochodu());
+                stmt.setString(4, Tour.getTenTour());
+                stmt.setString(5, Tour.getDiaDiemTour());
+                stmt.setString(6, Tour.getDiaDiemdi());
+                stmt.setString(7, Tour.getDiaDiemden());
+                stmt.setString(8, Tour.getLoaiTour());
+                stmt.setInt(9, Tour.getSongaydi());
+                stmt.setInt(10, Tour.getNgaydi());
+                stmt.setLong(11, Tour.getGiaTour());             ;
+                stmt.setInt(12, Tour.getNgayve());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+    }
+        }}
+    //--------------------------------------------------------
     public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con = DriverManager.getConnection(url, user, password);
@@ -189,6 +313,9 @@ public class config {
         }
         return danhSachHoaDon;
     }
+    
+    
+    //--------------------------------------------------------------------
 
     public ArrayList<NhanVien> layDL_NhanVien() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
@@ -211,5 +338,35 @@ public class config {
         }
         return danhSachNhanVien;
     }
+     public ArrayList<Tour> layDL_Tour() throws SQLException {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con = DriverManager.getConnection(url, user, password);
+
+        // Thực hiện truy vấn và lấy kết quả
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM tour");
+
+        ArrayList<Tour> danhSachTour = new ArrayList<>();
+
+        while (rs.next()) {
+            Tour Tour = new Tour();
+            Tour.setMaTour(rs.getString("MaTour"));
+            Tour.setTongsocho(rs.getInt("TongSoCho"));
+            Tour.setSochodu(rs.getInt("SoChoConTrong"));
+            Tour.setTenTour(rs.getString("TenTour"));
+            Tour.setDiaDiemTour(rs.getString("Diadiemtour"));
+            Tour.setDiaDiemdi(rs.getString("DiaDiemDi"));
+            Tour.setDiaDiemden(rs.getString("DiaDiemDen"));
+            Tour.setLoaiTour(rs.getString("LoaiTour"));
+            Tour.setSongaydi(rs.getInt("SoNgay"));
+            Tour.setNgaydi(rs.getInt("NgayKhoiHanh"));
+            Tour.setGiaTour(rs.getInt("GiaTour"));
+            Tour.setNgayve(rs.getInt("NgayKetThuc"));
+            
+            danhSachTour.add(Tour);
+        }
+        return danhSachTour;
+    }
+
 
 }
