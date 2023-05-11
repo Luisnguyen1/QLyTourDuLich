@@ -2,7 +2,8 @@ package DTo;
 
 import GiaodienUI.Test;
 import DTo.TaiKhoan;
-import GiaodienUI.TrangChu;
+import GiaodienUI.Main;
+
 
 import GiaodienUI.login;
 import KetnoiSQL_DAL.config;
@@ -39,40 +40,11 @@ public class ModuleXuLy {
     }
     public void chuyenFrame(JFrame mot)
     {
-        /*JPanel menu = new topSideBar();
-        JPanel ind = new index();
-        mot.setVisible(false);
-        JFrame fr = new JFrame();
-        fr.setSize(1000, 650);
-        fr.setLocationRelativeTo(fr);
-        fr.add(menu, BorderLayout.NORTH);
-        fr.add(ind, BorderLayout.SOUTH);
-        fr.setVisible(true);*/
-        
-        mot.setVisible(false);
-        Test thu = new Test();
-        thu.setVisible(true);
-        
-        
-    }
-    /*public void chuyenFrameMenu(JFrame index,int flat)
-    {
-    index.removeAll();
-    if (flat == 1) {
-    JPanel id = new index();
-    
-    index.add(id);
-    }
-    index.setVisible(true);
-    
-    
-    }*/
-    
-    public void mainFrame(JLabel F1, JLabel F2){
-        JFrame main = new JFrame();
-        main.add(F1);
-        main.add(F2);
+        Main main = new Main();
         main.setVisible(true);
+        mot.setVisible(false);        
+        
     }
+    
 }
 

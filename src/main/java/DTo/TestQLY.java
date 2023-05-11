@@ -18,6 +18,7 @@ import GiaodienUI.QlyThongKeTheoNgay;
 import GiaodienUI.QlyVeTour;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
+import java.sql.Connection;
 
 /**
  *

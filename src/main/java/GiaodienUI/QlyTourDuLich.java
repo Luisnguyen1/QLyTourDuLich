@@ -18,7 +18,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
-
+import java.sql.Connection;
 /**
  *
  * @author Thanh Tran
@@ -32,6 +32,16 @@ public class QlyTourDuLich extends javax.swing.JPanel {
      */
     public QlyTourDuLich() {
         initComponents();
+        config con = new config();
+        try {
+            danhSachTour = con.layDL_Tour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (Tour nv : danhSachTour) {            
+        model.addRow(new Object[]{nv.getTenTour(), nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(), nv.getDiaDiemTour(), nv.getDiaDiemdi(), nv.getDiaDiemden(), nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
+    }
     }
 
     /**
@@ -1013,7 +1023,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0);
-
+        /*for (int i = 0; i < danhSachTour.size(); i++) {
+        model.removeRow(i);
+        }*/
         for (int i = 0; i < danhSachTour.size(); i++) {
             Tour tour = danhSachTour.get(i);
             if (tour.getTenTour().toLowerCase().contains(tuKhoa)
@@ -1022,12 +1034,12 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                     || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
                     || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
                     || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
-
-                for (Tour tour1 : danhSachTour) {
-                    if (tuKhoa.equals(tour1.getMaTour())) {
-                        model.addRow(new Object[]{tour1.getTenTour(), tour1.getMaTour(), tour1.getLoaiTour(), tour1.getTongsocho(), tour1.getSochodu(), tour1.getDiaDiemTour(), tour1.getDiaDiemdi(), tour1.getDiaDiemden(), tour1.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
+                
+               
+                    if (tuKhoa.equals(danhSachTour.get(i).getMaTour())) {
+                        model.addRow(new Object[]{danhSachTour.get(i).getTenTour(), danhSachTour.get(i).getMaTour(), danhSachTour.get(i).getLoaiTour(), danhSachTour.get(i).getTongsocho(), danhSachTour.get(i).getSochodu(), danhSachTour.get(i).getDiaDiemTour(), danhSachTour.get(i).getDiaDiemdi(), danhSachTour.get(i).getDiaDiemden(), danhSachTour.get(i).getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
                     }
-                }
+                
 
             }
         }
@@ -1075,7 +1087,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 break;
             }
         }
-        con.UpdateSQL_Tour(tourCanXoa, 2, "maNV");
+        
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
         if (tourCanXoa == null) {
             JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
@@ -1084,7 +1096,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
 // xóa khách hàng khỏi danh sách
         danhSachTour.remove(tourCanXoa);
-
+        con.UpdateSQL_Tour(tourCanXoa, 2, "null");
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
@@ -1117,7 +1129,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
-
+        String olDNV = maNV;
 // tìm khách hàng trong danh sách dựa vào mã
         Tour tourCanSua = null;
         for (Tour nv : danhSachTour) {
@@ -1126,7 +1138,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 break;
             }
         }
-        con.UpdateSQL_Tour(tourCanSua, 3, maNV);
+        
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
         if (tourCanSua == null) {
             JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
@@ -1226,7 +1238,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String ngayDiString = dateFormat.format(ngayDiDate);
                 String ngayVeString = dateFormat.format(ngayVeDate);
-
+        
 // cập nhật thông tin khách hàng
         tourCanSua.setTenTour(tenTour);
         tourCanSua.setMaTour(maTour);
@@ -1244,7 +1256,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         tourCanSua.setNgayve(ngayVeDate);
         long giatour = Long.parseLong(giaTour);
         tourCanSua.setGiaTour(giatour);
-
+        
+        
+        con.UpdateSQL_Tour(tourCanSua,3,olDNV );
 // cập nhật lại model cho JTable
         model.setValueAt(tenTour, selectedRow, 0);
         model.setValueAt(maTour, selectedRow, 1);

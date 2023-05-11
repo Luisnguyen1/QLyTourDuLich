@@ -255,7 +255,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -273,9 +273,12 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                stmt.setInt(10, Tour.getNgaydi());
-                stmt.setLong(11, Tour.getGiaTour());             ;
-                stmt.setInt(12, Tour.getNgayve());
+                java.sql.Date ngayDi = new java.sql.Date(Tour.getNgaydi().getTime());
+                stmt.setDate(10, ngayDi );
+                stmt.setLong(11, Tour.getGiaTour()); 
+                java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
+                stmt.setDate(12, ngayVe );
+                stmt.setString(13, "null" );
                 stmt.execute();
 
                 // select all student
@@ -290,9 +293,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -331,8 +334,8 @@ public class config {
             // Khởi tạo kết nối đến cơ sở dữ liệu
         
         //1 là thêm
-        if (i == 1) {
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
+        
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -350,11 +353,13 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                stmt.setInt(10, Tour.getNgaydi());
-                stmt.setLong(11, Tour.getGiaTour());             ;
-                stmt.setInt(12, Tour.getNgayve());
+                java.sql.Date ngayDi = new java.sql.Date(Tour.getNgaydi().getTime());
+                stmt.setDate(10, ngayDi );
+                stmt.setLong(11, Tour.getGiaTour()); 
+                java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
+                stmt.setDate(12, ngayVe );
+                stmt.setString(13, "null" );
                 stmt.execute();
-
                 // select all student
                 stmt = con.prepareStatement(selectAll);
                 // get data from table 'student'
@@ -372,7 +377,7 @@ public class config {
                 //e.printStackTrace();
             }
     }
-        }}
+    }
     //--------------------------------------------------------
     public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
@@ -461,9 +466,9 @@ public class config {
             Tour.setDiaDiemden(rs.getString("DiaDiemDen"));
             Tour.setLoaiTour(rs.getString("LoaiTour"));
             Tour.setSongaydi(rs.getInt("SoNgay"));
-            Tour.setNgaydi(rs.getInt("NgayKhoiHanh"));
+            Tour.setNgaydi(rs.getDate("NgayKhoiHanh"));
             Tour.setGiaTour(rs.getInt("GiaTour"));
-            Tour.setNgayve(rs.getInt("NgayKetThuc"));
+            Tour.setNgayve(rs.getDate("NgayKetThuc"));
             
             danhSachTour.add(Tour);
         }
