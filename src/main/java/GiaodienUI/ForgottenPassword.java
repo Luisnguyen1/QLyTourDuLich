@@ -42,7 +42,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
 
         jSeparator1.setForeground(new java.awt.Color(51, 51, 51));
 
