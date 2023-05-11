@@ -8,18 +8,34 @@ import java.util.Scanner;
 
 public class HoaDon {
     private String mahd;
+    private String manv;
     private String makhachdatve;
     private long tongtien;
     private Date ngayxuathoadon;
 
-    
-    public HoaDon(String mahd, String makhachdatve, long tongtien, Date ngayxuathoadon) {
+    public HoaDon(String mahd, String manv, String makhachdatve, long tongtien, Date ngayxuathoadon, ArrayList<HoaDon> danhSach) {
         this.mahd = mahd;
+        this.manv = manv;
         this.makhachdatve = makhachdatve;
         this.tongtien = tongtien;
         this.ngayxuathoadon = ngayxuathoadon;
+        this.danhSach = danhSach;
     }
 
+    
+
+    
+    
+
+    public String getManv() {
+        return manv;
+    }
+
+    public void setManv(String manv) {
+        this.manv = manv;
+    }
+    
+    
     public String getMahd() {
         return mahd;
     }
@@ -142,8 +158,12 @@ public class HoaDon {
     {
         for (HoaDon hoadon : danhSach) 
         {
-            if(hoadon.getMahd().contains(ma));
+            /* if(hoadon.getMahd().contains(ma));*/
             System.out.println(hoadon);
         }
+    }
+    public void xoaHoaDon(HoaDon hd)
+    {
+        this.danhSach.remove(hd);
     }
 }
