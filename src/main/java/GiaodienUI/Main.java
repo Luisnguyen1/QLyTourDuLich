@@ -198,7 +198,7 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(jLabel5))
         );
 
-        mainPanel.setLayout(new java.awt.GridLayout());
+        mainPanel.setLayout(new java.awt.GridLayout(1, 0));
 
         jLabel6.setText("MainPanel");
         mainPanel.add(jLabel6);
@@ -245,10 +245,10 @@ public class Main extends javax.swing.JFrame {
                 .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(0, 0, 0)
                         .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(sideBar, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE))))
         );
