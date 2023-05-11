@@ -398,7 +398,7 @@ else{
 
     // Thêm đối tượng vào danh sách
     danhSachNV.add(nv);
-    
+    con.UpdateSQL_NhanVien(nv,1,"null");
     // Tạo đối tượng DefaultTableModel
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -414,11 +414,17 @@ txtMaNhanVien.setText("");
 txtHoTen.setText("");
 txtDiaChi.setText("");
 }
-    con.UpdateSQL_NhanVien(danhSachNV);
+    
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
+        try {
+            // Lấy thông tin từ GUI
+            danhSachNV=con.layDL_NhanVien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
 int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -451,7 +457,7 @@ if (nhanVienCanXoa == null) {
 
 // xóa khách hàng khỏi danh sách
 danhSachNV.remove(nhanVienCanXoa);
-
+con.UpdateSQL_NhanVien(nhanVienCanXoa,2,"null");
 // xóa hàng được chọn trong model
 model.removeRow(selectedRow);
 
@@ -478,7 +484,7 @@ DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
 String maNV = (String) model.getValueAt(selectedRow, 1);
-
+String oldNV = maNV;
 // tìm khách hàng trong danh sách dựa vào mã
 NhanVien nhanVienCanSua = null;
 for (NhanVien nv : danhSachNV) {
@@ -531,7 +537,7 @@ model.setValueAt(diaChi, selectedRow, 2);
 model.setValueAt(loainv, selectedRow, 3);
 model.setValueAt(chucvu, selectedRow, 4);
 
-
+con.UpdateSQL_NhanVien(nhanVienCanSua, 3, oldNV);
 // thông báo thành công
 JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
 
