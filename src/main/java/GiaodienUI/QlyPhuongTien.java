@@ -51,16 +51,19 @@ public class QlyPhuongTien extends javax.swing.JPanel {
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
+        btnXuatExcel = new javax.swing.JButton();
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(167, 169, 177));
+
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("                          Hệ Thống Quản Lý Phương Tiện ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -78,12 +81,12 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(167, 169, 177));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(169, 0, 6));
         jLabel4.setText("  Loại Phương Tiện ");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -96,7 +99,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(169, 0, 6));
         jLabel2.setText("  Tên Phương Tiện");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -108,7 +111,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText("  Mã Phương Tiện");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -120,7 +123,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(169, 0, 6));
         jLabel5.setText("     Tổng Số Chỗ");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -132,7 +135,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(169, 0, 6));
         jLabel6.setText("       Số Chỗ Dư ");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -142,7 +145,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setBackground(new java.awt.Color(255, 0, 0));
+        btnThem.setBackground(new java.awt.Color(21, 110, 71));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
@@ -152,7 +155,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(255, 0, 0));
+        btnXoa.setBackground(new java.awt.Color(21, 110, 71));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
@@ -162,7 +165,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setBackground(new java.awt.Color(255, 0, 0));
+        btnSua.setBackground(new java.awt.Color(21, 110, 71));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
@@ -172,7 +175,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnTimKiem.setBackground(new java.awt.Color(255, 0, 0));
+        btnTimKiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setText("Tìm Kiếm");
@@ -181,6 +184,11 @@ public class QlyPhuongTien extends javax.swing.JPanel {
                 btnTimKiemActionPerformed(evt);
             }
         });
+
+        btnXuatExcel.setBackground(new java.awt.Color(21, 110, 71));
+        btnXuatExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnXuatExcel.setForeground(new java.awt.Color(255, 255, 255));
+        btnXuatExcel.setText("Xuất Excel");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -192,7 +200,9 @@ public class QlyPhuongTien extends javax.swing.JPanel {
                         .addGap(136, 136, 136)
                         .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxLoaiPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxLoaiPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 270, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(btnXuatExcel))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(65, 65, 65)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -226,15 +236,16 @@ public class QlyPhuongTien extends javax.swing.JPanel {
                                         .addGap(52, 52, 52)
                                         .addComponent(btnTimKiem)
                                         .addGap(31, 31, 31)))))))
-                .addContainerGap(64, Short.MAX_VALUE))
+                .addContainerGap(32, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(14, 14, 14)
+                .addGap(12, 12, 12)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxLoaiPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cbxLoaiPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnXuatExcel))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -506,6 +517,7 @@ long soChoDu = Long.parseLong(sochodu);
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
+    private javax.swing.JButton btnXuatExcel;
     private javax.swing.JComboBox<String> cbxLoaiPhuongTien;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

@@ -43,11 +43,14 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         jSeparator3 = new javax.swing.JSeparator();
         jSeparator4 = new javax.swing.JSeparator();
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(167, 169, 177));
+
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
+        jLabel1.setBackground(new java.awt.Color(167, 169, 177));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Thống Kê Doanh Thu Theo Tháng ");
 
@@ -65,6 +68,7 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(169, 0, 6));
         jLabel2.setText("Tìm kiếm theo Tháng :");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -104,6 +108,7 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText("   Tổng Doanh Thu :");
 
         txtDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
