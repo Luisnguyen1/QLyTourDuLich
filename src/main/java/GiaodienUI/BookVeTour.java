@@ -15,11 +15,7 @@ import javax.swing.JButton;
 import DTo.BookVe;
 import java.util.ArrayList;
 
-/**\
- 
- *
- * @author Thanh Tran
- */
+
 public class BookVeTour extends javax.swing.JPanel {
 
     ArrayList<BookVe> danhSachVe = new ArrayList<>();
