@@ -5,12 +5,14 @@
 package GiaodienUI;
 
 import DTo.Tour;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
+import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -931,7 +933,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             calendar.set(namVe, thangVe - 1, ngayVe);
             Date ngayVeDate = calendar.getTime();
             long giaTour = Long.parseLong(txtGiaTour.getText());
-            
+
             // Tạo đối tượng DTO
             Tour nv = new Tour(tenTour, maTour, loaiTour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgayDi, ngayDi, ngayVe, giaTour);
 
@@ -968,41 +970,48 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtMaTour.getText().toLowerCase(); // lấy từ khóa tìm kiếm từ text field và đưa về chữ thường để tìm kiếm chính xác hơn
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // xóa tất cả các dòng hiện có trong JTable
+          String tuKhoa = txtMaTour.getText().toLowerCase().trim();
 
-        for (Tour tour : danhSachTour) { // duyệt qua từng tour trong danh sách
-            if (tour.getTenTour().toLowerCase().contains(tuKhoa) // kiểm tra xem tour có chứa từ khóa tìm kiếm không
-                    || tour.getMaTour().toLowerCase().contains(tuKhoa)
-                    || tour.getLoaiTour().toLowerCase().contains(tuKhoa)
-                    || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
-                    || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
-                    || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
-                // lấy giá trị của ô thứ 10 trong hàng đang được chọn
-                Object ngayDiObject = jTable1.getValueAt(jTable1.getSelectedRow(), 10);
-// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
-                int ngayDi = Integer.parseInt(ngayDiObject.toString());
+    if (tuKhoa.length() == 0) {
+        JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
+        return;
+    }
 
-// lấy giá trị của ô thứ 11 trong hàng đang được chọn
-                Object ngayVeObject = jTable1.getValueAt(jTable1.getSelectedRow(), 11);
-// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
-                int ngayVe = Integer.parseInt(ngayVeObject.toString());
+    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+    model.setRowCount(0);
 
-               
-                long giaTour = Long.parseLong(txtGiaTour.getText());
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayDiString = dateFormat.format(ngayDi);
-                String ngayVeString = dateFormat.format(ngayVe);
-                model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
+    for (int i = 0; i < danhSachTour.size(); i++) {
+        Tour tour = danhSachTour.get(i);
+        if (tour.getTenTour().toLowerCase().contains(tuKhoa)
+                || tour.getMaTour().toLowerCase().contains(tuKhoa)
+                || tour.getLoaiTour().toLowerCase().contains(tuKhoa)
+                || tour.getDiaDiemTour().toLowerCase().contains(tuKhoa)
+                || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
+                || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
+            
+            Date ngayDi = convertStringToDate(jTable1.getValueAt(i, 9).toString());
+            Date ngayVe = convertStringToDate(jTable1.getValueAt(i, 10).toString());
+
+            if (ngayDi == null || ngayVe == null) {
+                continue;
             }
-        }
 
-        if (model.getRowCount() == 0) { // nếu không tìm thấy kết quả, hiển thị thông báo
-            JOptionPane.showMessageDialog(null, "Không Tìm Thấy Kết Quả Phù Hợp");
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+            String ngayDiString = dateFormat.format(ngayDi);
+            String ngayVeString = dateFormat.format(ngayVe);
+
+            model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
         }
+    }
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    private Date convertStringToDate(String dateString) {
+    try {
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        return dateFormat.parse(dateString);
+    } catch (ParseException ex) {
+        return null;
+    }
+}
     private void cbxNamVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamVeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNamVeActionPerformed
@@ -1109,7 +1118,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, cbxnamDi, "Chọn năm đi", JOptionPane.QUESTION_MESSAGE);
         String namDiString = (String) cbxnamDi.getSelectedItem();
         int namDi = Integer.parseInt(namDiString);
-        
+
         JComboBox<String> cbxThangDi = new JComboBox<>();
         int day = 0;
         for (int i = 1; i < 13; i++) {
@@ -1124,7 +1133,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         int ThangDi = Integer.parseInt(TDiString);
 
         JComboBox<String> cbxNgayDi = new JComboBox<>();
-        for(int i = 1 ; i < 32 ; i++){
+        for (int i = 1; i < 32; i++) {
             String Day = Integer.toString(i);
             cbxNgayDi.addItem(Day);
             Day = "";
@@ -1155,7 +1164,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         int ThangVe = Integer.parseInt(TVeString);
 
         JComboBox<String> cbxNgayVe = new JComboBox<>();
-        for(int i = 1 ; i < 32 ; i++){
+        for (int i = 1; i < 32; i++) {
             String Day = Integer.toString(i);
             cbxNgayVe.addItem(Day);
             Day = "";
@@ -1175,7 +1184,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayDiString = dateFormat.format(ngayDiDate);
         String ngayVeString = dateFormat.format(ngayVeDate);
-        
+
 // cập nhật thông tin khách hàng
         tourCanSua.setTenTour(tenTour);
         tourCanSua.setMaTour(maTour);
@@ -1215,7 +1224,8 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void cbxLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxLoaiTourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxLoaiTourActionPerformed
-
+    private String ngayDiString;
+    private String ngayVeString;
     private Date ngayDiDate;
     private Date ngayVeDate;
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1276,4 +1286,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private javax.swing.JTextField txtTenTour;
     private javax.swing.JTextField txtTongSoCho;
     // End of variables declaration//GEN-END:variables
+
+   
+    
 }
