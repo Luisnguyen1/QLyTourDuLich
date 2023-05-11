@@ -6,7 +6,11 @@ package GiaodienUI;
 
 import DTo.KhachHang;
 import DTo.NhanVien;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -16,12 +20,26 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyNhanVien extends javax.swing.JPanel {
+    DefaultTableModel model = new DefaultTableModel();
+    
     ArrayList<NhanVien> danhSachNV = new ArrayList<NhanVien>();
+    config con = new config();
+    
     /**
      * Creates new form QlyNhanVien
      */
     public QlyNhanVien() {
         initComponents();
+        try {
+            danhSachNV = con.layDL_NhanVien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model = (DefaultTableModel) jTable1.getModel();
+        for (NhanVien nv : danhSachNV) {
+        model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+    }
+        
     }
 
     /**
@@ -336,7 +354,12 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxChucVuActionPerformed
    
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // Lấy thông tin từ GUI
+        try {
+            // Lấy thông tin từ GUI
+            danhSachNV=con.layDL_NhanVien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     String maNV = txtMaNhanVien.getText();
     String hoTen = txtHoTen.getText();
     String diaChi = txtDiaChi.getText();
@@ -380,7 +403,7 @@ txtMaNhanVien.setText("");
 txtHoTen.setText("");
 txtDiaChi.setText("");
 }
-
+    con.UpdateSQL_NhanVien(danhSachNV);
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
@@ -536,7 +559,7 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công")
     jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua;

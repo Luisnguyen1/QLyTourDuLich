@@ -31,7 +31,7 @@ js.setTitle("Quản lý");
 
 
 
-QlyTourDuLich ql = new QlyTourDuLich();
+QlyNhanVien ql = new QlyNhanVien();
 
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
