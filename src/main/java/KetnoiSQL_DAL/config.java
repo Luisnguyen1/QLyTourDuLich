@@ -8,7 +8,9 @@ import DTo.HoaDon;
 import DTo.NhanVien;
 import DTo.TaiKhoan;
 import DTo.Tour;
+import DTo.VeTour;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -148,6 +150,106 @@ public class config {
            
         }
     }
+    public void UpdateSQL_VeTour(VeTour nhanvien, int i,String MaNV_OLD) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM ve";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, nhanvien.getMavetour());
+                stmt.setDate(2, (Date) nhanvien.getNgaydatve());
+                stmt.setDate(3, (Date) nhanvien.getHansudung());
+                stmt.setString(4, nhanvien.getMatour());
+                stmt.setString(5, nhanvien.getMakh());
+                stmt.setLong(6, nhanvien.getTiengiam());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM ve WHERE MaNV = "+nhanvien.getMavetour();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                // crate statement to insert student
+                
+                
+        }
+        if (i == 3) {//sửa
+           try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM ve WHERE MaNV = "+nhanvien.getMavetour();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM ve";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, nhanvien.getMavetour());
+                stmt.setDate(2, (Date) nhanvien.getNgaydatve());
+                stmt.setDate(3, (Date) nhanvien.getHansudung());
+                stmt.setString(4, nhanvien.getMatour());
+                stmt.setString(5, nhanvien.getMakh());
+                stmt.setLong(6, nhanvien.getTiengiam());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
+    
     public void UpdateSQL_Tour(Tour Tour, int i,String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;

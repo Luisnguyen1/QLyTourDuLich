@@ -6,6 +6,7 @@ package DTo;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Objects;
 /**
  *
@@ -16,8 +17,8 @@ public class VeTour implements Comparable <VeTour>{
         public String matour;
         public String makh;
         public long tiengiam;
-        public int ngaydatve;
-        public int hansudung;
+        public Date ngaydatve;
+        public Date hansudung;
         
          public VeTour (DTo.VeTour x){
             mavetour = x.mavetour;
@@ -28,7 +29,7 @@ public class VeTour implements Comparable <VeTour>{
             hansudung = x.hansudung;
         }
          
-        public VeTour (String mavetour, String matour, String makh, long tiengiam, int ngaydatve, int hansudung){
+        public VeTour (String mavetour, String matour, String makh, long tiengiam, Date ngaydatve, Date hansudung){
             this.mavetour = mavetour;
             this.matour = matour;
             this.makh = makh;
@@ -69,19 +70,19 @@ public class VeTour implements Comparable <VeTour>{
         this.tiengiam = tiengiam;
     }
 
-    public int getNgaydatve() {
+    public Date getNgaydatve() {
         return ngaydatve;
     }
 
-    public void setNgaydatve(int ngaydatve) {
+    public void setNgaydatve(Date ngaydatve) {
         this.ngaydatve = ngaydatve;
     }
 
-    public int getHansudung() {
+    public Date getHansudung() {
         return hansudung;
     }
 
-    public void setHansudung(int hansudung) {
+    public void setHansudung(Date hansudung) {
         this.hansudung = hansudung;
     }
     
