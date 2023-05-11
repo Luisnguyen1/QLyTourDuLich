@@ -6,7 +6,7 @@ import java.util.Scanner;
 public class testKhachsan {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        KhachSan dsks = new KhachSan();
+        KhachSan1 dsks = new KhachSan1();
         int luaChon = 0;
         do {            
             System.out.println("-----MENU----- ");
@@ -31,7 +31,7 @@ public class testKhachsan {
                 System.out.println("Nhap gia tien: "); int tienkhachsan = sc.nextInt();
                 System.out.println("Nhap so dien thoai: "); String sodienthoai = sc.nextLine();
                 sc.nextLine();
-                KhachSan ks = new KhachSan(makhachsan, tenkhachsan, tienkhachsan, sodienthoai);
+                KhachSan1 ks = new KhachSan1(makhachsan, tenkhachsan, tienkhachsan, sodienthoai);
                 dsks.themKhachSan(ks);
                 
             }else if(luaChon == 2)
@@ -57,14 +57,14 @@ public class testKhachsan {
             {
                 //6. Kiem tra khach san co ton tai trong danh sach hay khong, dua tren ma khach san
                 System.out.println("Nhap ma khach san: ");  String makhachsan = sc.nextLine();
-                KhachSan ks = new KhachSan(makhachsan);
+                KhachSan1 ks = new KhachSan1(makhachsan);
                 System.out.println("Kiem tra khach san co trong danh sach: "+dsks.kiemTraTonTai(ks));
                 
             }else if(luaChon == 7)
             {
                 //7.  Xoa mot khach san ra khoi danh sach dua tren ma khach san
                 System.out.println("Nhap ma khach san: ");  String makhachsan = sc.nextLine();
-                KhachSan ks = new KhachSan(makhachsan);
+                KhachSan1 ks = new KhachSan1(makhachsan);
                 System.out.println("Xoa khach san trong danh sach: "+dsks.xoaKhachSan(ks));
             }else if(luaChon == 8)
             {

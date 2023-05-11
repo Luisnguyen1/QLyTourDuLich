@@ -10,7 +10,9 @@ import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import DTo.KhuyenMai;
+import DTo.Tour;
 import java.util.ArrayList;
+import javax.swing.JComboBox;
 /**
  *
  * @author Thanh Tran
@@ -196,7 +198,7 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
         btnXoa.setBackground(new java.awt.Color(21, 110, 71));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
-        btnXoa.setText("Xóa\n");
+        btnXoa.setText("Xóa ");
         btnXoa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnXoaActionPerformed(evt);
@@ -326,7 +328,8 @@ public class QlyKhuyenMai extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {null, null, null, null, null},
+                {null, null, null, null, null}
             },
             new String [] {
                 "Tên Khuyến Mãi", "Mã Khuyến Mãi", "Ngày Khuyến Mãi", "Hạn Sử Dụng", "Tiền Giảm"
@@ -689,9 +692,9 @@ if(thang.equals("2")){
         String hanSDString = dateFormat.format(hanSDDate);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
        
-        KhuyenMai km = new KhuyenMai(maKM,tenKM,ngayKM,ngayHSD,tienGiam);
-       
-        model.addRow(new Object[]{km.getMakm(),km.getTenkm(),ngayKMString, hanSDString, km.getTiengiam()});
+        KhuyenMai km = new KhuyenMai(tenKM,maKM,ngayKM,ngayHSD,tienGiam);
+        danhSachKM.add(km);
+        model.addRow(new Object[]{km.getTenkm(),km.getMakm(),ngayKMString, hanSDString, km.getTiengiam()});
         
         jTable1.setModel(model);
         
@@ -741,7 +744,137 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+        // lấy chỉ số hàng được chọn trong JTable
+        int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
+            return;
+        }
+
+// lấy ra model của JTable hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+        String maNV = (String) model.getValueAt(selectedRow, 1);
+
+// tìm khách hàng trong danh sách dựa vào mã
+        KhuyenMai tourCanSua = null;
+        for (KhuyenMai nv : danhSachKM) {
+            if (nv.getMakm().equals(maNV)) {
+                tourCanSua = nv;
+                break;
+            }
+        }
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (tourCanSua == null) {
+            JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
+            return;
+        }
+
+// hiển thị form sửa thông tin khách hàng
+        String tenKM = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", tourCanSua.getTenkm());
+        String maKm = JOptionPane.showInputDialog(null, "Nhập mã khuyến mãi", maNV);
+        long soTienGiam = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập số tiền giảm", String.valueOf(tourCanSua.getTiengiam())));
+
+// thêm ComboBox để chọn loại nhân viên
+        JComboBox<String> cbxnamDi = new JComboBox<>();
+        cbxnamDi.addItem("2023");
+
+        cbxnamDi.setSelectedItem(tourCanSua.getNgaykm());
+
+        JOptionPane.showMessageDialog(null, cbxnamDi, "Chọn năm KM", JOptionPane.QUESTION_MESSAGE);
+        String namDiString = (String) cbxnamDi.getSelectedItem();
+        int namDi = Integer.parseInt(namDiString);
+
+        JComboBox<String> cbxThangDi = new JComboBox<>();
+        int day = 0;
+        for (int i = 1; i < 13; i++) {
+            day = i;
+            String Day = Integer.toString(day);
+            cbxThangDi.addItem(Day);
+            Day = "";
+        }
+        cbxThangDi.setSelectedItem(tourCanSua.getNgaykm());
+        JOptionPane.showMessageDialog(null, cbxThangDi, "Chọn Tháng khuyến mãi", JOptionPane.QUESTION_MESSAGE);
+        String TDiString = (String) cbxThangDi.getSelectedItem();
+        int ThangDi = Integer.parseInt(TDiString);
+
+        JComboBox<String> cbxNgayDi = new JComboBox<>();
+        for (int i = 1; i < 32; i++) {
+            String Day = Integer.toString(i);
+            cbxNgayDi.addItem(Day);
+            Day = "";
+        }
+        cbxNgayDi.setSelectedItem(tourCanSua.getNgaykm());
+        JOptionPane.showMessageDialog(null, cbxNgayDi, "Chọn Ngày khuyến mãi", JOptionPane.QUESTION_MESSAGE);
+        String ngaydi = (String) cbxNgayDi.getSelectedItem();
+        int ngayDi = Integer.parseInt(ngaydi);
+
+        JComboBox<String> cbxnamVe = new JComboBox<>();
+        cbxnamVe.addItem("2023");
+
+        cbxnamVe.setSelectedItem(tourCanSua.getHansudung());
+
+        JOptionPane.showMessageDialog(null, cbxnamVe, "Chọn năm khuyến mãi", JOptionPane.QUESTION_MESSAGE);
+        String namVeString = (String) cbxnamDi.getSelectedItem();
+        int namVe = Integer.parseInt(namVeString);
+        JComboBox<String> cbxThangVe = new JComboBox<>();
+        for (int i = 1; i < 13; i++) {
+            day = i;
+            String Day = Integer.toString(day);
+            cbxThangVe.addItem(Day);
+            Day = "";
+        }
+        cbxThangVe.setSelectedItem(tourCanSua.getHansudung());
+        JOptionPane.showMessageDialog(null, cbxThangVe, "Chọn Tháng khuyến mãi", JOptionPane.QUESTION_MESSAGE);
+        String TVeString = (String) cbxThangVe.getSelectedItem();
+        int ThangVe = Integer.parseInt(TVeString);
+
+        JComboBox<String> cbxNgayVe = new JComboBox<>();
+        for (int i = 1; i < 32; i++) {
+            String Day = Integer.toString(i);
+            cbxNgayVe.addItem(Day);
+            Day = "";
+        }
+        cbxNgayVe.setSelectedItem(tourCanSua.getHansudung());
+        JOptionPane.showMessageDialog(null, cbxNgayVe, "Chọn Ngày khuyến mãi", JOptionPane.QUESTION_MESSAGE);
+        String ngayve = (String) cbxNgayVe.getSelectedItem();
+        int ngayVe = Integer.parseInt(ngayve);
+
+       
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namDi, ThangDi - 1, ngayDi);
+        Date ngayDiDate = calendar.getTime();
+        calendar.set(namVe, ThangVe - 1, ngayVe);
+        Date ngayVeDate = calendar.getTime();
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayDiString = dateFormat.format(ngayDiDate);
+        String ngayVeString = dateFormat.format(ngayVeDate);
+
+// cập nhật thông tin khách hàng
+        tourCanSua.setTenkm(tenKM);
+        tourCanSua.setMakm(maKm);
+     
+        
+        tourCanSua.setNgaykm(ngayDi);
+        tourCanSua.setHansudung(ngayVe);
+    
+        tourCanSua.setTiengiam(soTienGiam);
+
+// cập nhật lại model cho JTable
+        model.setValueAt(tenKM, selectedRow, 0);
+        model.setValueAt(maKm, selectedRow, 1);
+        model.setValueAt(ngayDiString, selectedRow, 2);
+        model.setValueAt(ngayVeString, selectedRow, 3);
+        model.setValueAt(soTienGiam, selectedRow, 4);
+       
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khuyến mãi Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed

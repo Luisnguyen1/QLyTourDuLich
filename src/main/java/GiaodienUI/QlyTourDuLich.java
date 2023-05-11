@@ -931,33 +931,37 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             String diaDiemDi = txtDiaDiemDi.getText();
             String diaDiemDen = txtDiaDiemDen.getText();
             int soNgayDi = Integer.parseInt(txtSoNgayDi.getText());
-            // Lấy ngày tháng năm từ các JComboBox
-            int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
+
+// Lấy ngày tháng năm từ các JComboBox
+              int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
             int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
             int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
             int ngayVe = Integer.parseInt(cbxNgayVe.getSelectedItem().toString());
             int thangVe = Integer.parseInt(cbxThangVe.getSelectedItem().toString());
             int namVe = Integer.parseInt(cbxNamVe.getSelectedItem().toString());
 
-            // Tạo đối tượng Date từ ngày tháng năm
+// Tạo đối tượng Date từ ngày tháng năm
             Calendar calendar = Calendar.getInstance();
-            calendar.set(namDi, thangDi - 1, ngayDi);
+            calendar.set(namDi , thangDi, ngayDi);
             Date ngayDiDate = calendar.getTime();
-            calendar.set(namVe, thangVe - 1, ngayVe);
+
+            calendar.set(namVe , thangVe, ngayVe);
             Date ngayVeDate = calendar.getTime();
+         
+            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String ngayDiString = dateFormat.format(ngayDiDate);
+                String ngayVeString = dateFormat.format(ngayVeDate);
             long giaTour = Long.parseLong(txtGiaTour.getText());
 
-            // Tạo đối tượng DTO
-            Tour nv = new Tour(tenTour, maTour, loaiTour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgayDi, ngayDi, ngayVe, giaTour);
+// Tạo đối tượng DTO
+            Tour nv = new Tour(tenTour, maTour, loaiTour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgayDi, ngayDiDate, ngayVeDate, giaTour);
 
             // Thêm đối tượng vào danh sách
             danhSachTour.add(nv);
 
             // Tạo đối tượng DefaultTableModel
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            String ngayDiString = dateFormat.format(ngayDiDate);
-            String ngayVeString = dateFormat.format(ngayVeDate);
+          
             model.addRow(new Object[]{nv.getTenTour(), nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(), nv.getDiaDiemTour(), nv.getDiaDiemdi(), nv.getDiaDiemden(), nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
 
             // thêm đối tượng KhachHang vào model
@@ -1190,13 +1194,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         String giaTour = JOptionPane.showInputDialog(null, "Nhập Giá Tour", tourCanSua.getGiaTour());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDi, ThangDi - 1, ngayDi);
-        Date ngayDiDate = calendar.getTime();
-        calendar.set(namVe, ThangVe - 1, ngayVe);
-        Date ngayVeDate = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String ngayDiString = dateFormat.format(ngayDiDate);
-        String ngayVeString = dateFormat.format(ngayVeDate);
+            calendar.set(namDi , ThangDi, ngayDi);
+            Date ngayDiDate = calendar.getTime();
+
+            calendar.set(namVe , ThangVe, ngayVe);
+            Date ngayVeDate = calendar.getTime();
+           SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String ngayDiString = dateFormat.format(ngayDiDate);
+                String ngayVeString = dateFormat.format(ngayVeDate);
 
 // cập nhật thông tin khách hàng
         tourCanSua.setTenTour(tenTour);
@@ -1211,8 +1216,8 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         tourCanSua.setDiaDiemden(diaDiemDen);
         int songaydi = Integer.parseInt(soNgayDi);
         tourCanSua.setSongaydi(songaydi);
-        tourCanSua.setNgaydi(ngayDi);
-        tourCanSua.setNgayve(ngayVe);
+        tourCanSua.setNgaydi(ngayDiDate);
+        tourCanSua.setNgayve(ngayVeDate);
         long giatour = Long.parseLong(giaTour);
         tourCanSua.setGiaTour(giatour);
 

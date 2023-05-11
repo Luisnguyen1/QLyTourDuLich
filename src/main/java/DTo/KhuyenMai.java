@@ -12,7 +12,7 @@ public class KhuyenMai {
     private long tiengiam;
     
 
-    public KhuyenMai(String makm, String tenkm, int ngaykm, int hansudung, long tiengiam) {
+    public KhuyenMai( String tenkm,String makm, int ngaykm, int hansudung, long tiengiam) {
         this.makm = makm;
         this.tenkm = tenkm;
         this.ngaykm = ngaykm;
