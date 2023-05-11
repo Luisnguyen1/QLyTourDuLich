@@ -5,11 +5,15 @@
 package GiaodienUI;
 
 import DTo.Tour;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -921,7 +925,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // Lấy dữ liệu từ các trường nhập liệu trên GUI
+        config con = new config();
         try {
+            danhSachTour = con.layDL_Tour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try {
+
             String tenTour = txtTenTour.getText();
             String maTour = txtMaTour.getText();
             String loaiTour = cbxLoaiTour.getSelectedItem().toString();
@@ -958,7 +969,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
             // Thêm đối tượng vào danh sách
             danhSachTour.add(nv);
-
+            con.UpdateSQL_Tour(nv, 1, "old");
             // Tạo đối tượng DefaultTableModel
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
           
@@ -984,11 +995,17 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         } catch (NumberFormatException e) {
             JOptionPane.showMessageDialog(null, "Nhập Sai Định Dạng Số");
         }
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String tuKhoa = txtMaTour.getText().toLowerCase().trim();
-
+        config con = new config();
+        try {
+            danhSachTour = con.layDL_Tour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (tuKhoa.length() == 0) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
             return;
@@ -1006,18 +1023,12 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                     || tour.getDiaDiemdi().toLowerCase().contains(tuKhoa)
                     || tour.getDiaDiemden().toLowerCase().contains(tuKhoa)) {
 
-                Date ngayDi = tour.getNgaydi();
-                Date ngayVe = tour.getNgayve();
-
-                if (ngayDi == null || ngayVe == null) {
-                    continue;
+                for (Tour tour1 : danhSachTour) {
+                    if (tuKhoa.equals(tour1.getMaTour())) {
+                        model.addRow(new Object[]{tour1.getTenTour(), tour1.getMaTour(), tour1.getLoaiTour(), tour1.getTongsocho(), tour1.getSochodu(), tour1.getDiaDiemTour(), tour1.getDiaDiemdi(), tour1.getDiaDiemden(), tour1.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
+                    }
                 }
 
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayDiString = dateFormat.format(ngayDi);
-                String ngayVeString = dateFormat.format(ngayVe);
-
-                model.addRow(new Object[]{tour.getTenTour(), tour.getMaTour(), tour.getLoaiTour(), tour.getTongsocho(), tour.getSochodu(), tour.getDiaDiemTour(), tour.getDiaDiemdi(), tour.getDiaDiemden(), tour.getSongaydi(), ngayDiString, ngayVeString, tour.getGiaTour()});
             }
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
@@ -1036,7 +1047,14 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-
+        config con = new config();
+        try {
+            danhSachTour = con.layDL_Tour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
@@ -1057,7 +1075,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 break;
             }
         }
-
+        con.UpdateSQL_Tour(tourCanXoa, 2, "maNV");
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
         if (tourCanXoa == null) {
             JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
@@ -1081,7 +1099,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
 // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-
+        
+        config con = new config();
+        try {
+            danhSachTour = con.layDL_Tour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
+        }
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
@@ -1102,7 +1126,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 break;
             }
         }
-
+        con.UpdateSQL_Tour(tourCanSua, 3, maNV);
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
         if (tourCanSua == null) {
             JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
