@@ -4,12 +4,12 @@
  */
 package KetnoiSQL_DAL;
 
-
 import DTo.HoaDon;
 import DTo.NhanVien;
 import DTo.TaiKhoan;
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -31,51 +31,134 @@ public class config {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    public void UpdateSQL_HoaDon( ArrayList<HoaDon> objArrayList){
-         // Khởi tạo kết nối đến cơ sở dữ liệu
-               
+
+    public void UpdateSQL_HoaDon(ArrayList<HoaDon> objArrayList) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+
         Connection con;
         try {
             con = DriverManager.getConnection(url, user, password);
             Statement stmt = con.createStatement();
             stmt.executeQuery("DELETE FROM hoadons WHERE ;");
-            
-            for(HoaDon hd : objArrayList) {
-                stmt.executeQuery("INSERT INTO `hoadon` (`MaHD`, `MaKh`, `MaNV`, `TongTien`,`NgayXuatHoaDon`) VALUES("+hd.getMahd()+", "+hd.getMakhachdatve()+","+hd.getManv()+" ,"+hd.getTongtien()+","+hd.getNgayxuathoadon()+");");
-            }
-        } catch (SQLException ex) {
-            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
-        }
-    }
-    
-    public void UpdateSQL_NhanVien( ArrayList<NhanVien> objArrayList){
-         // Khởi tạo kết nối đến cơ sở dữ liệu
-               
-        Connection con;
-        try {
-            con = DriverManager.getConnection(url, user, password);
-            Statement stmt = con.createStatement();
-            stmt.executeQuery("DELETE FROM hoadons WHERE ;");
-            
-            for(NhanVien hd : objArrayList) {
-                stmt.executeQuery("INSERT INTO `hoadon` (`MaNV`, `LoaiNV`, `TenNV`, `DiaChi`,`ChucVu`) VALUES("+hd.getManv()+", "+hd.getLoainv()+","+hd.getTennv()+" ,"+hd.getDiachi()+","+hd.getChucvu()+");");
+
+            for (HoaDon hd : objArrayList) {
+                stmt.executeQuery("INSERT INTO `hoadon` (`MaHD`, `MaKh`, `MaNV`, `TongTien`,`NgayXuatHoaDon`) VALUES(" + hd.getMahd() + ", " + hd.getMakhachdatve() + "," + hd.getManv() + " ," + hd.getTongtien() + "," + hd.getNgayxuathoadon() + ");");
             }
         } catch (SQLException ex) {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
+    public void UpdateSQL_NhanVien(NhanVien nhanvien, int i,String MaNV_OLD) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO nhanvien VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM nhanvien";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, nhanvien.getManv());
+                stmt.setString(2, nhanvien.getLoainv());
+                stmt.setString(3, nhanvien.getTennv());
+                stmt.setString(4, nhanvien.getDiachi());
+                stmt.setString(5, nhanvien.getChucvu());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM nhanvien WHERE MaNV = "+nhanvien.getManv();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+                // crate statement to insert student
+                
+                
+        }
+        if (i == 3) {//sửa
+           try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM nhanvien WHERE MaNV = "+MaNV_OLD;
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO nhanvien VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM nhanvien";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, nhanvien.getManv());
+                stmt.setString(2, nhanvien.getLoainv());
+                stmt.setString(3, nhanvien.getTennv());
+                stmt.setString(4, nhanvien.getDiachi());
+                stmt.setString(5, nhanvien.getChucvu());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+           
+        }
+    }
+
     public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con = DriverManager.getConnection(url, user, password);
-        
+
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
-        
+
         ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
-        
-        while (rs.next()) {            
+
+        while (rs.next()) {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
@@ -85,7 +168,7 @@ public class config {
         }
         return danhSachTaiKhoan;
     }
-    
+
     public ArrayList<HoaDon> layDL_HoaDon() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con = DriverManager.getConnection(url, user, password);
@@ -93,10 +176,10 @@ public class config {
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
-        
+
         ArrayList<HoaDon> danhSachHoaDon = new ArrayList<>();
-        
-        while (rs.next()) {            
+
+        while (rs.next()) {
             HoaDon hoaDon = new HoaDon();
             hoaDon.setMahd(rs.getString("MaHD"));
             hoaDon.setMakhachdatve(rs.getString("MaKH"));
@@ -106,6 +189,7 @@ public class config {
         }
         return danhSachHoaDon;
     }
+
     public ArrayList<NhanVien> layDL_NhanVien() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con = DriverManager.getConnection(url, user, password);
@@ -113,10 +197,10 @@ public class config {
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM nhanvien");
-        
+
         ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
-        
-        while (rs.next()) {            
+
+        while (rs.next()) {
             NhanVien NhanVien = new NhanVien();
             NhanVien.setManv(rs.getString("MaNV"));
             NhanVien.setLoainv(rs.getString("LoaiNV"));
@@ -127,6 +211,5 @@ public class config {
         }
         return danhSachNhanVien;
     }
-    
-    
+
 }
