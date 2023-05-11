@@ -52,6 +52,8 @@ public class Tour implements Comparable<Tour>{
        
     }
 
+    public Tour() {
+    }
     
     
     @Override
