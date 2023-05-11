@@ -55,12 +55,14 @@ public class QlyPhuongTien extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(167, 169, 177));
+
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("                          Hệ Thống Quản Lý Phương Tiện ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -78,12 +80,12 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(167, 169, 177));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel4.setForeground(new java.awt.Color(169, 0, 6));
         jLabel4.setText("  Loại Phương Tiện ");
         jLabel4.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -96,7 +98,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(169, 0, 6));
         jLabel2.setText("  Tên Phương Tiện");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -108,7 +110,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel3.setBackground(new java.awt.Color(0, 0, 0));
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText("  Mã Phương Tiện");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -120,7 +122,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel5.setForeground(new java.awt.Color(169, 0, 6));
         jLabel5.setText("     Tổng Số Chỗ");
         jLabel5.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -132,7 +134,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel6.setForeground(new java.awt.Color(169, 0, 6));
         jLabel6.setText("       Số Chỗ Dư ");
         jLabel6.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -142,7 +144,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnThem.setBackground(new java.awt.Color(255, 0, 0));
+        btnThem.setBackground(new java.awt.Color(21, 110, 71));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
@@ -152,7 +154,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnXoa.setBackground(new java.awt.Color(255, 0, 0));
+        btnXoa.setBackground(new java.awt.Color(21, 110, 71));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
@@ -162,7 +164,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setBackground(new java.awt.Color(255, 0, 0));
+        btnSua.setBackground(new java.awt.Color(21, 110, 71));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
@@ -172,7 +174,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             }
         });
 
-        btnTimKiem.setBackground(new java.awt.Color(255, 0, 0));
+        btnTimKiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setText("Tìm Kiếm");

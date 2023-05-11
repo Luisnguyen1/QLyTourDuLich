@@ -41,11 +41,13 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         btnTimkiem = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        setBackground(new java.awt.Color(167, 169, 177));
+
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("                         Thống Kê Doanh Thu Theo Ngày");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -62,6 +64,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(169, 0, 6));
         jLabel2.setText("Tìm kiếm theo Ngày :");
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -95,6 +98,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jPanel2.setBackground(new java.awt.Color(255, 204, 204));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText("  Tổng Doanh Thu :");
 
         txtDoanhThu.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
@@ -198,10 +202,10 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 294, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 25, Short.MAX_VALUE))
+                .addGap(0, 26, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

@@ -46,12 +46,13 @@ public class SignUp extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         btnCreateAccount.setBackground(new java.awt.Color(204, 255, 153));
         btnCreateAccount.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnCreateAccount.setForeground(new java.awt.Color(169, 0, 6));
         btnCreateAccount.setText("Create Account");
         btnCreateAccount.setActionCommand("");
         btnCreateAccount.addActionListener(new java.awt.event.ActionListener() {
@@ -99,7 +100,7 @@ public class SignUp extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("       SIGN UP");
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());

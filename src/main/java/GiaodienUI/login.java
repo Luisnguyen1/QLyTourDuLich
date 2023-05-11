@@ -67,7 +67,7 @@ public class login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jPanel1.setBackground(new java.awt.Color(255, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(167, 169, 177));
 
         txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -76,7 +76,7 @@ public class login extends javax.swing.JFrame {
         });
 
         btnLogin.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnLogin.setForeground(new java.awt.Color(255, 0, 0));
+        btnLogin.setForeground(new java.awt.Color(169, 0, 6));
         btnLogin.setText("Login");
         btnLogin.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -95,7 +95,7 @@ public class login extends javax.swing.JFrame {
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
 
         btnRegister.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnRegister.setForeground(new java.awt.Color(255, 0, 0));
+        btnRegister.setForeground(new java.awt.Color(169, 0, 6));
         btnRegister.setText("Sign Up");
         btnRegister.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -124,7 +124,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("        LOGIN");
         jLabel1.setToolTipText("");
         jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -146,7 +146,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(255, 204, 204));
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(169, 0, 6));
         jLabel2.setText("    USER");
         jLabel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
@@ -163,7 +163,7 @@ public class login extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(255, 204, 204));
         jLabel3.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 0, 0));
+        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText("   PASSWORD");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 

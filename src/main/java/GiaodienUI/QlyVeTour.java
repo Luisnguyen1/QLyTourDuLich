@@ -71,14 +71,14 @@ public class QlyVeTour extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
-        setBackground(new java.awt.Color(35, 43, 78));
+        setBackground(new java.awt.Color(167, 169, 177));
 
         jPanel1.setBackground(new java.awt.Color(167, 169, 177));
         jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(108, 5, 15));
+        jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("                        Hệ Thống Quản Lý Vé Tour Du Lịch");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
@@ -94,7 +94,7 @@ public class QlyVeTour extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jPanel2.setBackground(new java.awt.Color(255, 228, 229));
+        jPanel2.setBackground(new java.awt.Color(167, 169, 177));
         jPanel2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
