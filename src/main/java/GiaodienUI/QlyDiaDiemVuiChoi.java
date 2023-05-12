@@ -4,12 +4,23 @@
  */
 package GiaodienUI;
 
+import DTo.DiaDiemVuiChoi;
+import DTo.NhanVien;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+import org.apache.commons.codec.language.DaitchMokotoffSoundex;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
-
+    ArrayList<DiaDiemVuiChoi> danhSachdd = new ArrayList<DiaDiemVuiChoi>();
     /**
      * Creates new form QlyDiaDiemVuiChoi
      */
@@ -314,19 +325,184 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaDiaDiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+       
+        
+        String diadiemTour = cbxDiaDiemTour.getSelectedItem().toString();
+        String diadiem = txtDiaDiem.getText();
+        String madiadiem = txtMaDiaDiem.getText();
+
+
+        if (diadiemTour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (diadiem.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (madiadiem.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+     
+        } else {
+            // Tạo đối tượng DTO
+            DiaDiemVuiChoi nv = new DiaDiemVuiChoi(diadiemTour,diadiem,madiadiem);
+
+            // Thêm đối tượng vào danh sách
+            danhSachdd.add(nv);
+         
+            // Tạo đối tượng DefaultTableModel
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            // thêm đối tượng KhachHang vào model
+            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+
+// cập nhật lại model cho JTable
+            jTable1.setModel(model);
+
+// thông báo thành công
+            JOptionPane.showMessageDialog(null, "Thêm Địa điểm vui chơi Thành Công");
+            
+            txtDiaDiem.setText("");
+            txtMaDiaDiem.setText("");
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+       
+        int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
+            return;
+        }
+
+// lấy ra model của JTable hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+        String maNV = (String) model.getValueAt(selectedRow, 2);
+
+// tìm khách hàng trong danh sách dựa vào mã
+        DiaDiemVuiChoi nhanVienCanXoa = null;
+        for (DiaDiemVuiChoi nv : danhSachdd) {
+            if (nv.getMaDiaDiem().equals(maNV)) {
+                nhanVienCanXoa = nv;
+                break;
+            }
+        }
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (nhanVienCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
+            return;
+        }
+
+// xóa khách hàng khỏi danh sách
+        danhSachdd.remove(nhanVienCanXoa);
+        
+// xóa hàng được chọn trong model
+        model.removeRow(selectedRow);
+
+// cập nhật lại model cho JTable
+        jTable1.setModel(model);
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Xóa địa điểm vui chơi Thành Công");
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+        // lấy chỉ số hàng được chọn trong JTable
+        int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
+            return;
+        }
+
+// lấy ra model của JTable hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+        String maNV = (String) model.getValueAt(selectedRow, 2);
+        String oldNV = maNV;
+// tìm khách hàng trong danh sách dựa vào mã
+        DiaDiemVuiChoi nhanVienCanSua = null;
+        for (DiaDiemVuiChoi nv : danhSachdd) {
+            if (nv.getMaDiaDiem().equals(maNV)) {
+                nhanVienCanSua = nv;
+                break;
+            }
+        }
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (nhanVienCanSua == null) {
+            JOptionPane.showMessageDialog(null, "Đại điểm Không Tồn Tại");
+            return;
+        }
+
+// hiển thị form sửa thông tin khách hàng
+     
+// thêm ComboBox để chọn loại nhân viên
+        JComboBox<String> cbxDiaDiemTour = new JComboBox<>();
+        cbxDiaDiemTour.addItem("Nhân Viên Bán Hàng");
+        cbxDiaDiemTour.addItem("Quản Lý Kho");
+        cbxDiaDiemTour.addItem("Nhân Viên Văn Phòng");
+        cbxDiaDiemTour.setSelectedItem(nhanVienCanSua.getDiaDiemTour());
+        JOptionPane.showMessageDialog(null, cbxDiaDiemTour, "Chọn địa điểm Tour", JOptionPane.QUESTION_MESSAGE);
+
+        String diaDiemTour = (String) cbxDiaDiemTour.getSelectedItem();
+// thêm ComboBox để chọn chức vụ
+      String maNVNew = JOptionPane.showInputDialog(null, "Nhập mã địa điểm", maNV);
+      String diadiem = JOptionPane.showInputDialog(null, "Nhập diadiem", nhanVienCanSua.getTenDiaDiem());
+      
+
+// cập nhật thông tin khách hàng
+        nhanVienCanSua.setDiaDiemTour(diaDiemTour);
+        nhanVienCanSua.setTenDiaDiem(diadiem);
+        nhanVienCanSua.setMaDiaDiem(maNV);
+
+
+// cập nhật lại model cho JTable
+        model.setValueAt(diaDiemTour, selectedRow, 0);
+        model.setValueAt(diadiem, selectedRow, 1);
+        model.setValueAt(maNV, selectedRow, 2);
+      
+
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        String maNVCanTim = txtMaDiaDiem.getText();
+
+        // Tạo một danh sách để lưu khách hàng tìm được
+        ArrayList<DiaDiemVuiChoi> ketQuaTimKiem = new ArrayList<>();
+
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        for (DiaDiemVuiChoi nv : danhSachdd) {
+            if (nv.getMaDiaDiem().toLowerCase().contains(maNVCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(nv);
+            } else {
+                JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+                return;
+            }
+        }
+
+        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Địa điểm Tour");
+        model.addColumn("Điểm vui chơi");
+        model.addColumn("Mã địa điểm");
+       
+
+        // Thêm các khách hàng tìm được vào model
+        for (DiaDiemVuiChoi nv : ketQuaTimKiem) {
+            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+        }
+
+        // Cập nhật lại model cho JTable
+        jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed

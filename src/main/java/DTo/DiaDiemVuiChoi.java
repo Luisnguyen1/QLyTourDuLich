@@ -5,23 +5,23 @@ package DTo;
  *
  * @author Huu Quoc Bao
  */
-public class QlyDiaDiemVuiChoi implements Comparable<QlyDiaDiemVuiChoi>{
+public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
     public String diaDiemTour;
     public String tenDiaDiem;
     public String maDiaDiem;
 
     @Override
-    public int compareTo(QlyDiaDiemVuiChoi o) {
+    public int compareTo(DiaDiemVuiChoi o) {
         return this.maDiaDiem.compareTo(o.maDiaDiem);
     }
 
-    public QlyDiaDiemVuiChoi(String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
+    public DiaDiemVuiChoi(String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
         this.diaDiemTour = diaDiemTour;
         this.tenDiaDiem = tenDiaDiem;
         this.maDiaDiem = maDiaDiem;
     }
     
-    public QlyDiaDiemVuiChoi(QlyDiaDiemVuiChoi x){
+    public DiaDiemVuiChoi(DiaDiemVuiChoi x){
         diaDiemTour = x.diaDiemTour;
         tenDiaDiem = x.tenDiaDiem;
         maDiaDiem = x.maDiaDiem;
