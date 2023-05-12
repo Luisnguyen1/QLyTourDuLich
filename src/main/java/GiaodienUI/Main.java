@@ -52,51 +52,29 @@ public class Main extends javax.swing.JFrame {
             public void selected(int index, int subIndex) {
                 if (index == 0) {                    
                     System.out.println(index +" "+subIndex);
-                    showForm(new index1());
-                } if(index == 1  ) {
-                    //showForm(new DuLich());
-                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyTourDuLich());
                 }
-                if (index == 2 && subIndex == 1) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyDiaDiemTour());
-                }
-                if (index == 2 && subIndex == 2) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyDiaDiemVuiChoi());
-                }
-                if (index == 2 && subIndex == 3) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyKhachSan());
-                }
-                if (index == 2 && subIndex == 4) {                    
+                if (index == 1 && subIndex == 1) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyNhanVien());
                 }
-                if (index == 2 && subIndex == 5) {                    
+                if (index == 1 && subIndex == 2) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyPhuongTien());
                 }
-                if (index == 2 && subIndex == 6) {                    
+                if (index == 1 && subIndex == 3) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyVeTour());
                 }
-                if (index == 2 && subIndex == 7) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyKhachHang());
-                }
-                if (index == 2 && subIndex == 8) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyKhuyenMai());
-                }
-                if (index == 2 && subIndex == 9) {                    
+                if (index == 1 && subIndex == 4) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyTourDuLich());
                 }
-                if (index == 2 && subIndex == 10) {                    
+                if (index == 1 && subIndex == 5) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyHoaDon());
                 }
+                
                 if (index == 3 && subIndex == 1) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyThongKeTheoNgay());
@@ -153,6 +131,7 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         menu1 = new GiaodienUI.menu.menu();
         mainPanel = new javax.swing.JPanel();
+        qlyTourDuLich1 = new GiaodienUI.QlyTourDuLich();
         gradientPanel1 = new GiaodienUI.GradientPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -201,11 +180,13 @@ public class Main extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 0, Short.MAX_VALUE)
+            .addGroup(mainPanelLayout.createSequentialGroup()
+                .addComponent(qlyTourDuLich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 637, Short.MAX_VALUE)
+            .addComponent(qlyTourDuLich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -248,12 +229,11 @@ public class Main extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(gradientPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(sideBar, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 12, Short.MAX_VALUE))))
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(sideBar, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(mainPanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGap(0, 12, Short.MAX_VALUE))
         );
 
         pack();
@@ -308,6 +288,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel mainPanel;
     private GiaodienUI.menu.menu menu1;
+    private GiaodienUI.QlyTourDuLich qlyTourDuLich1;
     private javax.swing.JPanel sideBar;
     // End of variables declaration//GEN-END:variables
 }

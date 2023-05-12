@@ -50,14 +50,11 @@ public class menu extends JComponent{
     SideMenuPanel sp;
     private String [][]menuItems = new String[][]
     {
-        {"Dashboard"},
-        {"Du Lịch"},
-        {"Quản Lý","Quản Lý Nhân Viên","Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Khuyến Mãi","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn"},
+        {"Dashboard"},        
+        {"Quản Lý","Quản Lý Nhân Viên","Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn"},
         {"Thống Kê","Thống Kê Theo Ngày","Thống Kê Theo Tháng"},
-        {"Đặt Vé"},
-        {"Tra Cứu"},
-        {"Khuyến Mãi"},
-        {"Liên Hệ"},
+        {"Đặt Vé"},        
+        {"Khuyến Mãi"},      
         {"Đăng Xuất"},
     };
 

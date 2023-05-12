@@ -1,4 +1,6 @@
- public class TaiKhoan {
+package DTO;
+
+public class TaiKhoan {
     private String matk;
     private String matkhau;
     private int manv;
@@ -31,6 +33,10 @@
 
     public String getMatkhau() {
         return matkhau;
+    }
+
+    public void setMatk(String matk) {
+        this.matk = matk;
     }
 
     public void setMatkhau(String matkhau) {

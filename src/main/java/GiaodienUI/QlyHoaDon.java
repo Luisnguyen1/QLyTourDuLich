@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import DTo.HoaDon;
+import DTo.PhuongTien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,11 +17,16 @@ import java.util.logging.Logger;
  * @author Thanh Tran
  */
 public class QlyHoaDon extends javax.swing.JPanel {
-    
+    ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
     public QlyHoaDon() {
-        initComponents();        
+        initComponents(); 
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
-    
+    config con = new config();
 
     /**
      * This method is called from within the constructor to initialize the form.
