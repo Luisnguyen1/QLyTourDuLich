@@ -19,7 +19,20 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.util.ArrayList;
 
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.xssf.usermodel.XSSFRow;
+import org.apache.poi.xssf.usermodel.XSSFSheet;
+import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+
+
+
+import java.sql.*;
 public class config {
 
     private final String url = "jdbc:mysql://localhost:3306/qltour?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true";
@@ -32,6 +45,38 @@ public class config {
             System.out.println(con.getCatalog());
         } catch (SQLException ex) {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    
+    public void export(String name) {
+        String excelFilePath = "export.xlsx";
+ 
+        try (Connection connection = DriverManager.getConnection(url, user, password)) {
+            String sql = "SELECT * FROM nhanvien";
+ 
+            Statement statement = connection.createStatement();
+ 
+            ResultSet result = statement.executeQuery(sql);
+ 
+            XSSFWorkbook workbook = new XSSFWorkbook();
+            XSSFSheet sheet = workbook.createSheet("Reviews");
+ 
+            writeHeaderLine(sheet);
+ 
+            writeDataLines(result, workbook, sheet);
+ 
+            FileOutputStream outputStream = new FileOutputStream(excelFilePath);
+            workbook.write(outputStream);
+            workbook.close();
+ 
+            statement.close();
+ 
+        } catch (SQLException e) {
+            System.out.println("Datababse error:");
+            e.printStackTrace();
+        } catch (IOException e) {
+            System.out.println("File IO error:");
+            e.printStackTrace();
         }
     }
 
