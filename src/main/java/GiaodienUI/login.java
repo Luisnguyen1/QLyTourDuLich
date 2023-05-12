@@ -105,7 +105,9 @@ public class login extends javax.swing.JFrame {
             }
         });
 
-        radiobtnRememerMe.setBackground(new java.awt.Color(204, 255, 153));
+        radiobtnRememerMe.setBackground(new java.awt.Color(21, 110, 71));
+        radiobtnRememerMe.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        radiobtnRememerMe.setForeground(new java.awt.Color(255, 255, 255));
         radiobtnRememerMe.setText("Remember Me\n");
         radiobtnRememerMe.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -115,7 +117,9 @@ public class login extends javax.swing.JFrame {
 
         jSeparator4.setForeground(new java.awt.Color(0, 0, 0));
 
-        btnForgotPassword.setBackground(new java.awt.Color(204, 255, 153));
+        btnForgotPassword.setBackground(new java.awt.Color(21, 110, 71));
+        btnForgotPassword.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
+        btnForgotPassword.setForeground(new java.awt.Color(255, 255, 255));
         btnForgotPassword.setText(" Forgot Password?");
         btnForgotPassword.setToolTipText("");
         btnForgotPassword.addActionListener(new java.awt.event.ActionListener() {
@@ -191,17 +195,20 @@ public class login extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(84, 84, 84)
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(radiobtnRememerMe))
-                                .addGap(9, 9, 9)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addGap(88, 88, 88)
+                                        .addComponent(btnLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(9, 9, 9))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                        .addContainerGap()
+                                        .addComponent(radiobtnRememerMe, javax.swing.GroupLayout.PREFERRED_SIZE, 121, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(1, 1, 1)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addGap(80, 80, 80)
                                         .addComponent(btnForgotPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                         .addComponent(btnRegister, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addGap(27, 27, 27))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
