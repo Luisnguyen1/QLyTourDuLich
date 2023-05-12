@@ -5,18 +5,25 @@
 package GiaodienUI;
 
 import DTo.HoaDon;
+import DTo.KhachHang;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
  * @author Thanh Tran
  */
 public class QlyHoaDon extends javax.swing.JPanel {
-    
+     ArrayList<HoaDon> danhSachhd = new ArrayList<HoaDon>();
     public QlyHoaDon() {
         initComponents();        
     }
@@ -44,16 +51,15 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtMaKhachHang = new javax.swing.JTextField();
-        cbxNgayXuat = new javax.swing.JComboBox<>();
-        cbxThangXuat = new javax.swing.JComboBox<>();
-        cbxNamXuat = new javax.swing.JComboBox<>();
+        cbxNgayDi = new javax.swing.JComboBox<>();
+        cbxThangDi = new javax.swing.JComboBox<>();
+        cbxNamDi = new javax.swing.JComboBox<>();
         txtMaHoaDon = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         txtTongTien = new javax.swing.JTextField();
-        btnExport = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -152,24 +158,24 @@ public class QlyHoaDon extends javax.swing.JPanel {
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        cbxNgayXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
-        cbxNgayXuat.addActionListener(new java.awt.event.ActionListener() {
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
+        cbxNgayDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNgayXuatActionPerformed(evt);
+                cbxNgayDiActionPerformed(evt);
             }
         });
 
-        cbxThangXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cbxThangXuat.addActionListener(new java.awt.event.ActionListener() {
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxThangXuatActionPerformed(evt);
+                cbxThangDiActionPerformed(evt);
             }
         });
 
-        cbxNamXuat.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
-        cbxNamXuat.addActionListener(new java.awt.event.ActionListener() {
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+        cbxNamDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNamXuatActionPerformed(evt);
+                cbxNamDiActionPerformed(evt);
             }
         });
 
@@ -196,6 +202,11 @@ public class QlyHoaDon extends javax.swing.JPanel {
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnTimKiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -204,16 +215,6 @@ public class QlyHoaDon extends javax.swing.JPanel {
         btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnTimKiemActionPerformed(evt);
-            }
-        });
-
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
             }
         });
 
@@ -231,11 +232,11 @@ public class QlyHoaDon extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(cbxNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxThangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxNamXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(cbxNamDi, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(txtTongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaKhachHang, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtMaHoaDon, javax.swing.GroupLayout.PREFERRED_SIZE, 273, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -245,8 +246,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(152, 152, 152))
         );
         jPanel2Layout.setVerticalGroup(
@@ -261,8 +261,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
                         .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 11, Short.MAX_VALUE)
-                        .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,9 +274,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxNgayXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxThangXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNamXuat, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxNamDi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -340,145 +339,146 @@ public class QlyHoaDon extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void cbxNgayXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayXuatActionPerformed
+    private void cbxNgayDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayDiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNgayXuatActionPerformed
+    }//GEN-LAST:event_cbxNgayDiActionPerformed
 
-    private void cbxThangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangXuatActionPerformed
+    private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
         // TODO add your handling code here:
-         String thang = cbxThangXuat.getSelectedItem().toString();
+         String thang = cbxThangDi.getSelectedItem().toString();
 int day = 0;
 
 //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
 if(thang.equals("1")){
-    cbxNgayXuat.removeAllItems();
-    cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("3")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("5")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("7")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("8")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("10")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("12")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 32 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 
 //Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
 if(thang.equals("4")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 31 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("6")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 31 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("9")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 31 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 else if(thang.equals("11")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 31 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
 
 //Còn lại là tháng 2 có 28 ngày trong năm 2023
 if(thang.equals("2")){
-    cbxNgayXuat.removeAllItems();
-    cbxNgayXuat.addItem("Ngày");
+    cbxNgayDi.removeAllItems();
+    cbxNgayDi.addItem("Ngày");
     for(int i = 1 ; i < 29 ; i++){
         day = i;
         String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
+        cbxNgayDi.addItem(Day);
         Day = "";
     }
 }
-    }//GEN-LAST:event_cbxThangXuatActionPerformed
+    
+    }//GEN-LAST:event_cbxThangDiActionPerformed
 
-    private void cbxNamXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamXuatActionPerformed
+    private void cbxNamDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamDiActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNamXuatActionPerformed
+    }//GEN-LAST:event_cbxNamDiActionPerformed
 
     private void txtMaHoaDonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaHoaDonActionPerformed
         // TODO add your handling code here:
@@ -489,22 +489,161 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        
+        // lấy chỉ số hàng được chọn trong JTable
+int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
+    return;
+}
+
+// lấy ra model của JTable hiện tại
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+String maKH = (String) model.getValueAt(selectedRow, 1);
+
+
+// tìm khách hàng trong danh sách dựa vào mã
+HoaDon khachHangCanXoa = null;
+for (HoaDon kh : danhSachhd) {
+    if (kh.getMahd().equals(maKH)) {
+        khachHangCanXoa = kh;
+        break;
+    }
+}
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+if (khachHangCanXoa == null) {
+    JOptionPane.showMessageDialog(null, "Khách Hàng Không Tồn Tại");
+    return;
+}
+
+// xóa khách hàng khỏi danh sách
+danhSachhd.remove(khachHangCanXoa);
+
+// xóa hàng được chọn trong model
+model.removeRow(selectedRow);
+
+// cập nhật lại model cho JTable
+jTable1.setModel(model);
+
+// thông báo thành công
+JOptionPane.showMessageDialog(null, "Xóa Hóa Đơn Thành Công");
+
+                 
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportActionPerformed
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        // lấy chỉ số hàng được chọn trong JTable
+int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+if (selectedRow == -1) {
+    JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
+    return;
+}
+
+// lấy ra model của JTable hiện tại
+DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+String maKH = (String) model.getValueAt(selectedRow, 1);
+
+// tìm khách hàng trong danh sách dựa vào mã
+HoaDon khachHangCanSua = null;
+for (HoaDon kh : danhSachhd) {
+    if (kh.getMahd().equals(maKH)) {
+        khachHangCanSua = kh;
+        break;
+    }
+}
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+if (khachHangCanSua == null) {
+    JOptionPane.showMessageDialog(null, "Hóa Đơn Không Tồn Tại");
+    return;
+}
+
+// hiển thị form sửa thông tin khách hàng
+String maHD = JOptionPane.showInputDialog(null, "Nhập mã hóa đơn", khachHangCanSua.getMahd());
+String maKHN = JOptionPane.showInputDialog(null, "Nhập mã khách hàng", khachHangCanSua.getMakhachdatve());
+String tongTien = JOptionPane.showInputDialog(null, "Nhập tổng tiền", khachHangCanSua.getTongtien());
+ JComboBox<String> cbxnamDi = new JComboBox<>();
+        cbxnamDi.addItem("2023");
+
+        cbxnamDi.setSelectedItem(khachHangCanSua.getNgayxuathoadon());
+
+        JOptionPane.showMessageDialog(null, cbxnamDi, "Chọn năm ", JOptionPane.QUESTION_MESSAGE);
+        String namDiString = (String) cbxnamDi.getSelectedItem();
+        int namDi = Integer.parseInt(namDiString);
+
+        JComboBox<String> cbxThangDi = new JComboBox<>();
+        int day = 0;
+        for (int i = 1; i < 13; i++) {
+            day = i;
+            String Day = Integer.toString(day);
+            cbxThangDi.addItem(Day);
+            Day = "";
+        }
+        cbxThangDi.setSelectedItem(khachHangCanSua.getNgayxuathoadon());
+        JOptionPane.showMessageDialog(null, cbxThangDi, "Chọn Tháng ", JOptionPane.QUESTION_MESSAGE);
+        String TDiString = (String) cbxThangDi.getSelectedItem();
+        int ThangDi = Integer.parseInt(TDiString);
+
+        JComboBox<String> cbxNgayDi = new JComboBox<>();
+        for (int i = 1; i < 32; i++) {
+            String Day = Integer.toString(i);
+            cbxNgayDi.addItem(Day);
+            Day = "";
+        }
+        cbxNgayDi.setSelectedItem(khachHangCanSua.getNgayxuathoadon());
+        JOptionPane.showMessageDialog(null, cbxNgayDi, "Chọn Ngày ", JOptionPane.QUESTION_MESSAGE);
+        String ngaydi = (String) cbxNgayDi.getSelectedItem();
+        int ngayDi = Integer.parseInt(ngaydi);
+
+        
+
+        Calendar calendar = Calendar.getInstance();
+            calendar.set(namDi , ThangDi, ngayDi);
+            Date ngayDiDate = calendar.getTime();
+
+           
+           
+           SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                String ngayDiString = dateFormat.format(ngayDiDate);
+           
+
+// cập nhật thông tin khách hàng
+khachHangCanSua.setTenkh(tenKH);
+khachHangCanSua.setMakh(maKHNew);
+khachHangCanSua.setDiachi(diaChi);
+khachHangCanSua.setSdt(soDienThoai);
+khachHangCanSua.setEmail(email);
+
+// cập nhật lại model cho JTable
+model.setValueAt(tenKH, selectedRow, 0);
+model.setValueAt(maKH, selectedRow, 1);
+model.setValueAt(diaChi, selectedRow, 2);
+model.setValueAt(soDienThoai, selectedRow, 3);
+model.setValueAt(email, selectedRow, 4);
+
+
+// thông báo thành công
+JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công");
+
+             
+    }//GEN-LAST:event_btnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbxNamXuat;
-    private javax.swing.JComboBox<String> cbxNgayXuat;
-    private javax.swing.JComboBox<String> cbxThangXuat;
+    private javax.swing.JComboBox<String> cbxNamDi;
+    private javax.swing.JComboBox<String> cbxNgayDi;
+    private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
