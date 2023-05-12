@@ -129,11 +129,11 @@
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="cbxNgayDi" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="cbxNgayXuat" min="-2" pref="87" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxThangDi" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="cbxThangXuat" min="-2" pref="87" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="cbxNamDi" min="-2" pref="87" max="-2" attributes="0"/>
+                          <Component id="cbxNamXuat" min="-2" pref="87" max="-2" attributes="0"/>
                       </Group>
                       <Component id="txtTongTien" min="-2" pref="273" max="-2" attributes="0"/>
                       <Component id="txtMaKhachHang" min="-2" pref="273" max="-2" attributes="0"/>
@@ -146,6 +146,7 @@
                       <Component id="btnXoa" max="32767" attributes="0"/>
                       <Component id="btnSua" max="32767" attributes="0"/>
                       <Component id="btnTimKiem" max="32767" attributes="0"/>
+                      <Component id="btnExport" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="152" max="-2" attributes="0"/>
               </Group>
@@ -163,7 +164,8 @@
                           <Component id="btnXoa" min="-2" pref="33" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="btnSua" min="-2" pref="33" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                          <EmptySpace pref="11" max="32767" attributes="0"/>
+                          <Component id="btnExport" min="-2" pref="34" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" attributes="0">
                           <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -179,9 +181,9 @@
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="3" attributes="0">
-                                  <Component id="cbxNgayDi" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="cbxThangDi" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
-                                  <Component id="cbxNamDi" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="cbxNgayXuat" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="cbxThangXuat" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="cbxNamXuat" alignment="3" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <EmptySpace type="separate" max="-2" attributes="0"/>
@@ -321,7 +323,7 @@
         </Container>
         <Component class="javax.swing.JTextField" name="txtMaKhachHang">
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbxNgayDi">
+        <Component class="javax.swing.JComboBox" name="cbxNgayXuat">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="1">
@@ -330,13 +332,13 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxNgayDiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxNgayXuatActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbxThangDi">
+        <Component class="javax.swing.JComboBox" name="cbxThangXuat">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="13">
@@ -357,13 +359,13 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxThangDiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxThangXuatActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JComboBox" name="cbxNamDi">
+        <Component class="javax.swing.JComboBox" name="cbxNamXuat">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="2">
@@ -373,7 +375,7 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxNamDiActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxNamXuatActionPerformed"/>
           </Events>
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
@@ -444,6 +446,23 @@
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTongTien">
+        </Component>
+        <Component class="javax.swing.JButton" name="btnExport">
+          <Properties>
+            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="47" green="6e" red="15" type="rgb"/>
+            </Property>
+            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+              <Font name="Segoe UI" size="14" style="1"/>
+            </Property>
+            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+              <Color blue="ff" green="ff" red="ff" type="rgb"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Export"/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnExportActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

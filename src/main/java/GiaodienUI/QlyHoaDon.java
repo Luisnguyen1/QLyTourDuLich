@@ -5,7 +5,6 @@
 package GiaodienUI;
 
 import DTo.HoaDon;
-import DTo.PhuongTien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -202,6 +201,11 @@ public class QlyHoaDon extends javax.swing.JPanel {
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnTimKiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
