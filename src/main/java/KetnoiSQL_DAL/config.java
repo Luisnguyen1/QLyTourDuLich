@@ -5,11 +5,13 @@
 package KetnoiSQL_DAL;
 
 import DTo.HoaDon;
+import DTo.KhuyenMai;
 import DTo.NhanVien;
 import DTo.PhuongTien;
 import DTo.TaiKhoan;
 import DTo.Tour;
 import DTo.VeTour;
+import TaiKhoan;
 import java.sql.Connection;
 import java.sql.Date;
 import java.sql.DriverManager;
@@ -415,7 +417,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO phuongtien VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM phuongtien";
             try {
                 // connect to database
@@ -578,6 +580,104 @@ public class config {
             }
     }
     }
+    
+    public void UpdateSQL_KhuyenMai(KhuyenMai KhuyenMai, int i,String MaNV_OLD) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO KhuyenMai VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM khuyenmai";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, KhuyenMai.getMakm());
+                stmt.setString(2, KhuyenMai.getTenkm());
+                stmt.setInt(3, KhuyenMai.getNgaykm());
+                stmt.setLong(4, KhuyenMai.getHansudung());
+                stmt.setLong(5, KhuyenMai.getTiengiam());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenmai = "+KhuyenMai.getMakm();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+               
+                
+                
+        }
+        if (i == 3) {//sửa
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenmai = "+KhuyenMai.getMakm();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+                       String sqlInsert = "INSERT INTO KhuyenMai VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM khuyenmai";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, KhuyenMai.getMakm());
+                stmt.setString(2, KhuyenMai.getTenkm());
+                stmt.setInt(3, KhuyenMai.getNgaykm());
+                stmt.setLong(4, KhuyenMai.getHansudung());
+                stmt.setLong(5, KhuyenMai.getTiengiam());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
     //--------------------------------------------------------
     public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
@@ -595,6 +695,27 @@ public class config {
             taikhoan.setMatkhau(rs.getString("matkhau"));
             taikhoan.setManv(rs.getInt("manv"));
             taikhoan.setQuyentruycap(rs.getString("loaitk"));
+            danhSachTaiKhoan.add(taikhoan);
+        }
+        return danhSachTaiKhoan;
+    }
+    public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con = DriverManager.getConnection(url, user, password);
+
+        // Thực hiện truy vấn và lấy kết quả
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM khuyenmai");
+
+        ArrayList<KhuyenMai> danhSachTaiKhoan = new ArrayList<>();
+
+        while (rs.next()) {
+            KhuyenMai taikhoan = new KhuyenMai();
+            taikhoan.setMakm(rs.getString("MaKhuyenMai"));
+            taikhoan.setTenkm(rs.getString("tenKM"));
+            taikhoan.setNgaykm(rs.getInt("NgayKM"));
+            taikhoan.setHansudung(rs.getInt("HanSuDung"));
+            taikhoan.setTiengiam(rs.getLong("TienGiam"));
             danhSachTaiKhoan.add(taikhoan);
         }
         return danhSachTaiKhoan;

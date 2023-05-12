@@ -19,6 +19,9 @@ public class KhuyenMai {
         this.hansudung = hansudung;
         this.tiengiam = tiengiam;
     }
+
+    public KhuyenMai() {
+    }
     
     public KhuyenMai(KhuyenMai x)
     {   
