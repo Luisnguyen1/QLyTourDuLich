@@ -30,11 +30,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-<<<<<<< Updated upstream
-QlyDiaDiemVuiChoi ql = new QlyDiaDiemVuiChoi();
-=======
-QlyDiaDiemTour ql = new QlyDiaDiemTour();
->>>>>>> Stashed changes
+QlyVeTour ql = new QlyVeTour();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước

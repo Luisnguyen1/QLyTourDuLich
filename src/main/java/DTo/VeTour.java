@@ -28,6 +28,9 @@ public class VeTour implements Comparable <VeTour>{
             ngaydatve = x.ngaydatve;
             hansudung = x.hansudung;
         }
+
+    public VeTour() {
+    }
          
         public VeTour (String mavetour, String matour, String makh, long tiengiam, Date ngaydatve, Date hansudung){
             this.mavetour = mavetour;
