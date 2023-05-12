@@ -385,7 +385,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // thêm đối tượng KhachHang vào model
-            model.addRow(new Object[]{kh.getDiaDiemTour(), kh.getTenKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong(), kh.getMaKhachSan()});
+            model.addRow(new Object[]{kh.getTenKhachSan(), kh.getMaKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong(), kh.getDiaDiemTour()});
 
 // cập nhật lại model cho JTable
             jTable1.setModel(model);
@@ -522,7 +522,37 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        String tenKHCanTim = txtMaKhachSan.getText();
+    
+    // Tạo một danh sách để lưu khách hàng tìm được
+    ArrayList<KhachSan> ketQuaTimKiem = new ArrayList<>();
+    
+    // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+    for (KhachSan kh : danhsachks) {
+        if (kh.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
+            ketQuaTimKiem.add(kh);
+        }else{
+                      JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+            return;
+            }
+    }
+    
+    // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+    DefaultTableModel model = new DefaultTableModel();
+    model.addColumn("Tên khách sạn");
+    model.addColumn("Mã Khách Sạn");
+    model.addColumn("Số Điện Thoại");
+    model.addColumn("Tiền khách sạn");
+    model.addColumn("Tiền phòng");
+    model.addColumn("Địa điểm Tour");
+    
+    // Thêm các khách hàng tìm được vào model
+    for (KhachSan kh : ketQuaTimKiem) {
+            model.addRow(new Object[]{kh.getTenKhachSan(), kh.getMaKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong(), kh.getDiaDiemTour()});
+    }
+    
+    // Cập nhật lại model cho JTable
+    jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed

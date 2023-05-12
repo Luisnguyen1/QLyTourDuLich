@@ -4,6 +4,7 @@
  */
 package GiaodienUI;
 
+import DTo.KhachSan;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -11,7 +12,11 @@ import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 import DTo.KhuyenMai;
 import DTo.Tour;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 /**
  *
@@ -944,7 +949,32 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+       String tuKhoa = txtMaKhuyenMai.getText().toLowerCase().trim();
+        config con = new config();
+        
+        if (tuKhoa.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        /*for (int i = 0; i < danhSachTour.size(); i++) {
+        model.removeRow(i);
+        }*/
+        for (int i = 0; i < danhSachKM.size(); i++) {
+            KhuyenMai tour = danhSachKM.get(i);
+            if (tour.getTenkm().toLowerCase().contains(tuKhoa)
+                    || tour.getMakm().toLowerCase().contains(tuKhoa)) {
+                
+               
+                    if (tuKhoa.equals(danhSachKM.get(i).getMakm())) {
+                        model.addRow(new Object[]{danhSachKM.get(i).getTenkm(), danhSachKM.get(i).getMakm(), danhSachKM.get(i).getNgaykm(), danhSachKM.get(i).getHansudung(), danhSachKM.get(i).getTiengiam()});
+                    }
+                
+
+            }
+        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
