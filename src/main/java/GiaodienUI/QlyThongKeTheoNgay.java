@@ -48,7 +48,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel1.setText("                         Thống Kê Doanh Thu Theo Ngày");
+        jLabel1.setText("                                          Thống Kê Doanh Thu Theo Ngày");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -73,13 +73,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null},
-                {null, null, null}
+
             },
             new String [] {
                 "Mã Hóa Đơn", "Ngày Đặt", "Thành Tiền"
@@ -145,12 +139,12 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
-        btnTimkiem.setBackground(new java.awt.Color(255, 0, 0));
+        btnTimkiem.setBackground(new java.awt.Color(21, 110, 71));
         btnTimkiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimkiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimkiem.setText("Search");
 
-        btnExport.setBackground(new java.awt.Color(255, 0, 0));
+        btnExport.setBackground(new java.awt.Color(21, 110, 71));
         btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
         btnExport.setText("Export");
@@ -205,7 +199,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 26, Short.MAX_VALUE))
+                .addGap(0, 107, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
