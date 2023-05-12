@@ -24,13 +24,22 @@ import javax.swing.JComboBox;
  */
 public class QlyKhuyenMai extends javax.swing.JPanel {
 
-  
+    config con = new config();
+    DefaultTableModel model = new DefaultTableModel();
     ArrayList<KhuyenMai> danhSachKM = new ArrayList<>();
     /**
      * Creates new form QlyKhuyenMai
      */
     public QlyKhuyenMai() {
         initComponents();
+        try {
+            danhSachKM = con.layDL_KhuyenMai();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (KhuyenMai km : danhSachKM) {
+            model.addRow(new Object[]{km.getTenkm(),km.getMakm(), km.getNgaykm(), km.getHansudung(), km.getTiengiam()});
+        }
     }
 
     /**
@@ -741,7 +750,12 @@ if(thang.equals("2")){
     }//GEN-LAST:event_txtTienGiamActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-       try{
+       try {
+            danhSachKM = con.layDL_KhuyenMai();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        try{
         String tenKM = txtTenKhuyenMai.getText();
         String maKM = txtMaKhuyenMai.getText();
         long tienGiam = Long.parseLong(txtTienGiam.getText());
@@ -765,6 +779,7 @@ if(thang.equals("2")){
        
         KhuyenMai km = new KhuyenMai(tenKM,maKM,ngayKM,ngayHSD,tienGiam);
         danhSachKM.add(km);
+        con.UpdateSQL_KhuyenMai(km, 2, "null");
         model.addRow(new Object[]{km.getTenkm(),km.getMakm(),ngayKMString, hanSDString, km.getTiengiam()});
         
         jTable1.setModel(model);
@@ -783,7 +798,11 @@ if(thang.equals("2")){
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
          int selectedRow = jTable1.getSelectedRow();
-        
+        try {
+            danhSachKM = con.layDL_KhuyenMai();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
             return;
@@ -800,6 +819,7 @@ if(thang.equals("2")){
                 break;
             }
         }
+        con.UpdateSQL_KhuyenMai(khuyenMaiCanXoa, 2, "null");
         
         if(khuyenMaiCanXoa == null){
             JOptionPane.showMessageDialog(null,"Khuyến Mãi Không Tồn Tại");
@@ -817,7 +837,11 @@ if(thang.equals("2")){
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-
+try {
+            danhSachKM = con.layDL_KhuyenMai();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
@@ -829,7 +853,7 @@ if(thang.equals("2")){
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
-
+        String old = maNV;
 // tìm khách hàng trong danh sách dựa vào mã
         KhuyenMai tourCanSua = null;
         for (KhuyenMai nv : danhSachKM) {
@@ -943,7 +967,7 @@ if(thang.equals("2")){
         model.setValueAt(ngayVeString, selectedRow, 3);
         model.setValueAt(soTienGiam, selectedRow, 4);
        
-
+        con.UpdateSQL_KhuyenMai(tourCanSua, 3, old);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khuyến mãi Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -952,6 +976,11 @@ if(thang.equals("2")){
        String tuKhoa = txtMaKhuyenMai.getText().toLowerCase().trim();
         config con = new config();
         
+        try {
+            danhSachKM = con.layDL_KhuyenMai();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (tuKhoa.length() == 0) {
             JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
             return;
