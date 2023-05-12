@@ -29,6 +29,14 @@
       
     }
 
+    public String getMatkhau() {
+        return matkhau;
+    }
+
+    public void setMatkhau(String matkhau) {
+        this.matkhau = matkhau;
+    }
+
     public int getManv() {
         return manv;
     }
@@ -44,15 +52,11 @@
     public void setQuyentruycap(String quyentruycap) {
         this.quyentruycap = quyentruycap;
     }
+
+
+
+
   
-
-
-
-    @Override
-    public String toString() {
-        return "TaiKhoan{" + "quyentruycap=" + quyentruycap + '}';
-    }
-
   
     
         
