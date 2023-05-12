@@ -583,8 +583,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        con.export(danhSachNV, "C:/Users/ASUS/Documents/GitHub/QLyTourDuLich/src/main/java/Excel/Exported.xlsx");
+       
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
 

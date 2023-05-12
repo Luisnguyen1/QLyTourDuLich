@@ -4,10 +4,15 @@
  */
 package GiaodienUI;
 
+import DTo.NhanVien;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import DTo.PhuongTien;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -20,8 +25,21 @@ public class QlyPhuongTien extends javax.swing.JPanel {
     /**
      * Creates new form QlyPhuongTien
      */
+    DefaultTableModel model = new DefaultTableModel();
+
+
+    config con = new config();
     public QlyPhuongTien() {
         initComponents();
+        try {
+            danhSachPT = con.layDL_PhuongTien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model = (DefaultTableModel) jTable1.getModel();
+        for(PhuongTien pt : danhSachPT){
+            model.addRow(new Object[]{pt.getBienso(), pt.getLoaipt(), pt.getMapt(), pt.getTongsocho(), pt.getSochocondu()});
+        }
     }
 
     /**
@@ -347,6 +365,11 @@ String tenPT = txtTenPhuongTien.getText();
 String maPT = txtMaPhuongTien.getText();
 String tongsocho = txtTongSoCho.getText();
 String sochodu = txtSoChoDu.getText();
+try {
+            danhSachPT = con.layDL_PhuongTien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
 if(loaiPT.equals("Chọn Loại Phương Tiện")){
     JOptionPane.showMessageDialog(null,"Chọn Thông Tin Cụ Thể");
@@ -368,7 +391,8 @@ else {
 long soChoDu = Long.parseLong(sochodu);
     PhuongTien pt = new PhuongTien(maPT, loaiPT, tenPT, tongSoCho, soChoDu);
     
-    danhSachPT.add(pt);   
+    danhSachPT.add(pt);  
+    
     
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     
