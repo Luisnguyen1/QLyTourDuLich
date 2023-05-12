@@ -77,7 +77,7 @@
               <Component id="jScrollPane1" min="-2" pref="159" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="0" pref="26" max="32767" attributes="0"/>
+              <EmptySpace min="0" pref="107" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -116,7 +116,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6" green="0" red="a9" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="                         Th&#x1ed1;ng K&#xea; Doanh Thu Theo Ng&#xe0;y"/>
+            <Property name="text" type="java.lang.String" value="                                          Th&#x1ed1;ng K&#xea; Doanh Thu Theo Ng&#xe0;y"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -160,7 +160,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="3" rowCount="7">
+              <Table columnCount="3" rowCount="0">
                 <Column editable="true" title="M&#xe3; H&#xf3;a &#x110;&#x1a1;n" type="java.lang.String"/>
                 <Column editable="true" title="Ng&#xe0;y &#x110;&#x1eb7;t" type="java.lang.String"/>
                 <Column editable="true" title="Th&#xe0;nh Ti&#x1ec1;n" type="java.lang.Long"/>
@@ -279,7 +279,7 @@
     <Component class="javax.swing.JButton" name="btnTimkiem">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
+          <Color blue="47" green="6e" red="15" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
@@ -293,7 +293,7 @@
     <Component class="javax.swing.JButton" name="btnExport">
       <Properties>
         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="ff" type="rgb"/>
+          <Color blue="47" green="6e" red="15" type="rgb"/>
         </Property>
         <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
           <Font name="Segoe UI" size="14" style="1"/>
