@@ -7,11 +7,13 @@ public class DiaDiem {
     private String madd;
     private String tendd;
     private String thuoctinh;
+    private String khuvuc;
 
-    public DiaDiem(String madd, String tendd, String thuoctinh) {
+    public DiaDiem(String madd, String tendd, String thuoctinh, String khuvuc) {
         this.madd = madd;
         this.tendd = tendd;
         this.thuoctinh = thuoctinh;
+        this.khuvuc = khuvuc;
     }
 
     DiaDiem(String dD001, String string) {
@@ -41,6 +43,16 @@ public class DiaDiem {
     public void setThuoctinh(String thuoctinh) {
         this.thuoctinh = thuoctinh;
     }
+
+    public String getKhuvuc() {
+        return khuvuc;
+    }
+
+    public void setKhuvuc(String khuvuc) {
+        this.khuvuc = khuvuc;
+    }
+    
+    
 
     @Override
     public String toString() {
