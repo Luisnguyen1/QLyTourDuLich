@@ -48,37 +48,7 @@ public class config {
         }
     }
     
-    public void export(String name) {
-        String excelFilePath = "export.xlsx";
- 
-        try (Connection connection = DriverManager.getConnection(url, user, password)) {
-            String sql = "SELECT * FROM nhanvien";
- 
-            Statement statement = connection.createStatement();
- 
-            ResultSet result = statement.executeQuery(sql);
- 
-            XSSFWorkbook workbook = new XSSFWorkbook();
-            XSSFSheet sheet = workbook.createSheet("Reviews");
- 
-            writeHeaderLine(sheet);
- 
-            writeDataLines(result, workbook, sheet);
- 
-            FileOutputStream outputStream = new FileOutputStream(excelFilePath);
-            workbook.write(outputStream);
-            workbook.close();
- 
-            statement.close();
- 
-        } catch (SQLException e) {
-            System.out.println("Datababse error:");
-            e.printStackTrace();
-        } catch (IOException e) {
-            System.out.println("File IO error:");
-            e.printStackTrace();
-        }
-    }
+    
 
     public void UpdateSQL_HoaDon(ArrayList<HoaDon> objArrayList) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
