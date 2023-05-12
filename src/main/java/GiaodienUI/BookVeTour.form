@@ -44,8 +44,7 @@
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
               <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane2" pref="112" max="32767" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane2" pref="118" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -143,7 +142,7 @@
                                           <EmptySpace max="-2" attributes="0"/>
                                           <Group type="103" groupAlignment="1" attributes="0">
                                               <Component id="txtGiaTour" min="-2" pref="219" max="-2" attributes="0"/>
-                                              <Component id="btnXoaVe1" min="-2" pref="90" max="-2" attributes="0"/>
+                                              <Component id="btnXoaVe" min="-2" pref="90" max="-2" attributes="0"/>
                                           </Group>
                                       </Group>
                                       <Group type="102" attributes="0">
@@ -221,7 +220,7 @@
                   <EmptySpace pref="28" max="32767" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnDatVe" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
-                      <Component id="btnXoaVe1" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      <Component id="btnXoaVe" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="32" max="32767" attributes="0"/>
               </Group>
@@ -453,7 +452,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatVeActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnXoaVe1">
+        <Component class="javax.swing.JButton" name="btnXoaVe">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="47" green="6e" red="15" type="rgb"/>
@@ -467,7 +466,7 @@
             <Property name="text" type="java.lang.String" value="X&#xf3;a V&#xe9;"/>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaVe1ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaVeActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>
