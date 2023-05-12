@@ -180,10 +180,12 @@
                       <Component id="cbxTinhThanhPho1" alignment="3" min="-2" pref="35" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtMaDiaDiem" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
-                      <Component id="btnExport" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" attributes="0">
                       <Component id="jPanel6" alignment="1" min="-2" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="txtMaDiaDiem" alignment="3" min="-2" pref="32" max="-2" attributes="0"/>
+                          <Component id="btnExport" alignment="3" min="-2" pref="33" max="-2" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
