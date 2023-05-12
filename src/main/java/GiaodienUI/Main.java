@@ -4,6 +4,7 @@
  */
 package GiaodienUI;
 
+import DTo.ModuleXuLy;
 import DTo.SideMenuPanel;
 import GiaodienUI.menu.MenuEvent;
 import java.awt.BorderLayout;
@@ -88,27 +89,20 @@ public class Main extends javax.swing.JFrame {
                     showForm(new BookVeTour());
                 }
                 if (index == 5) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new TraCuu());
+                    DX();
                 }
-                if (index == 6) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyKhuyenMai());
-                }
-                if (index == 7) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new Contact());
-                }
-                if (index == 8) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new LogOut());
-                }
+               
             }
         }); 
         this.setLocationRelativeTo(null);
         
     }
      
+    private void DX()
+    {
+        ModuleXuLy md = new ModuleXuLy();
+                    md.dangXuat(this);
+    }
     private void showForm(Component com) {
         mainPanel.setLayout(new java.awt.BorderLayout());
         mainPanel.removeAll();

@@ -1,7 +1,6 @@
 package DTo;
 
 import GiaodienUI.Test;
-import DTo.TaiKhoan;
 import GiaodienUI.Main;
 
 
@@ -41,6 +40,13 @@ public class ModuleXuLy {
     public void chuyenFrame(JFrame mot)
     {
         Main main = new Main();
+        main.setVisible(true);
+        mot.setVisible(false);        
+        
+    }
+    public void dangXuat(JFrame mot)
+    {
+        login main = new login();
         main.setVisible(true);
         mot.setVisible(false);        
         
