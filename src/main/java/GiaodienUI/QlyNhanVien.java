@@ -7,6 +7,7 @@ package GiaodienUI;
 import DTo.KhachHang;
 import DTo.NhanVien;
 import KetnoiSQL_DAL.config;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -212,6 +213,11 @@ public class QlyNhanVien extends javax.swing.JPanel {
         btnXuatExcel.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXuatExcel.setForeground(new java.awt.Color(255, 255, 255));
         btnXuatExcel.setText("Xuất Excel");
+        btnXuatExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXuatExcelActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -570,6 +576,16 @@ public class QlyNhanVien extends javax.swing.JPanel {
         jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
+        try {
+            danhSachNV = con.layDL_NhanVien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        con.export(danhSachNV, "C:/Users/ASUS/Documents/GitHub/QLyTourDuLich/src/main/java/Excel/Exported.xlsx");
+    }//GEN-LAST:event_btnXuatExcelActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
