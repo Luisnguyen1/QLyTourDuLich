@@ -21,19 +21,19 @@
   <Layout>
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
-          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
-          <Component id="jPanel2" alignment="0" max="32767" attributes="0"/>
-          <Group type="102" attributes="0">
-              <EmptySpace min="-2" pref="42" max="-2" attributes="0"/>
-              <Component id="jSeparator1" min="-2" pref="595" max="-2" attributes="0"/>
-              <EmptySpace max="32767" attributes="0"/>
-          </Group>
+          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jSeparator3" max="32767" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
-          <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+          <Component id="jPanel2" max="32767" attributes="0"/>
+          <Component id="jPanel1" alignment="0" max="32767" attributes="0"/>
+          <Group type="102" alignment="0" attributes="0">
+              <EmptySpace min="-2" pref="51" max="-2" attributes="0"/>
+              <Component id="jSeparator1" min="-2" pref="829" max="-2" attributes="0"/>
+              <EmptySpace max="32767" attributes="0"/>
+          </Group>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -47,7 +47,7 @@
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator3" min="-2" pref="10" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="jScrollPane1" pref="108" max="32767" attributes="0"/>
+              <Component id="jScrollPane1" pref="147" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -68,10 +68,7 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <Component id="jLabel1" pref="598" max="32767" attributes="0"/>
-                  <EmptySpace min="-2" pref="78" max="-2" attributes="0"/>
-              </Group>
+              <Component id="jLabel1" alignment="0" max="32767" attributes="0"/>
           </Group>
         </DimensionLayout>
         <DimensionLayout dim="1">
@@ -92,7 +89,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6" green="0" red="a9" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="                           H&#x1ec7; Th&#x1ed1;ng Qu&#x1ea3;n L&#xfd; Khuy&#x1ebf;n M&#xe3;i"/>
+            <Property name="text" type="java.lang.String" value="                                              H&#x1ec7; Th&#x1ed1;ng Qu&#x1ea3;n L&#xfd; Khuy&#x1ebf;n M&#xe3;i"/>
           </Properties>
         </Component>
       </SubComponents>
@@ -119,70 +116,70 @@
       <Layout>
         <DimensionLayout dim="0">
           <Group type="103" groupAlignment="0" attributes="0">
-              <Group type="102" alignment="0" attributes="0">
-                  <EmptySpace min="-2" pref="33" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Group type="102" alignment="0" attributes="0">
-                          <Group type="103" groupAlignment="1" attributes="0">
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Component id="jLabel2" min="-2" pref="128" max="-2" attributes="0"/>
-                                  <EmptySpace max="-2" attributes="0"/>
-                                  <Component id="txtTenKhuyenMai" min="-2" pref="163" max="-2" attributes="0"/>
-                              </Group>
-                              <Group type="102" alignment="1" attributes="0">
-                                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
-                                      <Component id="jLabel5" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="jLabel4" alignment="1" pref="147" max="32767" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="34" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="1" attributes="0">
-                                      <Component id="cbxNgayKhuyenMai" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
-                                      <Component id="cbxNgayHanSuDung" alignment="1" min="-2" pref="99" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                          </Group>
-                          <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" attributes="0">
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="jLabel3" alignment="0" min="-2" pref="120" max="-2" attributes="0"/>
-                                      <Component id="cbxThangKhuyenMai" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                                  </Group>
-                                  <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
-                                  <Group type="103" groupAlignment="0" attributes="0">
-                                      <Component id="txtMaKhuyenMai" alignment="0" min="-2" pref="163" max="-2" attributes="0"/>
-                                      <Component id="cbxNamKhuyenMai" alignment="0" min="-2" pref="99" max="-2" attributes="0"/>
-                                  </Group>
-                              </Group>
-                              <Group type="102" alignment="0" attributes="0">
-                                  <Component id="cbxThangHanSuDung" min="-2" pref="99" max="-2" attributes="0"/>
-                                  <EmptySpace min="-2" pref="28" max="-2" attributes="0"/>
-                                  <Component id="cbxNamHanSuDung" min="-2" pref="99" max="-2" attributes="0"/>
-                              </Group>
-                          </Group>
+              <Group type="102" attributes="0">
+                  <EmptySpace min="33" pref="33" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="102" attributes="0">
+                          <Component id="btnThem" min="-2" pref="92" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="109" max="-2" attributes="0"/>
+                          <Component id="btnXoa" min="-2" pref="90" max="-2" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
+                          <Component id="btnSua" min="-2" pref="91" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="104" max="-2" attributes="0"/>
+                          <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
+                          <EmptySpace min="-2" pref="79" max="-2" attributes="0"/>
+                          <Component id="btnExport" min="-2" pref="90" max="-2" attributes="0"/>
                       </Group>
-                      <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Component id="jSeparator2" alignment="0" min="-2" pref="860" max="-2" attributes="0"/>
                           <Group type="102" alignment="0" attributes="0">
-                              <EmptySpace min="-2" pref="106" max="-2" attributes="0"/>
-                              <Component id="jLabel6" min="-2" pref="84" max="-2" attributes="0"/>
-                              <EmptySpace type="separate" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="121" max="-2" attributes="0"/>
+                              <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtTenKhuyenMai" min="-2" pref="198" max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                              <Component id="jPanel3" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace max="-2" attributes="0"/>
+                              <Component id="txtMaKhuyenMai" min="-2" pref="199" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="137" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="1" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="jPanel5" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cbxNgayKhuyenMai" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="59" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" alignment="0" attributes="0">
+                                      <Component id="jPanel6" min="-2" max="-2" attributes="0"/>
+                                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                                      <Component id="cbxNgayHanSuDung" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                                  <Group type="102" attributes="0">
+                                      <Component id="cbxThangHanSuDung" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace max="32767" attributes="0"/>
+                                      <Component id="cbxNamHanSuDung" min="-2" pref="99" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Group type="102" attributes="0">
+                                      <Component id="cbxThangKhuyenMai" min="-2" pref="99" max="-2" attributes="0"/>
+                                      <EmptySpace min="-2" pref="62" max="-2" attributes="0"/>
+                                      <Component id="cbxNamKhuyenMai" min="-2" pref="99" max="-2" attributes="0"/>
+                                  </Group>
+                              </Group>
+                          </Group>
+                          <Group type="102" alignment="1" attributes="0">
+                              <Component id="jPanel7" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                               <Component id="txtTienGiam" min="-2" pref="239" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnXuatExcel" min="-2" max="-2" attributes="0"/>
+                              <EmptySpace min="-2" pref="230" max="-2" attributes="0"/>
                           </Group>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="btnThem" min="-2" pref="92" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="87" max="-2" attributes="0"/>
-                              <Component id="btnXoa" min="-2" pref="90" max="-2" attributes="0"/>
-                              <EmptySpace max="32767" attributes="0"/>
-                              <Component id="btnSua" min="-2" pref="91" max="-2" attributes="0"/>
-                              <EmptySpace min="-2" pref="75" max="-2" attributes="0"/>
-                              <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jSeparator2" alignment="0" min="-2" pref="616" max="-2" attributes="0"/>
                       </Group>
                   </Group>
-                  <EmptySpace pref="27" max="32767" attributes="0"/>
+                  <EmptySpace pref="33" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -190,35 +187,36 @@
           <Group type="103" groupAlignment="0" attributes="0">
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="14" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel2" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtTenKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel3" alignment="3" min="-2" pref="25" max="-2" attributes="0"/>
-                      <Component id="txtMaKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel4" alignment="0" max="32767" attributes="0"/>
+                      <Component id="jPanel3" max="32767" attributes="0"/>
+                      <Component id="txtMaKhuyenMai" alignment="0" max="32767" attributes="0"/>
+                      <Component id="txtTenKhuyenMai" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="cbxNgayKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxThangKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxNamKhuyenMai" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel5" max="32767" attributes="0"/>
+                      <Group type="103" alignment="0" groupAlignment="3" attributes="0">
+                          <Component id="cbxThangKhuyenMai" alignment="3" max="32767" attributes="0"/>
+                          <Component id="cbxNgayKhuyenMai" alignment="3" max="32767" attributes="0"/>
+                      </Group>
+                      <Component id="cbxNamKhuyenMai" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="21" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxNgayHanSuDung" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxThangHanSuDung" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Component id="cbxNamHanSuDung" alignment="3" min="-2" max="-2" attributes="0"/>
-                  </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
-                  <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="jLabel6" alignment="0" min="-2" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel6" max="32767" attributes="0"/>
                       <Group type="103" alignment="0" groupAlignment="3" attributes="0">
-                          <Component id="txtTienGiam" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="btnXuatExcel" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxThangHanSuDung" alignment="3" max="32767" attributes="0"/>
+                          <Component id="cbxNgayHanSuDung" alignment="3" max="32767" attributes="0"/>
                       </Group>
+                      <Component id="cbxNamHanSuDung" alignment="0" max="32767" attributes="0"/>
                   </Group>
-                  <EmptySpace type="separate" max="-2" attributes="0"/>
+                  <EmptySpace min="-2" pref="18" max="-2" attributes="0"/>
+                  <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                      <Component id="jPanel7" max="32767" attributes="0"/>
+                      <Component id="txtTienGiam" max="32767" attributes="0"/>
+                  </Group>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
@@ -226,6 +224,7 @@
                       <Component id="btnXoa" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnSua" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
+                      <Component id="btnExport" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="25" max="32767" attributes="0"/>
               </Group>
@@ -233,72 +232,15 @@
         </DimensionLayout>
       </Layout>
       <SubComponents>
-        <Component class="javax.swing.JLabel" name="jLabel2">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6" green="0" red="a9" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" T&#xea;n Khuy&#x1ebf;n M&#xe3;i"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtTenKhuyenMai">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTenKhuyenMaiActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel3">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6" green="0" red="a9" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" M&#xe3; Khuy&#x1ebf;n M&#xe3;i"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JTextField" name="txtMaKhuyenMai">
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaKhuyenMaiActionPerformed"/>
           </Events>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel4">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6" green="0" red="a9" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="  Ng&#xe0;y Khuy&#x1ebf;n M&#xe3;i"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
-            </Property>
-          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cbxNgayKhuyenMai">
           <Properties>
@@ -358,25 +300,6 @@
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
         </Component>
-        <Component class="javax.swing.JLabel" name="jLabel5">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6" green="0" red="a9" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value="      H&#x1ea1;n S&#x1eed; D&#x1ee5;ng"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
         <Component class="javax.swing.JComboBox" name="cbxNgayHanSuDung">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
@@ -434,30 +357,6 @@
           <AuxValues>
             <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
           </AuxValues>
-        </Component>
-        <Component class="javax.swing.JLabel" name="jLabel6">
-          <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
-            </Property>
-            <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Segoe UI" size="14" style="1"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="6" green="0" red="a9" type="rgb"/>
-            </Property>
-            <Property name="text" type="java.lang.String" value=" Ti&#x1ec1;n Gi&#x1ea3;m"/>
-            <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-              <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
-                <EtchetBorder/>
-              </Border>
-            </Property>
-          </Properties>
-        </Component>
-        <Component class="javax.swing.JTextField" name="txtTienGiam">
-          <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTienGiamActionPerformed"/>
-          </Events>
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
           <Properties>
@@ -534,7 +433,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnTimKiemActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JButton" name="btnXuatExcel">
+        <Component class="javax.swing.JButton" name="btnExport">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="47" green="6e" red="15" type="rgb"/>
@@ -545,9 +444,201 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="ff" green="ff" red="ff" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Xu&#x1ea5;t Excel"/>
+            <Property name="text" type="java.lang.String" value="Export"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
           </Properties>
         </Component>
+        <Container class="javax.swing.JPanel" name="jPanel4">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="133" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Group type="102" alignment="1" attributes="0">
+                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <Component id="jLabel2" min="-2" pref="25" max="-2" attributes="0"/>
+                  </Group>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel2">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="0" red="a9" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="  T&#xea;n Khuy&#x1ebf;n M&#xe3;i"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel3">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" alignment="0" pref="121" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel3" min="-2" pref="25" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel3">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="0" red="a9" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value=" M&#xe3; Khuy&#x1ebf;n M&#xe3;i"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel5">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel4" alignment="0" pref="140" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel4" alignment="1" min="-2" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel4">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="0" red="a9" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="  Ng&#xe0;y Khuy&#x1ebf;n M&#xe3;i"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Container class="javax.swing.JPanel" name="jPanel6">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel5" alignment="0" pref="140" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel5">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="0" red="a9" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="      H&#x1ea1;n S&#x1eed; D&#x1ee5;ng"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
+        <Component class="javax.swing.JTextField" name="txtTienGiam">
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtTienGiamActionPerformed"/>
+          </Events>
+        </Component>
+        <Container class="javax.swing.JPanel" name="jPanel7">
+
+          <Layout>
+            <DimensionLayout dim="0">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel6" alignment="0" pref="100" max="32767" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+            <DimensionLayout dim="1">
+              <Group type="103" groupAlignment="0" attributes="0">
+                  <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
+              </Group>
+            </DimensionLayout>
+          </Layout>
+          <SubComponents>
+            <Component class="javax.swing.JLabel" name="jLabel6">
+              <Properties>
+                <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                  <Font name="Segoe UI" size="14" style="1"/>
+                </Property>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="6" green="0" red="a9" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="    Ti&#x1ec1;n Gi&#x1ea3;m"/>
+                <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
+                  <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
+                    <EtchetBorder/>
+                  </Border>
+                </Property>
+              </Properties>
+            </Component>
+          </SubComponents>
+        </Container>
       </SubComponents>
     </Container>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
@@ -571,7 +662,7 @@
               <Color blue="cc" green="cc" red="cc" type="rgb"/>
             </Property>
             <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
-              <Table columnCount="5" rowCount="2">
+              <Table columnCount="5" rowCount="0">
                 <Column editable="true" title="T&#xea;n Khuy&#x1ebf;n M&#xe3;i" type="java.lang.String"/>
                 <Column editable="true" title="M&#xe3; Khuy&#x1ebf;n M&#xe3;i" type="java.lang.String"/>
                 <Column editable="true" title="Ng&#xe0;y Khuy&#x1ebf;n M&#xe3;i" type="java.lang.String"/>

@@ -434,9 +434,9 @@ public class BookVeTour extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnDatVeActionPerformed
 
-<<<<<<< Updated upstream
-    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-=======
+//<<<<<<< Updated upstream
+//    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {                                             
+//=======
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
 int selectedRow = jTable1.getSelectedRow();
 >>>>>>> Stashed changes
