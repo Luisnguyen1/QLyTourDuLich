@@ -270,6 +270,104 @@ public class config {
         }
     }
     
+     public void UpdateSQL_PhuongTien(PhuongTien PhuongTien, int i,String MaNV_OLD) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM phuongtien";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, PhuongTien.getMapt());
+                stmt.setString(2, PhuongTien.getLoaipt());
+                stmt.setString(3, PhuongTien.getBienso());
+                stmt.setLong(4, PhuongTien.getSochocondu());
+                stmt.setLong(5, PhuongTien.getTongsocho());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM phuongtien WHERE MaPT = "+PhuongTien.getMapt();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+               
+                
+                
+        }
+        if (i == 3) {//sửa
+            try {
+                
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM phuongtien WHERE MaPT = "+PhuongTien.getMapt();
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM phuongtien";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, PhuongTien.getMapt());
+                stmt.setString(2, PhuongTien.getLoaipt());
+                stmt.setString(3, PhuongTien.getBienso());
+                stmt.setLong(4, PhuongTien.getSochocondu());
+                stmt.setLong(5, PhuongTien.getTongsocho());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
+    
     public void UpdateSQL_Tour(Tour Tour, int i,String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;

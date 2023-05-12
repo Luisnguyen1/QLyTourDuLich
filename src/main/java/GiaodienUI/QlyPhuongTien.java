@@ -365,11 +365,13 @@ String tenPT = txtTenPhuongTien.getText();
 String maPT = txtMaPhuongTien.getText();
 String tongsocho = txtTongSoCho.getText();
 String sochodu = txtSoChoDu.getText();
+
 try {
             danhSachPT = con.layDL_PhuongTien();
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
+
 
 if(loaiPT.equals("Chọn Loại Phương Tiện")){
     JOptionPane.showMessageDialog(null,"Chọn Thông Tin Cụ Thể");
@@ -392,7 +394,7 @@ long soChoDu = Long.parseLong(sochodu);
     PhuongTien pt = new PhuongTien(maPT, loaiPT, tenPT, tongSoCho, soChoDu);
     
     danhSachPT.add(pt);  
-    
+    con.UpdateSQL_PhuongTien(pt, 1, "null");
     
     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
     
@@ -413,7 +415,11 @@ long soChoDu = Long.parseLong(sochodu);
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
-        
+        try {
+            danhSachPT = con.layDL_PhuongTien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
         if(selectedRow == -1){
@@ -432,6 +438,7 @@ long soChoDu = Long.parseLong(sochodu);
         }
         
         danhSachPT.remove(phuongTienCanXoa);
+        con.UpdateSQL_PhuongTien(phuongTienCanXoa, 2, "null");
         model.removeRow(selectedRow);
         jTable1.setModel(model);
         
@@ -448,6 +455,11 @@ long soChoDu = Long.parseLong(sochodu);
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
        int selectedRow = jTable1.getSelectedRow();
+      try {
+            danhSachPT = con.layDL_PhuongTien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
       
        if(selectedRow == -1){
            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
@@ -457,6 +469,7 @@ long soChoDu = Long.parseLong(sochodu);
        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
        
        String maPT = (String) model.getValueAt(selectedRow, 2);
+       String old = maPT;
        PhuongTien phuongTienCanSua = null;
        for(PhuongTien pt : danhSachPT){
            if(pt.getMapt().equals(maPT)){
@@ -464,6 +477,7 @@ long soChoDu = Long.parseLong(sochodu);
                break;
            }
        }
+       con.UpdateSQL_PhuongTien(phuongTienCanSua, 3, old);
        
        if(phuongTienCanSua == null){
                       JOptionPane.showMessageDialog(null, "Phương Tiện Không Tồn Tại");
@@ -507,7 +521,11 @@ long soChoDu = Long.parseLong(sochodu);
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String maPTCanTim = txtMaPhuongTien.getText();
-        
+        try {
+            danhSachPT = con.layDL_PhuongTien();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         ArrayList<PhuongTien> ketQuaTimKiem = new ArrayList<>();
         
         for(PhuongTien pt : danhSachPT){
