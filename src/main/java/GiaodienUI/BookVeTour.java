@@ -15,10 +15,10 @@ import javax.swing.JButton;
 import DTo.BookVe;
 import java.util.ArrayList;
 
-
 public class BookVeTour extends javax.swing.JPanel {
 
     ArrayList<BookVe> danhSachVe = new ArrayList<>();
+
     /**
      * Creates new form BookVe
      */
@@ -381,98 +381,63 @@ public class BookVeTour extends javax.swing.JPanel {
     }//GEN-LAST:event_txtHotenActionPerformed
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
-String hoten = txtHoten.getText();       
-String dchi = txtDiachi.getText();
-String sdt = txtSdt.getText();
-String Email = txtEmail.getText();
-String mavetour = txtMaVeTour.getText();
-String noidi = txtNoiDi.getText();
-String noiden = txtNoiDen.getText();
-String loaitour = txtLoaiTour.getText();
-String giatour = txtGiaTour.getText();
+        String hoten = txtHoten.getText();
+        String dchi = txtDiachi.getText();
+        String sdt = txtSdt.getText();
+        String Email = txtEmail.getText();
+        String mavetour = txtMaVeTour.getText();
+        String noidi = txtNoiDi.getText();
+        String noiden = txtNoiDen.getText();
+        String loaitour = txtLoaiTour.getText();
+        String giatour = txtGiaTour.getText();
 
-if(hoten.equals("")){
-    JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Thông Tin");
-}
-else if(dchi.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(sdt.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(Email.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(mavetour.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(noidi.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(noiden.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(loaitour.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else if(giatour.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-}
-else{
-    long GiaTour = Long.parseLong(giatour);
-    BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
-    
-    danhSachVe.add(bvt);
-    
-    DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-    
-    model.addRow(new Object[]{bvt.getHoTen(), bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
-    
-    jTable1.setModel(model);
-    
-    JOptionPane.showMessageDialog(null,"Đặt Vé Thành Công");
-    
-    txtHoten.setText("");
-    txtDiachi.setText("");
-    txtSdt.setText("");
-    txtEmail.setText("");
-    txtMaVeTour.setText("");
-    txtNoiDi.setText("");
-    txtNoiDen.setText("");
-    txtLoaiTour.setText("");
-    txtGiaTour.setText("");
+        if (hoten.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (dchi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (Email.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (mavetour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (noidi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (noiden.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (loaitour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (giatour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else {
+            long GiaTour = Long.parseLong(giatour);
+            BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
+
+            danhSachVe.add(bvt);
+
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            model.addRow(new Object[]{bvt.getHoTen(), bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+
+            jTable1.setModel(model);
+
+            JOptionPane.showMessageDialog(null, "Đặt Vé Thành Công");
+
+            txtHoten.setText("");
+            txtDiachi.setText("");
+            txtSdt.setText("");
+            txtEmail.setText("");
+            txtMaVeTour.setText("");
+            txtNoiDi.setText("");
+            txtNoiDen.setText("");
+            txtLoaiTour.setText("");
+            txtGiaTour.setText("");
         }
 
     }//GEN-LAST:event_btnDatVeActionPerformed
 
     private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXuatExcelActionPerformed
-int selectedRow = jTable1.getSelectedRow();
 
-if(selectedRow == -1){
-    JOptionPane.showMessageDialog(null,"Vui Lòng Chọn Một Vé Để Xóa");
-}
-DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-String maVT = (String) model.getValueAt(selectedRow, 4);
-
-BookVe VeCanXoa = null;
-for(BookVe bvt : danhSachVe){
-    if(bvt.getMaVeTour().equals(maVT)){
-        VeCanXoa = bvt;
-        break;
-    }
-}
-
-danhSachVe.remove(VeCanXoa);
-model.removeRow(selectedRow);
-jTable1.setModel(model);
-
-JOptionPane.showMessageDialog(null,"Xóa Vé Thành Công");
-
-if(VeCanXoa == null){
-    JOptionPane.showMessageDialog(null,"Vé Không Tồn Tại");
-
-}
 
     }//GEN-LAST:event_btnXuatExcelActionPerformed
 
@@ -509,7 +474,31 @@ if(VeCanXoa == null){
     }//GEN-LAST:event_txtGiaTourActionPerformed
 
     private void btnXoaVe1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVe1ActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Xóa");
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        String maVT = (String) model.getValueAt(selectedRow, 4);
+
+        BookVe VeCanXoa = null;
+        for (BookVe bvt : danhSachVe) {
+            if (bvt.getMaVeTour().equals(maVT)) {
+                VeCanXoa = bvt;
+                break;
+            }
+        }
+
+        danhSachVe.remove(VeCanXoa);
+        model.removeRow(selectedRow);
+        jTable1.setModel(model);
+
+        JOptionPane.showMessageDialog(null, "Xóa Vé Thành Công");
+
+        if (VeCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
     }//GEN-LAST:event_btnXoaVe1ActionPerformed
 
 

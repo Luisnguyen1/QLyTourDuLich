@@ -30,9 +30,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-
-
-QlyTourDuLich ql = new QlyTourDuLich();
+BookVeTour ql = new BookVeTour();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước

@@ -4,6 +4,7 @@
  */
 package GiaodienUI;
 
+import DTo.Tour;
 import javax.swing.JOptionPane;
 import DTo.VeTour;
 import java.text.SimpleDateFormat;
@@ -712,12 +713,12 @@ if(thang.equals("2")){
         int namHSD = Integer.parseInt(cbxNamHanSD.getSelectedItem().toString());
         
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDV,thangDV - 1, ngayDV);
+        calendar.set(namDV,thangDV , ngayDV);
         Date ngayDVDate = calendar.getTime();
-        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        calendar.set(namHSD,thangHSD ,ngayHSD);
         Date hanSDDate = calendar.getTime();
         
-             VeTour vt = new VeTour (maVT, maTour, maKH, tienGiam, ngayDV, ngayHSD);
+             VeTour vt = new VeTour (maVT, maTour, maKH, tienGiam, ngayDVDate, hanSDDate);
              danhSachVT.add(vt);
              
              DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -845,9 +846,9 @@ if(thang.equals("2")){
                 int namHSD = Integer.parseInt(NamHSD.getSelectedItem().toString());
         
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDV,thangDV - 1,ngayDV);
+        calendar.set(namDV,thangDV ,ngayDV);
         Date ngayDVDate = calendar.getTime();
-        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        calendar.set(namHSD,thangHSD,ngayHSD);
         Date hanSDDate = calendar.getTime();
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -858,8 +859,8 @@ if(thang.equals("2")){
                 veTourCanSua.setMatour(MaTour);
         veTourCanSua.setMakh(MaKH);
         veTourCanSua.setTiengiam(Long.parseLong(TienGiam));
-        veTourCanSua.setNgaydatve(ngayDV);
-        veTourCanSua.setHansudung(ngayHSD);
+        veTourCanSua.setNgaydatve(ngayDVDate);
+        veTourCanSua.setHansudung(hanSDDate);
 
         model.setValueAt(MaVT,selectedRow,0);
         model.setValueAt(MaTour,selectedRow,1);
@@ -879,26 +880,15 @@ if(thang.equals("2")){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         model.setRowCount(0); // xóa tất cả các dòng hiện có trong JTable
         
-        for (VeTour vt : danhSachVT) { // duyệt qua từng tour trong danh sách
+        for (int i = 0; i < danhSachVT.size(); i++) { // duyệt qua từng tour trong danh sách
+            VeTour vt = danhSachVT.get(i);
             if (vt.getMavetour().toLowerCase().contains(tuKhoa) // kiểm tra xem tour có chứa từ khóa tìm kiếm không
                     || vt.getMatour().toLowerCase().contains(tuKhoa)
                     || vt.getMakh().toLowerCase().contains(tuKhoa)) {
                 
-                long tienGiam = Long.parseLong(txtTienVeGiam.getText());
-                
-                Object ngayDVObject = jTable1.getValueAt(jTable1.getSelectedRow(), 3);
-// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
-                int ngayDV = Integer.parseInt(ngayDVObject.toString());
-
-// lấy giá trị của ô thứ 11 trong hàng đang được chọn
-                Object ngayHSDObject = jTable1.getValueAt(jTable1.getSelectedRow(), 4);
-// chuyển đổi giá trị này thành kiểu dữ liệu số nguyên
-                int ngayHSD = Integer.parseInt(ngayHSDObject.toString());
-
-                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-                String ngayDVString = dateFormat.format(ngayDV);
-                String ngayHSDString = dateFormat.format(ngayHSD);
-                model.addRow(new Object[]{vt.getMavetour(),vt.getMatour(),vt.getMakh(),ngayDVString,ngayHSDString, vt.getTiengiam()});
+                    if (tuKhoa.equals(danhSachVT.get(i).getMavetour())) {
+                        model.addRow(new Object[]{danhSachVT.get(i).getMavetour(), danhSachVT.get(i).getMatour(), danhSachVT.get(i).getMakh(), danhSachVT.get(i).getTiengiam(), danhSachVT.get(i).getNgaydatve(), danhSachVT.get(i).getHansudung(), });
+                    }
             }
         }
 
