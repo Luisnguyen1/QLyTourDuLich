@@ -4,6 +4,14 @@
  */
 package GiaodienUI;
 
+import DTo.KhachHang;
+import DTo.KhachSan;
+import DTo.NhanVien;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
@@ -13,6 +21,8 @@ public class QlyKhachSan extends javax.swing.JPanel {
     /**
      * Creates new form QlyKhachSan
      */
+    ArrayList<KhachSan> danhsachks = new ArrayList<KhachSan>();
+
     public QlyKhachSan() {
         initComponents();
     }
@@ -35,7 +45,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         cbxTenKhachSan = new javax.swing.JComboBox<>();
         jLabel3 = new javax.swing.JLabel();
-        cbxMaKhachSan = new javax.swing.JComboBox<>();
         jLabel4 = new javax.swing.JLabel();
         txtSoDienThoai = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -47,6 +56,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         btnXuatExcel = new javax.swing.JButton();
+        txtMaKhachSan = new javax.swing.JTextField();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -111,13 +121,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
         jLabel3.setForeground(new java.awt.Color(169, 0, 6));
         jLabel3.setText(" Mã Khách Sạn ");
         jLabel3.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-
-        cbxMaKhachSan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Mã Khách Sạn" }));
-        cbxMaKhachSan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxMaKhachSanActionPerformed(evt);
-            }
-        });
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -227,8 +230,8 @@ public class QlyKhachSan extends javax.swing.JPanel {
                         .addComponent(cbxTenKhachSan, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxMaKhachSan, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtMaKhachSan))
                     .addComponent(txtSoDienThoai)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -255,18 +258,16 @@ public class QlyKhachSan extends javax.swing.JPanel {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1)
-                    .addComponent(cbxDiaDiemTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbxDiaDiemTour))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(cbxTenKhachSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(cbxMaKhachSan, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(8, 8, 8)))
+                        .addComponent(cbxTenKhachSan, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtMaKhachSan))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -275,9 +276,9 @@ public class QlyKhachSan extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(txtTienKhachSan)
+                        .addComponent(txtTienKhachSan, javax.swing.GroupLayout.DEFAULT_SIZE, 29, Short.MAX_VALUE)
                         .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtTienPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 26, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtTienPhong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
@@ -285,7 +286,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
                     .addComponent(btnSua)
                     .addComponent(btnTimKiem)
                     .addComponent(btnXuatExcel))
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addGap(22, 22, 22))
         );
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
@@ -297,7 +298,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên Khách Sạn", "Mã Khách Sạn", "Số Điện Thoại", "Tiền Khách Sạn", "Tiền Phòng", "Tổng Tiền"
+                "Tên Khách Sạn", "Mã Khách Sạn", "Số Điện Thoại", "Tiền Khách Sạn", "Tiền Phòng", "Địa điểm Tour"
             }
         ) {
             Class[] types = new Class [] {
@@ -349,10 +350,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxTenKhachSanActionPerformed
 
-    private void cbxMaKhachSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxMaKhachSanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxMaKhachSanActionPerformed
-
     private void txtSoDienThoaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoDienThoaiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSoDienThoaiActionPerformed
@@ -366,15 +363,162 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienPhongActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+
+        long soDienThoai = Long.parseLong(txtSoDienThoai.getText());
+
+        long tienPhong = Long.parseLong(txtTienPhong.getText());
+        String maKhachSan = txtMaKhachSan.getText();
+        String tenKhachSan = cbxTenKhachSan.getSelectedItem().toString();
+        String diaDiemTour = cbxDiaDiemTour.getSelectedItem().toString();
+        long tienKhachSan = Long.parseLong(txtTienKhachSan.getText());
+
+        if (tenKhachSan.isEmpty() || maKhachSan.isEmpty() || diaDiemTour.isEmpty() || txtSoDienThoai.getText().isEmpty() || txtTienPhong.getText().isEmpty() || txtTienKhachSan.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Nhập đầy đủ thông tin");
+        } else {
+// tạo đối tượng KhachHang mới với thông tin lấy được
+
+            KhachSan kh = new KhachSan(diaDiemTour, tenKhachSan, soDienThoai, tienKhachSan, tienPhong, maKhachSan);
+// gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
+            danhsachks.add(kh);
+
+// lấy ra model của JTable hiện tại
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// thêm đối tượng KhachHang vào model
+            model.addRow(new Object[]{kh.getDiaDiemTour(), kh.getTenKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong(), kh.getMaKhachSan()});
+
+// cập nhật lại model cho JTable
+            jTable1.setModel(model);
+
+// thông báo thành công
+            JOptionPane.showMessageDialog(null, "Thêm Khách Sạn Thành Công");
+            txtMaKhachSan.setText("");
+            txtSoDienThoai.setText("");
+            txtTienKhachSan.setText("");
+
+        }
+
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        // lấy chỉ số hàng được chọn trong JTable
+        int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
+            return;
+        }
+
+// lấy ra model của JTable hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+        String maKH = (String) model.getValueAt(selectedRow, 1);
+
+// tìm khách hàng trong danh sách dựa vào mã
+        KhachSan khachHangCanXoa = null;
+        for (KhachSan kh : danhsachks) {
+            if (kh.getMaKhachSan().equals(maKH)) {
+                khachHangCanXoa = kh;
+                break;
+            }
+        }
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (khachHangCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Khách Hàng Không Tồn Tại");
+            return;
+        }
+
+// xóa khách hàng khỏi danh sách
+        danhsachks.remove(khachHangCanXoa);
+
+// xóa hàng được chọn trong model
+        model.removeRow(selectedRow);
+
+// cập nhật lại model cho JTable
+        jTable1.setModel(model);
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Xóa Khách Sạn Thành Công");
+
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // TODO add your handling code here:
+        // lấy chỉ số hàng được chọn trong JTable
+        int selectedRow = jTable1.getSelectedRow();
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
+            return;
+        }
+
+// lấy ra model của JTable hiện tại
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+// lấy mã khách hàng của hàng được chọn
+        String maNV = (String) model.getValueAt(selectedRow, 1);
+        String oldNV = maNV;
+// tìm khách hàng trong danh sách dựa vào mã
+        KhachSan nhanVienCanSua = null;
+        for (KhachSan nv : danhsachks) {
+            if (nv.getMaKhachSan().equals(maNV)) {
+                nhanVienCanSua = nv;
+                break;
+            }
+        }
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (nhanVienCanSua == null) {
+            JOptionPane.showMessageDialog(null, "Khách Sạn Không Tồn Tại");
+            return;
+        }
+
+// hiển thị form sửa thông tin khách hàng
+        JComboBox<String> cbxDiaDiemTour = new JComboBox<>();
+        cbxDiaDiemTour.addItem("Nhân Viên Bán Hàng");
+        cbxDiaDiemTour.addItem("Quản Lý Kho");
+        cbxDiaDiemTour.addItem("Nhân Viên Văn Phòng");
+        cbxDiaDiemTour.setSelectedItem(nhanVienCanSua.getDiaDiemTour());
+        JOptionPane.showMessageDialog(null, cbxDiaDiemTour, "Chọn địa điểm Tour", JOptionPane.QUESTION_MESSAGE);
+
+        String diadiemTour = (String) cbxDiaDiemTour.getSelectedItem();
+        String maKS = JOptionPane.showInputDialog(null, "Nhập mã khách sạn", maNV);
+        JComboBox<String> cbxTenKhachSan = new JComboBox<>();
+        cbxTenKhachSan.addItem("Nhân Viên Bán Hàng");
+        cbxTenKhachSan.addItem("Quản Lý Kho");
+        cbxTenKhachSan.addItem("Nhân Viên Văn Phòng");
+        cbxTenKhachSan.setSelectedItem(nhanVienCanSua.getTenKhachSan());
+        JOptionPane.showMessageDialog(null, cbxTenKhachSan, "Chọn tên khách sạn", JOptionPane.QUESTION_MESSAGE);
+        String tenKS = (String) cbxTenKhachSan.getSelectedItem();
+// thêm ComboBox để chọn loại nhân viên
+        long sdt = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập số điện thoại", txtSoDienThoai.getText()));
+
+// thêm ComboBox để chọn chức vụ
+        long tienKS = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền khách sạn", txtTienKhachSan.getText()));
+        long tienPhong = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền phòng", txtTienPhong.getText()));
+
+// cập nhật thông tin khách hàng
+        nhanVienCanSua.setDiaDiemTour(diadiemTour);
+        nhanVienCanSua.setMaKhachSan(maNV);
+        nhanVienCanSua.setSdt(sdt);
+        nhanVienCanSua.setTienKhachSan(tienKS);
+        nhanVienCanSua.setTienPhong(tienPhong);
+        nhanVienCanSua.setTenKhachSan(tenKS);
+
+// cập nhật lại model cho JTable
+        model.setValueAt(tenKS, selectedRow, 0);
+        model.setValueAt(maNV, selectedRow, 1);
+        model.setValueAt(sdt, selectedRow, 2);
+        model.setValueAt(tienKS, selectedRow, 3);
+        model.setValueAt(tienPhong, selectedRow, 4);
+         model.setValueAt(diadiemTour, selectedRow, 5);
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Sạn Thành Công");
+
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -393,7 +537,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
     private javax.swing.JButton btnXoa;
     private javax.swing.JButton btnXuatExcel;
     private javax.swing.JComboBox<String> cbxDiaDiemTour;
-    private javax.swing.JComboBox<String> cbxMaKhachSan;
     private javax.swing.JComboBox<String> cbxTenKhachSan;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
@@ -408,6 +551,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtMaKhachSan;
     private javax.swing.JTextField txtSoDienThoai;
     private javax.swing.JTextField txtTienKhachSan;
     private javax.swing.JTextField txtTienPhong;
