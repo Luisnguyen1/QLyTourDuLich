@@ -54,7 +54,7 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index +" "+subIndex);
                     showForm(new index1());
                 } if(index == 1  ) {
-                    showForm(new DuLich());
+                    //showForm(new DuLich());
                     System.out.println(index +" "+subIndex);
                 }
                 if (index == 2 && subIndex == 1) {                    
@@ -115,7 +115,7 @@ public class Main extends javax.swing.JFrame {
                 }
                 if (index == 6) {                    
                     System.out.println(index +" "+subIndex);
-                    showForm(new KhuyenMai());
+                    showForm(new QlyKhuyenMai());
                 }
                 if (index == 7) {                    
                     System.out.println(index +" "+subIndex);

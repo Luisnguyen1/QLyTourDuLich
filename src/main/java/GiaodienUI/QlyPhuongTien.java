@@ -70,7 +70,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
         jLabel2 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
-        txtTenPhuongTien1 = new javax.swing.JTextField();
+        txtMaPhuongTien = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -226,9 +226,9 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
-        txtTenPhuongTien1.addActionListener(new java.awt.event.ActionListener() {
+        txtMaPhuongTien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTenPhuongTien1ActionPerformed(evt);
+                txtMaPhuongTienActionPerformed(evt);
             }
         });
 
@@ -305,7 +305,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
                                 .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(txtTenPhuongTien1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtMaPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(txtSoChoDu, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(140, 140, 140))
         );
@@ -321,7 +321,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtTenPhuongTien1, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtMaPhuongTien, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtTenPhuongTien))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
@@ -603,9 +603,9 @@ long soChoDu = Long.parseLong(sochodu);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-    private void txtTenPhuongTien1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTenPhuongTien1ActionPerformed
+    private void txtMaPhuongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhuongTienActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtTenPhuongTien1ActionPerformed
+    }//GEN-LAST:event_txtMaPhuongTienActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -632,9 +632,9 @@ long soChoDu = Long.parseLong(sochodu);
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
+    private javax.swing.JTextField txtMaPhuongTien;
     private javax.swing.JTextField txtSoChoDu;
     private javax.swing.JTextField txtTenPhuongTien;
-    private javax.swing.JTextField txtTenPhuongTien1;
     private javax.swing.JTextField txtTongSoCho;
     // End of variables declaration//GEN-END:variables
 }
