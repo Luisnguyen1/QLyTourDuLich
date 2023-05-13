@@ -69,7 +69,7 @@ public class Header extends javax.swing.JPanel {
         setBackground(new java.awt.Color(0, 204, 153));
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
-        jLabel1.setText("SGU Tourist");
+        jLabel1.setText("SGUTourist");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
