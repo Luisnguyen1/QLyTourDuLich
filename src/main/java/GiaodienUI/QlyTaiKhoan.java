@@ -4,12 +4,19 @@
  */
 package GiaodienUI;
 
+import DTO.TaiKhoan;
+import java.util.ArrayList;
+import javax.swing.JComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyTaiKhoan extends javax.swing.JPanel {
 
+    ArrayList<TaiKhoan> danhSachTK = new ArrayList<>();
     /**
      * Creates new form QlyTaiKhoan
      */
@@ -98,9 +105,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 14, Short.MAX_VALUE))
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -115,9 +120,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -132,9 +135,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -143,15 +144,13 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
 
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel7.setText("   Cấp Quyền");
+        jLabel7.setText("    Cấp Quyền");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel8Layout.createSequentialGroup()
-                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -167,16 +166,31 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
         btnThem.setText("Thêm");
+        btnThem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnThemActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(21, 110, 71));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnSua.setBackground(new java.awt.Color(21, 110, 71));
         btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSua.setForeground(new java.awt.Color(255, 255, 255));
         btnSua.setText("Sửa");
+        btnSua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuaActionPerformed(evt);
+            }
+        });
 
         btnExport.setBackground(new java.awt.Color(21, 110, 71));
         btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -312,6 +326,110 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        String uSer = txtUser.getText();
+        String passWord = txtPassword.getText();
+        String Email = txtEmail.getText();
+        String Qtruycap = cbxQuyenTruyCap.getSelectedItem().toString();
+        
+        if(uSer.equals("")){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
+        }
+        else if(passWord.equals("")){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
+        }
+        else if(Email.equals("")){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
+        }
+        else if(Qtruycap.equals("Quyền Truy Cập")){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
+        }
+        else{
+            TaiKhoan tk = new TaiKhoan(uSer,passWord,Email,Qtruycap);
+            danhSachTK.add(tk);
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            
+            model.addRow(new Object[]{tk.getMatk(),tk.getMatkhau(),tk.getEmail(),tk.getQuyentruycap()});
+            
+            jTable1.setModel(model);
+            
+            JOptionPane.showMessageDialog(null,"Thêm Tài Khoản Thành Công");
+            
+            txtUser.setText("");
+            txtPassword.setText("");
+            txtEmail.setText("");
+        }
+    }//GEN-LAST:event_btnThemActionPerformed
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Xóa");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String matKhau = (String) model.getValueAt(selectedRow, 1);
+        
+        TaiKhoan tkCanXoa = null;
+        for(TaiKhoan tk : danhSachTK){
+            if(tk.getMatkhau().equals(matKhau)){
+                tkCanXoa = tk;
+                break;
+            }
+        }
+        
+        danhSachTK.remove(tkCanXoa);
+        model.removeRow(selectedRow);
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Xóa Tài Khoản Thành Công");
+    }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Sửa");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String matKhau = (String) model.getValueAt(selectedRow, 1);
+        
+        TaiKhoan tkCanSua = null;
+        for(TaiKhoan tk : danhSachTK){
+            if(tk.getMatkhau().equals(matKhau)){
+                tkCanSua = tk;
+                break;
+            }
+        }
+        
+        String User = JOptionPane.showInputDialog(null,"Nhập user",tkCanSua.getMatk());
+        String Password = JOptionPane.showInputDialog(null,"Nhập password",tkCanSua.getMatkhau());
+        String Email = JOptionPane.showInputDialog(null,"Nhập email",tkCanSua.getEmail());
+        JComboBox<String> cbxQuyenTruyCap = new JComboBox<>();
+        cbxQuyenTruyCap.addItem("Khách Hàng");
+        cbxQuyenTruyCap.addItem("Nhân Viên");
+        cbxQuyenTruyCap.addItem("Admin");
+        cbxQuyenTruyCap.setSelectedItem(tkCanSua.getQuyentruycap());
+        JOptionPane.showMessageDialog(null,cbxQuyenTruyCap,"Chọn Quyền Truy Cập",JOptionPane.QUESTION_MESSAGE);
+        String Qtruycap = cbxQuyenTruyCap.getSelectedItem().toString();
+        
+        tkCanSua.setMatk(User);
+        tkCanSua.setMatkhau(Password);
+        tkCanSua.setEmail(Email);
+        tkCanSua.setQuyentruycap(Qtruycap);
+      
+        model.setValueAt(User,selectedRow,0);
+        model.setValueAt(Password,selectedRow,1);
+        model.setValueAt(Email,selectedRow,2);
+        model.setValueAt(Qtruycap,selectedRow,3);
+        
+       JOptionPane.showMessageDialog(null, "Sửa Tài Khoản Thành Công");
+    }//GEN-LAST:event_btnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

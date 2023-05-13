@@ -13,6 +13,7 @@ import GiaodienUI.QlyKhachSan;
 import GiaodienUI.QlyKhuyenMai;
 import GiaodienUI.QlyNhanVien;
 import GiaodienUI.QlyPhuongTien;
+import GiaodienUI.QlyTaiKhoan;
 import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
 import GiaodienUI.QlyVeTour;

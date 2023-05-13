@@ -4,12 +4,18 @@
  */
 package GiaodienUI;
 
+import DTo.FeedBack;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
+    ArrayList<FeedBack> danhSachFB = new ArrayList<>();
     /**
      * Creates new form QlyPhanHoiKhachHang
      */
@@ -69,6 +75,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoa.setForeground(new java.awt.Color(255, 255, 255));
         btnXoa.setText("Xóa");
+        btnXoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaActionPerformed(evt);
+            }
+        });
 
         btnExport.setBackground(new java.awt.Color(21, 110, 71));
         btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,6 +162,31 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                 .addContainerGap(22, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+        
+        if(selectedRow == -1){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 FeedBack Để Xóa");
+        }
+        
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        
+        String Hoten = (String) model.getValueAt(selectedRow, 0);
+        FeedBack fbCanXoa = null;
+        for(FeedBack fb : danhSachFB){
+            if(fb.getHoten().equals(Hoten)){
+                fbCanXoa = fb;
+                break;
+            }
+        }
+        
+        danhSachFB.remove(fbCanXoa);
+        model.removeRow(selectedRow);
+        jTable1.setModel(model);
+        
+        JOptionPane.showMessageDialog(null,"Xóa FeedBack Thành Công");
+    }//GEN-LAST:event_btnXoaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
