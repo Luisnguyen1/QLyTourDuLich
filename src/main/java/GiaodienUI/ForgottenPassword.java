@@ -67,7 +67,7 @@ public class ForgottenPassword extends javax.swing.JFrame {
             }
         });
 
-        btnSearch.setBackground(new java.awt.Color(255, 0, 0));
+        btnSearch.setBackground(new java.awt.Color(21, 110, 71));
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
