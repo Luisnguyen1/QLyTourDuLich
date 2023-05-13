@@ -87,7 +87,6 @@ public class SignUp extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(169, 0, 6));
         jLabel1.setText("       SIGN UP");
         jLabel1.setToolTipText("");
-        jLabel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
