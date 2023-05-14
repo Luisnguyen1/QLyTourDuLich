@@ -632,7 +632,7 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, KhuyenMai.getMakm());
                 stmt.setString(2, KhuyenMai.getTenkm());
-                stmt.setInt(3, KhuyenMai.getNgaykm());
+                stmt.setDate(3, KhuyenMai.getNgaykm());
                 stmt.setLong(4, KhuyenMai.getHansudung());
                 stmt.setLong(5, KhuyenMai.getTiengiam());
                 stmt.execute();
