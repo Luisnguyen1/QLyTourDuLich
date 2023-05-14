@@ -1,4 +1,4 @@
-package DTO;
+package DTo;
 
 public class TaiKhoan {
     private String matk;
@@ -22,7 +22,7 @@ public class TaiKhoan {
     TaiKhoan(String matk, String matkhau) {
         this.matk = matk;
         this.matkhau = matkhau;
-       }
+    }
   
 
     public String getMatk() {

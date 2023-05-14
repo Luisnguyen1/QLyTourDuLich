@@ -4,7 +4,7 @@
  */
 package KetnoiSQL_DAL;
 
-import DTO.TaiKhoan;
+import DTo.TaiKhoan;
 import DTo.HoaDon;
 import DTo.KhuyenMai;
 import DTo.NhanVien;

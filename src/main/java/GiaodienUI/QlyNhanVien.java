@@ -6,8 +6,10 @@ package GiaodienUI;
 
 import DTo.KhachHang;
 import DTo.NhanVien;
+import KetnoiSQL_DAL.ExportCSV;
 import KetnoiSQL_DAL.config;
 import java.io.File;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -266,6 +268,11 @@ public class QlyNhanVien extends javax.swing.JPanel {
         btnExport1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExport1.setForeground(new java.awt.Color(255, 255, 255));
         btnExport1.setText("Export");
+        btnExport1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExport1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -634,6 +641,15 @@ public class QlyNhanVien extends javax.swing.JPanel {
         jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnExport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExport1ActionPerformed
+        ExportCSV ex = new ExportCSV();
+        try {
+            ex.exportNhanVien();
+        } catch (IOException ex1) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex1);
+        }
+    }//GEN-LAST:event_btnExport1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
