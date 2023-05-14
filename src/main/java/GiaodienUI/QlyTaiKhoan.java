@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTO.TaiKhoan;
+import DTo.TaiKhoan;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
