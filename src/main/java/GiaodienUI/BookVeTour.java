@@ -13,11 +13,16 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JButton;
 import DTo.BookVe;
+import DTo.HoaDon;
+import DTo.KhachHang;
+import DTo.VeTour;
 import java.util.ArrayList;
 
 public class BookVeTour extends javax.swing.JPanel {
 
-    ArrayList<BookVe> danhSachVe = new ArrayList<>();
+    ArrayList<HoaDon> hd = new ArrayList<>();
+    ArrayList<KhachHang> hkh = new ArrayList<>();
+    ArrayList<VeTour> veTour = new ArrayList<>();
 
     /**
      * Creates new form BookVe
@@ -61,8 +66,6 @@ public class BookVeTour extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel9 = new javax.swing.JPanel();
@@ -71,6 +74,7 @@ public class BookVeTour extends javax.swing.JPanel {
         jLabel10 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel11 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
@@ -247,23 +251,6 @@ public class BookVeTour extends javax.swing.JPanel {
             .addComponent(jLabel6)
         );
 
-        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel7.setText("    Mã Vé Tour");
-
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel7Layout.createSequentialGroup()
-                .addComponent(jLabel7)
-                .addGap(0, 11, Short.MAX_VALUE))
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7)
-        );
-
         jLabel8.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(169, 0, 6));
         jLabel8.setText("        Nơi Đi");
@@ -332,15 +319,16 @@ public class BookVeTour extends javax.swing.JPanel {
             .addComponent(jLabel11)
         );
 
+        jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(169, 0, 6));
+        jLabel7.setText("    Mã Vé Tour");
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(340, 340, 340)
-                        .addComponent(jLabel2))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(97, 97, 97)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -372,10 +360,6 @@ public class BookVeTour extends javax.swing.JPanel {
                                 .addGap(28, 28, 28)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel2Layout.createSequentialGroup()
-                                        .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(jPanel2Layout.createSequentialGroup()
                                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                             .addComponent(jPanel9, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                             .addComponent(jPanel8, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -389,24 +373,31 @@ public class BookVeTour extends javax.swing.JPanel {
                                         .addComponent(txtLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE))))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(75, 75, 75)
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 737, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(126, 126, 126)
+                        .addComponent(jLabel2)
+                        .addGap(57, 57, 57)
+                        .addComponent(jLabel7)
+                        .addGap(26, 26, 26)
+                        .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(24, 24, 24)
-                .addComponent(jLabel2)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel7)
+                    .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(txtHoten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHoten, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(txtDiachi, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -487,13 +478,37 @@ public class BookVeTour extends javax.swing.JPanel {
                 .addGap(4, 4, 4)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtHotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHotenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtHotenActionPerformed
+    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Xóa");
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        String maVT = (String) model.getValueAt(selectedRow, 4);
+
+        BookVe VeCanXoa = null;
+        for (BookVe bvt : danhSachVe) {
+            if (bvt.getMaVeTour().equals(maVT)) {
+                VeCanXoa = bvt;
+                break;
+            }
+        }
+
+        danhSachVe.remove(VeCanXoa);
+        model.removeRow(selectedRow);
+        jTable1.setModel(model);
+
+        JOptionPane.showMessageDialog(null, "Xóa Vé Thành Công");
+
+        if (VeCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
+    }//GEN-LAST:event_btnXoaVeActionPerformed
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
         String hoten = txtHoten.getText();
@@ -526,13 +541,16 @@ public class BookVeTour extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else {
             long GiaTour = Long.parseLong(giatour);
-            BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
+            
+            String maHD = "SGUtour"+ Interto
+
+            hd = new HoaDon();
 
             danhSachVe.add(bvt);
-
+            KhachHang kh = new KhachHang();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            model.addRow(new Object[]{bvt.getHoTen(), bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+            model.addRow(new Object[]{kh.getTenkh(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
 
             jTable1.setModel(model);
 
@@ -548,8 +566,31 @@ public class BookVeTour extends javax.swing.JPanel {
             txtLoaiTour.setText("");
             txtGiaTour.setText("");
         }
-
     }//GEN-LAST:event_btnDatVeActionPerformed
+
+    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtGiaTourActionPerformed
+
+    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiTourActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtLoaiTourActionPerformed
+
+    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDenActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoiDenActionPerformed
+
+    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNoiDiActionPerformed
+
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtEmailActionPerformed
+
+    private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSdtActionPerformed
 
 //<<<<<<< Updated upstream
 //    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {                                             
@@ -558,61 +599,13 @@ public class BookVeTour extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiachiActionPerformed
 
-    private void txtSdtActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSdtActionPerformed
+    private void txtHotenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtHotenActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSdtActionPerformed
-
-    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailActionPerformed
+    }//GEN-LAST:event_txtHotenActionPerformed
 
     private void txtMaVeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVeTourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaVeTourActionPerformed
-
-    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDiActionPerformed
-
-    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDenActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDenActionPerformed
-
-    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiTourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoaiTourActionPerformed
-
-    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiaTourActionPerformed
-
-    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
-
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Xóa");
-        }
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
-        String maVT = (String) model.getValueAt(selectedRow, 4);
-
-        BookVe VeCanXoa = null;
-        for (BookVe bvt : danhSachVe) {
-            if (bvt.getMaVeTour().equals(maVT)) {
-                VeCanXoa = bvt;
-                break;
-            }
-        }
-
-        danhSachVe.remove(VeCanXoa);
-        model.removeRow(selectedRow);
-        jTable1.setModel(model);
-
-        JOptionPane.showMessageDialog(null, "Xóa Vé Thành Công");
-
-        if (VeCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
-    }//GEN-LAST:event_btnXoaVeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -637,7 +630,6 @@ public class BookVeTour extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
-    private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane2;

@@ -23,13 +23,19 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyHoaDon extends javax.swing.JPanel {
+
     ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+    DefaultTableModel model = new DefaultTableModel();
+
     public QlyHoaDon() {
-        initComponents(); 
+        initComponents();
         try {
             danhSachHD = con.layDL_HoaDon();
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        for (HoaDon nv : danhSachHD) {
+            model.addRow(new Object[]{nv.getMahd(), nv.getMakhachdatve(), nv.getManv(), nv.getNgayxuathoadon(), nv.getTongtien()});
         }
     }
     config con = new config();
@@ -392,134 +398,125 @@ public class QlyHoaDon extends javax.swing.JPanel {
 
     private void cbxThangXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangXuatActionPerformed
         // TODO add your handling code here:
-         String thang = cbxThangXuat.getSelectedItem().toString();
-int day = 0;
+        String thang = cbxThangXuat.getSelectedItem().toString();
+        int day = 0;
 
 //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
-if(thang.equals("1")){
-    cbxNgayXuat.removeAllItems();
-    cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("3")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("5")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("7")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("8")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("10")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("12")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
+        if (thang.equals("1")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("3")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("5")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("7")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("8")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("10")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("12")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        }
 
 //Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
-if(thang.equals("4")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("6")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("9")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("11")){
-    cbxNgayXuat.removeAllItems();
-cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
+        if (thang.equals("4")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("6")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("9")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("11")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        }
 
 //Còn lại là tháng 2 có 28 ngày trong năm 2023
-if(thang.equals("2")){
-    cbxNgayXuat.removeAllItems();
-    cbxNgayXuat.addItem("Ngày");
-    for(int i = 1 ; i < 29 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayXuat.addItem(Day);
-        Day = "";
-    }
-}
+        if (thang.equals("2")) {
+            cbxNgayXuat.removeAllItems();
+            cbxNgayXuat.addItem("Ngày");
+            for (int i = 1; i < 29; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayXuat.addItem(Day);
+                Day = "";
+            }
+        }
     }//GEN-LAST:event_cbxThangXuatActionPerformed
 
     private void cbxNamXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamXuatActionPerformed
@@ -531,7 +528,12 @@ if(thang.equals("2")){
     }//GEN-LAST:event_txtMaHoaDonActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-       String maNVCanTim = txtMaHoaDon.getText();
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        String maNVCanTim = txtMaHoaDon.getText();
 
         // Tạo một danh sách để lưu khách hàng tìm được
         ArrayList<HoaDon> ketQuaTimKiem = new ArrayList<>();
@@ -547,17 +549,17 @@ if(thang.equals("2")){
         }
 
         // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
-        DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mã hóa đơn");
         model.addColumn("Mã khách hàng");
         model.addColumn("Mã nhân viên");
         model.addColumn("Ngày xuất");
-         model.addColumn("Tổng tiền");
+        model.addColumn("Tổng tiền");
 
         // Thêm các khách hàng tìm được vào model
         for (HoaDon nv : ketQuaTimKiem) {
             model.addRow(new Object[]{nv.getMahd(), nv.getMakhachdatve(), nv.getManv(), nv.getNgayxuathoadon(), nv.getTongtien()});
         }
+        
 
         // Cập nhật lại model cho JTable
         jTable1.setModel(model);
@@ -565,7 +567,11 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -591,7 +597,7 @@ if(thang.equals("2")){
 
 // xóa khách hàng khỏi danh sách
         danhSachHD.remove(hoadonCanXoa);
-
+        con.UpdateSQL_HoaDon(hoadonCanXoa, 2, mahoadon);
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
@@ -609,7 +615,11 @@ if(thang.equals("2")){
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
-       
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        }
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -620,9 +630,10 @@ if(thang.equals("2")){
 
 // lấy ra model của JTable hiện tại
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-
+        
 // lấy mã khách hàng của hàng được chọn
         String mahoadon = (String) model.getValueAt(selectedRow, 0);
+        String old = mahoadon;
 // tìm khách hàng trong danh sách dựa vào mã
         HoaDon hoadonCanSua = null;
         for (HoaDon nv : danhSachHD) {
@@ -649,7 +660,7 @@ if(thang.equals("2")){
         int namDi = Integer.parseInt(namDiString);
 
         JComboBox<String> cbxThangXuat = new JComboBox<>();
-        for (int i = 1; i < 13; i++) {  
+        for (int i = 1; i < 13; i++) {
             String Day = Integer.toString(i);
             cbxThangXuat.addItem(Day);
             Day = "";
@@ -669,19 +680,19 @@ if(thang.equals("2")){
         JOptionPane.showMessageDialog(null, cbxNgayXuat, "Chọn ngày xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String ngaydi = (String) cbxNgayXuat.getSelectedItem();
         int ngayDi = Integer.parseInt(ngaydi);
-        
+
         Calendar calendar = Calendar.getInstance();
         calendar.set(namDi, ThangDi - 1, ngayDi);
         Date ngayDiDate = calendar.getTime();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayDiString = dateFormat.format(ngayDiDate);
- 
+
 // cập nhật thông tin khách hàng
         hoadonCanSua.setMahd(maHDnew);
         hoadonCanSua.setMakhachdatve(maKH);
         hoadonCanSua.setNgayxuathoadon(ngayDiDate);
-        hoadonCanSua.setTongtien(tongTien);   
+        hoadonCanSua.setTongtien(tongTien);
         hoadonCanSua.setManv(maNVien);
 // cập nhật lại model cho JTable
         model.setValueAt(maHDnew, selectedRow, 0);
@@ -690,8 +701,7 @@ if(thang.equals("2")){
         model.setValueAt(ngayDiDate, selectedRow, 3);
         model.setValueAt(tongTien, selectedRow, 4);
         
-
-
+        con.UpdateSQL_HoaDon(hoadonCanSua, 3, old);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Hóa Đơn Thành Công");
 

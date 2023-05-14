@@ -17,6 +17,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
@@ -28,9 +29,31 @@ import org.apache.poi.xssf.usermodel.XSSFRow;
  */
 public class ExportExcel {
 
+    private static CellStyle cellStyleFormatNumber = null;
+
     public void ExportNhanVien(ArrayList<NhanVien> array, String nameSheet) throws Exception {
-        XSSFWorkbook workbook = new XSSFWorkbook(nameSheet+".xlsx");
+        XSSFWorkbook workbook = new XSSFWorkbook(nameSheet + ".xlsx");
         XSSFSheet sheet = workbook.createSheet();
-        
+
+        int COLUMN_INDEX_ID = 0;
+        int COLUMN_INDEX_TITLE = 1;
+        int COLUMN_INDEX_PRICE = 2;
+        int COLUMN_INDEX_QUANTITY = 3;
+        int COLUMN_INDEX_TOTAL = 4;
+
+        int rowIndex = 0;
+
+        // Write header
+        writeHeader(sheet, rowIndex);
+
+        // Write data
+        rowIndex++;
+        for (Book book : books) {
+            // Create row
+            Row row = sheet.createRow(rowIndex);
+            // Write data on row
+            writeBook(book, row);
+            rowIndex++;
+        }
     }
 }
