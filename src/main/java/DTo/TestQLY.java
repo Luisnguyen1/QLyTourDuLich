@@ -5,6 +5,7 @@
 package DTo;
 
 import GiaodienUI.BookVeTour;
+import GiaodienUI.Contact;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
 import GiaodienUI.QlyHoaDon;
@@ -12,7 +13,9 @@ import GiaodienUI.QlyKhachHang;
 import GiaodienUI.QlyKhachSan;
 import GiaodienUI.QlyKhuyenMai;
 import GiaodienUI.QlyNhanVien;
+import GiaodienUI.QlyPhanHoiKhachHang;
 import GiaodienUI.QlyPhuongTien;
+import GiaodienUI.QlyTaiKhoan;
 import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
 import GiaodienUI.QlyVeTour;
@@ -31,7 +34,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyTourDuLich ql = new QlyTourDuLich();
+Contact ql = new Contact();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước

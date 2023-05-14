@@ -7,12 +7,12 @@ import java.util.Scanner;
 public class KhuyenMai {
     private String makm;
     private String tenkm;
-    private int ngaykm;
-    private int hansudung;
+    private Date ngaykm;
+    private Date hansudung;
     private long tiengiam;
     
 
-    public KhuyenMai( String tenkm,String makm, int ngaykm, int hansudung, long tiengiam) {
+    public KhuyenMai( String tenkm,String makm, Date ngaykm, Date hansudung, long tiengiam) {
         this.makm = makm;
         this.tenkm = tenkm;
         this.ngaykm = ngaykm;
@@ -49,19 +49,19 @@ public class KhuyenMai {
         this.tenkm = tenkm;
     }
 
-    public int getNgaykm() {
+    public Date getNgaykm() {
         return ngaykm;
     }
 
-    public void setNgaykm(int ngaykm) {
+    public void setNgaykm(Date ngaykm) {
         this.ngaykm = ngaykm;
     }
 
-    public int getHansudung() {
+    public Date getHansudung() {
         return hansudung;
     }
 
-    public void setHansudung(int hansudung) {
+    public void setHansudung(Date hansudung) {
         this.hansudung = hansudung;
     }
 

@@ -761,9 +761,9 @@ if(thang.equals("2")){
         int namHSD = Integer.parseInt(cbxNamHanSuDung.getSelectedItem().toString());
         
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namKM,thangKM - 1,ngayKM);
+        calendar.set(namKM,thangKM ,ngayKM);
         Date ngayKMDate = calendar.getTime();
-        calendar.set(namHSD,thangHSD - 1,ngayHSD);
+        calendar.set(namHSD,thangHSD,ngayHSD);
         Date hanSDDate = calendar.getTime();
         
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -771,7 +771,7 @@ if(thang.equals("2")){
         String hanSDString = dateFormat.format(hanSDDate);
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
        
-        KhuyenMai km = new KhuyenMai(tenKM,maKM,ngayKM,ngayHSD,tienGiam);
+        KhuyenMai km = new KhuyenMai(tenKM,maKM,ngayKMDate,hanSDDate,tienGiam);
         danhSachKM.add(km);
         con.UpdateSQL_KhuyenMai(km, 2, "null");
         model.addRow(new Object[]{km.getTenkm(),km.getMakm(),ngayKMString, hanSDString, km.getTiengiam()});
@@ -949,8 +949,8 @@ try {
         tourCanSua.setMakm(maKm);
      
         
-        tourCanSua.setNgaykm(ngayDi);
-        tourCanSua.setHansudung(ngayVe);
+        tourCanSua.setNgaykm(ngayDiDate);
+        tourCanSua.setHansudung(ngayVeDate);
     
         tourCanSua.setTiengiam(soTienGiam);
 

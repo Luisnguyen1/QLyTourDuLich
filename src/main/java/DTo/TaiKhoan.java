@@ -3,18 +3,18 @@ package DTo;
 public class TaiKhoan {
     private String matk;
     private String matkhau;
-    private int manv;
+    private String email;
     private String quyentruycap;
  
     
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String matk, String matkhau, int manv, String quyentruycap) {
+    public TaiKhoan(String matk, String matkhau, String email, String quyentruycap) {
   
         this.matk = matk;
         this.matkhau = matkhau;
-        this.manv = manv;
+        this.email = email;
         this.quyentruycap = quyentruycap;
      
     }
@@ -43,13 +43,14 @@ public class TaiKhoan {
         this.matkhau = matkhau;
     }
 
-    public int getManv() {
-        return manv;
+    public String getEmail() {
+        return email;
     }
 
-    public void setManv(int manv) {
-        this.manv = manv;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
 
     public String getQuyentruycap() {
         return quyentruycap;
