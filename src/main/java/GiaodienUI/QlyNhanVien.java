@@ -6,7 +6,7 @@ package GiaodienUI;
 
 import DTo.KhachHang;
 import DTo.NhanVien;
-import KetnoiSQL_DAL.ExportCSV;
+import Excel.ExportCSV;
 import KetnoiSQL_DAL.config;
 import java.io.File;
 import java.io.IOException;
@@ -643,12 +643,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnExport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExport1ActionPerformed
-        ExportCSV ex = new ExportCSV();
-        try {
-            ex.exportNhanVien();
-        } catch (IOException ex1) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex1);
-        }
+        
     }//GEN-LAST:event_btnExport1ActionPerformed
 
 
