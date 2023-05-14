@@ -342,7 +342,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"ád", "ádasd", "ádasd", "ád", null}
+                {"ád", "ádasd", "ádasd", "ád",  new Long(12312312)}
             },
             new String [] {
                 "Mã Hóa Đơn", "Mã Khách Hàng", "Mã Nhân Viên", "Ngày Xuất", "Tổng Tiền"
@@ -364,7 +364,6 @@ public class QlyHoaDon extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -375,6 +374,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
+            .addComponent(jScrollPane1)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -382,12 +382,13 @@ public class QlyHoaDon extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 62, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 60, Short.MAX_VALUE)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 152, Short.MAX_VALUE)
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -583,25 +584,19 @@ if(thang.equals("2")){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
-        String maNV = (String) model.getValueAt(selectedRow, 1);
+        String mahoadon = (String) model.getValueAt(selectedRow, 0);
 
 // tìm khách hàng trong danh sách dựa vào mã
-        HoaDon nhanVienCanXoa = null;
+        HoaDon hoadonCanXoa = null;
         for (HoaDon nv : danhSachHD) {
-            if (nv.getMahd().equals(maNV)) {
-                nhanVienCanXoa = nv;
+            if (nv.getMahd().equals(mahoadon)) {
+                hoadonCanXoa = nv;
                 break;
             }
         }
 
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Hóa đơn Không Tồn Tại");
-            return;
-        }
-
 // xóa khách hàng khỏi danh sách
-        danhSachHD.remove(nhanVienCanXoa);
+        danhSachHD.remove(hoadonCanXoa);
 
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
@@ -633,49 +628,40 @@ if(thang.equals("2")){
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
-        String maNV = (String) model.getValueAt(selectedRow, 1);
-        String oldNV = maNV;
+        String mahoadon = (String) model.getValueAt(selectedRow, 0);
 // tìm khách hàng trong danh sách dựa vào mã
-        HoaDon nhanVienCanSua = null;
+        HoaDon hoadonCanSua = null;
         for (HoaDon nv : danhSachHD) {
-            if (nv.getMahd().equals(maNV)) {
-                nhanVienCanSua = nv;
+            if (nv.getMahd().equals(mahoadon)) {
+                hoadonCanSua = nv;
                 break;
             }
         }
 
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-//        if (nhanVienCanSua == null) {
-//            JOptionPane.showMessageDialog(null, "Hóa Đơn Không Tồn Tại");
-//            return;
-//        }
-
 // hiển thị form sửa thông tin khách hàng
-        String maKH = JOptionPane.showInputDialog(null, "Nhập mã khách hàng", nhanVienCanSua.getMakhachdatve());
-        String maNVien = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", nhanVienCanSua.getManv());
-        String maHDnew = JOptionPane.showInputDialog(null, "Nhập mã hóa đơn", maNV);
-        String tongtien = JOptionPane.showInputDialog(null, "Nhập tổng tiền", nhanVienCanSua.getTongtien());
-        long tongtienLong = Long.parseLong(tongtien);
+        String maKH = JOptionPane.showInputDialog(null, "Nhập mã khách hàng", hoadonCanSua.getMakhachdatve());
+        String maNVien = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", hoadonCanSua.getManv());
+        String maHDnew = JOptionPane.showInputDialog(null, "Nhập mã hóa đơn", hoadonCanSua.getMahd());
+        String tongtien = JOptionPane.showInputDialog(null, "Nhập tổng tiền", hoadonCanSua.getTongtien());
+        long tongTien = Long.parseLong(tongtien);
 // thêm ComboBox để chọn loại nhân viên
         JComboBox<String> cbxNamXuat = new JComboBox<>();
         cbxNamXuat.addItem("2023");
 
-        cbxNamXuat.setSelectedItem(nhanVienCanSua.getNgayxuathoadon());
+        cbxNamXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
 
-        JOptionPane.showMessageDialog(null, cbxNamXuat, "Chọn năm xuất", JOptionPane.QUESTION_MESSAGE);
+        JOptionPane.showMessageDialog(null, cbxNamXuat, "Chọn năm xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String namDiString = (String) cbxNamXuat.getSelectedItem();
         int namDi = Integer.parseInt(namDiString);
 
         JComboBox<String> cbxThangXuat = new JComboBox<>();
-        int day = 0;
-        for (int i = 1; i < 13; i++) {
-            day = i;
-            String Day = Integer.toString(day);
+        for (int i = 1; i < 13; i++) {  
+            String Day = Integer.toString(i);
             cbxThangXuat.addItem(Day);
             Day = "";
         }
-        cbxThangXuat.setSelectedItem(nhanVienCanSua.getNgayxuathoadon());
-        JOptionPane.showMessageDialog(null, cbxThangXuat, "Chọn Tháng xuất", JOptionPane.QUESTION_MESSAGE);
+        cbxThangXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
+        JOptionPane.showMessageDialog(null, cbxThangXuat, "Chọn tháng xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String TDiString = (String) cbxThangXuat.getSelectedItem();
         int ThangDi = Integer.parseInt(TDiString);
 
@@ -685,8 +671,8 @@ if(thang.equals("2")){
             cbxNgayXuat.addItem(Day);
             Day = "";
         }
-        cbxNgayXuat.setSelectedItem(nhanVienCanSua.getNgayxuathoadon());
-        JOptionPane.showMessageDialog(null, cbxNgayXuat, "Chọn Ngày xuất", JOptionPane.QUESTION_MESSAGE);
+        cbxNgayXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
+        JOptionPane.showMessageDialog(null, cbxNgayXuat, "Chọn ngày xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String ngaydi = (String) cbxNgayXuat.getSelectedItem();
         int ngayDi = Integer.parseInt(ngaydi);
         
@@ -698,17 +684,17 @@ if(thang.equals("2")){
         String ngayDiString = dateFormat.format(ngayDiDate);
  
 // cập nhật thông tin khách hàng
-        nhanVienCanSua.setMahd(maHDnew);
-        nhanVienCanSua.setMakhachdatve(maKH);
-        nhanVienCanSua.setNgayxuathoadon(ngayDiDate);
-        nhanVienCanSua.setTongtien(tongtienLong);   
-        nhanVienCanSua.setManv(maNVien);
+        hoadonCanSua.setMahd(maHDnew);
+        hoadonCanSua.setMakhachdatve(maKH);
+        hoadonCanSua.setNgayxuathoadon(ngayDiDate);
+        hoadonCanSua.setTongtien(tongTien);   
+        hoadonCanSua.setManv(maNVien);
 // cập nhật lại model cho JTable
         model.setValueAt(maHDnew, selectedRow, 0);
         model.setValueAt(maKH, selectedRow, 1);
         model.setValueAt(maNVien, selectedRow, 2);
         model.setValueAt(ngayDiDate, selectedRow, 3);
-        model.setValueAt(tongtienLong, selectedRow, 4);
+        model.setValueAt(tongTien, selectedRow, 4);
         
 
 

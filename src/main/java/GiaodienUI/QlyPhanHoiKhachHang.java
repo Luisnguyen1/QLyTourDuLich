@@ -41,7 +41,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         btnExport = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        tblFeedback = new javax.swing.JTable();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -70,6 +70,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setText("Tìm Kiếm");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         btnXoa.setBackground(new java.awt.Color(21, 110, 71));
         btnXoa.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -88,11 +93,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
-        jTable1.setAutoCreateRowSorter(true);
-        jTable1.setBackground(new java.awt.Color(204, 204, 204));
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        tblFeedback.setAutoCreateRowSorter(true);
+        tblFeedback.setBackground(new java.awt.Color(204, 204, 204));
+        tblFeedback.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-
+                {"Trần Đức Thanh", "0917339863", "thanhcnttmcpe@gmail.com", "198/13c Tôn Đản", "Tour du lịch hay vl"}
             },
             new String [] {
                 "Họ và Tên", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
@@ -106,7 +111,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                 return types [columnIndex];
             }
         });
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(tblFeedback);
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -134,11 +139,12 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnTimKiem)
-                    .addComponent(btnXoa)
-                    .addComponent(btnExport)
-                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTimKiem)
+                        .addComponent(btnXoa)
+                        .addComponent(btnExport)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -164,13 +170,13 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        int selectedRow = jTable1.getSelectedRow();
+        int selectedRow = tblFeedback.getSelectedRow();
         
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 FeedBack Để Xóa");
         }
         
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
         
         String Hoten = (String) model.getValueAt(selectedRow, 0);
         FeedBack fbCanXoa = null;
@@ -183,10 +189,14 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         
         danhSachFB.remove(fbCanXoa);
         model.removeRow(selectedRow);
-        jTable1.setModel(model);
+        tblFeedback.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa FeedBack Thành Công");
     }//GEN-LAST:event_btnXoaActionPerformed
+
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnTimKiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -198,7 +208,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JTable tblFeedback;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }

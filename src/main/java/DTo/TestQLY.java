@@ -12,6 +12,7 @@ import GiaodienUI.QlyKhachHang;
 import GiaodienUI.QlyKhachSan;
 import GiaodienUI.QlyKhuyenMai;
 import GiaodienUI.QlyNhanVien;
+import GiaodienUI.QlyPhanHoiKhachHang;
 import GiaodienUI.QlyPhuongTien;
 import GiaodienUI.QlyTaiKhoan;
 import GiaodienUI.QlyTourDuLich;
@@ -32,7 +33,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyHoaDon ql = new QlyHoaDon();
+QlyPhanHoiKhachHang ql = new QlyPhanHoiKhachHang();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước
