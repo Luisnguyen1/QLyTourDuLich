@@ -97,7 +97,7 @@
                   </Group>
                   <Component id="jPanel1" alignment="0" min="-2" max="-2" attributes="0"/>
               </Group>
-              <EmptySpace pref="29" max="32767" attributes="0"/>
+              <EmptySpace pref="36" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -228,7 +228,7 @@
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Segoe UI" size="14" style="3"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="&#x110;&#x1ec3; c&#xf3; th&#x1ec3; &#x111;&#xf3;ng g&#xf3;p &#x111;&#x1b0;&#x1ee3;c c&#xe1;c y&#xea;u c&#x1ea7;u v&#xe0; c&#xe1;c &#x111;&#xf3;ng g&#xf3;p &#xfd; ki&#x1ebf;n c&#x1ee7;a qu&#xfd; v&#x1ecb; m&#x1ed9;t c&#xe1;ch nhanh ch&#xf3;ng, xin vui l&#xf2;ng li&#xea;n h&#x1ec7; "/>
+            <Property name="text" type="java.lang.String" value="&#x110;&#x1ec3; c&#xf3; th&#x1ec3; &#x111;&#xe1;p &#x1ee9;ng &#x111;&#x1b0;&#x1ee3;c c&#xe1;c y&#xea;u c&#x1ea7;u v&#xe0; c&#xe1;c &#x111;&#xf3;ng g&#xf3;p &#xfd; ki&#x1ebf;n c&#x1ee7;a qu&#xfd; v&#x1ecb; m&#x1ed9;t c&#xe1;ch nhanh ch&#xf3;ng, xin vui l&#xf2;ng li&#xea;n h&#x1ec7; "/>
           </Properties>
         </Component>
       </SubComponents>
@@ -334,6 +334,9 @@
         </Property>
         <Property name="text" type="java.lang.String" value="G&#x1eed;i &#x110;i"/>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnSendActionPerformed"/>
+      </Events>
     </Component>
     <Component class="javax.swing.JSeparator" name="jSeparator3">
       <Properties>

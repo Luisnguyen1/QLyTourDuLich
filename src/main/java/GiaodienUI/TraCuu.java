@@ -158,6 +158,11 @@ public class TraCuu extends javax.swing.JPanel {
         btnSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(255, 255, 255));
         btnSearch.setText("Search");
+        btnSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSearchActionPerformed(evt);
+            }
+        });
 
         cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
         cbxNgayDi.addActionListener(new java.awt.event.ActionListener() {
@@ -440,6 +445,10 @@ if(thang.equals("2")){
     private void cbxNamDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamDiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNamDiActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnSearchActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

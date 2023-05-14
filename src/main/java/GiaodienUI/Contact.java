@@ -4,12 +4,17 @@
  */
 package GiaodienUI;
 
+import DTo.FeedBack;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class Contact extends javax.swing.JPanel {
-
+    ArrayList<FeedBack> danhSachFB = new ArrayList<>();
     /**
      * Creates new form Contact
      */
@@ -65,7 +70,7 @@ public class Contact extends javax.swing.JPanel {
         jLabel1.setText("Liên Hệ");
 
         jLabel2.setFont(new java.awt.Font("Segoe UI", 3, 14)); // NOI18N
-        jLabel2.setText("Để có thể đóng góp được các yêu cầu và các đóng góp ý kiến của quý vị một cách nhanh chóng, xin vui lòng liên hệ ");
+        jLabel2.setText("Để có thể đáp ứng được các yêu cầu và các đóng góp ý kiến của quý vị một cách nhanh chóng, xin vui lòng liên hệ ");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -143,6 +148,11 @@ public class Contact extends javax.swing.JPanel {
         btnSend.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnSend.setForeground(new java.awt.Color(255, 255, 255));
         btnSend.setText("Gửi Đi");
+        btnSend.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSendActionPerformed(evt);
+            }
+        });
 
         jSeparator3.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -258,7 +268,7 @@ public class Contact extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 863, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(29, Short.MAX_VALUE))
+                .addContainerGap(36, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -337,6 +347,50 @@ public class Contact extends javax.swing.JPanel {
     private void txtNoidungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoidungActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoidungActionPerformed
+
+    private void btnSendActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSendActionPerformed
+        String hoTen = txtHoten.getText();
+        String Email = txtEmail.getText();
+        String soDT = txtSdt.getText();
+        String dchi = txtDiachi.getText();
+        String ndung = txtNoidung.getText();
+        
+        if(hoTen.equals("")){
+            JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Họ Và Tên");
+        }
+        else if(Email.equals("")){
+            JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Email");
+        }
+        else if(soDT.equals("")){
+            JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Số Điện Thoại");
+        }
+        else if(dchi.equals("")){
+            JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Địa Chỉ");
+        }
+        else if(ndung.equals("")){
+            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Nội Dung Muốn Gửi");
+        }
+        else {
+            FeedBack fb = new FeedBack(hoTen,Email,soDT,dchi,ndung);
+            danhSachFB.add(fb);
+            
+            QlyPhanHoiKhachHang ph = new QlyPhanHoiKhachHang();
+            ph.getMyJTableValue();
+            
+            DefaultTableModel model = (DefaultTableModel) ph.tblFeedback.getModel();
+            model.addRow(new Object[]{fb.getHoten(),fb.getSdt(),fb.getEmail(),fb.getDiachi(),fb.getNoidung()});
+            
+            ph.tblFeedback.setModel(model);
+            
+            JOptionPane.showMessageDialog(null,"Gửi Thành Công");
+            
+            txtHoten.setText("");
+            txtEmail.setText("");
+            txtSdt.setText("");
+            txtDiachi.setText("");
+            txtNoidung.setText("");
+        }
+    }//GEN-LAST:event_btnSendActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

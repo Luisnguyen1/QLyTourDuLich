@@ -5,6 +5,7 @@
 package DTo;
 
 import GiaodienUI.BookVeTour;
+import GiaodienUI.Contact;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
 import GiaodienUI.QlyHoaDon;
@@ -33,7 +34,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyPhanHoiKhachHang ql = new QlyPhanHoiKhachHang();
+Contact ql = new Contact();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước
