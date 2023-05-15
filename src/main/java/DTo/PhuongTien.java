@@ -146,10 +146,9 @@ public class PhuongTien implements Comparable<PhuongTien>{
     
     private ArrayList<PhuongTien>danhSachPT;
 
-    public PhuongTien()
-    {
-        this.danhSachPT = new ArrayList<PhuongTien>(); //cach khai bao 1 arrayList
+    public PhuongTien() {
     }
+
     
     public PhuongTien(ArrayList<PhuongTien> danhSachPT) {
         this.danhSachPT = danhSachPT;

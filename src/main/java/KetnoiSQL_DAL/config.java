@@ -1031,13 +1031,13 @@ public class config {
         ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
 
         while (rs.next()) {
-            VeTour VeTour = new VeTour();
-            VeTour.setMavetour(rs.getString("mavetour"));
-            VeTour.setMakh(rs.getString("makhachhang"));
-            VeTour.setHansudung(rs.getDate("hansudung"));
-            VeTour.setNgaydatve(rs.getDate("ngaytaove"));
-            VeTour.setTiengiam((int) rs.getLong("tiengiam"));
-            danhSachVeTour.add(VeTour);
+            VeTour vt = new VeTour();
+            vt.setMavetour(rs.getString("mave"));
+            vt.setMakh(rs.getString("MaKH"));
+            vt.setHansudung(rs.getDate("hansudung"));
+            vt.setNgaydatve(rs.getDate("ngaytaove"));
+            vt.setTiengiam((int) rs.getLong("tiengiam"));
+            danhSachVeTour.add(vt);
         }
         return danhSachVeTour;
     }
@@ -1054,13 +1054,13 @@ public class config {
         ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
 
         while (rs.next()) {
-            NhanVien NhanVien = new NhanVien();
-            NhanVien.setManv(rs.getString("manv"));
-            NhanVien.setLoainv(rs.getString("loainv"));
-            NhanVien.setTennv(rs.getString("tennv"));
-            NhanVien.setChucvu(rs.getString("chucvu"));
-            NhanVien.setDiachi(rs.getString("diachi"));
-            danhSachNhanVien.add(NhanVien);
+            NhanVien nv = new NhanVien();
+            nv.setManv(rs.getString("manv"));
+            nv.setLoainv(rs.getString("loainv"));
+            nv.setTennv(rs.getString("tennv"));
+            nv.setChucvu(rs.getString("chucvu"));
+            nv.setDiachi(rs.getString("diachi"));
+            danhSachNhanVien.add(nv);
         }
         return danhSachNhanVien;
     }
@@ -1107,14 +1107,14 @@ public class config {
         ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
 
         while (rs.next()) {
-            PhuongTien PhuongTien = new PhuongTien();
-            PhuongTien.setMapt(rs.getString("maphuongtien"));
-            PhuongTien.setLoaipt(rs.getString("loaiphuongtien"));
-            PhuongTien.setBienso(rs.getString("bienso"));
-            PhuongTien.setTongsocho(rs.getLong("tongsocho"));
-            PhuongTien.setSochocondu(rs.getLong("sochodu"));
+            PhuongTien pt = new PhuongTien();
+            pt.setMapt(rs.getString("MaPT"));
+            pt.setLoaipt(rs.getString("LoaiPT"));
+            pt.setBienso(rs.getString("TenPT"));
+            pt.setTongsocho(rs.getLong("SoChoTrong"));
+            pt.setSochocondu(rs.getLong("SoChoConDu"));
 
-            danhSachTour.add(PhuongTien);
+            danhSachTour.add(pt);
         }
         return danhSachTour;
     }
