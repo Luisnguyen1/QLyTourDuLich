@@ -1118,6 +1118,29 @@ public class config {
         }
         return danhSachTour;
     }
+    public ArrayList<KhachHang> layDL_KhachHang() throws SQLException {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con = DriverManager.getConnection(url, user, password);
+
+        // Thực hiện truy vấn và lấy kết quả
+        Statement stmt = con.createStatement();
+        ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
+
+        ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+
+        while (rs.next()) {
+            KhachHang pt = new KhachHang();
+            pt.setMakh(rs.getString("MaPT"));
+            pt.setLoaipt(rs.getString("LoaiPT"));
+            pt.setBienso(rs.getString("TenPT"));
+            pt.setTongsocho(rs.getLong("SoChoTrong"));
+            pt.setSochocondu(rs.getLong("SoChoConDu"));
+
+            danhSachTour.add(pt);
+        }
+        return danhSachTour;
+    }
+    
 
     
     public ArrayList<FeedBack> LayDL_Feedback() {
