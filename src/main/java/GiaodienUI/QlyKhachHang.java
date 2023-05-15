@@ -422,38 +422,32 @@ public class QlyKhachHang extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         String tenKH = txtHoTen.getText();
-String maKH = txtMaKhachHang.getText();
 String diaChi = txtDiaChi.getText();
 String soDienThoai = txtSoDienThoai.getText();
 String email = txtEmail.getText();
 
-if(tenKH.equals("")){
+if (tenKH.equals("") || diaChi.equals("") || soDienThoai.equals("") || email.equals("")) {
     JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+} else {
+    // Tìm mã khách hàng lớn nhất trong danh sách hiện có
+    int maxMaKH = 0;
+    for (KhachHang kh : danhSach) {
+        int ma = Integer.parseInt(kh.getMakh().substring(2));
+        if (ma > maxMaKH) {
+            maxMaKH = ma;
+        }
+    }
 
-}
-else if(maKH.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+    // Tạo mã khách hàng mới
+    String maKH = "KH" + String.format("%04d", maxMaKH + 1);
 
-}
-else if(diaChi.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+    // tạo đối tượng KhachHang mới với thông tin lấy được
+    KhachHang kh = new KhachHang(tenKH, maKH, diaChi, soDienThoai, email);
 
-}
-else if(soDienThoai.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-
-}
-else if(email.equals("")){
-    JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-
-}
-else{
-// tạo đối tượng KhachHang mới với thông tin lấy được
+    // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
+    danhSach.add(kh);
 
 
-KhachHang kh = new KhachHang(tenKH, maKH, diaChi, soDienThoai, email);
-// gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
-danhSach.add(kh);
 
 // lấy ra model của JTable hiện tại
 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
