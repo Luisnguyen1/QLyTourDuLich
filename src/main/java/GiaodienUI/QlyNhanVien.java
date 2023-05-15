@@ -643,7 +643,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
             jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    }
     private void btnExport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExport1ActionPerformed
 
     }//GEN-LAST:event_btnExport1ActionPerformed
