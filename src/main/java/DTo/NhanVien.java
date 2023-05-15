@@ -146,10 +146,10 @@ public class NhanVien implements Comparable<NhanVien> {
     
    private ArrayList<NhanVien>danhSach;
 
-        public NhanVien()
-    {
-        this.danhSach = new ArrayList<NhanVien>(); //cach khai bao 1 arrayList
+    public NhanVien() {
     }
+
+    
     
     public NhanVien(ArrayList<NhanVien> danhSach) {
         this.danhSach = danhSach;
