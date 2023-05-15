@@ -4,12 +4,18 @@
  */
 package GiaodienUI;
 
+import DTo.BookVe;
+import DTo.KhachHang;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class DatVeTour extends javax.swing.JPanel {
-
+    ArrayList<BookVe> danhSachVe = new ArrayList<>();
     /**
      * Creates new form DatVeTour
      */
@@ -35,20 +41,20 @@ public class DatVeTour extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDiachi = new javax.swing.JTextField();
         jLabel4 = new javax.swing.JLabel();
-        txtDienthoai = new javax.swing.JTextField();
+        txtSdt = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
-        txtMavetour = new javax.swing.JTextField();
+        txtMaVeTour = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
-        txtNoidi = new javax.swing.JTextField();
+        txtNoiDi = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
-        txtNoiden = new javax.swing.JTextField();
+        txtNoiDen = new javax.swing.JTextField();
         jLabel9 = new javax.swing.JLabel();
-        txtLoaitour = new javax.swing.JTextField();
+        txtLoaiTour = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         jLabel10 = new javax.swing.JLabel();
-        txtGiatour = new javax.swing.JTextField();
+        txtGiaTour = new javax.swing.JTextField();
         btnXoaVe = new javax.swing.JButton();
         btnDatVe = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -104,9 +110,9 @@ public class DatVeTour extends javax.swing.JPanel {
         jLabel6.setForeground(new java.awt.Color(169, 0, 6));
         jLabel6.setText("Mã Vé Tour (*)");
 
-        txtMavetour.addActionListener(new java.awt.event.ActionListener() {
+        txtMaVeTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMavetourActionPerformed(evt);
+                txtMaVeTourActionPerformed(evt);
             }
         });
 
@@ -133,11 +139,21 @@ public class DatVeTour extends javax.swing.JPanel {
         btnXoaVe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnXoaVe.setForeground(new java.awt.Color(255, 255, 255));
         btnXoaVe.setText("Xóa Vé");
+        btnXoaVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnXoaVeActionPerformed(evt);
+            }
+        });
 
         btnDatVe.setBackground(new java.awt.Color(21, 110, 71));
         btnDatVe.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnDatVe.setForeground(new java.awt.Color(255, 255, 255));
         btnDatVe.setText("Đặt Vé ");
+        btnDatVe.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDatVeActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -151,7 +167,7 @@ public class DatVeTour extends javax.swing.JPanel {
                         .addComponent(txtDiachi, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
                         .addComponent(jLabel3)
                         .addComponent(jLabel4)
-                        .addComponent(txtDienthoai)
+                        .addComponent(txtSdt)
                         .addComponent(txtHoten))
                     .addComponent(jLabel5)
                     .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -159,12 +175,12 @@ public class DatVeTour extends javax.swing.JPanel {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(97, 97, 97)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtLoaitour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel6)
-                    .addComponent(txtMavetour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7)
-                    .addComponent(txtNoidi, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNoiden, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoiDi, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNoiDen, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel9))
                 .addGap(99, 99, 99))
@@ -177,7 +193,7 @@ public class DatVeTour extends javax.swing.JPanel {
                         .addComponent(btnXoaVe))
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(jLabel10)
-                        .addComponent(txtGiatour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtGiaTour, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -192,14 +208,14 @@ public class DatVeTour extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtHoten, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtMavetour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtMaVeTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
                             .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtNoidi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNoiDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtDiachi, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -207,21 +223,21 @@ public class DatVeTour extends javax.swing.JPanel {
                             .addComponent(jLabel8))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtDienthoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNoiden, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtSdt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtNoiDen, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel9)
                             .addComponent(jLabel5))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(txtLoaitour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtGiatour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtGiaTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnXoaVe)
@@ -272,9 +288,157 @@ public class DatVeTour extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMavetourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMavetourActionPerformed
+    private void txtMaVeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVeTourActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMavetourActionPerformed
+    }//GEN-LAST:event_txtMaVeTourActionPerformed
+
+    private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
+        String hoten = txtHoten.getText();
+        String dchi = txtDiachi.getText();
+        String sdt = txtSdt.getText();
+        String Email = txtEmail.getText();
+        String mavetour = txtMaVeTour.getText();
+        String noidi = txtNoiDi.getText();
+        String noiden = txtNoiDen.getText();
+        String loaitour = txtLoaiTour.getText();
+        String giatour = txtGiaTour.getText();
+
+        if (hoten.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (dchi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (sdt.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (Email.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (mavetour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (noidi.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (noiden.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (loaitour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else if (giatour.equals("")) {
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        } else {
+            long GiaTour = Long.parseLong(giatour);
+            
+            BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
+
+            danhSachVe.add(bvt);
+            KhachHang kh = new KhachHang();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+            model.addRow(new Object[]{kh.getTenkh(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+
+            jTable1.setModel(model);
+
+            JOptionPane.showMessageDialog(null, "Đặt Vé Thành Công");
+
+            txtHoten.setText("");
+            txtDiachi.setText("");
+            txtSdt.setText("");
+            txtEmail.setText("");
+            txtMaVeTour.setText("");
+            txtNoiDi.setText("");
+            txtNoiDen.setText("");
+            txtLoaiTour.setText("");
+            txtGiaTour.setText("");
+        }
+    }//GEN-LAST:event_btnDatVeActionPerformed
+
+    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
+        int selectedRow = jTable1.getSelectedRow();
+
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Xóa");
+        }
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
+        String maVT = (String) model.getValueAt(selectedRow, 4);
+
+        BookVe VeCanXoa = null;
+        for (BookVe bvt : danhSachVe) {
+            if (bvt.getMaVeTour().equals(maVT)) {
+                VeCanXoa = bvt;
+                break;
+            }
+        }
+
+        danhSachVe.remove(VeCanXoa);
+        model.removeRow(selectedRow);
+        jTable1.setModel(model);
+
+        JOptionPane.showMessageDialog(null, "Xóa Vé Thành Công");
+
+        if (VeCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
+        }
+    }                                        
+
+    
+    private void btnBookVeActionPerformed(java.awt.event.ActionEvent evt) {                                          
+        String hoten = txtHoten.getText();
+        String dChi = txtDiachi.getText();
+        String SDT = txtSdt.getText();
+        String Email = txtEmail.getText();
+        String maVT = txtMaVeTour.getText();
+        String noidi = txtNoiDi.getText();
+        String noiden = txtNoiDen.getText();
+        String loaitour = txtLoaiTour.getText();
+        long giatour = Long.parseLong(txtGiaTour.getText());
+        
+        if(hoten.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(dChi.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(SDT.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(Email.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(maVT.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(noidi.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(noiden.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(loaitour.equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else if(txtGiaTour.getText().equals("")){
+            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
+        }
+        else{
+            BookVe bv = new BookVe(hoten,dChi,SDT,Email,maVT,noidi,noiden,loaitour,giatour);
+            danhSachVe.add(bv);
+            
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+           
+            model.addRow(new Object[]{bv.getHoTen(),bv.getDiaChi(),bv.getSoDT(),bv.getEmail(),bv.getMaVeTour(),bv.getNoiDi(),bv.getNoiDen(),bv.getLoaiTour(),bv.getGiaTour()});
+            
+            jTable1.setModel(model);
+            
+            JOptionPane.showMessageDialog(null,"Đặt Vé Thành Công");
+            txtHoten.setText("");
+            txtDiachi.setText("");
+            txtSdt.setText("");
+            txtEmail.setText("");
+            txtMaVeTour.setText("");
+            txtNoiDi.setText("");
+            txtNoiDen.setText("");
+            txtLoaiTour.setText("");
+            txtGiaTour.setText("");
+                 
+        }
+    }//GEN-LAST:event_btnXoaVeActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -297,13 +461,13 @@ public class DatVeTour extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDiachi;
-    private javax.swing.JTextField txtDienthoai;
     private javax.swing.JTextField txtEmail;
-    private javax.swing.JTextField txtGiatour;
+    private javax.swing.JTextField txtGiaTour;
     private javax.swing.JTextField txtHoten;
-    private javax.swing.JTextField txtLoaitour;
-    private javax.swing.JTextField txtMavetour;
-    private javax.swing.JTextField txtNoiden;
-    private javax.swing.JTextField txtNoidi;
+    private javax.swing.JTextField txtLoaiTour;
+    private javax.swing.JTextField txtMaVeTour;
+    private javax.swing.JTextField txtNoiDen;
+    private javax.swing.JTextField txtNoiDi;
+    private javax.swing.JTextField txtSdt;
     // End of variables declaration//GEN-END:variables
 }

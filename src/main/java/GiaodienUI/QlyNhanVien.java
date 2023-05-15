@@ -618,32 +618,34 @@ public class QlyNhanVien extends javax.swing.JPanel {
         for (NhanVien nv : danhSachNV) {
             if (nv.getManv().toLowerCase().contains(maNVCanTim.toLowerCase())) {
                 ketQuaTimKiem.add(nv);
-            } else {
-                JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-                return;
             }
         }
 
-        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Họ và Tên");
-        model.addColumn("Mã Nhân Viên");
-        model.addColumn("Địa Chỉ");
-        model.addColumn("Loại Nhân Viên");
-        model.addColumn("Chức Vụ");
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
 
-        // Thêm các khách hàng tìm được vào model
-        for (NhanVien nv : ketQuaTimKiem) {
-            model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
-        }
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Họ và Tên");
+            model.addColumn("Mã Nhân Viên");
+            model.addColumn("Địa Chỉ");
+            model.addColumn("Loại Nhân Viên");
+            model.addColumn("Chức Vụ");
 
-        // Cập nhật lại model cho JTable
-        jTable1.setModel(model);
+            // Thêm các khách hàng tìm được vào model
+            for (NhanVien nv : ketQuaTimKiem) {
+                model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+            }
+
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnExport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExport1ActionPerformed
-        
+
     }//GEN-LAST:event_btnExport1ActionPerformed
 
 

@@ -593,19 +593,20 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công"
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String tenKHCanTim = txtMaKhachHang.getText();
     
-    // Tạo một danh sách để lưu khách hàng tìm được
-    ArrayList<KhachHang> ketQuaTimKiem = new ArrayList<>();
-    
-    // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-    for (KhachHang kh : danhSachKH) {
-        if (kh.getMakh().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
-            ketQuaTimKiem.add(kh);
-        }else{
-                      JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-            return;
-            }
+// Tạo một danh sách để lưu khách hàng tìm được
+ArrayList<KhachHang> ketQuaTimKiem = new ArrayList<>();
+
+// Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+for (KhachHang kh : danhSachKH) {
+    if (kh.getMakh().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
+        ketQuaTimKiem.add(kh);
     }
-    
+}
+
+// Kiểm tra kết quả tìm kiếm
+if (ketQuaTimKiem.isEmpty()) {
+    JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+} else {
     // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
     DefaultTableModel model = new DefaultTableModel();
     model.addColumn("Họ và Tên");
@@ -613,14 +614,15 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công"
     model.addColumn("Địa Chỉ");
     model.addColumn("Số Điện Thoại");
     model.addColumn("Email");
-    
+
     // Thêm các khách hàng tìm được vào model
     for (KhachHang kh : ketQuaTimKiem) {
         model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
     }
-    
+
     // Cập nhật lại model cho JTable
     jTable1.setModel(model);
+}
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
 

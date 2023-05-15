@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 
-<Form version="1.3" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+<Form version="1.5" maxVersion="1.9" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
   <Properties>
     <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
       <Color blue="b1" green="a9" red="a7" type="rgb"/>
@@ -114,7 +114,7 @@
                           <Component id="txtDiachi" alignment="0" pref="250" max="32767" attributes="0"/>
                           <Component id="jLabel3" alignment="0" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtDienthoai" alignment="0" max="32767" attributes="0"/>
+                          <Component id="txtSdt" alignment="0" max="32767" attributes="0"/>
                           <Component id="txtHoten" alignment="0" max="32767" attributes="0"/>
                       </Group>
                       <Component id="jLabel5" min="-2" max="-2" attributes="0"/>
@@ -124,12 +124,12 @@
                   <Component id="jSeparator2" min="-2" pref="14" max="-2" attributes="0"/>
                   <EmptySpace min="-2" pref="97" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtLoaitour" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="txtLoaiTour" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="jLabel6" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtMavetour" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="txtMaVeTour" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="jLabel7" alignment="0" min="-2" max="-2" attributes="0"/>
-                      <Component id="txtNoidi" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
-                      <Component id="txtNoiden" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="txtNoiDi" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
+                      <Component id="txtNoiDen" alignment="0" min="-2" pref="250" max="-2" attributes="0"/>
                       <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Component id="jLabel9" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -145,7 +145,7 @@
                       </Group>
                       <Group type="103" groupAlignment="0" attributes="0">
                           <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
-                          <Component id="txtGiatour" min="-2" pref="250" max="-2" attributes="0"/>
+                          <Component id="txtGiaTour" min="-2" pref="250" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -165,7 +165,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
                               <Component id="txtHoten" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtMavetour" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtMaVeTour" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
@@ -174,7 +174,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
-                              <Component id="txtNoidi" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNoiDi" min="-2" max="-2" attributes="0"/>
                               <Component id="txtDiachi" alignment="1" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
@@ -184,8 +184,8 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtDienthoai" alignment="3" min="-2" max="-2" attributes="0"/>
-                              <Component id="txtNoiden" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtSdt" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtNoiDen" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
@@ -194,7 +194,7 @@
                           </Group>
                           <EmptySpace max="-2" attributes="0"/>
                           <Group type="103" groupAlignment="3" attributes="0">
-                              <Component id="txtLoaitour" alignment="3" min="-2" max="-2" attributes="0"/>
+                              <Component id="txtLoaiTour" alignment="3" min="-2" max="-2" attributes="0"/>
                               <Component id="txtEmail" alignment="3" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -203,7 +203,7 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
-                  <Component id="txtGiatour" min="-2" max="-2" attributes="0"/>
+                  <Component id="txtGiaTour" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="separate" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
                       <Component id="btnXoaVe" alignment="3" min="-2" max="-2" attributes="0"/>
@@ -252,7 +252,7 @@
             <Property name="text" type="java.lang.String" value="&#x110;i&#x1ec7;n Tho&#x1ea1;i (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtDienthoai">
+        <Component class="javax.swing.JTextField" name="txtSdt">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
@@ -278,9 +278,9 @@
             <Property name="text" type="java.lang.String" value="M&#xe3; V&#xe9; Tour (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtMavetour">
+        <Component class="javax.swing.JTextField" name="txtMaVeTour">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMavetourActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaVeTourActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel7">
@@ -294,7 +294,7 @@
             <Property name="text" type="java.lang.String" value="N&#x1a1;i &#x110;i (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNoidi">
+        <Component class="javax.swing.JTextField" name="txtNoiDi">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
@@ -307,7 +307,7 @@
             <Property name="text" type="java.lang.String" value="N&#x1a1;i &#x110;&#x1ebf;n (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtNoiden">
+        <Component class="javax.swing.JTextField" name="txtNoiDen">
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel9">
           <Properties>
@@ -320,7 +320,7 @@
             <Property name="text" type="java.lang.String" value="Lo&#x1ea1;i Tour (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtLoaitour">
+        <Component class="javax.swing.JTextField" name="txtLoaiTour">
         </Component>
         <Component class="javax.swing.JSeparator" name="jSeparator2">
           <Properties>
@@ -341,7 +341,7 @@
             <Property name="text" type="java.lang.String" value="Gi&#xe1; Tour (*)"/>
           </Properties>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtGiatour">
+        <Component class="javax.swing.JTextField" name="txtGiaTour">
         </Component>
         <Component class="javax.swing.JButton" name="btnXoaVe">
           <Properties>
@@ -356,6 +356,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="X&#xf3;a V&#xe9;"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnXoaVeActionPerformed"/>
+          </Events>
         </Component>
         <Component class="javax.swing.JButton" name="btnDatVe">
           <Properties>
@@ -370,6 +373,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="&#x110;&#x1eb7;t V&#xe9; "/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnDatVeActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import DTo.DiaDiem;
+import DTo.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -436,31 +437,37 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtMaDiaDiem.getText().toLowerCase().trim();
-        
-        if (tuKhoa.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
-            return;
-        }
+         String maNVCanTim = txtMaDiaDiem.getText();
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        /*for (int i = 0; i < danhSachTour.size(); i++) {
-        model.removeRow(i);
-        }*/
-        for (int i = 0; i < danhSachDD.size(); i++) {
-            DiaDiem dd = danhSachDD.get(i);
-            if (dd.getTendd().toLowerCase().contains(tuKhoa)
-                    || dd.getMadd().toLowerCase().contains(tuKhoa)
-                    || dd.getKhuvuc().toLowerCase().contains(tuKhoa)
-                    || dd.getThuoctinh().toLowerCase().contains(tuKhoa)) {
-                
-               
-                    if (tuKhoa.equals(danhSachDD.get(i).getMadd())) {
-                        model.addRow(new Object[]{danhSachDD.get(i).getKhuvuc(), danhSachDD.get(i).getThuoctinh(), danhSachDD.get(i).getTendd(), danhSachDD.get(i).getMadd()});
-                    }
+        // Tạo một danh sách để lưu khách hàng tìm được
+        ArrayList<DiaDiem> ketQuaTimKiem = new ArrayList<>();
+
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        for (DiaDiem nv : danhSachDD) {
+            if (nv.getMadd().toLowerCase().contains(maNVCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(nv);
             }
         }
+
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
+
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Khu vực");
+            model.addColumn("Tỉnh/Thành phố");
+            model.addColumn("Địa điểm ");
+            model.addColumn("Mã địa điểm");
+       
+            // Thêm các khách hàng tìm được vào model
+            for (DiaDiem nv : ketQuaTimKiem) {
+                model.addRow(new Object[]{nv.getKhuvuc(), nv.getThuoctinh(), nv.getTendd(),  nv.getMadd()});
+            }
+
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void txtMaDiaDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDiaDiemActionPerformed
