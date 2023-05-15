@@ -76,14 +76,14 @@ public class Main extends javax.swing.JFrame {
                     showForm(new QlyHoaDon());
                 }
                 
-                if (index == 2 && subIndex == 1) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyThongKeTheoNgay());
+                /*if (index == 2 && subIndex == 1) {
+                System.out.println(index +" "+subIndex);
+                showForm(new QlyThongKeTheoNgay());
                 }
-                if (index == 2 && subIndex == 2) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new QlyThongKeTheoThang());
-                }
+                if (index == 2 && subIndex == 2) {
+                System.out.println(index +" "+subIndex);
+                showForm(new QlyThongKeTheoThang());
+                }*/
                 if (index == 3) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new BookVeTour());

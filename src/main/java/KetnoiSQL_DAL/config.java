@@ -1102,7 +1102,7 @@ public class config {
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM tour");
+        ResultSet rs = stmt.executeQuery("SELECT * FROM phuongtien");
 
         ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
 
