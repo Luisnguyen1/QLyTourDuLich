@@ -1075,21 +1075,21 @@ public class config {
         ArrayList<Tour> danhSachTour = new ArrayList<>();
 
         while (rs.next()) {
-            Tour Tour = new Tour();
-            Tour.setMaTour(rs.getString("matour"));
-            Tour.setTongsocho(rs.getInt("tongsocho"));
-            Tour.setSochodu(rs.getInt("sochodu"));
-            Tour.setTenTour(rs.getString("tentour"));
-            Tour.setDiaDiemTour(rs.getString("diadiemtour"));
-            Tour.setDiaDiemdi(rs.getString("diadiemdi"));
-            Tour.setDiaDiemden(rs.getString("diadiemden"));
-            Tour.setLoaiTour(rs.getString("loaitour"));
-            Tour.setSongaydi(rs.getInt("songaydi"));
-            Tour.setNgaydi(rs.getDate("ngaydi"));
-            Tour.setGiaTour(rs.getInt("giatour"));
-            Tour.setNgayve(rs.getDate("ngayve"));
+            Tour tour = new Tour();
+            tour.setMaTour(rs.getString("matour"));
+            tour.setTongsocho(rs.getInt("tongsocho"));
+            tour.setSochodu(rs.getInt("sochocontrong"));
+            tour.setTenTour(rs.getString("tentour"));
+            tour.setDiaDiemTour(rs.getString("diadiemtour"));
+            tour.setDiaDiemdi(rs.getString("diadiemdi"));
+            tour.setDiaDiemden(rs.getString("diadiemden"));
+            tour.setLoaiTour(rs.getString("loaitour"));
+            tour.setSongaydi(rs.getInt("songay"));
+            tour.setNgaydi(rs.getDate("ngaykhoihanh"));
+            tour.setGiaTour(rs.getInt("giatour"));
+            tour.setNgayve(rs.getDate("ngayketthuc"));
 
-            danhSachTour.add(Tour);
+            danhSachTour.add(tour);
         }
         return danhSachTour;
     }
