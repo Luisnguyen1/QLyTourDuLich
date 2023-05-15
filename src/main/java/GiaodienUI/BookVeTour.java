@@ -508,7 +508,7 @@ public class BookVeTour extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
+    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {                                         
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -534,9 +534,9 @@ public class BookVeTour extends javax.swing.JPanel {
 
         if (VeCanXoa == null) {
             JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
-    }//GEN-LAST:event_btnXoaVeActionPerformed
+    }                                        
 
-<<<<<<< Updated upstream
+
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
         String hoten = txtHoten.getText();
         String dchi = txtDiachi.getText();
@@ -569,15 +569,16 @@ public class BookVeTour extends javax.swing.JPanel {
         } else {
             long GiaTour = Long.parseLong(giatour);
             
-            String maHD = "SGUtour"+ Interto
-
+            String maHD = "SGUtour"+ Interto;
+            
+            BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
             hd = new HoaDon();
 
             danhSachVe.add(bvt);
-            KhachHang kh = new KhachHang();
+            
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            model.addRow(new Object[]{kh.getTenkh(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+            model.addRow(new Object[]{bvt.getHoTen(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
 
             jTable1.setModel(model);
 
@@ -595,21 +596,21 @@ public class BookVeTour extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDatVeActionPerformed
 
-    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTourActionPerformed
+    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiaTourActionPerformed
+    }                                          
 
-    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiTourActionPerformed
+    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoaiTourActionPerformed
+    }                                           
 
-    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDenActionPerformed
+    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDenActionPerformed
+    }                                         
 
-    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDiActionPerformed
+    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDiActionPerformed
+    }                                        
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
