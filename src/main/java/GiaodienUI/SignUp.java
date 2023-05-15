@@ -4,6 +4,10 @@
  */
 package GiaodienUI;
 
+import DTo.TaiKhoan;
+import KetnoiSQL_DAL.config;
+import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 
 /**
@@ -12,6 +16,7 @@ import javax.swing.JTextField;
  */
 public class SignUp extends javax.swing.JFrame {
 
+    ArrayList<TaiKhoan> danhSachTK = new ArrayList<>();
     /**
      * Creates new form register
      */
@@ -32,9 +37,9 @@ public class SignUp extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jSeparator1 = new javax.swing.JSeparator();
         btnCreateAccount = new javax.swing.JButton();
-        txtNewPassword = new javax.swing.JFormattedTextField();
-        txtRegisterUser = new javax.swing.JFormattedTextField();
-        txtEmailPhoneNumber = new javax.swing.JFormattedTextField();
+        txtEmail = new javax.swing.JFormattedTextField();
+        txtPassword = new javax.swing.JFormattedTextField();
+        txtUser = new javax.swing.JFormattedTextField();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -64,21 +69,21 @@ public class SignUp extends javax.swing.JFrame {
             }
         });
 
-        txtNewPassword.addActionListener(new java.awt.event.ActionListener() {
+        txtEmail.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtNewPasswordActionPerformed(evt);
+                txtEmailActionPerformed(evt);
             }
         });
 
-        txtRegisterUser.addActionListener(new java.awt.event.ActionListener() {
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtRegisterUserActionPerformed(evt);
+                txtPasswordActionPerformed(evt);
             }
         });
 
-        txtEmailPhoneNumber.addActionListener(new java.awt.event.ActionListener() {
+        txtUser.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtEmailPhoneNumberActionPerformed(evt);
+                txtUserActionPerformed(evt);
             }
         });
 
@@ -125,9 +130,9 @@ public class SignUp extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(52, 52, 52)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(txtRegisterUser, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtNewPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtEmailPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(txtPassword, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 410, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(139, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -151,15 +156,15 @@ public class SignUp extends javax.swing.JFrame {
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtEmailPhoneNumber, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(txtUser, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(jLabel2))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtRegisterUser, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
+                    .addComponent(txtPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 50, Short.MAX_VALUE)
                     .addComponent(jLabel4))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(txtNewPassword, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
+                    .addComponent(txtEmail, javax.swing.GroupLayout.DEFAULT_SIZE, 53, Short.MAX_VALUE)
                     .addComponent(jLabel5))
                 .addGap(27, 27, 27)
                 .addComponent(btnCreateAccount, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -182,22 +187,40 @@ public class SignUp extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtNewPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewPasswordActionPerformed
+    private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNewPasswordActionPerformed
+    }//GEN-LAST:event_txtEmailActionPerformed
 
-    private void txtRegisterUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtRegisterUserActionPerformed
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtRegisterUserActionPerformed
+    }//GEN-LAST:event_txtPasswordActionPerformed
 
-    private void txtEmailPhoneNumberActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailPhoneNumberActionPerformed
+    private void txtUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtUserActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtEmailPhoneNumberActionPerformed
+    }//GEN-LAST:event_txtUserActionPerformed
 
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
-        // TODO add your handling code here:
+        String user = txtUser.getText();
+        String password = txtPassword.getText();
+        String email = txtEmail.getText();
+        
+        if(user.equals("") || password.equals("") || email.equals("")){
+            JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Thông Tin");
+        }
+        else{
+            TaiKhoan tk = new TaiKhoan(user,password,email,null);
+            danhSachTK.add(tk);
+            Register(tk);
+            
+            JOptionPane.showMessageDialog(null,"Tạo Tài Khoản Thành Công");
+        }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
+    private void Register(TaiKhoan tk) {
+       config con = new config();
+       con.UpdateSQL_TaiKhoan(tk,1,null);
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -244,8 +267,9 @@ public class SignUp extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JSeparator jSeparator1;
-    private javax.swing.JFormattedTextField txtEmailPhoneNumber;
-    private javax.swing.JFormattedTextField txtNewPassword;
-    private javax.swing.JFormattedTextField txtRegisterUser;
+    private javax.swing.JFormattedTextField txtEmail;
+    private javax.swing.JFormattedTextField txtPassword;
+    private javax.swing.JFormattedTextField txtUser;
     // End of variables declaration//GEN-END:variables
 }
+

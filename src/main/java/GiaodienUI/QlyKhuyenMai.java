@@ -773,7 +773,7 @@ if(thang.equals("2")){
        
         KhuyenMai km = new KhuyenMai(tenKM,maKM,ngayKMDate,hanSDDate,tienGiam);
         danhSachKM.add(km);
-        con.UpdateSQL_KhuyenMai(km, 2, "null");
+        con.UpdateSQL_KhuyenMai(km, 1, null);
         model.addRow(new Object[]{km.getTenkm(),km.getMakm(),ngayKMString, hanSDString, km.getTiengiam()});
         
         jTable1.setModel(model);

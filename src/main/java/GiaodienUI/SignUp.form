@@ -76,9 +76,9 @@
                   </Group>
                   <EmptySpace min="-2" pref="52" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="txtRegisterUser" min="-2" pref="410" max="-2" attributes="0"/>
-                      <Component id="txtNewPassword" min="-2" pref="410" max="-2" attributes="0"/>
-                      <Component id="txtEmailPhoneNumber" min="-2" pref="410" max="-2" attributes="0"/>
+                      <Component id="txtPassword" min="-2" pref="410" max="-2" attributes="0"/>
+                      <Component id="txtEmail" min="-2" pref="410" max="-2" attributes="0"/>
+                      <Component id="txtUser" min="-2" pref="410" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace pref="139" max="32767" attributes="0"/>
               </Group>
@@ -108,17 +108,17 @@
                   <Component id="jSeparator1" min="-2" pref="21" max="-2" attributes="0"/>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtEmailPhoneNumber" alignment="3" pref="50" max="32767" attributes="0"/>
+                      <Component id="txtUser" alignment="3" pref="50" max="32767" attributes="0"/>
                       <Component id="jLabel2" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtRegisterUser" alignment="3" pref="50" max="32767" attributes="0"/>
+                      <Component id="txtPassword" alignment="3" pref="50" max="32767" attributes="0"/>
                       <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="37" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="txtNewPassword" alignment="3" pref="53" max="32767" attributes="0"/>
+                      <Component id="txtEmail" alignment="3" pref="53" max="32767" attributes="0"/>
                       <Component id="jLabel5" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
@@ -154,19 +154,19 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnCreateAccountActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtNewPassword">
+        <Component class="javax.swing.JFormattedTextField" name="txtEmail">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtNewPasswordActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtRegisterUser">
+        <Component class="javax.swing.JFormattedTextField" name="txtPassword">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtRegisterUserActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtPasswordActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JFormattedTextField" name="txtEmailPhoneNumber">
+        <Component class="javax.swing.JFormattedTextField" name="txtUser">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtEmailPhoneNumberActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtUserActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JPanel" name="jPanel2">

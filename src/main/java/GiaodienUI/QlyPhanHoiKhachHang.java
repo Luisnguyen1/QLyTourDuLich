@@ -231,20 +231,4 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             model.addRow(new Object[]{nv.getHoten(), nv.getSdt(), nv.getEmail(), nv.getDiachi(), nv.getNoidung()});
         }
     }
-    
-//    private void xoaFeedBack(int x){
-//        config con = new config();
-//        danhSachFB.clear();
-//        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
-//        String Hoten = (String) model.getValueAt(x, 0);
-//        FeedBack fbCanXoa = null;
-//        for(FeedBack fb : danhSachFB){
-//            if(fb.getHoten().equals(Hoten)){
-//                fbCanXoa = fb;
-//                break;
-//            }
-//        }
-//        
-//        danhSachFB.remove(fbCanXoa);        
-//    }
 }

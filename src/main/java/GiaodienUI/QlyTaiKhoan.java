@@ -4,8 +4,13 @@
  */
 package GiaodienUI;
 
+import DTo.FeedBack;
 import DTo.TaiKhoan;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -20,8 +25,9 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
     /**
      * Creates new form QlyTaiKhoan
      */
-    public QlyTaiKhoan() {
+    public QlyTaiKhoan() throws SQLException {
         initComponents();
+        loadTaiKhoan();
     }
 
     /**
@@ -350,6 +356,13 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         String Email = txtEmail.getText();
         String Qtruycap = cbxQuyenTruyCap.getSelectedItem().toString();
         
+        config con = new config();
+        try {
+            danhSachTK = con.layDL_TK();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         if(uSer.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
         }
@@ -365,6 +378,9 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         else{
             TaiKhoan tk = new TaiKhoan(uSer,passWord,Email,Qtruycap);
             danhSachTK.add(tk);
+            
+            con.UpdateSQL_TaiKhoan(tk, 1, null);
+            
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             
             model.addRow(new Object[]{tk.getMatk(),tk.getMatkhau(),tk.getEmail(),tk.getQuyentruycap()});
@@ -372,7 +388,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
             jTable1.setModel(model);
             
             JOptionPane.showMessageDialog(null,"Thêm Tài Khoản Thành Công");
-            
+                        
             txtUser.setText("");
             txtPassword.setText("");
             txtEmail.setText("");
@@ -381,6 +397,14 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
+        
+            config con = new config();
+        try {
+            danhSachTK = con.layDL_TK();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
         
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Xóa");
@@ -400,6 +424,8 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         
         danhSachTK.remove(tkCanXoa);
         model.removeRow(selectedRow);
+        
+        con.UpdateSQL_TaiKhoan(tkCanXoa, 2, matKhau);
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Tài Khoản Thành Công");
@@ -407,6 +433,13 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
+        
+        config con = new config();
+        try {
+            danhSachTK = con.layDL_TK();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Sửa");
@@ -445,6 +478,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         model.setValueAt(Email,selectedRow,2);
         model.setValueAt(Qtruycap,selectedRow,3);
         
+        con.UpdateSQL_TaiKhoan(tkCanSua, 3, matKhau);
        JOptionPane.showMessageDialog(null, "Sửa Tài Khoản Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
@@ -456,7 +490,16 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnThem1ActionPerformed
 
-
+    private void loadTaiKhoan() throws SQLException {
+        config con = new config();
+        danhSachTK.clear();
+        danhSachTK.addAll(con.layDL_TK());
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (TaiKhoan nv : danhSachTK) {
+            model.addRow(new Object[]{nv.getMatk(), nv.getMatkhau(), nv.getEmail(), nv.getQuyentruycap()});
+        }
+    } 
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnSua;

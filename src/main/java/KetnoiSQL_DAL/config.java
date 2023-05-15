@@ -69,6 +69,7 @@ public class config {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
+            taikhoan.setEmail(rs.getString("email"));
             taikhoan.setQuyentruycap(rs.getString("loaitk"));
             danhSachTaiKhoan.add(taikhoan);
         }
@@ -804,6 +805,99 @@ public class config {
             }
         }
     }
+     
+     public void UpdateSQL_TaiKhoan(TaiKhoan tk, int i, String matkhau_old) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO taikhoan(tentaikhoan, matkhau, email, loaitk) VALUES(?, ?, ?,?)";
+            String selectAll = "SELECT * FROM taikhoan";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, tk.getMatk());
+                stmt.setString(2, tk.getMatkhau());
+                stmt.setString(3, tk.getEmail());
+                stmt.setString(4, tk.getQuyentruycap());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM taikhoan WHERE matkhau = '" + tk.getMatkhau()+"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (i == 3) {//sửa
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM feedback WHERE hoten = '" + tk.getMatkhau()+"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM feedback";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, tk.getMatk());
+                stmt.setString(2, tk.getMatkhau());
+                stmt.setString(3, tk.getEmail());
+                stmt.setString(4, tk.getQuyentruycap());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
     //--------------------------------------------------------
 
     public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
@@ -872,6 +966,7 @@ public class config {
         }
         return danhSachNhanVien;
     }
+    
 
     public ArrayList<Tour> layDL_Tour() throws SQLException {
         // Khởi tạo kết nối đến cơ sở dữ liệu
@@ -947,6 +1042,5 @@ public class config {
         }
         return danhSachFB;
     }
-    
     
 }
