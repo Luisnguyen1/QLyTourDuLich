@@ -600,7 +600,7 @@ long soChoDu = Long.parseLong(sochodu);
         jTable1.setModel(model);
 // TODO add your handling code here:
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    }
     private void txtMaPhuongTienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaPhuongTienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaPhuongTienActionPerformed
