@@ -121,7 +121,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE mahoadon = " + HoaDon.getMahd();
+                String delete = "DELETE FROM hoadon WHERE mahoadon = '" + HoaDon.getMahd() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,7 +133,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE mahoadon = " + HoaDon.getMahd();
+                String delete = "DELETE FROM hoadon WHERE mahoadon = '" + HoaDon.getMahd()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -217,7 +217,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = " + nhanvien.getManv();
+                String delete = "DELETE FROM nhanvien WHERE manv = '" + nhanvien.getManv() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,7 +230,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = " + MaNV_OLD;
+                String delete = "DELETE FROM nhanvien WHERE manv = '" + MaNV_OLD + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -317,7 +317,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM vetour WHERE mavetour = " + nhanvien.getMavetour();
+                String delete = "DELETE FROM vetour WHERE mavetour = '" + nhanvien.getMavetour()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -329,7 +329,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM vetour WHERE mavetour = " + nhanvien.getMavetour();
+                String delete = "DELETE FROM vetour WHERE mavetour = '" + nhanvien.getMavetour()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -415,7 +415,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = " + PhuongTien.getMapt();
+                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -427,7 +427,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = " + PhuongTien.getMapt();
+                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -520,7 +520,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -533,7 +533,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -542,7 +542,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -660,7 +660,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = " + KhuyenMai.getMakm();
+                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = '" + KhuyenMai.getMakm()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -672,7 +672,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = " + KhuyenMai.getMakm();
+                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = '" + KhuyenMai.getMakm()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
