@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.NhanVien;
+import DTo.PhuongTien;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import DTo.PhuongTien;
