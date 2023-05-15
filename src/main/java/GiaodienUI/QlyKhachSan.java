@@ -434,8 +434,8 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienPhongActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-
-        long soDienThoai = Long.parseLong(txtSoDienThoai.getText());
+ 
+        String soDienThoai = txtSoDienThoai.getText();
 
         long tienPhong = Long.parseLong(txtTienPhong.getText());
         String maKhachSan = txtMaKhachSan.getText();
@@ -565,7 +565,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
         JOptionPane.showMessageDialog(null, cbxTenKhachSan, "Chọn tên khách sạn", JOptionPane.QUESTION_MESSAGE);
         String tenKS = (String) cbxTenKhachSan.getSelectedItem();
 // thêm ComboBox để chọn loại nhân viên
-        long sdt = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập số điện thoại", txtSoDienThoai.getText()));
+        String sdt = JOptionPane.showInputDialog(null, "Nhập số điện thoại", txtSoDienThoai.getText());
 
 // thêm ComboBox để chọn chức vụ
         long tienKS = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền khách sạn", txtTienKhachSan.getText()));
@@ -599,13 +599,15 @@ public class QlyKhachSan extends javax.swing.JPanel {
     ArrayList<KhachSan> ketQuaTimKiem = new ArrayList<>();
     
     // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-    // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (KhachSan nv : danhsachks) {
-            if (nv.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
+    for (KhachSan kh : danhsachks) {
+        if (kh.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
+            ketQuaTimKiem.add(kh);
+        }else{
+                      JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+            return;
             }
-        }
-
+    }
+    
 // Kiểm tra kết quả tìm kiếm
         if (ketQuaTimKiem.isEmpty()) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
@@ -628,11 +630,14 @@ public class QlyKhachSan extends javax.swing.JPanel {
     // Cập nhật lại model cho JTable
     jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    }
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportActionPerformed
 
+    private void loadKhachSan(){
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;

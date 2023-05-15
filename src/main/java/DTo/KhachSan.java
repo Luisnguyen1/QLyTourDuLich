@@ -11,13 +11,13 @@ package DTo;
 public class KhachSan implements Comparable<KhachSan>{
     public String diaDiemTour;
     public String tenKhachSan;
-    public long sdt;
+    public String sdt;
     public long tienKhachSan;
     public long tienPhong;
     public String maKhachSan;
    
 
-    public KhachSan(String diaDiemTour, String tenKhachSan, long sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
+    public KhachSan(String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
         this.diaDiemTour = diaDiemTour;
         this.tenKhachSan = tenKhachSan;
         this.sdt = sdt;
@@ -58,11 +58,11 @@ public class KhachSan implements Comparable<KhachSan>{
         this.tenKhachSan = tenKhachSan;
     }
 
-    public long getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(long sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 
