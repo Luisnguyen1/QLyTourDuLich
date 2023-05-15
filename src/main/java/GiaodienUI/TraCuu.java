@@ -222,9 +222,6 @@ public class TraCuu extends javax.swing.JPanel {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(66, 66, 66)
-                        .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(12, 12, 12)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 178, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -245,7 +242,10 @@ public class TraCuu extends javax.swing.JPanel {
                                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(cbxNgayDi, javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(cbxThangDi, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(cbxNamDi, javax.swing.GroupLayout.Alignment.TRAILING))))))
+                                    .addComponent(cbxNamDi, javax.swing.GroupLayout.Alignment.TRAILING)))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(88, 88, 88)
+                        .addComponent(btnSearch)))
                 .addContainerGap(15, Short.MAX_VALUE))
         );
 

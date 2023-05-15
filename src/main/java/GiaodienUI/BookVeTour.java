@@ -508,7 +508,7 @@ public class BookVeTour extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaVeActionPerformed
+    private void btnXoaVeActionPerformed(java.awt.event.ActionEvent evt) {                                         
         int selectedRow = jTable1.getSelectedRow();
 
         if (selectedRow == -1) {
@@ -534,9 +534,9 @@ public class BookVeTour extends javax.swing.JPanel {
 
         if (VeCanXoa == null) {
             JOptionPane.showMessageDialog(null, "Vé Không Tồn Tại");
-    }//GEN-LAST:event_btnXoaVeActionPerformed
+    }                                        
 
-<<<<<<< Updated upstream
+
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
         String hoten = txtHoten.getText();
         String dchi = txtDiachi.getText();
@@ -595,21 +595,21 @@ public class BookVeTour extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnDatVeActionPerformed
 
-    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtGiaTourActionPerformed
+    private void txtGiaTourActionPerformed(java.awt.event.ActionEvent evt) {                                           
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtGiaTourActionPerformed
+    }                                          
 
-    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtLoaiTourActionPerformed
+    private void txtLoaiTourActionPerformed(java.awt.event.ActionEvent evt) {                                            
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtLoaiTourActionPerformed
+    }                                           
 
-    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDenActionPerformed
+    private void txtNoiDenActionPerformed(java.awt.event.ActionEvent evt) {                                          
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDenActionPerformed
+    }                                         
 
-    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDiActionPerformed
+    private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {                                         
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNoiDiActionPerformed
+    }                                        
 
     private void txtEmailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtEmailActionPerformed
         // TODO add your handling code here:
@@ -619,8 +619,6 @@ public class BookVeTour extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSdtActionPerformed
 
-=======
->>>>>>> Stashed changes
 //<<<<<<< Updated upstream
 //    private void btnXuatExcelActionPerformed(java.awt.event.ActionEvent evt) {                                             
 //=======
@@ -636,8 +634,8 @@ public class BookVeTour extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaVeTourActionPerformed
 
-<<<<<<< Updated upstream
-=======
+
+
     private void txtNoiDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNoiDiActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNoiDiActionPerformed
@@ -746,7 +744,7 @@ public class BookVeTour extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_btnBookVeActionPerformed
 
->>>>>>> Stashed changes
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnBookVe;
