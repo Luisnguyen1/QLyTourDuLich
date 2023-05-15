@@ -24,7 +24,6 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.apache.bcel.generic.AALOAD;
 
 /**
  *
@@ -36,7 +35,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyKhachHang ql = new QlyKhachHang();
+QlyTourDuLich ql = new QlyTourDuLich();
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
 js.setSize(930, 580); // đặt kích thước

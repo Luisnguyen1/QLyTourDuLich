@@ -23,13 +23,13 @@ import javax.swing.border.EmptyBorder;
 
 
 public class Main extends javax.swing.JFrame {
-    SideMenuPanel sp;
+    SideMenuPanel sp = new  SideMenuPanel(this);
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        sp = new SideMenuPanel(this);
+        
         
         sp.setSide(sideBar);
         sp.setMain(mainPanel);
@@ -125,7 +125,7 @@ public class Main extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         menu1 = new GiaodienUI.menu.menu();
         mainPanel = new javax.swing.JPanel();
-        qlyTourDuLich1 = new GiaodienUI.QlyTourDuLich();
+        qlyTourDuLich = new GiaodienUI.QlyTourDuLich();
         gradientPanel1 = new GiaodienUI.GradientPanel();
         jLabel1 = new javax.swing.JLabel();
 
@@ -174,13 +174,14 @@ public class Main extends javax.swing.JFrame {
         mainPanel.setLayout(mainPanelLayout);
         mainPanelLayout.setHorizontalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(mainPanelLayout.createSequentialGroup()
-                .addComponent(qlyTourDuLich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, mainPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(qlyTourDuLich, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
         mainPanelLayout.setVerticalGroup(
             mainPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(qlyTourDuLich1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(qlyTourDuLich, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel1.setFont(new java.awt.Font("Arial", 1, 24)); // NOI18N
@@ -282,7 +283,7 @@ public class Main extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel mainPanel;
     private GiaodienUI.menu.menu menu1;
-    private GiaodienUI.QlyTourDuLich qlyTourDuLich1;
+    private GiaodienUI.QlyTourDuLich qlyTourDuLich;
     private javax.swing.JPanel sideBar;
     // End of variables declaration//GEN-END:variables
 }

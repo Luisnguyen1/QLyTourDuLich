@@ -39,7 +39,7 @@ public class GradientPanel extends javax.swing.JPanel {
 
         g2d.dispose();
     }
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("unchecke")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
