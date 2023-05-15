@@ -8,6 +8,7 @@ import DTo.FeedBack;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 
 /**
  *
@@ -375,13 +376,14 @@ public class Contact extends javax.swing.JPanel {
             danhSachFB.add(fb);
             
             QlyPhanHoiKhachHang ph = new QlyPhanHoiKhachHang();
-            ph.getMyJTableValue();
             
+//            DefaultTableModel model = (DefaultTableModel) ph.tblFeedback.getModel();
             DefaultTableModel model = (DefaultTableModel) ph.tblFeedback.getModel();
+            
             model.addRow(new Object[]{fb.getHoten(),fb.getSdt(),fb.getEmail(),fb.getDiachi(),fb.getNoidung()});
             
             ph.tblFeedback.setModel(model);
-            
+                        
             JOptionPane.showMessageDialog(null,"Gửi Thành Công");
             
             txtHoten.setText("");
