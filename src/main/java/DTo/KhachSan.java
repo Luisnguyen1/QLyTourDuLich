@@ -26,6 +26,10 @@ public class KhachSan implements Comparable<KhachSan>{
         this.maKhachSan = maKhachSan;
         
     }
+
+    public KhachSan() {
+    }
+    
     
     public KhachSan(KhachSan x){
         diaDiemTour = x.diaDiemTour;
@@ -35,6 +39,9 @@ public class KhachSan implements Comparable<KhachSan>{
         tienPhong = x.tienPhong;
         maKhachSan = x.maKhachSan;
       
+    }
+
+    public KhachSan() {
     }
 
     @Override
