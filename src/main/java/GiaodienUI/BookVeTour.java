@@ -20,9 +20,7 @@ import java.util.ArrayList;
 
 public class BookVeTour extends javax.swing.JPanel {
 
-    ArrayList<HoaDon> hd = new ArrayList<>();
-    ArrayList<KhachHang> hkh = new ArrayList<>();
-    ArrayList<VeTour> veTour = new ArrayList<>();
+    ArrayList<BookVe> danhSachVe = new ArrayList<>();
 
     /**
      * Creates new form BookVe
@@ -569,9 +567,7 @@ public class BookVeTour extends javax.swing.JPanel {
         } else {
             long GiaTour = Long.parseLong(giatour);
             
-            String maHD = "SGUtour"+ Interto
-
-            hd = new HoaDon();
+            BookVe bvt = new BookVe(hoten, dchi, sdt, Email, mavetour, noidi, noiden, loaitour, GiaTour);
 
             danhSachVe.add(bvt);
             KhachHang kh = new KhachHang();
