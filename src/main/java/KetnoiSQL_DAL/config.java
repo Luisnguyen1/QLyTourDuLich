@@ -9,7 +9,6 @@ import DTo.HoaDon;
 import DTo.KhuyenMai;
 import DTo.NhanVien;
 import DTo.PhuongTien;
-import DTo.BookVe;
 import DTo.DiaDiem;
 import DTo.DiaDiemVuiChoi;
 import DTo.FeedBack;
@@ -27,18 +26,10 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
 
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
-import java.sql.*;
 
 public class config {
 
@@ -69,7 +60,7 @@ public class config {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
-            taikhoan.setManv(rs.getInt("manv"));
+            taikhoan.setManv(rs.getString("manv"));
             taikhoan.setQuyentruycap(rs.getString("loaitk"));
             danhSachTaiKhoan.add(taikhoan);
         }

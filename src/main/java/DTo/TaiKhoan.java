@@ -5,17 +5,19 @@ public class TaiKhoan {
     private String matkhau;
     private String email;
     private String quyentruycap;
+    private String manv;
  
     
     public TaiKhoan() {
     }
 
-    public TaiKhoan(String matk, String matkhau, String email, String quyentruycap) {
+    public TaiKhoan(String matk, String matkhau, String email, String quyentruycap,String manv) {
   
         this.matk = matk;
         this.matkhau = matkhau;
         this.email = email;
         this.quyentruycap = quyentruycap;
+        this.manv = manv;
      
     }
 
@@ -29,6 +31,14 @@ public class TaiKhoan {
         return matk;
 
       
+    }
+
+    public String getManv() {
+        return manv;
+    }
+
+    public void setManv(String manv) {
+        this.manv = manv;
     }
 
     public String getMatkhau() {
@@ -60,11 +70,6 @@ public class TaiKhoan {
         this.quyentruycap = quyentruycap;
     }
 
-
-
-
-  
-  
     
         
 }
