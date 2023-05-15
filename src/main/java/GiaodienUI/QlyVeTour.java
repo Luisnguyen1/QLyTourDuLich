@@ -39,7 +39,7 @@ public class QlyVeTour extends javax.swing.JPanel {
         }
         model = (DefaultTableModel) jTable1.getModel();
         for (VeTour vt : danhSachVT) {
-            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.getMakh(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
         }
     }
 
@@ -62,9 +62,6 @@ public class QlyVeTour extends javax.swing.JPanel {
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         txtMaTour = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
-        txtMaKH = new javax.swing.JTextField();
         jPanel6 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtTienVeGiam = new javax.swing.JTextField();
@@ -147,23 +144,6 @@ public class QlyVeTour extends javax.swing.JPanel {
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel3.setText("   Mã Khách Hàng");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel5Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 125, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -349,15 +329,9 @@ public class QlyVeTour extends javax.swing.JPanel {
                             .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 772, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
                         .addGap(278, 278, 278)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMaKH, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel2Layout.createSequentialGroup()
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtTienVeGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtTienVeGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 201, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -370,11 +344,7 @@ public class QlyVeTour extends javax.swing.JPanel {
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtMaTour)
                     .addComponent(jSeparator2))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(txtMaKH, javax.swing.GroupLayout.DEFAULT_SIZE, 35, Short.MAX_VALUE)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(12, 12, 12)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtTienVeGiam, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -411,11 +381,11 @@ public class QlyVeTour extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Vé Tour", "Mã Tour", "Mã Khách Hàng", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Vé Giảm"
+                "Mã Vé Tour", "Mã Tour", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Vé Giảm"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Integer.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -452,7 +422,7 @@ public class QlyVeTour extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 139, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 166, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -733,7 +703,7 @@ if(thang.equals("2")){
         try{
         String maVT = txtMaVeTour.getText();
         String maTour = txtMaTour.getText();
-        String maKH = txtMaKH.getText();
+  
         long tienGiam = Long.parseLong(txtTienVeGiam.getText());
         int ngayDV = Integer.parseInt(cbxNgayDatVe.getSelectedItem().toString());
         int thangDV = Integer.parseInt(cbxThangDatVe.getSelectedItem().toString());
@@ -748,7 +718,7 @@ if(thang.equals("2")){
         calendar.set(namHSD,thangHSD ,ngayHSD);
         Date hanSDDate = calendar.getTime();
         
-             VeTour vt = new VeTour (maVT, maTour, maKH, tienGiam, ngayDVDate, hanSDDate);
+             VeTour vt = new VeTour (maVT, maTour, tienGiam, ngayDVDate, hanSDDate);
              danhSachVT.add(vt);
              con.UpdateSQL_VeTour(vt, 1, "null");
              
@@ -758,14 +728,14 @@ if(thang.equals("2")){
              String ngayDVString = dateFormat.format(ngayDVDate);
              String hanSDString = dateFormat.format(hanSDDate);
              
-             model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.getMakh(), ngayDVString, hanSDString, vt.getTiengiam()});
+             model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
              jTable1.setModel(model);
              
              JOptionPane.showMessageDialog(null, "Thêm Vé Tour Thành Công");
              
              txtMaVeTour.setText("");
              txtMaTour.setText("");
-             txtMaKH.setText("");
+       
              txtTienVeGiam.setText("");
         }catch (NumberFormatException e){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin Và Kiểm Tra Lại");
@@ -840,7 +810,7 @@ if(thang.equals("2")){
         
         String MaVT = JOptionPane.showInputDialog(null,"Nhập mã vé tour",veTourCanSua.getMavetour());
         String MaTour = JOptionPane.showInputDialog(null,"Nhập mã tour",veTourCanSua.getMatour());
-        String MaKH = JOptionPane.showInputDialog(null,"Nhập mã khách hàng",veTourCanSua.getMakh());
+    
         String TienGiam = JOptionPane.showInputDialog(null,"Nhập tiền vé giảm",veTourCanSua.getTiengiam());
        
         JComboBox<String> NgayDV = new JComboBox<>();
@@ -899,17 +869,17 @@ if(thang.equals("2")){
         
         veTourCanSua.setMavetour(MaVT);
                 veTourCanSua.setMatour(MaTour);
-        veTourCanSua.setMakh(MaKH);
+ 
         veTourCanSua.setTiengiam(Long.parseLong(TienGiam));
         veTourCanSua.setNgaydatve(ngayDVDate);
         veTourCanSua.setHansudung(hanSDDate);
 
         model.setValueAt(MaVT,selectedRow,0);
         model.setValueAt(MaTour,selectedRow,1);
-        model.setValueAt(MaKH,selectedRow,2);
-        model.setValueAt(TienGiam,selectedRow,5);
-        model.setValueAt(ngayDVString,selectedRow,3);
-        model.setValueAt(hanSDString,selectedRow,4);
+       
+        model.setValueAt(TienGiam,selectedRow,4);
+        model.setValueAt(ngayDVString,selectedRow,2);
+        model.setValueAt(hanSDString,selectedRow,3);
         
         jTable1.setModel(model);
         con.UpdateSQL_VeTour(veTourCanSua, 3, old);
@@ -918,32 +888,48 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtMaVeTour.getText().toLowerCase(); // lấy từ khóa tìm kiếm từ text field và đưa về chữ thường để tìm kiếm chính xác hơn
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0); // xóa tất cả các dòng hiện có trong JTable
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        for (int i = 0; i < danhSachVT.size(); i++) { // duyệt qua từng tour trong danh sách
-            VeTour vt = danhSachVT.get(i);
-            if (vt.getMavetour().toLowerCase().contains(tuKhoa) // kiểm tra xem tour có chứa từ khóa tìm kiếm không
-                    || vt.getMatour().toLowerCase().contains(tuKhoa)
-                    || vt.getMakh().toLowerCase().contains(tuKhoa)) {
-                
-                    if (tuKhoa.equals(danhSachVT.get(i).getMavetour())) {
-                        model.addRow(new Object[]{danhSachVT.get(i).getMavetour(), danhSachVT.get(i).getMatour(), danhSachVT.get(i).getMakh(), danhSachVT.get(i).getTiengiam(), danhSachVT.get(i).getNgaydatve(), danhSachVT.get(i).getHansudung(), });
-                    }
+        String maNVCanTim = txtMaVeTour.getText();
+
+        // Tạo một danh sách để lưu khách hàng tìm được
+        ArrayList<VeTour> ketQuaTimKiem = new ArrayList<>();
+
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        for (VeTour nv : danhSachVT) {
+            if (nv.getMavetour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(nv);
             }
         }
 
-        if (model.getRowCount() == 0) { // nếu không tìm thấy kết quả, hiển thị thông báo
-            JOptionPane.showMessageDialog(null, "Không Tìm Thấy Kết Quả Phù Hợp");
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
+
+        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("Mã vé Tour");
+        model.addColumn("Mã Tour");
+      
+        model.addColumn("Ngày đặt vé");
+        model.addColumn("Hạn sử dụng");
+        model.addColumn("Tiền vé giảm");
+        
+
+        // Thêm các khách hàng tìm được vào model
+        for (VeTour vt : ketQuaTimKiem) {
+             model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
         }
+
+        // Cập nhật lại model cho JTable
+        jTable1.setModel(model);
+    }       
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-
+     private String ngayDVString;
+    private String hanSDString;
+    private Date ngayDiDate;
+    private Date ngayVeDate;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnSua;
@@ -958,7 +944,6 @@ if(thang.equals("2")){
     private javax.swing.JComboBox<String> cbxThangHanSD;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -967,7 +952,6 @@ if(thang.equals("2")){
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -977,7 +961,6 @@ if(thang.equals("2")){
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtMaKH;
     private javax.swing.JTextField txtMaTour;
     private javax.swing.JTextField txtMaVeTour;
     private javax.swing.JTextField txtTienVeGiam;

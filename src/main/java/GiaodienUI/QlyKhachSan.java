@@ -7,6 +7,7 @@ package GiaodienUI;
 import DTo.KhachHang;
 import DTo.KhachSan;
 import DTo.NhanVien;
+import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -17,11 +18,13 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyKhachSan extends javax.swing.JPanel {
+    DefaultTableModel model = new DefaultTableModel();
 
     /**
      * Creates new form QlyKhachSan
      */
     ArrayList<KhachSan> danhsachks = new ArrayList<KhachSan>();
+    config con = new config();
 
     public QlyKhachSan() {
         initComponents();
