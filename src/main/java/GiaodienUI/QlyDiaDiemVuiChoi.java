@@ -534,7 +534,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         // Cập nhật lại model cho JTable
         jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    }
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportActionPerformed
