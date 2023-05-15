@@ -5,11 +5,14 @@
 package GiaodienUI;
 
 import DTo.KhachHang;
+import DTo.TaiKhoan;
+import KetnoiSQL_DAL.config;
 import java.awt.Component;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JButton;
 import javax.swing.JOptionPane;
@@ -22,14 +25,16 @@ import javax.swing.table.TableRowSorter;
  * @author Thanh Tran
  */
 public class QlyKhachHang extends javax.swing.JPanel {
-    ArrayList<KhachHang> danhSach = new ArrayList<KhachHang>();
+    ArrayList<KhachHang> danhSachKH = new ArrayList<KhachHang>();
     private Component rootPane;
     
     /**
      * Creates new form QlyKhachHang
      */
-    public QlyKhachHang() {
+    public QlyKhachHang() throws SQLException {
         initComponents();
+        loadKhachHang();
+
     }
 
     /**
@@ -426,12 +431,15 @@ String diaChi = txtDiaChi.getText();
 String soDienThoai = txtSoDienThoai.getText();
 String email = txtEmail.getText();
 
+config con = new config();
+danhSachKH = con.LayDL_KhachHang();
+
 if (tenKH.equals("") || diaChi.equals("") || soDienThoai.equals("") || email.equals("")) {
     JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
 } else {
     // Tìm mã khách hàng lớn nhất trong danh sách hiện có
     int maxMaKH = 0;
-    for (KhachHang kh : danhSach) {
+    for (KhachHang kh : danhSachKH) {
         int ma = Integer.parseInt(kh.getMakh().substring(2));
         if (ma > maxMaKH) {
             maxMaKH = ma;
@@ -445,9 +453,9 @@ if (tenKH.equals("") || diaChi.equals("") || soDienThoai.equals("") || email.equ
     KhachHang kh = new KhachHang(tenKH, maKH, diaChi, soDienThoai, email);
 
     // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
-    danhSach.add(kh);
+    danhSachKH.add(kh);
 
-
+con.UpdateSQL_KhachHang(kh, 1, maKH);
 
 // lấy ra model của JTable hiện tại
 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -479,6 +487,9 @@ if (selectedRow == -1) {
     return;
 }
 
+config con = new config();
+danhSachKH = con.LayDL_KhachHang();
+
 // lấy ra model của JTable hiện tại
 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -488,7 +499,7 @@ String maKH = (String) model.getValueAt(selectedRow, 1);
 
 // tìm khách hàng trong danh sách dựa vào mã
 KhachHang khachHangCanXoa = null;
-for (KhachHang kh : danhSach) {
+for (KhachHang kh : danhSachKH) {
     if (kh.getMakh().equals(maKH)) {
         khachHangCanXoa = kh;
         break;
@@ -502,10 +513,12 @@ if (khachHangCanXoa == null) {
 }
 
 // xóa khách hàng khỏi danh sách
-danhSach.remove(khachHangCanXoa);
+danhSachKH.remove(khachHangCanXoa);
 
 // xóa hàng được chọn trong model
 model.removeRow(selectedRow);
+
+con.UpdateSQL_KhachHang(khachHangCanXoa, 2, maKH);
 
 // cập nhật lại model cho JTable
 jTable1.setModel(model);
@@ -525,6 +538,9 @@ if (selectedRow == -1) {
     return;
 }
 
+config con = new config();
+danhSachKH = con.LayDL_KhachHang();
+
 // lấy ra model của JTable hiện tại
 DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -533,7 +549,7 @@ String maKH = (String) model.getValueAt(selectedRow, 1);
 
 // tìm khách hàng trong danh sách dựa vào mã
 KhachHang khachHangCanSua = null;
-for (KhachHang kh : danhSach) {
+for (KhachHang kh : danhSachKH) {
     if (kh.getMakh().equals(maKH)) {
         khachHangCanSua = kh;
         break;
@@ -567,6 +583,7 @@ model.setValueAt(diaChi, selectedRow, 2);
 model.setValueAt(soDienThoai, selectedRow, 3);
 model.setValueAt(email, selectedRow, 4);
 
+con.UpdateSQL_KhachHang(khachHangCanSua, 3, maKH);
 
 // thông báo thành công
 JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công");
@@ -580,7 +597,7 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công"
     ArrayList<KhachHang> ketQuaTimKiem = new ArrayList<>();
     
     // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-    for (KhachHang kh : danhSach) {
+    for (KhachHang kh : danhSachKH) {
         if (kh.getMakh().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
             ketQuaTimKiem.add(kh);
         }else{
@@ -607,6 +624,15 @@ JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Hàng Thành Công"
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
+    private void loadKhachHang() throws SQLException {
+        config con = new config();
+        danhSachKH.clear();
+        danhSachKH.addAll(con.LayDL_KhachHang());
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (KhachHang nv : danhSachKH) {
+            model.addRow(new Object[]{nv.getTenkh(), nv.getMakh(), nv.getDiachi(), nv.getEmail()});
+        }
+    } 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         
     }//GEN-LAST:event_jTable1MouseClicked
