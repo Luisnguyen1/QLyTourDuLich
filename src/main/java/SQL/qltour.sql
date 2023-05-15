@@ -213,6 +213,14 @@ CREATE TABLE `ve` (
   `MaKH` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+CREATE TABLE `qltour`.`feedback` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `hoten` VARCHAR(45) NULL,
+  `sdt` VARCHAR(45) NULL,
+  `email` VARCHAR(45) NULL,
+  `diachi` VARCHAR(100) NULL,
+  `noidung` VARCHAR(400) NULL,
+  PRIMARY KEY (`id`));
 --
 -- Indexes for dumped tables
 --

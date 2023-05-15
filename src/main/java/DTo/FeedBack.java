@@ -15,6 +15,10 @@ public class FeedBack {
     private String diachi;
     private String noidung;
 
+    public FeedBack() {
+        
+    }
+
     public FeedBack(String hoten, String email, String sdt, String diachi, String noidung) {
         this.hoten = hoten;
         this.email = email;

@@ -5,9 +5,14 @@
 package GiaodienUI;
 
 import DTo.FeedBack;
+import DTo.NhanVien;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -21,6 +26,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
      */
     public QlyPhanHoiKhachHang() {
         initComponents();
+        loadPhanHoi();
     }
 
     /**
@@ -97,7 +103,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         tblFeedback.setBackground(new java.awt.Color(204, 204, 204));
         tblFeedback.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {"Trần Đức Thanh", "0917339863", "thanhcnttmcpe@gmail.com", "198/13c Tôn Đản", "Tour du lịch hay vl"}
+
             },
             new String [] {
                 "Họ và Tên", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
@@ -171,7 +177,8 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = tblFeedback.getSelectedRow();
-        
+                config con = new config();
+                danhSachFB = con.LayDL_Feedback();
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 FeedBack Để Xóa");
         }
@@ -186,12 +193,14 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                 break;
             }
         }
-        
+        con.UpdateSQL_FeedBack(fbCanXoa,2,Hoten);
         danhSachFB.remove(fbCanXoa);
         model.removeRow(selectedRow);
+        
         tblFeedback.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa FeedBack Thành Công");
+                
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
@@ -208,11 +217,34 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
-    javax.swing.JTable tblFeedback;
+    private javax.swing.JTable tblFeedback;
     private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 
-    void getMyJTableValue() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+    private void loadPhanHoi() {
+        config con = new config();
+        danhSachFB.clear();
+        danhSachFB.addAll(con.LayDL_Feedback());
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+        for (FeedBack nv : danhSachFB) {
+            model.addRow(new Object[]{nv.getHoten(), nv.getSdt(), nv.getEmail(), nv.getDiachi(), nv.getNoidung()});
+        }
     }
+    
+//    private void xoaFeedBack(int x){
+//        config con = new config();
+//        danhSachFB.clear();
+//        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+//        String Hoten = (String) model.getValueAt(x, 0);
+//        FeedBack fbCanXoa = null;
+//        for(FeedBack fb : danhSachFB){
+//            if(fb.getHoten().equals(Hoten)){
+//                fbCanXoa = fb;
+//                break;
+//            }
+//        }
+//        
+//        danhSachFB.remove(fbCanXoa);        
+//    }
 }

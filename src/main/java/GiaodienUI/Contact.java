@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import DTo.FeedBack;
+import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -372,15 +373,9 @@ public class Contact extends javax.swing.JPanel {
         }
         else {
             FeedBack fb = new FeedBack(hoTen,Email,soDT,dchi,ndung);
+            //Save to database
+            Send_Feedback(fb);
             danhSachFB.add(fb);
-            
-            QlyPhanHoiKhachHang ph = new QlyPhanHoiKhachHang();
-            ph.getMyJTableValue();
-            
-            DefaultTableModel model = (DefaultTableModel) ph.tblFeedback.getModel();
-            model.addRow(new Object[]{fb.getHoten(),fb.getSdt(),fb.getEmail(),fb.getDiachi(),fb.getNoidung()});
-            
-            ph.tblFeedback.setModel(model);
             
             JOptionPane.showMessageDialog(null,"Gửi Thành Công");
             
@@ -424,4 +419,9 @@ public class Contact extends javax.swing.JPanel {
     private javax.swing.JTextField txtNoidung;
     private javax.swing.JTextField txtSdt;
     // End of variables declaration//GEN-END:variables
+
+    private void Send_Feedback(FeedBack fb) {
+       config con = new config();
+       con.UpdateSQL_FeedBack(fb,1,null);
+    }
 }

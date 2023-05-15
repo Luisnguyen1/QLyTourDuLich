@@ -69,7 +69,6 @@ public class config {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
-            taikhoan.setManv(rs.getInt("manv"));
             taikhoan.setQuyentruycap(rs.getString("loaitk"));
             danhSachTaiKhoan.add(taikhoan);
         }
@@ -710,6 +709,101 @@ public class config {
             }
         }
     }
+    
+     public void UpdateSQL_FeedBack(FeedBack fb, int i, String hoten_old) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO feedback(hoten, sdt, email, diachi, noidung) VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM feedback";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, fb.getHoten());
+                stmt.setString(2, fb.getSdt());
+                stmt.setString(3, fb.getEmail());
+                stmt.setString(4, fb.getDiachi());
+                stmt.setString(5, fb.getNoidung());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM feedback WHERE hoten = '" + fb.getHoten() +"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (i == 3) {//sửa
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM feedback WHERE hoten = '" + fb.getHoten() +"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM feedback";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, fb.getHoten());
+                stmt.setString(2, fb.getSdt());
+                stmt.setString(3, fb.getEmail());
+                stmt.setString(4, fb.getDiachi());
+                stmt.setString(5, fb.getNoidung());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
     //--------------------------------------------------------
 
     public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
@@ -832,4 +926,27 @@ public class config {
         return danhSachTour;
     }
 
+    
+    public ArrayList<FeedBack> LayDL_Feedback() {
+        ArrayList<FeedBack> danhSachFB = new ArrayList<>();
+        try(Connection con = DriverManager.getConnection(url, user, password)) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM feedback");
+            while (rs.next()) {
+                FeedBack fb = new FeedBack();
+                fb.setHoten(rs.getString("hoten"));
+                fb.setSdt(rs.getString("sdt"));
+                fb.setEmail(rs.getString("email"));
+                fb.setDiachi(rs.getString("diachi"));
+                fb.setNoidung(rs.getString("noidung"));
+
+                danhSachFB.add(fb);
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return danhSachFB;
+    }
+    
+    
 }
