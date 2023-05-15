@@ -507,14 +507,17 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         ArrayList<DiaDiemVuiChoi> ketQuaTimKiem = new ArrayList<>();
 
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
         for (DiaDiemVuiChoi nv : danhSachdd) {
             if (nv.getMaDiaDiem().toLowerCase().contains(maNVCanTim.toLowerCase())) {
                 ketQuaTimKiem.add(nv);
-            } else {
-                JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-                return;
             }
         }
+
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
 
         // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
         DefaultTableModel model = new DefaultTableModel();

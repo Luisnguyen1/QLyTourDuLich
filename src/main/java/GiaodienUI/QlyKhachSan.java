@@ -599,14 +599,17 @@ public class QlyKhachSan extends javax.swing.JPanel {
     ArrayList<KhachSan> ketQuaTimKiem = new ArrayList<>();
     
     // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-    for (KhachSan kh : danhsachks) {
-        if (kh.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
-            ketQuaTimKiem.add(kh);
-        }else{
-                      JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-            return;
+    // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        for (KhachSan nv : danhsachks) {
+            if (nv.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(nv);
             }
-    }
+        }
+
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
     
     // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
     DefaultTableModel model = new DefaultTableModel();

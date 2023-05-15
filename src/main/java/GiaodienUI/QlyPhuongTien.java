@@ -574,15 +574,17 @@ long soChoDu = Long.parseLong(sochodu);
         }
         ArrayList<PhuongTien> ketQuaTimKiem = new ArrayList<>();
         
-        for(PhuongTien pt : danhSachPT){
-            if(pt.getMapt().toLowerCase().contains(maPTCanTim.toLowerCase())){
-                ketQuaTimKiem.add(pt);
-            }
-            else{
-                      JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-            return;
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        for (PhuongTien nv : danhSachPT) {
+            if (nv.getMapt().toLowerCase().contains(maPTCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(nv);
             }
         }
+
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
         
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Tên Phương Tiện");

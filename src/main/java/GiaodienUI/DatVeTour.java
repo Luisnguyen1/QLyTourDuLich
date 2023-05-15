@@ -330,7 +330,7 @@ public class DatVeTour extends javax.swing.JPanel {
             KhachHang kh = new KhachHang();
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            model.addRow(new Object[]{kh.getTenkh(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
+            model.addRow(new Object[]{bvt.getHoTen(),bvt.getDiaChi(), bvt.getSoDT(), bvt.getEmail(), bvt.getMaVeTour(), bvt.getNoiDi(), bvt.getNoiDen(), bvt.getLoaiTour(), bvt.getGiaTour()});
 
             jTable1.setModel(model);
 

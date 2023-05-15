@@ -1,15 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
 package GiaodienUI;
 
-import DTo.KhachHang;
 import DTo.NhanVien;
-import Excel.ExportCSV;
 import KetnoiSQL_DAL.config;
-import java.io.File;
-import java.io.IOException;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -18,10 +10,7 @@ import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
-/**
- *
- * @author Thanh Tran
- */
+
 public class QlyNhanVien extends javax.swing.JPanel {
 
     DefaultTableModel model = new DefaultTableModel();
@@ -79,7 +68,6 @@ public class QlyNhanVien extends javax.swing.JPanel {
         jLabel5 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
-        btnExport1 = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -264,16 +252,6 @@ public class QlyNhanVien extends javax.swing.JPanel {
             .addComponent(jLabel6)
         );
 
-        btnExport1.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport1.setText("Export");
-        btnExport1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExport1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -313,10 +291,9 @@ public class QlyNhanVien extends javax.swing.JPanel {
                                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnTimKiem)
-                                .addGap(55, 55, 55)
-                                .addComponent(btnExport1, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(145, 145, 145))
                             .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 731, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -347,7 +324,6 @@ public class QlyNhanVien extends javax.swing.JPanel {
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnExport1)
                     .addComponent(btnTimKiem)
                     .addComponent(btnThem)
                     .addComponent(btnSua)
@@ -643,14 +619,10 @@ public class QlyNhanVien extends javax.swing.JPanel {
             jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
-    private void btnExport1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExport1ActionPerformed
-
-    }//GEN-LAST:event_btnExport1ActionPerformed
+ }
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport1;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;

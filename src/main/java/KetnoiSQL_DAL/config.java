@@ -633,8 +633,10 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, KhuyenMai.getMakm());
                 stmt.setString(2, KhuyenMai.getTenkm());
-                stmt.setDate(3, (Date) KhuyenMai.getNgaykm());
-                stmt.setDate(4, (Date) KhuyenMai.getHansudung());
+                java.sql.Date ngayDi = new java.sql.Date(KhuyenMai.getNgaykm().getTime());
+                stmt.setDate(3, ngayDi);
+                java.sql.Date ngayVe = new java.sql.Date(KhuyenMai.getHansudung().getTime());
+                stmt.setDate(4,ngayVe);
                 stmt.setLong(5, KhuyenMai.getTiengiam());
                 stmt.execute();
 

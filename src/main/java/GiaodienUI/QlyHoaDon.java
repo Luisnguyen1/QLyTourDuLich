@@ -539,14 +539,17 @@ public class QlyHoaDon extends javax.swing.JPanel {
         ArrayList<HoaDon> ketQuaTimKiem = new ArrayList<>();
 
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
+        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
         for (HoaDon nv : danhSachHD) {
             if (nv.getMahd().toLowerCase().contains(maNVCanTim.toLowerCase())) {
                 ketQuaTimKiem.add(nv);
-            } else {
-                JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
-                return;
             }
         }
+
+// Kiểm tra kết quả tìm kiếm
+        if (ketQuaTimKiem.isEmpty()) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
 
         // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
         model.addColumn("Mã hóa đơn");
@@ -565,7 +568,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jTable1.setModel(model);
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
-
+    }
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         try {
             danhSachHD = con.layDL_HoaDon();
