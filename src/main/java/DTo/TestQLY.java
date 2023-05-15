@@ -4,7 +4,7 @@
  */
 package DTo;
 
-import GiaodienUI.BookVeTour;
+
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
 import GiaodienUI.QlyDiaDiemTour;
@@ -25,7 +25,6 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.sql.Connection;
 import java.sql.SQLException;
-import org.apache.bcel.generic.AALOAD;
 
 /**
  *
@@ -37,7 +36,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-    QlyPhuongTien ql = new QlyPhuongTien();
+    QlyNhanVien ql = new QlyNhanVien();
             
             
 js.add(ql);
