@@ -14,6 +14,7 @@ import DTo.DiaDiem;
 import DTo.DiaDiemVuiChoi;
 import DTo.FeedBack;
 import DTo.KhachHang;
+import DTo.KhachSan;
 import DTo.QlyHoaDon;
 import DTo.Tour;
 import DTo.VeTour;
@@ -996,6 +997,103 @@ public class config {
             }
         }
     }
+     
+      public void UpdateSQL_KhachSan(KhachSan tk, int i, String maks_old) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO khachsan(DiaDiemTour, TenKS, MaKS, SDT, TienKS, TienPhong) VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM khachsan";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, tk.getDiaDiemTour());
+                stmt.setString(2, tk.getTenKhachSan());
+                stmt.setString(3, tk.getMaKhachSan());
+                stmt.setString(4, tk.getSdt());
+                stmt.setString(5, Long.toString(tk.getTienKhachSan()));
+                stmt.setString(6, Long.toString(tk.getTienPhong()));
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM khachsan WHERE MaKS = '" + tk.getMaKhachSan()+"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (i == 3) {//sửa
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM khachsan WHERE MaKS = '" + tk.getMaKhachSan()+"';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO khachsan VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM khachsan";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, tk.getDiaDiemTour());
+                stmt.setString(2, tk.getTenKhachSan());
+                stmt.setString(3, tk.getMaKhachSan());
+                stmt.setString(4, tk.getSdt());
+                stmt.setString(5, Long.toString(tk.getTienKhachSan()));
+                stmt.setString(6, Long.toString(tk.getTienPhong()));
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
     //--------------------------------------------------------
 
     public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
@@ -1183,6 +1281,28 @@ public class config {
             
         }
         return danhSachKH;
+    }
+     
+      public ArrayList<KhachSan> LayDL_KhachSan() {
+        ArrayList<KhachSan> danhSachKS = new ArrayList<>();
+        try(Connection con = DriverManager.getConnection(url, user, password)) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
+            while (rs.next()) {
+                KhachSan fb = new KhachSan();
+                fb.setTenKhachSan(rs.getString("TenKS"));
+                fb.setDiaDiemTour(rs.getString("DiaDiemTour"));
+                fb.setMaKhachSan(rs.getString("MaKS"));
+                fb.setSdt(rs.getString("SDT"));
+                fb.setTienKhachSan(rs.getLong("TienKS"));
+                fb.setTienPhong(rs.getLong("TienPhong"));
+
+                danhSachKS.add(fb);
+            }
+        } catch (SQLException ex) {
+            
+        }
+        return danhSachKS;
     }
     
 }
