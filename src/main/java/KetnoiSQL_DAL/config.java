@@ -81,7 +81,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO hoadon VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM hoadon";
             try {
                 // connect to database
@@ -120,7 +120,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE MaHD = " + HoaDon.getMahd();
+                String delete = "DELETE FROM hoadon WHERE mahoadon = " + HoaDon.getMahd();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -132,12 +132,12 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE MaHD = " + HoaDon.getMahd();
+                String delete = "DELETE FROM hoadon WHERE mahoadon = " + HoaDon.getMahd();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO hoadon VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM hoadon";
             try {
                 // connect to database
@@ -275,8 +275,8 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?,?)";
-            String selectAll = "SELECT * FROM ve";
+            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM vetour";
             try {
                 // connect to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -316,7 +316,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM ve WHERE MaVe = " + nhanvien.getMavetour();
+                String delete = "DELETE FROM vetour WHERE mavetour = " + nhanvien.getMavetour();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -328,13 +328,13 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM ve WHERE MaVe = " + nhanvien.getMavetour();
+                String delete = "DELETE FROM vetour WHERE mavetour = " + nhanvien.getMavetour();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?,?)";
-            String selectAll = "SELECT * FROM ve";
+            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?,?)";
+            String selectAll = "SELECT * FROM vetour";
             try {
                 // connect to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -376,7 +376,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO phuongtien VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM phuongtien";
             try {
                 // connect to database
@@ -414,7 +414,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE MaPT = " + PhuongTien.getMapt();
+                String delete = "DELETE FROM phuongtien WHERE maphuongtien = " + PhuongTien.getMapt();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -426,7 +426,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE MaPT = " + PhuongTien.getMapt();
+                String delete = "DELETE FROM phuongtien WHERE maphuongtien = " + PhuongTien.getMapt();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -519,7 +519,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE MaTour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -532,7 +532,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE MaTour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -541,7 +541,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE MaTour = " + Tour.getMaTour();
+                String delete = "DELETE FROM tour WHERE matour = " + Tour.getMaTour();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -605,11 +605,11 @@ public class config {
 
         while (rs.next()) {
             HoaDon HoaDon = new HoaDon();
-            HoaDon.setMahd(rs.getString("MaHD"));
-            HoaDon.setMakhachdatve(rs.getString("MaKh"));
-            HoaDon.setTongtien(Long.parseLong(rs.getString("TongTien")));
-            HoaDon.setNgayxuathoadon(rs.getDate("NgayXuatHoaDon"));
-            HoaDon.setManv(rs.getString("MaNV"));
+            HoaDon.setMahd(rs.getString("mahoadon"));
+            HoaDon.setMakhachdatve(rs.getString("makhachdatve"));
+            HoaDon.setTongtien(Long.parseLong(rs.getString("tongtien")));
+            HoaDon.setNgayxuathoadon(rs.getDate("ngayxuathoadon"));
+            HoaDon.setManv(rs.getString("manhanvien"));
             danhSachHoaDon.add(HoaDon);
         }
         return danhSachHoaDon;
@@ -860,13 +860,13 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM feedback WHERE hoten = '" + tk.getMatkhau()+"';";
+                String delete = "DELETE FROM taikhoan WHERE matkhau = '" + tk.getMatkhau()+"';";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?)";
-            String selectAll = "SELECT * FROM feedback";
+            String sqlInsert = "INSERT INTO taikhoan VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM taikhoan";
             try {
                 // connect to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -912,11 +912,11 @@ public class config {
 
         while (rs.next()) {
             KhuyenMai taikhoan = new KhuyenMai();
-            taikhoan.setMakm(rs.getString("MaKhuyenMai"));
-            taikhoan.setTenkm(rs.getString("tenKM"));
-            taikhoan.setNgaykm(rs.getDate("NgayKM"));
-            taikhoan.setHansudung(rs.getDate("HanSuDung"));
-            taikhoan.setTiengiam(rs.getLong("TienGiam"));
+            taikhoan.setMakm(rs.getString("makhuyenmai"));
+            taikhoan.setTenkm(rs.getString("tenkhuyenmai"));
+            taikhoan.setNgaykm(rs.getDate("ngaykhuyenmai"));
+            taikhoan.setHansudung(rs.getDate("hansudung"));
+            taikhoan.setTiengiam(rs.getLong("tiengiam"));
             danhSachTaiKhoan.add(taikhoan);
         }
         return danhSachTaiKhoan;
@@ -934,10 +934,10 @@ public class config {
 
         while (rs.next()) {
             VeTour VeTour = new VeTour();
-            VeTour.setMavetour(rs.getString("MaVe"));
-            VeTour.setMakh(rs.getString("MaKH"));
-            VeTour.setHansudung(rs.getDate("HanSuDung"));
-            VeTour.setNgaydatve(rs.getDate("NgayTaoVe"));
+            VeTour.setMavetour(rs.getString("mavetour"));
+            VeTour.setMakh(rs.getString("makhachhang"));
+            VeTour.setHansudung(rs.getDate("hansudung"));
+            VeTour.setNgaydatve(rs.getDate("ngaytaove"));
             VeTour.setTiengiam((int) rs.getLong("tiengiam"));
             danhSachVeTour.add(VeTour);
         }
@@ -957,11 +957,11 @@ public class config {
 
         while (rs.next()) {
             NhanVien NhanVien = new NhanVien();
-            NhanVien.setManv(rs.getString("MaNV"));
-            NhanVien.setLoainv(rs.getString("LoaiNV"));
-            NhanVien.setTennv(rs.getString("TenNV"));
-            NhanVien.setChucvu(rs.getString("ChucVu"));
-            NhanVien.setDiachi(rs.getString("DiaChi"));
+            NhanVien.setManv(rs.getString("manv"));
+            NhanVien.setLoainv(rs.getString("loainv"));
+            NhanVien.setTennv(rs.getString("tennv"));
+            NhanVien.setChucvu(rs.getString("chucvu"));
+            NhanVien.setDiachi(rs.getString("diachi"));
             danhSachNhanVien.add(NhanVien);
         }
         return danhSachNhanVien;
@@ -980,18 +980,18 @@ public class config {
 
         while (rs.next()) {
             Tour Tour = new Tour();
-            Tour.setMaTour(rs.getString("MaTour"));
-            Tour.setTongsocho(rs.getInt("TongSoCho"));
-            Tour.setSochodu(rs.getInt("SoChoConTrong"));
-            Tour.setTenTour(rs.getString("TenTour"));
-            Tour.setDiaDiemTour(rs.getString("Diadiemtour"));
-            Tour.setDiaDiemdi(rs.getString("DiaDiemDi"));
-            Tour.setDiaDiemden(rs.getString("DiaDiemDen"));
-            Tour.setLoaiTour(rs.getString("LoaiTour"));
-            Tour.setSongaydi(rs.getInt("SoNgay"));
-            Tour.setNgaydi(rs.getDate("NgayKhoiHanh"));
-            Tour.setGiaTour(rs.getInt("GiaTour"));
-            Tour.setNgayve(rs.getDate("NgayKetThuc"));
+            Tour.setMaTour(rs.getString("matour"));
+            Tour.setTongsocho(rs.getInt("tongsocho"));
+            Tour.setSochodu(rs.getInt("sochodu"));
+            Tour.setTenTour(rs.getString("tentour"));
+            Tour.setDiaDiemTour(rs.getString("diadiemtour"));
+            Tour.setDiaDiemdi(rs.getString("diadiemdi"));
+            Tour.setDiaDiemden(rs.getString("diadiemden"));
+            Tour.setLoaiTour(rs.getString("loaitour"));
+            Tour.setSongaydi(rs.getInt("songaydi"));
+            Tour.setNgaydi(rs.getDate("ngaydi"));
+            Tour.setGiaTour(rs.getInt("giatour"));
+            Tour.setNgayve(rs.getDate("ngayve"));
 
             danhSachTour.add(Tour);
         }
@@ -1010,11 +1010,11 @@ public class config {
 
         while (rs.next()) {
             PhuongTien PhuongTien = new PhuongTien();
-            PhuongTien.setMapt(rs.getString("MaPT"));
-            PhuongTien.setLoaipt(rs.getString("LoaiPT"));
-            PhuongTien.setBienso(rs.getString("TenPT"));
-            PhuongTien.setTongsocho(rs.getLong("SoChoTrong"));
-            PhuongTien.setSochocondu(rs.getLong("SoChoConDu"));
+            PhuongTien.setMapt(rs.getString("maphuongtien"));
+            PhuongTien.setLoaipt(rs.getString("loaiphuongtien"));
+            PhuongTien.setBienso(rs.getString("bienso"));
+            PhuongTien.setTongsocho(rs.getLong("tongsocho"));
+            PhuongTien.setSochocondu(rs.getLong("sochodu"));
 
             danhSachTour.add(PhuongTien);
         }
