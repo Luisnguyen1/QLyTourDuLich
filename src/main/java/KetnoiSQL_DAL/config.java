@@ -216,7 +216,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE MaNV = " + nhanvien.getManv();
+                String delete = "DELETE FROM nhanvien WHERE manv = " + nhanvien.getManv();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -229,7 +229,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE MaNV = " + MaNV_OLD;
+                String delete = "DELETE FROM nhanvien WHERE manv = " + MaNV_OLD;
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -621,7 +621,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO KhuyenMai VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO khuyenmai VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM khuyenmai";
             try {
                 // connect to database
@@ -659,7 +659,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenmai = " + KhuyenMai.getMakm();
+                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = " + KhuyenMai.getMakm();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -671,12 +671,12 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenmai = " + KhuyenMai.getMakm();
+                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = " + KhuyenMai.getMakm();
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO KhuyenMai VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO khuyenmai VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM khuyenmai";
             try {
                 // connect to database
