@@ -15,6 +15,9 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         return this.maDiaDiem.compareTo(o.maDiaDiem);
     }
 
+    public DiaDiemVuiChoi() {
+    }
+    
     public DiaDiemVuiChoi(String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
         this.diaDiemTour = diaDiemTour;
         this.tenDiaDiem = tenDiaDiem;

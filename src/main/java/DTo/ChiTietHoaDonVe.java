@@ -3,15 +3,45 @@ package DTo;
 import java.util.Scanner;
 
 public class ChiTietHoaDonVe {
+    private String matour;
+    private String mave;
+    private String maHD;
     private int soluongve;
     private long tienve;
 
-    public ChiTietHoaDonVe(int soluongve, long tienve) {
+    public ChiTietHoaDonVe() {
+    }
+
+    public ChiTietHoaDonVe(String matour, String mave, String maHD, int soluongve, long tienve) {
+        this.matour = matour;
+        this.mave = mave;
+        this.maHD = maHD;
         this.soluongve = soluongve;
         this.tienve = tienve;
     }
-    ChiTietHoaDonVe() {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+
+    public String getMatour() {
+        return matour;
+    }
+
+    public void setMatour(String matour) {
+        this.matour = matour;
+    }
+
+    public String getMave() {
+        return mave;
+    }
+
+    public void setMave(String mave) {
+        this.mave = mave;
+    }
+
+    public String getMaHD() {
+        return maHD;
+    }
+
+    public void setMaHD(String maHD) {
+        this.maHD = maHD;
     }
 
     public int getSoluongve() {
@@ -30,6 +60,9 @@ public class ChiTietHoaDonVe {
         this.tienve = tienve;
     }
 
+    
+
+    
     @Override
     public String toString() {
         return "ChiTietHoaDonVe{" +
