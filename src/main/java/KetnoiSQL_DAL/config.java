@@ -1378,6 +1378,8 @@ public class config {
             }
         }
     }
+     
+      
     //--------------------------------------------------------
 
     public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
@@ -1565,6 +1567,7 @@ public class config {
         return danhSachKH;
     }
 
+
     public ArrayList<DiaDiemVuiChoi> LayDL_DDVC() {
         ArrayList<DiaDiemVuiChoi> DiaDiemVuiChoi = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
@@ -1620,5 +1623,9 @@ public class config {
         }
         return dd;
     }
+
+     
+      
+    
 
 }

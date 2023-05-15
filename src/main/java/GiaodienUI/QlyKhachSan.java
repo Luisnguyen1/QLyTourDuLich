@@ -7,6 +7,7 @@ package GiaodienUI;
 import DTo.KhachHang;
 import DTo.KhachSan;
 import DTo.NhanVien;
+import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
@@ -21,10 +22,11 @@ public class QlyKhachSan extends javax.swing.JPanel {
     /**
      * Creates new form QlyKhachSan
      */
-    ArrayList<KhachSan> danhsachks = new ArrayList<KhachSan>();
+    ArrayList<KhachSan> danhSachKS = new ArrayList<KhachSan>();
 
     public QlyKhachSan() {
         initComponents();
+        loadKhachSan();
     }
 
     /**
@@ -443,6 +445,9 @@ public class QlyKhachSan extends javax.swing.JPanel {
         String diaDiemTour = cbxDiaDiemTour.getSelectedItem().toString();
         long tienKhachSan = Long.parseLong(txtTienKhachSan.getText());
 
+        config con = new config();
+        danhSachKS = con.LayDL_KhachSan();
+        
         if (tenKhachSan.isEmpty() || maKhachSan.isEmpty() || diaDiemTour.isEmpty() || txtSoDienThoai.getText().isEmpty() || txtTienPhong.getText().isEmpty() || txtTienKhachSan.getText().isEmpty()) {
             JOptionPane.showMessageDialog(null, "Nhập đầy đủ thông tin");
         } else {
@@ -450,7 +455,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
             KhachSan kh = new KhachSan(diaDiemTour, tenKhachSan, soDienThoai, tienKhachSan, tienPhong, maKhachSan);
 // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
-            danhsachks.add(kh);
+            danhSachKS.add(kh);
 
 // lấy ra model của JTable hiện tại
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -458,6 +463,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 // thêm đối tượng KhachHang vào model
             model.addRow(new Object[]{kh.getTenKhachSan(), kh.getMaKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong(), kh.getDiaDiemTour()});
 
+            con.UpdateSQL_KhachSan(kh, 1, null);
 // cập nhật lại model cho JTable
             jTable1.setModel(model);
 
@@ -480,6 +486,9 @@ public class QlyKhachSan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
             return;
         }
+        
+        config con = new config();
+        danhSachKS = con.LayDL_KhachSan();
 
 // lấy ra model của JTable hiện tại
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -489,7 +498,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
 // tìm khách hàng trong danh sách dựa vào mã
         KhachSan khachHangCanXoa = null;
-        for (KhachSan kh : danhsachks) {
+        for (KhachSan kh : danhSachKS) {
             if (kh.getMaKhachSan().equals(maKH)) {
                 khachHangCanXoa = kh;
                 break;
@@ -503,11 +512,12 @@ public class QlyKhachSan extends javax.swing.JPanel {
         }
 
 // xóa khách hàng khỏi danh sách
-        danhsachks.remove(khachHangCanXoa);
+        danhSachKS.remove(khachHangCanXoa);
 
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
+        con.UpdateSQL_KhachSan(khachHangCanXoa, 2, maKH);
 // cập nhật lại model cho JTable
         jTable1.setModel(model);
 
@@ -525,6 +535,9 @@ public class QlyKhachSan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
             return;
         }
+        
+        config con = new config();
+        danhSachKS = con.LayDL_KhachSan();
 
 // lấy ra model của JTable hiện tại
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -534,7 +547,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
         String oldNV = maNV;
 // tìm khách hàng trong danh sách dựa vào mã
         KhachSan nhanVienCanSua = null;
-        for (KhachSan nv : danhsachks) {
+        for (KhachSan nv : danhSachKS) {
             if (nv.getMaKhachSan().equals(maNV)) {
                 nhanVienCanSua = nv;
                 break;
@@ -587,6 +600,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
         model.setValueAt(tienPhong, selectedRow, 4);
          model.setValueAt(diadiemTour, selectedRow, 5);
 
+         con.UpdateSQL_KhachSan(nhanVienCanSua, 3, oldNV);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Sạn Thành Công");
 
@@ -599,7 +613,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
     ArrayList<KhachSan> ketQuaTimKiem = new ArrayList<>();
     
     // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-    for (KhachSan kh : danhsachks) {
+    for (KhachSan kh : danhSachKS) {
         if (kh.getMaKhachSan().toLowerCase().contains(tenKHCanTim.toLowerCase())) {
             ketQuaTimKiem.add(kh);
         }else{
@@ -636,7 +650,13 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }//GEN-LAST:event_btnExportActionPerformed
 
     private void loadKhachSan(){
-        
+        config con = new config();
+        danhSachKS.clear();
+        danhSachKS.addAll(con.LayDL_KhachSan());
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (KhachSan nv : danhSachKS) {
+            model.addRow(new Object[]{nv.getTenKhachSan(), nv.getMaKhachSan(), nv.getSdt(), nv.getTienKhachSan(), nv.getTienPhong(),nv.getDiaDiemTour()});
+        }
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

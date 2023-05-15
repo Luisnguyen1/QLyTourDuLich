@@ -12,10 +12,10 @@ public class QlyKhachHang implements Comparable<QlyKhachHang>{
     public String hoTen;
     public String maKhachHang;
     public String diaChi;
-    public long sdt;
+    public String sdt;
     public String email;
 
-    public QlyKhachHang(String hoTen, String maKhachHang, String diaChi, long sdt, String email) {
+    public QlyKhachHang(String hoTen, String maKhachHang, String diaChi, String sdt, String email) {
         this.hoTen = hoTen;
         this.maKhachHang = maKhachHang;
         this.diaChi = diaChi;
@@ -60,11 +60,11 @@ public class QlyKhachHang implements Comparable<QlyKhachHang>{
         this.diaChi = diaChi;
     }
 
-    public long getSdt() {
+    public String getSdt() {
         return sdt;
     }
 
-    public void setSdt(long sdt) {
+    public void setSdt(String sdt) {
         this.sdt = sdt;
     }
 
