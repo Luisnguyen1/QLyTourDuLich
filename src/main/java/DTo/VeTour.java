@@ -8,7 +8,7 @@ import java.util.Date;
 public class VeTour implements Comparable <VeTour>{
         public String mavetour;
         public String matour;
-        public String makh;
+      
         public long tiengiam;
         public Date ngaydatve;
         public Date hansudung;
@@ -16,7 +16,7 @@ public class VeTour implements Comparable <VeTour>{
          public VeTour (DTo.VeTour x){
             mavetour = x.mavetour;
             matour = x.matour;
-            makh = x.makh;
+          
             tiengiam = x.tiengiam;
             ngaydatve = x.ngaydatve;
             hansudung = x.hansudung;
@@ -25,10 +25,10 @@ public class VeTour implements Comparable <VeTour>{
     public VeTour() {
     }
          
-        public VeTour (String mavetour, String matour, String makh, long tiengiam, Date ngaydatve, Date hansudung){
+        public VeTour (String mavetour, String matour, long tiengiam, Date ngaydatve, Date hansudung){
             this.mavetour = mavetour;
             this.matour = matour;
-            this.makh = makh;
+
             this.tiengiam = tiengiam;
             this.ngaydatve = ngaydatve;
             this.hansudung = hansudung;
@@ -50,13 +50,6 @@ public class VeTour implements Comparable <VeTour>{
         this.matour = matour;
     }
 
-    public String getMakh() {
-        return makh;
-    }
-
-    public void setMakh(String makh) {
-        this.makh = makh;
-    }
 
     public long getTiengiam() {
         return tiengiam;
