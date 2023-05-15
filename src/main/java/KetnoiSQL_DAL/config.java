@@ -631,8 +631,8 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, KhuyenMai.getMakm());
                 stmt.setString(2, KhuyenMai.getTenkm());
-                stmt.setDate(3, KhuyenMai.getNgaykm());
-                stmt.setLong(4, KhuyenMai.getHansudung());
+                stmt.setDate(3, (Date) KhuyenMai.getNgaykm());
+                stmt.setDate(4, (Date) KhuyenMai.getHansudung());
                 stmt.setLong(5, KhuyenMai.getTiengiam());
                 stmt.execute();
 
@@ -686,8 +686,8 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, KhuyenMai.getMakm());
                 stmt.setString(2, KhuyenMai.getTenkm());
-                stmt.setInt(3, KhuyenMai.getNgaykm());
-                stmt.setLong(4, KhuyenMai.getHansudung());
+                stmt.setDate(3, (Date) KhuyenMai.getNgaykm());
+                stmt.setDate(4, (Date) KhuyenMai.getHansudung());
                 stmt.setLong(5, KhuyenMai.getTiengiam());
                 stmt.execute();
 
@@ -820,8 +820,8 @@ public class config {
             KhuyenMai taikhoan = new KhuyenMai();
             taikhoan.setMakm(rs.getString("MaKhuyenMai"));
             taikhoan.setTenkm(rs.getString("tenKM"));
-            taikhoan.setNgaykm(rs.getInt("NgayKM"));
-            taikhoan.setHansudung(rs.getInt("HanSuDung"));
+            taikhoan.setNgaykm(rs.getDate("NgayKM"));
+            taikhoan.setHansudung(rs.getDate("HanSuDung"));
             taikhoan.setTiengiam(rs.getLong("TienGiam"));
             danhSachTaiKhoan.add(taikhoan);
         }
