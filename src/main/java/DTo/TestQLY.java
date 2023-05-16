@@ -37,7 +37,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-        QlyDiaDiemVuiChoi ql = new QlyDiaDiemVuiChoi();
+        QlyDiaDiemTour ql = new QlyDiaDiemTour();
             
             
 js.add(ql);

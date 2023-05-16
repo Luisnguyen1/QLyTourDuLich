@@ -32,12 +32,9 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
     public QlyDiaDiemVuiChoi() {
         initComponents();
-        try {
-            // Lấy thông tin từ GUI
+    
             danhSachdd= con.LayDL_DDVC();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyDiaDiemVuiChoi.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         model = (DefaultTableModel) jTable1.getModel();
         for (DiaDiemVuiChoi nv : danhSachdd) {
             model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
@@ -483,7 +480,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
         if (nhanVienCanSua == null) {
-            JOptionPane.showMessageDialog(null, "Đại điểm Không Tồn Tại");
+            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
             return;
         }
 
@@ -506,15 +503,15 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 // cập nhật thông tin khách hàng
         nhanVienCanSua.setDiaDiemTour(diaDiemTour);
         nhanVienCanSua.setTenDiaDiem(diadiem);
-        nhanVienCanSua.setMaDiaDiem(maNV);
+        nhanVienCanSua.setMaDiaDiem(maNVNew);
 
 
 // cập nhật lại model cho JTable
         model.setValueAt(diaDiemTour, selectedRow, 0);
         model.setValueAt(diadiem, selectedRow, 1);
-        model.setValueAt(maNV, selectedRow, 2);
+        model.setValueAt(maNVNew, selectedRow, 2);
         
-            con.UpdateSQL_DDVC(nhanVienCanSua, 3, "null");
+            con.UpdateSQL_DDVC(nhanVienCanSua, 3, oldNV);
 
 
 // thông báo thành công

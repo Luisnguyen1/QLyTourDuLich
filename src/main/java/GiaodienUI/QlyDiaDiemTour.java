@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import DTo.DiaDiem;
+import DTo.DiaDiemVuiChoi;
 import DTo.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
@@ -17,13 +18,25 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyDiaDiemTour extends javax.swing.JPanel {
+    DefaultTableModel model = new DefaultTableModel();
 
+    /**
+     * Creates new form QlyKhachSan
+     */
     ArrayList<DiaDiem> danhSachDD = new ArrayList<>();
+    config con = new config();
+    
     /**
      * Creates new form QlyDiaDiemTour
      */
     public QlyDiaDiemTour() {
         initComponents();
+         danhSachDD= con.LayDL_DiaDiem();
+        
+        model = (DefaultTableModel) jTable1.getModel();
+        for (DiaDiem dd : danhSachDD) {
+                model.addRow(new Object[]{dd.getKhuvuc(),dd.getThuoctinh(),dd.getTendd(),dd.getMadd()});
+        }
     }
 
     /**
@@ -297,6 +310,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxDiaDiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+          danhSachDD = con.LayDL_DiaDiem();
         String khuVuc = cbxKhuVuc.getSelectedItem().toString();
         String tinhTP = cbxTinhThanhPho.getSelectedItem().toString();
                 String diaDiem = cbxDiaDiem.getSelectedItem().toString();
@@ -322,7 +336,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
                 
                 DiaDiem dd = new DiaDiem(maDiaDiem, diaDiem, tinhTP, khuVuc);
                 danhSachDD.add(dd);
-                
+                 con.UpdateSQL_DiaDiem(dd, 1, "null");
                 model.addRow(new Object[]{dd.getKhuvuc(),dd.getThuoctinh(),dd.getTendd(),dd.getMadd()});
                 
                 jTable1.setModel(model);
@@ -335,6 +349,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
+        danhSachDD = con.LayDL_DiaDiem();
         int selectedRow = jTable1.getSelectedRow();
         
         if(selectedRow == -1 ){
@@ -353,6 +368,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         }
         
         danhSachDD.remove(ddCanXoa);
+         con.UpdateSQL_DiaDiem(ddCanXoa, 2, "null");
         model.removeRow(selectedRow);
         jTable1.setModel(model);
         
@@ -361,6 +377,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+        danhSachDD = con.LayDL_DiaDiem();
         int selectedRow = jTable1.getSelectedRow();
         
         if(selectedRow == -1 ){
@@ -376,6 +393,10 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
                 ddCanSua = dd;
                 break;
             }
+        }
+        if (ddCanSua == null) {
+            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
+            return;
         }
         
         JComboBox<String> cbxKhuVuc = new JComboBox<>();
@@ -433,11 +454,13 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         model.setValueAt(diaDiem,selectedRow,2);
         model.setValueAt(maDiaDiem,selectedRow,3);
                 
+         con.UpdateSQL_DiaDiem(ddCanSua, 3, "null");
         JOptionPane.showMessageDialog(null,"Sửa Địa Điểm Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-         String maNVCanTim = txtMaDiaDiem.getText();
+        danhSachDD = con.LayDL_DiaDiem(); 
+        String maNVCanTim = txtMaDiaDiem.getText();
 
         // Tạo một danh sách để lưu khách hàng tìm được
         ArrayList<DiaDiem> ketQuaTimKiem = new ArrayList<>();
