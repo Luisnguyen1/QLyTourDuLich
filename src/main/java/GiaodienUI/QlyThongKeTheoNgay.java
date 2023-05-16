@@ -28,18 +28,18 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
 
     public QlyThongKeTheoNgay() {
         initComponents();
-       try {
+        try {
             danhSachHD = con.layDL_HoaDon();
         } catch (SQLException ex) {
             Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
         }
-       model = (DefaultTableModel) jTable1.getModel();
-        
+        model = (DefaultTableModel) jTable1.getModel();
+
         for (HoaDon nv : danhSachHD) {
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
-            
+
         }
-        
+
     }
 
     /**
@@ -376,45 +376,43 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
         int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
         int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDi, thangDi-1, ngayDi);
+        calendar.set(namDi, thangDi - 1, ngayDi);
         Date ngayDiDate = calendar.getTime();
-        
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayDiString = dateFormat.format(ngayDiDate);
-                
-        
+
         java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
-        System.out.println(ngayXuat); 
-        
+        System.out.println(ngayXuat);
+
         ArrayList<HoaDon> tempHD = new ArrayList<>();
         for (HoaDon hoaDon : danhSachHD) {
             System.out.println(hoaDon.getNgayxuathoadon());
-            
-            if (ngayXuat.getDate()== hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear()== hoaDon.getNgayxuathoadon().getYear()) {
+
+            if (ngayXuat.getDate() == hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear() == hoaDon.getNgayxuathoadon().getYear()) {
                 tempHD.add(hoaDon);
                 System.out.println("Đúng");
-            }
-            else{   
+            } else {
                 System.out.println("Sai");
             }
         }
         model = (DefaultTableModel) jTable1.getModel();
         long tong = 0;
-        for (int i = 0; i < model.getRowCount() + 1; i++) {
-            model.removeRow(i);
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
         }
         for (HoaDon nv : tempHD) {
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
             tong = tong + nv.getTongtien();
         }
-        
-        txtDoanhThu.setText( Long.toString(tong));
+
+        txtDoanhThu.setText(Long.toString(tong)+" VND");
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
 
