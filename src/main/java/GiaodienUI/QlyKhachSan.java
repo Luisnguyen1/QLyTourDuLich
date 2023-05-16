@@ -8,7 +8,10 @@ import DTo.KhachHang;
 import DTo.KhachSan;
 import DTo.NhanVien;
 import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -28,6 +31,11 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
     public QlyKhachSan() {
         initComponents();
+        danhsachks = con.LayDL_KhachSan();
+        model = (DefaultTableModel) jTable1.getModel();
+        for (KhachSan nv : danhsachks) {
+            model.addRow(new Object[]{nv.getTenKhachSan(), nv.getMaKhachSan(), nv.getSdt(), nv.getTienKhachSan(), nv.getTienPhong(), nv.getDiaDiemTour()});
+        }
     }
 
     /**
@@ -389,7 +397,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
                 .addGap(55, 55, 55)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 820, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -398,7 +405,8 @@ public class QlyKhachSan extends javax.swing.JPanel {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jSeparator1)
-                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -437,7 +445,8 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienPhongActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
- 
+        // Lấy thông tin từ GUI
+        danhsachks = con.LayDL_KhachSan();
         String soDienThoai = txtSoDienThoai.getText();
 
         long tienPhong = Long.parseLong(txtTienPhong.getText());
@@ -454,7 +463,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
             KhachSan kh = new KhachSan(diaDiemTour, tenKhachSan, soDienThoai, tienKhachSan, tienPhong, maKhachSan);
 // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
             danhsachks.add(kh);
-
+               con.UpdateSQL_KhachSan(kh, 1, "null");
 // lấy ra model của JTable hiện tại
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -469,13 +478,14 @@ public class QlyKhachSan extends javax.swing.JPanel {
             txtMaKhachSan.setText("");
             txtSoDienThoai.setText("");
             txtTienKhachSan.setText("");
-
+            txtTienPhong.setText("");
         }
 
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
+         danhsachks = con.LayDL_KhachSan();
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -507,7 +517,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
 // xóa khách hàng khỏi danh sách
         danhsachks.remove(khachHangCanXoa);
-
+         con.UpdateSQL_KhachSan(khachHangCanXoa, 2, "null");
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
@@ -521,6 +531,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
+          danhsachks = con.LayDL_KhachSan();
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -589,7 +600,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
         model.setValueAt(tienKS, selectedRow, 3);
         model.setValueAt(tienPhong, selectedRow, 4);
          model.setValueAt(diadiemTour, selectedRow, 5);
-
+          con.UpdateSQL_KhachSan(nhanVienCanSua, 3, "null");
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Khách Sạn Thành Công");
 
@@ -597,7 +608,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String tenKHCanTim = txtMaKhachSan.getText();
-    
+        danhsachks = con.LayDL_KhachSan();
     // Tạo một danh sách để lưu khách hàng tìm được
     ArrayList<KhachSan> ketQuaTimKiem = new ArrayList<>();
     
@@ -638,9 +649,6 @@ public class QlyKhachSan extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportActionPerformed
 
-    private void loadKhachSan(){
-        
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;

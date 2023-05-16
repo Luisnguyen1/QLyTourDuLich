@@ -5,7 +5,9 @@
 package GiaodienUI;
 
 import DTo.DiaDiemVuiChoi;
+import DTo.KhachSan;
 import DTo.NhanVien;
+import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
@@ -20,12 +22,21 @@ import org.apache.commons.codec.language.DaitchMokotoffSoundex;
  * @author Thanh Tran
  */
 public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
-    ArrayList<DiaDiemVuiChoi> danhSachdd = new ArrayList<DiaDiemVuiChoi>();
+    DefaultTableModel model = new DefaultTableModel();
+
     /**
-     * Creates new form QlyDiaDiemVuiChoi
+     * Creates new form QlyKhachSan
      */
+    ArrayList<DiaDiemVuiChoi> danhSachdd = new ArrayList<DiaDiemVuiChoi>();
+    config con = new config();
+
     public QlyDiaDiemVuiChoi() {
         initComponents();
+        danhSachdd = con.LayDL_DDVC();
+        model = (DefaultTableModel) jTable1.getModel();
+        for (DiaDiemVuiChoi nv : danhSachdd) {
+            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+        }
     }
 
     /**
@@ -99,7 +110,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(167, 169, 177));
 
-        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", " " }));
+        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", "Cầu vượt" }));
         cbxDiaDiemTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDiaDiemTourActionPerformed(evt);
@@ -353,7 +364,8 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
        
-        
+                 danhSachdd = con.LayDL_DDVC();
+
         String diadiemTour = cbxDiaDiemTour.getSelectedItem().toString();
         String diadiem = txtDiaDiem.getText();
         String madiadiem = txtMaDiaDiem.getText();
@@ -372,7 +384,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
             // Thêm đối tượng vào danh sách
             danhSachdd.add(nv);
-         
+            con.UpdateSQL_DDVC(nv, 1, "null");
             // Tạo đối tượng DefaultTableModel
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
@@ -391,7 +403,8 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-       
+                danhSachdd = con.LayDL_DDVC();
+
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -423,7 +436,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
 // xóa khách hàng khỏi danh sách
         danhSachdd.remove(nhanVienCanXoa);
-        
+            con.UpdateSQL_DDVC(nhanVienCanXoa, 2, "null");
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
@@ -437,6 +450,8 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
+                 danhSachdd = con.LayDL_DDVC();
+
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -492,7 +507,8 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         model.setValueAt(diaDiemTour, selectedRow, 0);
         model.setValueAt(diadiem, selectedRow, 1);
         model.setValueAt(maNV, selectedRow, 2);
-      
+        
+            con.UpdateSQL_DDVC(nhanVienCanSua, 3, "null");
 
 
 // thông báo thành công
@@ -501,6 +517,8 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+                 danhSachdd = con.LayDL_DDVC();
+
         String maNVCanTim = txtMaDiaDiem.getText();
 
         // Tạo một danh sách để lưu khách hàng tìm được
