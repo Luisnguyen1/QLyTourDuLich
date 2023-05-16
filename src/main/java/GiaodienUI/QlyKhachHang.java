@@ -41,6 +41,7 @@ public class QlyKhachHang extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
+          model = (DefaultTableModel) jTable1.getModel();
           for (KhachHang kh : danhSachKH) {
                 model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
             }
