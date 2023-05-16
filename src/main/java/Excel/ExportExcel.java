@@ -31,29 +31,59 @@ public class ExportExcel {
 
     private static CellStyle cellStyleFormatNumber = null;
 
-    public void ExportNhanVien(ArrayList<NhanVien> array, String nameSheet) throws Exception {
-        XSSFWorkbook workbook = new XSSFWorkbook(nameSheet + ".xlsx");
-        XSSFSheet sheet = workbook.createSheet();
+    public void ExportNhanVien(ArrayList<NhanVien> array) {
+        System.out.println("Xuat file excel");
+        XSSFWorkbook workbook = new XSSFWorkbook();
+        XSSFSheet sheet = workbook.createSheet("NhanVien");
+        int rowNum = 0;
+        Row firstRow = sheet.createRow(rowNum++);
+        Cell firstCell = firstRow.createCell(0);
+        firstCell.setCellValue("Thong tin nhan vien");
+        
+        Row row1 = sheet.createRow(rowNum++);
+            Cell cella = row1.createCell(0);
+            cella.setCellValue("Mã Nhân Viên");
 
-        int COLUMN_INDEX_ID = 0;
-        int COLUMN_INDEX_TITLE = 1;
-        int COLUMN_INDEX_PRICE = 2;
-        int COLUMN_INDEX_QUANTITY = 3;
-        int COLUMN_INDEX_TOTAL = 4;
+            Cell cellb = row1.createCell(1);
+            cellb.setCellValue("Tên Nhân Viên");
 
-        int rowIndex = 0;
+            Cell cellc = row1.createCell(2);
+            cellc.setCellValue("Loại Nhân Viên");
 
-        // Write header
-        writeHeader(sheet, rowIndex);
+            Cell celld = row1.createCell(3);
+            celld.setCellValue("Chức vụ");
 
-        // Write data
-        rowIndex++;
-        for (Book book : books) {
-            // Create row
-            Row row = sheet.createRow(rowIndex);
-            // Write data on row
-            writeBook(book, row);
-            rowIndex++;
+            Cell celle = row1.createCell(4);
+            celle.setCellValue("Địa chỉ");
+            
+        for (NhanVien nv : array) {
+            Row row = sheet.createRow(rowNum++);
+            Cell cell1 = row.createCell(0);
+            cell1.setCellValue(nv.getManv());
+
+            Cell cell2 = row.createCell(1);
+            cell2.setCellValue(nv.getTennv());
+
+            Cell cell3 = row.createCell(2);
+            cell3.setCellValue(nv.getLoainv());
+
+            Cell cell4 = row.createCell(3);
+            cell4.setCellValue(nv.getDiachi());
+
+            Cell cell5 = row.createCell(4);
+            cell5.setCellValue(nv.getDiachi());
+
         }
+
+        try {
+            FileOutputStream outputStream = new FileOutputStream("nhanvien.xlsx");
+            workbook.write(outputStream);
+            workbook.close();
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        System.out.println("Done");
     }
 }
