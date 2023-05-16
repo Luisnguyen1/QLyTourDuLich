@@ -9,7 +9,7 @@ public class QlyHoaDon implements Comparable<QlyHoaDon>{
     public String maHoaDon;
     public String maKhachHang;
     public String ngayXuat;
-    public String tongTien;
+    public long tongTien;
     public int ngay;
     public int thang;
     public int nam;
@@ -19,7 +19,7 @@ public class QlyHoaDon implements Comparable<QlyHoaDon>{
        return this.maHoaDon.compareTo(o.maHoaDon);
     }
 
-    public QlyHoaDon(String maHoaDon, String maKhachHang, String ngayXuat, String tongTien, int ngay, int thang, int nam) {
+    public QlyHoaDon(String maHoaDon, String maKhachHang, String ngayXuat, long tongTien, int ngay, int thang, int nam) {
         this.maHoaDon = maHoaDon;
         this.maKhachHang = maKhachHang;
         this.ngayXuat = ngayXuat;
@@ -63,11 +63,11 @@ public class QlyHoaDon implements Comparable<QlyHoaDon>{
         this.ngayXuat = ngayXuat;
     }
 
-    public String getTongTien() {
+    public long getTongTien() {
         return tongTien;
     }
 
-    public void setTongTien(String tongTien) {
+    public void setTongTien(long tongTien) {
         this.tongTien = tongTien;
     }
 
