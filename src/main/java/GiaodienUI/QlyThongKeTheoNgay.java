@@ -28,18 +28,18 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
 
     public QlyThongKeTheoNgay() {
         initComponents();
-       try {
+        try {
             danhSachHD = con.layDL_HoaDon();
         } catch (SQLException ex) {
             Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
         }
-       model = (DefaultTableModel) jTable1.getModel();
-        
+        model = (DefaultTableModel) jTable1.getModel();
+
         for (HoaDon nv : danhSachHD) {
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
-            
+
         }
-        
+
     }
 
     /**
@@ -51,7 +51,6 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jCheckBox1 = new javax.swing.JCheckBox();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
@@ -64,11 +63,9 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDoanhThu = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
-        cbxNgayTK = new javax.swing.JComboBox<>();
-        cbxThangTK = new javax.swing.JComboBox<>();
-        cbxNamTK = new javax.swing.JComboBox<>();
-
-        jCheckBox1.setText("jCheckBox1");
+        cbxNgayDi = new javax.swing.JComboBox<>();
+        cbxThangDi = new javax.swing.JComboBox<>();
+        cbxNamDi = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -179,16 +176,16 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
             }
         });
 
-        cbxNgayTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
 
-        cbxThangTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
-        cbxThangTK.addActionListener(new java.awt.event.ActionListener() {
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+        cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxThangTKActionPerformed(evt);
+                cbxThangDiActionPerformed(evt);
             }
         });
 
-        cbxNamTK.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -206,14 +203,14 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxNgayTK, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxThangTK, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(cbxNamTK, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxNamDi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
+                                .addComponent(btnTimkiem)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -234,9 +231,9 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(btnTimkiem)
-                    .addComponent(cbxNgayTK, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxThangTK, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxNamTK))
+                    .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxNamDi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -251,127 +248,127 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDoanhThuActionPerformed
 
-    private void cbxThangTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangTKActionPerformed
-        String thang = cbxThangTK.getSelectedItem().toString();
+    private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
+        String thang = cbxThangDi.getSelectedItem().toString();
         int day = 0;
 
         //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
         if (thang.equals("1")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("3")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("5")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("7")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("8")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("10")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("12")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 32; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         }
 
         //Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
         if (thang.equals("4")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 31; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("6")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 31; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("9")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 31; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         } else if (thang.equals("11")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 31; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         }
 
         //Còn lại là tháng 2 có 28 ngày trong năm 2023
         if (thang.equals("2")) {
-            cbxNgayTK.removeAllItems();
-            cbxNgayTK.addItem("Ngày");
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
             for (int i = 1; i < 29; i++) {
                 day = i;
                 String Day = Integer.toString(day);
-                cbxNgayTK.addItem(Day);
+                cbxNgayDi.addItem(Day);
                 Day = "";
             }
         }
-    }//GEN-LAST:event_cbxThangTKActionPerformed
+    }//GEN-LAST:event_cbxThangDiActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
         try {
@@ -379,54 +376,51 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         } catch (SQLException ex) {
             Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        int ngayDi = Integer.parseInt(cbxNgayTK.getSelectedItem().toString());
-        int thangDi = Integer.parseInt(cbxThangTK.getSelectedItem().toString());
-        int namDi = Integer.parseInt(cbxNamTK.getSelectedItem().toString());
+
+        int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
+        int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
+        int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDi, thangDi-1, ngayDi);
+        calendar.set(namDi, thangDi - 1, ngayDi);
         Date ngayDiDate = calendar.getTime();
-        
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayDiString = dateFormat.format(ngayDiDate);
-                
-        
+
         java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
-        System.out.println(ngayXuat); 
-        
+        System.out.println(ngayXuat);
+
         ArrayList<HoaDon> tempHD = new ArrayList<>();
         for (HoaDon hoaDon : danhSachHD) {
             System.out.println(hoaDon.getNgayxuathoadon());
-            
-            if (ngayXuat.getDate()== hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear()== hoaDon.getNgayxuathoadon().getYear()) {
+
+            if (ngayXuat.getDate() == hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear() == hoaDon.getNgayxuathoadon().getYear()) {
                 tempHD.add(hoaDon);
                 System.out.println("Đúng");
-            }
-            else{   
+            } else {
                 System.out.println("Sai");
             }
         }
         model = (DefaultTableModel) jTable1.getModel();
         long tong = 0;
-        for (int i = 0; i < model.getRowCount() + 1; i++) {
-            model.removeRow(i);
+        while (model.getRowCount() > 0) {
+            model.removeRow(0);
         }
         for (HoaDon nv : tempHD) {
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
             tong = tong + nv.getTongtien();
         }
-        
-        txtDoanhThu.setText( Long.toString(tong));
+
+        txtDoanhThu.setText(Long.toString(tong)+" VND");
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnTimkiem;
-    private javax.swing.JComboBox<String> cbxNamTK;
-    private javax.swing.JComboBox<String> cbxNgayTK;
-    private javax.swing.JComboBox<String> cbxThangTK;
-    private javax.swing.JCheckBox jCheckBox1;
+    private javax.swing.JComboBox<String> cbxNamDi;
+    private javax.swing.JComboBox<String> cbxNgayDi;
+    private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
