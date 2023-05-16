@@ -23,6 +23,7 @@ import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
 import GiaodienUI.QlyVeTour;
 import GiaodienUI.SignUp;
+import GiaodienUI.TourDuLich_Details;
 
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
@@ -40,7 +41,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyKhachHang ql = new QlyKhachHang();        
+TourDuLich_Details ql = new TourDuLich_Details();        
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí

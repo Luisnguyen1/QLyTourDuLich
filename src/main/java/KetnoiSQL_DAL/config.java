@@ -11,6 +11,7 @@ import DTo.NhanVien;
 import DTo.PhuongTien;
 import DTo.BookVe;
 import DTo.ChiTietHoaDonVe;
+import DTo.ChiTietTourDuLich;
 import DTo.DiaDiem;
 import DTo.DiaDiemVuiChoi;
 import DTo.FeedBack;
@@ -1284,6 +1285,112 @@ public class config {
         }
     }
 
+    public void UpdateSQL_CTTour(ChiTietTourDuLich fb, int i, String matour_old) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen, MaKS, TienAn, TienPhong, PhiDichVu, NgayDi, NgayVe) VALUES(?, ?, ?,?,?,?,?,?,?,?)";
+            String selectAll = "SELECT * FROM chitiettour";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, fb.getDdtour());
+                stmt.setString(2, fb.getMatour());
+                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(4, fb.getNoiden());
+                stmt.setString(5, fb.getMaks());
+                stmt.setLong(6,fb.getTienan());
+                stmt.setLong(7, fb.getTienphong());
+                stmt.setLong(8, fb.getPhidichvu());
+                stmt.setDate(9, (Date) fb.getNgaydi());
+                stmt.setDate(10, (Date) fb.getNgayve());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa                      
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + fb.getMatour() + "';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        if (i == 3) {//sửa
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + fb.getMatour() + "';";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?,?)";
+            String selectAll = "SELECT * FROM chitiettour";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, fb.getDdtour());
+                stmt.setString(2, fb.getMatour());
+                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(4, fb.getNoiden());
+                stmt.setString(5, fb.getMaks());
+                stmt.setLong(6,fb.getTienan());
+                stmt.setLong(7, fb.getTienphong());
+                stmt.setLong(8, fb.getPhidichvu());
+                stmt.setDate(9, (Date) fb.getNgaydi());
+                stmt.setDate(10, (Date) fb.getNgayve());
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                //e.printStackTrace();
+            }
+        }
+    }
+
+    
     public void UpdateSQL_TaiKhoan(TaiKhoan tk, int i, String matkhau_old) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
@@ -1621,9 +1728,31 @@ public class config {
         }
         return dd;
     }
+    
+     public ArrayList<ChiTietTourDuLich> LayDL_CTTour() {
+        ArrayList<ChiTietTourDuLich> dsTour = new ArrayList<>();
+        try (Connection con = DriverManager.getConnection(url, user, password)) {
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM chitiettour");
+            while (rs.next()) {
+                ChiTietTourDuLich fb = new ChiTietTourDuLich();
+                fb.setDdtour(rs.getString("DiaDiemTour"));
+                fb.setMatour(rs.getString("MaTour"));
+                fb.setKhoihanh(rs.getString("DiaDiemKhoiHanh"));
+                fb.setNoiden(rs.getString("DiaDiemDen"));
+                fb.setMaks(rs.getString("MaKS"));
+                fb.setTienan(rs.getLong("TienAn"));
+                fb.setTienphong(rs.getLong("TienPhong"));
+                fb.setPhidichvu(rs.getLong("PhiDichVu"));
+                fb.setNgaydi(rs.getDate("NgayDi"));
+                fb.setNgayve(rs.getDate("NgayVe"));
+                dsTour.add(fb);
+            }
+        } catch (SQLException ex) {
 
-     
-      
+        }
+        return dsTour;
+    }
     
 
 }
