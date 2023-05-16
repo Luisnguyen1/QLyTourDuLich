@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: May 07, 2023 at 06:23 AM
--- Server version: 10.4.28-MariaDB
--- PHP Version: 8.2.4
+-- Máy chủ: 127.0.0.1
+-- Thời gian đã tạo: Th5 16, 2023 lúc 04:44 AM
+-- Phiên bản máy phục vụ: 10.4.28-MariaDB
+-- Phiên bản PHP: 8.0.28
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,20 +18,14 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `testtour`
+-- Cơ sở dữ liệu: `qltour`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `chitiettour`
+-- Cấu trúc bảng cho bảng `chitiettour`
 --
-CREATE TABLE `taikhoan` (
-  `tentaikhoan` text NOT NULL,
-  `matkhau` text NOT NULL,
-  `manv` text NOT NULL,
-  `loaitk` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
 
 CREATE TABLE `chitiettour` (
   `DiaDiemTour` text NOT NULL,
@@ -48,7 +42,7 @@ CREATE TABLE `chitiettour` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `cthd`
+-- Cấu trúc bảng cho bảng `cthd`
 --
 
 CREATE TABLE `cthd` (
@@ -61,19 +55,20 @@ CREATE TABLE `cthd` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diadiem`
+-- Cấu trúc bảng cho bảng `diadiem`
 --
 
 CREATE TABLE `diadiem` (
   `MaDD` int(11) NOT NULL,
   `TenDD` text NOT NULL,
-  `ThuocTinh` text NOT NULL
+  `ThuocTinh` text NOT NULL,
+  `KhuVuc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `diadiemvuichoi`
+-- Cấu trúc bảng cho bảng `diadiemvuichoi`
 --
 
 CREATE TABLE `diadiemvuichoi` (
@@ -85,7 +80,7 @@ CREATE TABLE `diadiemvuichoi` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `hoadon`
+-- Cấu trúc bảng cho bảng `hoadon`
 --
 
 CREATE TABLE `hoadon` (
@@ -99,7 +94,7 @@ CREATE TABLE `hoadon` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `huongdanvien`
+-- Cấu trúc bảng cho bảng `huongdanvien`
 --
 
 CREATE TABLE `huongdanvien` (
@@ -110,7 +105,7 @@ CREATE TABLE `huongdanvien` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachhang`
+-- Cấu trúc bảng cho bảng `khachhang`
 --
 
 CREATE TABLE `khachhang` (
@@ -124,7 +119,7 @@ CREATE TABLE `khachhang` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khachsan`
+-- Cấu trúc bảng cho bảng `khachsan`
 --
 
 CREATE TABLE `khachsan` (
@@ -138,7 +133,7 @@ CREATE TABLE `khachsan` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `khuyenmai`
+-- Cấu trúc bảng cho bảng `khuyenmai`
 --
 
 CREATE TABLE `khuyenmai` (
@@ -152,7 +147,7 @@ CREATE TABLE `khuyenmai` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `nhanvien`
+-- Cấu trúc bảng cho bảng `nhanvien`
 --
 
 CREATE TABLE `nhanvien` (
@@ -163,10 +158,20 @@ CREATE TABLE `nhanvien` (
   `ChucVu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `nhanvien`
+--
+
+INSERT INTO `nhanvien` (`MaNV`, `LoaiNV`, `TenNV`, `DiaChi`, `ChucVu`) VALUES
+('Mã Nhân Viên', 'Loại Nhân Viên', 'Tên Nhân Viên', 'Địa chỉ', 'Chức vụ'),
+('asd ád', 'Nhân Viên Bán Hàng', 'asd ád', 'asd asd a', 'asd asd a'),
+('asd ád', 'Nhân Viên Bán Hàng', 'asda sd', 'asd ád', 'asd ád'),
+('ádasd', 'Quản Lý Kho', 'ấdasd', 'ádasdasdasdasd', 'ádasdasdasdasd');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `phuongtien`
+-- Cấu trúc bảng cho bảng `phuongtien`
 --
 
 CREATE TABLE `phuongtien` (
@@ -177,14 +182,41 @@ CREATE TABLE `phuongtien` (
   `SoChoConDu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `phuongtien`
+--
+
+INSERT INTO `phuongtien` (`MaPT`, `LoaiPT`, `TenPT`, `SoChoTrong`, `SoChoConDu`) VALUES
+('123', 'Máy Bay', 'áda', 123, 123);
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tour`
+-- Cấu trúc bảng cho bảng `taikhoan`
+--
+
+CREATE TABLE `taikhoan` (
+  `tentaikhoan` text NOT NULL,
+  `matkhau` text NOT NULL,
+  `manv` text NOT NULL,
+  `loaitk` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `taikhoan`
+--
+
+INSERT INTO `taikhoan` (`tentaikhoan`, `matkhau`, `manv`, `loaitk`) VALUES
+('admin', '123456', '1121', 'admin');
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `tour`
 --
 
 CREATE TABLE `tour` (
-  `MaTour` text NOT NULL,
+  `MaTour` text CHARACTER SET utf8 COLLATE utf8_vietnamese_ci NOT NULL,
   `TongSoCho` int(11) NOT NULL,
   `SoChoConTrong` int(11) NOT NULL,
   `TenTour` text NOT NULL,
@@ -199,10 +231,19 @@ CREATE TABLE `tour` (
   `GhiChu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `tour`
+--
+
+INSERT INTO `tour` (`MaTour`, `TongSoCho`, `SoChoConTrong`, `TenTour`, `Diadiemtour`, `DiaDiemDi`, `DiaDiemDen`, `LoaiTour`, `SoNgay`, `NgayKhoiHanh`, `GiaTour`, `NgayKetThuc`, `GhiChu`) VALUES
+('123123', 123, 23, 'manh123', '23', '23', '23', 'Quản Lý Kho', 23, '2023-02-01', 23, '2023-02-01', 'null'),
+('123', 123, 123, '123', '123', '123', '123', 'Quản Lý Kho', 123, '2023-03-02', 12, '2023-05-01', 'null'),
+('123323', 23, 232323, '11111111111111111111', '23', '32', '23', 'Nhân Viên Bán Hàng', 23, '2023-03-02', 23, '2023-05-01', 'null');
+
 -- --------------------------------------------------------
 
 --
--- Table structure for table `ve`
+-- Cấu trúc bảng cho bảng `ve`
 --
 
 CREATE TABLE `ve` (
@@ -210,113 +251,38 @@ CREATE TABLE `ve` (
   `NgayTaoVe` date NOT NULL,
   `HanSuDung` date NOT NULL,
   `MaTour` text NOT NULL,
-  `MaKH` text NOT NULL
+  `tiengiam` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
-CREATE TABLE `qltour`.`feedback` (
-  `id` INT NOT NULL AUTO_INCREMENT,
-  `hoten` VARCHAR(45) NULL,
-  `sdt` VARCHAR(45) NULL,
-  `email` VARCHAR(45) NULL,
-  `diachi` VARCHAR(100) NULL,
-  `noidung` VARCHAR(400) NULL,
-  PRIMARY KEY (`id`));
 --
--- Indexes for dumped tables
+-- Đang đổ dữ liệu cho bảng `ve`
+--
+
+INSERT INTO `ve` (`MaVe`, `NgayTaoVe`, `HanSuDung`, `MaTour`, `tiengiam`) VALUES
+('123123123', '2023-05-04', '2023-03-02', '123123', 123123),
+('manh123', '2023-02-01', '2023-02-01', '123', 123123);
+
+--
+-- Chỉ mục cho các bảng đã đổ
 --
 
 --
--- Indexes for table `cthd`
+-- Chỉ mục cho bảng `cthd`
 --
 ALTER TABLE `cthd`
-  ADD KEY `FK_MaHD` (`MaHD`);
+  ADD KEY `FK_MaHD` (`MaHD`(768));
 
 --
--- Indexes for table `diadiem`
+-- Chỉ mục cho bảng `diadiem`
 --
 ALTER TABLE `diadiem`
   ADD PRIMARY KEY (`MaDD`);
 
 --
--- Indexes for table `diadiemvuichoi`
+-- Chỉ mục cho bảng `diadiemvuichoi`
 --
 ALTER TABLE `diadiemvuichoi`
   ADD PRIMARY KEY (`MaDDVC`);
-
---
--- Indexes for table `hoadon`
---
-ALTER TABLE `hoadon`
-  ADD PRIMARY KEY (`MaHD`),
-  ADD KEY `fk_MaNV` (`MaNV`);
-
---
--- Indexes for table `huongdanvien`
---
-ALTER TABLE `huongdanvien`
-  ADD KEY `FK_MaTour` (`MaTour`),
-  ADD KEY `FK_IDNV_MaNV` (`MaNV`);
-
---
--- Indexes for table `khachhang`
---
-ALTER TABLE `khachhang`
-  ADD PRIMARY KEY (`MaKh`);
-
---
--- Indexes for table `khuyenmai`
---
-ALTER TABLE `khuyenmai`
-  ADD PRIMARY KEY (`MaKhuyenMai`);
-
---
--- Indexes for table `nhanvien`
---
-ALTER TABLE `nhanvien`
-  ADD PRIMARY KEY (`MaNV`);
-
---
--- Indexes for table `phuongtien`
---
-ALTER TABLE `phuongtien`
-  ADD PRIMARY KEY (`MaPT`);
-
---
--- Indexes for table `tour`
---
-ALTER TABLE `tour`
-  ADD PRIMARY KEY (`MaTour`);
-
---
--- Indexes for table `ve`
---
-ALTER TABLE `ve`
-  ADD PRIMARY KEY (`MaVe`);
-
---
--- Constraints for dumped tables
---
-
---
--- Constraints for table `cthd`
---
-ALTER TABLE `cthd`
-  ADD CONSTRAINT `FK_MaHD` FOREIGN KEY (`MaHD`) REFERENCES `hoadon` (`MaHD`);
-
---
--- Constraints for table `hoadon`
---
-ALTER TABLE `hoadon`
-  ADD CONSTRAINT `fk_MaNV` FOREIGN KEY (`MaNV`) REFERENCES `nhanvien` (`MaNV`);
-
---
--- Constraints for table `huongdanvien`
---
-ALTER TABLE `huongdanvien`
-  ADD CONSTRAINT `FK_MaTour` FOREIGN KEY (`MaTour`) REFERENCES `tour` (`MaTour`);
-
-INSERT INTO `taikhoan` (`tentaikhoan`, `matkhau`, `manv`, `loaitk`) VALUES
-('admin', '123456', 1, 'admin');
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

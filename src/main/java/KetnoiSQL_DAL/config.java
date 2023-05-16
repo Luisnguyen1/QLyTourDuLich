@@ -472,7 +472,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?,?)";
+            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM vetour";
             try {
                 // connect to database
@@ -487,8 +487,8 @@ public class config {
                 java.sql.Date ngaySD = new java.sql.Date(nhanvien.getHansudung().getTime());
                 stmt.setDate(3, ngaySD);
                 stmt.setString(4, nhanvien.getMatour());
-                stmt.setString(5, nhanvien.getMakh());
-                stmt.setLong(6, nhanvien.getTiengiam());
+                
+                stmt.setLong(5, nhanvien.getTiengiam());
                 stmt.execute();
 
                 // select all student
@@ -498,7 +498,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) );
                 }
                 stmt.close();
                 con.close();
@@ -530,7 +530,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?,?)";
+            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM vetour";
             try {
                 // connect to database
@@ -545,8 +545,8 @@ public class config {
                 java.sql.Date ngaySD = new java.sql.Date(nhanvien.getHansudung().getTime());
                 stmt.setDate(3, ngaySD);
                 stmt.setString(4, nhanvien.getMatour());
-                stmt.setString(5, nhanvien.getMakh());
-                stmt.setLong(6, nhanvien.getTiengiam());
+                
+                stmt.setLong(5, nhanvien.getTiengiam());
                 stmt.execute();
 
                 // select all student
@@ -1416,8 +1416,8 @@ public class config {
 
         while (rs.next()) {
             VeTour vt = new VeTour();
-            vt.setMavetour(rs.getString("mave"));
-            vt.setMakh(rs.getString("MaKH"));
+            vt.setMavetour(rs.getString("mave")); 
+            vt.setMatour(rs.getString("matour")); 
             vt.setHansudung(rs.getDate("hansudung"));
             vt.setNgaydatve(rs.getDate("ngaytaove"));
             vt.setTiengiam((int) rs.getLong("tiengiam"));

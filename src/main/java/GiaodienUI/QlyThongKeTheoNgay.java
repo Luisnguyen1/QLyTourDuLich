@@ -33,13 +33,15 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtTimkiem = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtDoanhThu = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
+        cbxNgayDi = new javax.swing.JComboBox<>();
+        cbxThangDi = new javax.swing.JComboBox<>();
+        cbxNamDatVe = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -54,7 +56,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -150,6 +152,17 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
         btnExport.setText("Export");
 
+        cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
+
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+        cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxThangDiActionPerformed(evt);
+            }
+        });
+
+        cbxNamDatVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -167,10 +180,14 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22)
+                                .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(18, 18, 18)
+                                .addComponent(cbxNamDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(53, 53, 53)
                                 .addComponent(btnTimkiem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnExport)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
@@ -188,11 +205,13 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(15, 15, 15)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(txtTimkiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(btnTimkiem)
+                    .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(cbxNamDatVe)
                     .addComponent(btnExport))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -200,7 +219,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(60, 60, 60)
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 69, Short.MAX_VALUE))
+                .addGap(0, 72, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -208,10 +227,135 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDoanhThuActionPerformed
 
+    private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
+        String thang = cbxThangDi.getSelectedItem().toString();
+        int day = 0;
+
+        //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+        if (thang.equals("1")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("3")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("5")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("7")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("8")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("10")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("12")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 32; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        }
+
+        //Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
+        if (thang.equals("4")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("6")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("9")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        } else if (thang.equals("11")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 31; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        }
+
+        //Còn lại là tháng 2 có 28 ngày trong năm 2023
+        if (thang.equals("2")) {
+            cbxNgayDi.removeAllItems();
+            cbxNgayDi.addItem("Ngày");
+            for (int i = 1; i < 29; i++) {
+                day = i;
+                String Day = Integer.toString(day);
+                cbxNgayDi.addItem(Day);
+                Day = "";
+            }
+        }
+    }//GEN-LAST:event_cbxThangDiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTimkiem;
+    private javax.swing.JComboBox<String> cbxNamDatVe;
+    private javax.swing.JComboBox<String> cbxNgayDi;
+    private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -223,6 +367,5 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDoanhThu;
-    private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }
