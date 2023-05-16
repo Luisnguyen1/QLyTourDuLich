@@ -41,9 +41,6 @@ public class KhachSan implements Comparable<KhachSan>{
       
     }
 
-    public KhachSan() {
-    }
-
     @Override
     public int compareTo(KhachSan o) {
         return this.maKhachSan.compareTo(o.maKhachSan);
