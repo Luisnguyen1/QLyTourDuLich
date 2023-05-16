@@ -23,6 +23,7 @@ import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
 import GiaodienUI.QlyVeTour;
 import GiaodienUI.SignUp;
+import GiaodienUI.Tour_Details;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.sql.Connection;
@@ -39,7 +40,12 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
+<<<<<<< Updated upstream
 BieuMauHoaDon ql = new BieuMauHoaDon();
+=======
+        Tour_Details ql = new Tour_Details();
+            
+>>>>>>> Stashed changes
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
