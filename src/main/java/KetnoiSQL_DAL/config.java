@@ -72,8 +72,6 @@ public class config {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
-            taikhoan.setEmail(rs.getString("email"));
-            taikhoan.setQuyentruycap(rs.getString("loaitk"));
             danhSachTaiKhoan.add(taikhoan);
         }
         return danhSachTaiKhoan;

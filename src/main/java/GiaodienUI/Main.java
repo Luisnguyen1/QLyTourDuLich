@@ -89,6 +89,10 @@ public class Main extends javax.swing.JFrame {
                     showForm(new DatVeTour());
                 }
                 if (index == 4) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhuyenMai());
+                }
+                if(index == 5){                    
                     DX();
                 }
                
