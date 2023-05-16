@@ -45,7 +45,7 @@ import java.sql.*;
 
 public class config {
 
-    private final String url = "jdbc:mysql://localhost:3306/qltour?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true";
+    private final String url = "jdbc:mysql://localhost:3306/qltour?useUnicode=yes&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true&zeroDateTimeBehavior=convertToNull";
     private final String user = "root";
     private final String password = "";
 
@@ -802,11 +802,11 @@ public class config {
 
         while (rs.next()) {
             HoaDon HoaDon = new HoaDon();
-            HoaDon.setMahd(rs.getString("mahoadon"));
-            HoaDon.setMakhachdatve(rs.getString("makhachdatve"));
+            HoaDon.setMahd(rs.getString("MaHD"));
+            HoaDon.setMakhachdatve(rs.getString("makh"));
             HoaDon.setTongtien(Long.parseLong(rs.getString("tongtien")));
             HoaDon.setNgayxuathoadon(rs.getDate("ngayxuathoadon"));
-            HoaDon.setManv(rs.getString("manhanvien"));
+            HoaDon.setManv(rs.getString("manv"));
             danhSachHoaDon.add(HoaDon);
         }
         return danhSachHoaDon;

@@ -19,6 +19,7 @@ import GiaodienUI.QlyPhuongTien;
 import GiaodienUI.QlyTaiKhoan;
 import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
+import GiaodienUI.QlyThongKeTheoThang;
 import GiaodienUI.QlyVeTour;
 import GiaodienUI.SignUp;
 import java.awt.BorderLayout;
@@ -37,7 +38,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-        QlyThongKeTheoNgay ql = new QlyThongKeTheoNgay();
+        QlyThongKeTheoThang ql = new QlyThongKeTheoThang();
             
             
 js.add(ql);

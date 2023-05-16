@@ -4,17 +4,42 @@
  */
 package GiaodienUI;
 
+import DTo.HoaDon;
+import DTo.Tour;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyThongKeTheoNgay extends javax.swing.JPanel {
 
-    /**
-     * Creates new form ThongKe
-     */
+    ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+    config con = new config();
+    DefaultTableModel model = new DefaultTableModel();
+
     public QlyThongKeTheoNgay() {
         initComponents();
+       try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+       model = (DefaultTableModel) jTable1.getModel();
+        
+        for (HoaDon nv : danhSachHD) {
+            model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
+            
+        }
+        
     }
 
     /**
@@ -38,10 +63,9 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         txtDoanhThu = new javax.swing.JTextField();
         btnTimkiem = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
         cbxNgayDi = new javax.swing.JComboBox<>();
         cbxThangDi = new javax.swing.JComboBox<>();
-        cbxNamDatVe = new javax.swing.JComboBox<>();
+        cbxNamDi = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -146,11 +170,11 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         btnTimkiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimkiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimkiem.setText("Search");
-
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
+        btnTimkiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimkiemActionPerformed(evt);
+            }
+        });
 
         cbxNgayDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
 
@@ -161,7 +185,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
             }
         });
 
-        cbxNamDatVe.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -184,11 +208,9 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                                 .addGap(22, 22, 22)
                                 .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(18, 18, 18)
-                                .addComponent(cbxNamDatVe, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(53, 53, 53)
+                                .addComponent(cbxNamDi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(32, 32, 32)
                                 .addComponent(btnTimkiem)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExport)
                                 .addGap(0, 0, Short.MAX_VALUE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(20, 20, 20)
@@ -211,8 +233,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
                     .addComponent(btnTimkiem)
                     .addComponent(cbxNgayDi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxNamDatVe)
-                    .addComponent(btnExport))
+                    .addComponent(cbxNamDi))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -349,11 +370,57 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cbxThangDiActionPerformed
 
+    private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
+        int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
+        int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namDi, thangDi-1, ngayDi);
+        Date ngayDiDate = calendar.getTime();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayDiString = dateFormat.format(ngayDiDate);
+                
+        
+        java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
+        System.out.println(ngayXuat); 
+        
+        ArrayList<HoaDon> tempHD = new ArrayList<>();
+        for (HoaDon hoaDon : danhSachHD) {
+            System.out.println(hoaDon.getNgayxuathoadon());
+            
+            if (ngayXuat.getDate()== hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear()== hoaDon.getNgayxuathoadon().getYear()) {
+                tempHD.add(hoaDon);
+                System.out.println("Đúng");
+            }
+            else{   
+                System.out.println("Sai");
+            }
+        }
+        model = (DefaultTableModel) jTable1.getModel();
+        long tong = 0;
+        for (int i = 0; i < model.getRowCount() + 1; i++) {
+            model.removeRow(i);
+        }
+        for (HoaDon nv : tempHD) {
+            model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
+            tong = tong + nv.getTongtien();
+        }
+        
+        txtDoanhThu.setText( Long.toString(tong));
+    }//GEN-LAST:event_btnTimkiemActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTimkiem;
-    private javax.swing.JComboBox<String> cbxNamDatVe;
+    private javax.swing.JComboBox<String> cbxNamDi;
     private javax.swing.JComboBox<String> cbxNgayDi;
     private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JLabel jLabel1;
