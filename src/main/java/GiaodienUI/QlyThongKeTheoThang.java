@@ -4,12 +4,25 @@
  */
 package GiaodienUI;
 
+import DTo.HoaDon;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Thanh Tran
  */
 public class QlyThongKeTheoThang extends javax.swing.JPanel {
-
+ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+    config con = new config();
+    DefaultTableModel model = new DefaultTableModel();
     /**
      * Creates new form ThongKe
      */
@@ -33,13 +46,13 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         txtDoanhThu = new javax.swing.JTextField();
+        cbxThangDi = new javax.swing.JComboBox<>();
+        cbxNamDi = new javax.swing.JComboBox<>();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -56,7 +69,7 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 924, Short.MAX_VALUE)
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -96,11 +109,11 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         btnTimKiem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnTimKiem.setForeground(new java.awt.Color(255, 255, 255));
         btnTimKiem.setText("Search");
-
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
+        btnTimKiem.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTimKiemActionPerformed(evt);
+            }
+        });
 
         jPanel3.setBackground(new java.awt.Color(255, 204, 204));
 
@@ -152,6 +165,15 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
                 .addContainerGap())
         );
 
+        cbxThangDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", " " }));
+        cbxThangDi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxThangDiActionPerformed(evt);
+            }
+        });
+
+        cbxNamDi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -166,17 +188,17 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
+                                .addGap(14, 14, 14)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 76, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExport))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGap(14, 14, 14)
-                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 110, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 397, Short.MAX_VALUE)))
+                                .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(10, 10, 10)
+                                .addComponent(cbxNamDi, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 102, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -190,14 +212,15 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
-                            .addComponent(txtTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(btnExport)))
-                    .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(cbxThangDi, javax.swing.GroupLayout.PREFERRED_SIZE, 24, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxNamDi)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 12, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 74, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(71, 71, 71))
         );
@@ -207,10 +230,63 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDoanhThuActionPerformed
 
+    private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        int ngayDi = 1;
+        int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
+        int namDi = Integer.parseInt(cbxNamDi.getSelectedItem().toString());
+
+        Calendar calendar = Calendar.getInstance();
+        calendar.set(namDi, thangDi-1, ngayDi);
+        Date ngayDiDate = calendar.getTime();
+        
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        String ngayDiString = dateFormat.format(ngayDiDate);
+                
+        
+        java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
+        System.out.println(ngayXuat); 
+        
+        ArrayList<HoaDon> tempHD = new ArrayList<>();
+        for (HoaDon hoaDon : danhSachHD) {
+            System.out.println(hoaDon.getNgayxuathoadon());
+            
+            if (ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear()== hoaDon.getNgayxuathoadon().getYear()) {
+                tempHD.add(hoaDon);
+                System.out.println("Đúng");
+            }
+            else{   
+                System.out.println("Sai");
+            }
+        }
+        model = (DefaultTableModel) jTable1.getModel();
+        long tong = 0;
+        for (HoaDon nv : tempHD) {
+            model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
+            tong = tong + nv.getTongtien();
+        }
+        
+        txtDoanhThu.setText( Long.toString(tong));
+    }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void cbxThangDiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangDiActionPerformed
+        String thang = cbxThangDi.getSelectedItem().toString();
+        int day = 0;
+
+        //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
+        
+    }//GEN-LAST:event_cbxThangDiActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
     private javax.swing.JButton btnTimKiem;
+    private javax.swing.JComboBox<String> cbxNamDi;
+    private javax.swing.JComboBox<String> cbxThangDi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -222,6 +298,5 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDoanhThu;
-    private javax.swing.JTextField txtTimKiem;
     // End of variables declaration//GEN-END:variables
 }
