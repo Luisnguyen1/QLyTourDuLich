@@ -27,15 +27,15 @@
               <Component id="jSeparator2" min="-2" pref="820" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
-          <Group type="102" attributes="0">
+          <Group type="102" alignment="1" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jSeparator1" max="32767" attributes="0"/>
                   <Component id="jPanel1" alignment="1" max="32767" attributes="0"/>
-                  <Component id="jScrollPane1" alignment="1" max="32767" attributes="0"/>
+                  <Component id="jSeparator1" alignment="0" max="32767" attributes="0"/>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
           </Group>
+          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
       </Group>
     </DimensionLayout>
     <DimensionLayout dim="1">
@@ -46,10 +46,10 @@
               <Component id="jSeparator2" min="-2" pref="18" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
               <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="jSeparator1" min="-2" pref="13" max="-2" attributes="0"/>
-              <EmptySpace pref="24" max="32767" attributes="0"/>
-              <Component id="jScrollPane1" pref="155" max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
+              <Component id="jScrollPane1" pref="185" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -90,7 +90,7 @@
             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="6" green="0" red="a9" type="rgb"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="                                             H&#x1ec7; Th&#x1ed1;ng Qu&#x1ea3;n L&#xfd; Kh&#xe1;ch S&#x1ea1;n"/>
+            <Property name="text" type="java.lang.String" value="                                               H&#x1ec7; Th&#x1ed1;ng Qu&#x1ea3;n L&#xfd; Kh&#xe1;ch S&#x1ea1;n"/>
           </Properties>
         </Component>
       </SubComponents>
