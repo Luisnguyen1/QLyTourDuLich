@@ -15,7 +15,7 @@ import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import org.apache.commons.codec.language.DaitchMokotoffSoundex;
+
 
 /**
  *
@@ -32,7 +32,12 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
     public QlyDiaDiemVuiChoi() {
         initComponents();
-        danhSachdd = con.LayDL_DDVC();
+        try {
+            // Lấy thông tin từ GUI
+            danhSachdd= con.LayDL_DDVC();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyDiaDiemVuiChoi.class.getName()).log(Level.SEVERE, null, ex);
+        }
         model = (DefaultTableModel) jTable1.getModel();
         for (DiaDiemVuiChoi nv : danhSachdd) {
             model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
@@ -325,15 +330,16 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jSeparator5)
-                .addContainerGap())
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 829, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(49, 49, 49))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jSeparator5)
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -422,7 +428,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 // tìm khách hàng trong danh sách dựa vào mã
         DiaDiemVuiChoi nhanVienCanXoa = null;
         for (DiaDiemVuiChoi nv : danhSachdd) {
-            if (nv.getMaDiaDiem().equals(maNV)) {
+            if (nv.getMaDiaDiem().equalsIgnoreCase(maNV)) {
                 nhanVienCanXoa = nv;
                 break;
             }

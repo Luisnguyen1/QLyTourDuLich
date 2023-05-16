@@ -880,9 +880,9 @@ public class config {
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
-                stmt.setString(1, DDVC.getDiaDiemTour());
+                stmt.setString(3, DDVC.getDiaDiemTour());
                 stmt.setString(2, DDVC.getTenDiaDiem());
-                stmt.setString(3, DDVC.getMaDiaDiem());
+                stmt.setString(1, DDVC.getMaDiaDiem());
                 stmt.execute();
 
                 // select all student
@@ -897,9 +897,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
