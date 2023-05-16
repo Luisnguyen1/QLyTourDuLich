@@ -96,6 +96,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
         btnExport.setText("Export");
+        btnExport.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnExportActionPerformed(evt);
+            }
+        });
 
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
@@ -151,11 +156,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                         .addComponent(btnTimKiem)
                         .addComponent(btnXoa)
                         .addComponent(btnExport)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 350, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(52, 52, 52))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 374, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -204,8 +209,36 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        String tuKhoa = txtTimKiem.getText().toLowerCase().trim();
+        config con = new config();
+        ArrayList<FeedBack> danhSanhFB = con.LayDL_Feedback();
+
+        if (tuKhoa.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Từ Khóa Tìm Kiếm");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+        model.setRowCount(0);
+        /*for (int i = 0; i < danhSachTour.size(); i++) {
+        model.removeRow(i);
+        }*/
+        for (int i = 0; i < danhSanhFB.size(); i++) {
+            FeedBack tour = danhSanhFB.get(i);
+            if (tour.getHoten().toLowerCase().contains(tuKhoa)
+                    || tour.getEmail().toLowerCase().contains(tuKhoa)) {
+                
+               
+                    if (tuKhoa.equals(danhSanhFB.get(i).getHoten())) {
+                        model.addRow(new Object[]{danhSanhFB.get(i).getHoten(), danhSanhFB.get(i).getSdt(), danhSanhFB.get(i).getEmail(), danhSanhFB.get(i).getDiachi(), danhSanhFB.get(i).getNoidung()});
+                    }
+            }
+        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnExportActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

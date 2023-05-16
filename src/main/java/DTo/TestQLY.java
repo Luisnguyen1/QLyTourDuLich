@@ -5,8 +5,10 @@
 package DTo;
 
 
+import GiaodienUI.BieuMauHoaDon;
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
+import GiaodienUI.MuaVe;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
 import GiaodienUI.QlyHoaDon;
@@ -19,9 +21,9 @@ import GiaodienUI.QlyPhuongTien;
 import GiaodienUI.QlyTaiKhoan;
 import GiaodienUI.QlyTourDuLich;
 import GiaodienUI.QlyThongKeTheoNgay;
-import GiaodienUI.QlyThongKeTheoThang;
 import GiaodienUI.QlyVeTour;
 import GiaodienUI.SignUp;
+import GiaodienUI.Tour_Details;
 import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.sql.Connection;
@@ -38,8 +40,12 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-        QlyThongKeTheoThang ql = new QlyThongKeTheoThang();
+<<<<<<< Updated upstream
+BieuMauHoaDon ql = new BieuMauHoaDon();
+=======
+        Tour_Details ql = new Tour_Details();
             
+>>>>>>> Stashed changes
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
