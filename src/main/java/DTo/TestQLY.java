@@ -5,6 +5,7 @@
 package DTo;
 
 
+import GiaodienUI.BieuMauHoaDon;
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
 import GiaodienUI.MuaVe;
@@ -38,8 +39,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-        MuaVe ql = new MuaVe();
-            
+BieuMauHoaDon ql = new BieuMauHoaDon();
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
