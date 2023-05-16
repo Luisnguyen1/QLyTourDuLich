@@ -349,30 +349,48 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        danhSachDD = con.LayDL_DiaDiem();
+          danhSachDD = con.LayDL_DiaDiem();
+
         int selectedRow = jTable1.getSelectedRow();
-        
-        if(selectedRow == -1 ){
-            JOptionPane.showMessageDialog(null, "vui Lòng Chọn 1 Địa Điểm Để Xóa");
+
+// nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
+            return;
         }
-        
+
+// lấy ra model của JTable hiện tại
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        String maDD = (String) model.getValueAt(selectedRow,3);
-        
-        DiaDiem ddCanXoa = null;
-        for(DiaDiem dd : danhSachDD){
-            if(dd.getMadd().equals(maDD)){
-                ddCanXoa = dd;
+
+// lấy mã khách hàng của hàng được chọn
+        String maNV = (String) model.getValueAt(selectedRow, 3);
+
+// tìm khách hàng trong danh sách dựa vào mã
+        DiaDiem nhanVienCanXoa = null;
+        for (DiaDiem nv : danhSachDD) {
+            if (nv.getMadd().equalsIgnoreCase(maNV)) {
+                nhanVienCanXoa = nv;
                 break;
             }
         }
-        
-        danhSachDD.remove(ddCanXoa);
-         con.UpdateSQL_DiaDiem(ddCanXoa, 2, "null");
+
+// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
+        if (nhanVienCanXoa == null) {
+            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
+            return;
+        }
+
+// xóa khách hàng khỏi danh sách
+        danhSachDD.remove(nhanVienCanXoa);
+            con.UpdateSQL_DiaDiem(nhanVienCanXoa, 2, "null");
+// xóa hàng được chọn trong model
         model.removeRow(selectedRow);
+
+// cập nhật lại model cho JTable
         jTable1.setModel(model);
-        
-                    JOptionPane.showMessageDialog(null, "Xóa Địa Điểm Thành Công");
+
+// thông báo thành công
+        JOptionPane.showMessageDialog(null, "Xóa địa điểm Thành Công");
 
     }//GEN-LAST:event_btnXoaActionPerformed
 

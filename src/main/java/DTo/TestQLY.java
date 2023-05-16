@@ -7,6 +7,7 @@ package DTo;
 
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
+import GiaodienUI.MuaVe;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
 import GiaodienUI.QlyHoaDon;
@@ -37,7 +38,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-        QlyDiaDiemTour ql = new QlyDiaDiemTour();
+        MuaVe ql = new MuaVe();
             
             
 js.add(ql);

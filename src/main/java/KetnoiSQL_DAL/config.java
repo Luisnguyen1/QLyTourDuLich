@@ -1124,7 +1124,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) );
                 }
                 stmt.close();
                 con.close();
@@ -1180,7 +1180,7 @@ public class config {
             // show data
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                        + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                        + "  " + rs.getString(3) + "  " + rs.getString(4) );
             }
             stmt.close();
             con.close();
@@ -1590,7 +1590,7 @@ public class config {
         ArrayList<DiaDiem> dd = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
-            ResultSet rs = stmt.executeQuery("SELECT * FROM diadiemvuichoi");
+            ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
             while (rs.next()) {
                 DiaDiem fb = new DiaDiem();
                 fb.setMadd(rs.getString("MaDD"));
