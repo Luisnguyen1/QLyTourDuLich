@@ -471,8 +471,8 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?)";
-            String selectAll = "SELECT * FROM vetour";
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM ve";
             try {
                 // connect to database
                 Class.forName("com.mysql.jdbc.Driver");

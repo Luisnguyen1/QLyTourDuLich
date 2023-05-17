@@ -4,17 +4,39 @@
  */
 package GiaodienUI;
 
+import DTo.VeTour;
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
+
 /**
  *
  * @author Cong anh
  */
 public class MuaVe extends javax.swing.JPanel {
 
+    ArrayList<VeTour> danhSachVT = new ArrayList<>();
+    config con = new config();
+    int i =0;
     /**
      * Creates new form MuaVe
      */
     public MuaVe() {
         initComponents();
+        DefaultTableModel model = new DefaultTableModel();
+        try {
+            danhSachVT = con.layDL_VeTour();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        model = (DefaultTableModel) jTable1.getModel();
+        for (VeTour vt : danhSachVT) {
+            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+        }
     }
 
     /**
@@ -207,11 +229,35 @@ public class MuaVe extends javax.swing.JPanel {
     }//GEN-LAST:event_btnDatVeActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // TODO add your handling code here:
+        int selectedRow = jTable2.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        
+        model.removeRow(selectedRow);
+        model.fireTableDataChanged();
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        // TODO add your handling code here:
+        if (i > 1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chỉ Chọn Một Vé Tour");
+        }
+        else{
+        int selectedRow = jTable1.getSelectedRow();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        String maVT = (String) model.getValueAt(selectedRow, 0);
+        if (selectedRow == -1) {
+            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Thêm");
+        }
+
+        DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
+
+        for (VeTour vt : danhSachVT) {
+            if (vt.getMavetour().equals(maVT)) {
+                model1.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+                break;
+            }
+        }
+        i++;
+        }
     }//GEN-LAST:event_btnThemActionPerformed
 
 
