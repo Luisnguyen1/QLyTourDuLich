@@ -208,9 +208,8 @@
                           <EmptySpace pref="61" max="32767" attributes="0"/>
                       </Group>
                   </Group>
-                  <Group type="103" groupAlignment="3" attributes="0">
-                      <Component id="btnTimKiem" alignment="3" min="-2" max="-2" attributes="0"/>
-                      <Group type="102" attributes="0">
+                  <Group type="103" groupAlignment="0" attributes="0">
+                      <Group type="102" alignment="0" attributes="0">
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Component id="btnThem" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnSua" alignment="0" min="-2" max="-2" attributes="0"/>
@@ -219,6 +218,7 @@
                           <EmptySpace pref="28" max="32767" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
+                      <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
               <Group type="103" rootIndex="1" groupAlignment="0" attributes="0">

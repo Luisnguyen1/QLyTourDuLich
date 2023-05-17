@@ -868,11 +868,11 @@ if(thang.equals("2")){
             ChiTietTourDuLich ctt = new ChiTietTourDuLich(diaDiem,maTour,khoiHanh,noiDen,maKS,tienAn,tienPhong,phiDV,ngayDiDate,ngayVeDate);
             dsTour.add(ctt);
             
-            con.UpdateSQL_CTTour(ctt, 1, null);
-            
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             
-            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu(),Ngaydi,Ngayve});
+            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),Ngaydi,Ngayve,ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu()});
+            
+            con.UpdateSQL_CTTour(ctt, 1, null);
             
             jTable1.setModel(model);
             
@@ -886,6 +886,7 @@ if(thang.equals("2")){
             txtTienan.setText("");
             txtTienphong.setText("");
             txtPhidichvu.setText("");
+            con.UpdateSQL_CTTour(ctt, 1, null);
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -916,14 +917,13 @@ if(thang.equals("2")){
             }
         }
         
-        con.UpdateSQL_CTTour(cttourCanXoa, 2, maTour);
-        
         dsTour.remove(cttourCanXoa);
         model.removeRow(selectedRow);
         
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Thành Công");
+        con.UpdateSQL_CTTour(cttourCanXoa, 2, maTour);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
@@ -1060,9 +1060,9 @@ if(thang.equals("2")){
         model.setValueAt(ngayDiString, selectedRow, 8);
         model.setValueAt(ngayVeString, selectedRow, 9);
 
-        con.UpdateSQL_CTTour(cttourCanSua,3,maTour);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Thành Công");
+        con.UpdateSQL_CTTour(cttourCanSua,3,maTour);
                                
     }//GEN-LAST:event_btnSuaActionPerformed
 

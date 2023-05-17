@@ -8,6 +8,7 @@ package DTo;
 import GiaodienUI.BieuMauHoaDon;
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
+import GiaodienUI.HDVeTour_Details;
 import GiaodienUI.MuaVe;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
@@ -41,7 +42,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-TourDuLich_Details ql = new TourDuLich_Details();        
+HDVeTour_Details ql = new HDVeTour_Details();        
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
