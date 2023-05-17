@@ -286,6 +286,8 @@ public class TourDuLich_Details extends javax.swing.JPanel {
             }
         });
 
+        jTable1.setAutoCreateRowSorter(true);
+        jTable1.setBackground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -554,7 +556,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String diadiemTour = (String) model.getValueAt(selectedRow, 1);
+        String diadiemTour = (String) model.getValueAt(selectedRow, 0);
         
         ChiTietTourDuLich cttourCanSua = null;
         for(ChiTietTourDuLich tk : dsTour){

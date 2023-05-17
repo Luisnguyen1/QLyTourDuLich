@@ -1283,12 +1283,12 @@ public class config {
         }
     }
 
-    public void UpdateSQL_CTTour(ChiTietTourDuLich fb, int i, String matour_old) {
+    public void UpdateSQL_CTTour(ChiTietTourDuLich ctt, int i, String matour_old) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen,ThuTuNgay, MaKS, TienAn, TienPhong, PhiDichVu) VALUES(?, ?, ?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
@@ -1297,15 +1297,15 @@ public class config {
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
-                stmt.setString(1, fb.getDdtour());
-                stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
-                stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
-                stmt.setLong(7,fb.getTienan());
-                stmt.setLong(8, fb.getTienphong());
-                stmt.setLong(9, fb.getPhidichvu());
+                stmt.setString(1, ctt.getDdtour());
+                stmt.setString(2, ctt.getMatour());
+                stmt.setString(3, ctt.getKhoihanh());
+                stmt.setString(4, ctt.getNoiden());
+                stmt.setInt(5, ctt.getThutungay());
+                stmt.setString(6, ctt.getMaks());
+                stmt.setLong(7,ctt.getTienan());
+                stmt.setLong(8, ctt.getTienphong());
+                stmt.setLong(9, ctt.getPhidichvu());
                 
                 stmt.execute();
 
@@ -1316,7 +1316,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9));
                 }
                 stmt.close();
                 con.close();
@@ -1331,7 +1331,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + fb.getMatour() + "';";
+                String delete = "DELETE FROM chitiettour WHERE DiaDiemTour = '" + ctt.getDdtour() + "';";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1343,7 +1343,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + fb.getMatour() + "';";
+                String delete = "DELETE FROM chitiettour WHERE DiaDiemTour = '" + ctt.getDdtour() + "';";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1357,15 +1357,15 @@ public class config {
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
-                stmt.setString(1, fb.getDdtour());
-                stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
-                stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
-                stmt.setLong(7,fb.getTienan());
-                stmt.setLong(8, fb.getTienphong());
-                stmt.setLong(9, fb.getPhidichvu());
+                stmt.setString(1, ctt.getDdtour());
+                stmt.setString(2, ctt.getMatour());
+                stmt.setString(3, ctt.getKhoihanh());
+                stmt.setString(4, ctt.getNoiden());
+                stmt.setInt(5, ctt.getThutungay());
+                stmt.setString(6, ctt.getMaks());
+                stmt.setLong(7,ctt.getTienan());
+                stmt.setLong(8, ctt.getTienphong());
+                stmt.setLong(9, ctt.getPhidichvu());
                 
                 stmt.execute();
 
@@ -1742,7 +1742,7 @@ public class config {
                 fb.setMaks(rs.getString("MaKS"));
                 fb.setTienan(rs.getLong("TienAn"));
                 fb.setTienphong(rs.getLong("TienPhong"));
-                fb.setPhidichvu(rs.getLong("PhiDichVu"));
+                fb.setPhidichvu(rs.getLong("TienDichVu"));
                 //
                 dsTour.add(fb);
             }
