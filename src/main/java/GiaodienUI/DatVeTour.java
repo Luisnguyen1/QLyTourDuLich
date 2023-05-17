@@ -31,34 +31,49 @@ public class DatVeTour extends javax.swing.JPanel {
     ArrayList<Tour> danhsachTour = new ArrayList<>();
     config con = new config();
 
-    public DatVeTour(String MaTour, String MaVe) {
+    public DatVeTour(String MaHD, String MaVT) {
         initComponents();
-        try {
-            danhSachVe = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-        }
-
-        Tour tour = new Tour();
-        for (Tour vt : danhsachTour) {
-            if (vt.getMaTour().equals(MaTour)) {
-                tour = vt;
-                break;
+        if (MaHD.equals("null") == true && MaVT.equals("null") == true) {
+            JOptionPane.showMessageDialog(null, "Vui lòng chọn vé");
+        } else {
+            try {
+                danhSachVe = con.layDL_VeTour();
+            } catch (SQLException ex) {
+                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
             }
+            VeTour vt = new VeTour();
+            for (VeTour veTour : danhSachVe) {
+                if (veTour.getMavetour().equals(MaVT)) {
+                    vt = veTour;
+                    break;
+                }
+            }
+            try {
+                danhsachTour = con.layDL_Tour();
+            } catch (SQLException ex) {
+                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            Tour tour = new Tour();
+            for (Tour tour1 : danhsachTour) {
+                if (tour1.getMaTour().equals(vt.getMatour())) {
+                    tour = tour1;
+                    break;
+                }
+            }
+            txtHoten.setText("");
+            txtDiachi.setText("");
+            txtSdt.setText("");
+            txtEmail.setText("");
+            txtMaVeTour.setText(MaVT);
+            txtNoiDi.setText(tour.getDiaDiemdi());
+            txtNoiDen.setText(tour.getDiaDiemden());
+            txtLoaiTour.setText(tour.getLoaiTour());
+
+            txtMaVeTour.setEditable(false);
+            txtNoiDi.setEditable(false);
+            txtNoiDen.setEditable(false);
+            txtLoaiTour.setEditable(false);
         }
-        txtHoten.setText("");
-        txtDiachi.setText("");
-        txtSdt.setText("");
-        txtEmail.setText("");
-        txtMaVeTour.setText(MaVe);
-        txtNoiDi.setText(tour.getDiaDiemdi());
-        txtNoiDen.setText(tour.getDiaDiemden());
-        txtLoaiTour.setText(tour.getLoaiTour());
-        
-        txtMaVeTour.setEditable(false);
-        txtNoiDi.setEditable(false);
-        txtNoiDen.setEditable(false);
-        txtLoaiTour.setEditable(false);
     }
 
     @SuppressWarnings("unchecked")
@@ -297,7 +312,7 @@ public class DatVeTour extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void txtMaVeTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaVeTourActionPerformed
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_txtMaVeTourActionPerformed
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
@@ -305,7 +320,7 @@ public class DatVeTour extends javax.swing.JPanel {
         String dchi = txtDiachi.getText();
         String sdt = txtSdt.getText();
         String Email = txtEmail.getText();
-        
+
         String soluong = txtSoLuong.getText();
 
         if (hoten.equals("")) {
@@ -326,7 +341,6 @@ public class DatVeTour extends javax.swing.JPanel {
             txtDiachi.setText("");
             txtSdt.setText("");
             txtEmail.setText("");
-           
 
         }
     }//GEN-LAST:event_btnDatVeActionPerformed

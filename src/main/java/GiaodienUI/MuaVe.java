@@ -4,12 +4,16 @@
  */
 package GiaodienUI;
 
+import DTo.ChiTietHoaDonVe;
+import DTo.HoaDon;
+import DTo.Tour;
 import DTo.VeTour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
@@ -20,23 +24,59 @@ import javax.swing.table.DefaultTableModel;
 public class MuaVe extends javax.swing.JPanel {
 
     ArrayList<VeTour> danhSachVT = new ArrayList<>();
+    ArrayList<HoaDon> danhSachHD = new ArrayList<>();
     config con = new config();
-    int i =0;
+    String MaHD;
+    String MaVeTour;
+    int i = 0;
+
     /**
      * Creates new form MuaVe
      */
     public MuaVe() {
         initComponents();
         DefaultTableModel model = new DefaultTableModel();
+        ArrayList<Tour> danhsachTour = new ArrayList<>();
         try {
             danhSachVT = con.layDL_VeTour();
         } catch (SQLException ex) {
             Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        try {
+                danhsachTour = con.layDL_Tour();
+            } catch (SQLException ex) {
+                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        
         model = (DefaultTableModel) jTable1.getModel();
+        
         for (VeTour vt : danhSachVT) {
-            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+            Tour tour = new Tour();
+            for (Tour tour1 : danhsachTour) {
+                if (tour1.getMaTour().equals(vt.getMatour())) {
+                    tour = tour1;
+                    break;
+                }
+            }
+            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(),tour.getTenTour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
         }
+    }
+
+    public String getMaHD() {
+        return MaHD;
+    }
+
+    public void setMaHD(String MaHD) {
+        this.MaHD = MaHD;
+    }
+
+    public String getMaVeTour() {
+        return MaVeTour;
+    }
+
+    public void setMaVeTour(String MaVeTour) {
+        this.MaVeTour = MaVeTour;
     }
 
     /**
@@ -71,11 +111,11 @@ public class MuaVe extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Vé Tour", "Mã Tour", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Giảm"
+                "Mã Vé Tour", "Mã Tour", "Tên Tour", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Giảm"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -225,38 +265,60 @@ public class MuaVe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
-        // TODO add your handling code here:
+        DatVeTour dvt = new DatVeTour(MaHD, MaVeTour);
+        System.out.println(MaHD);
+        JFrame frame = new JFrame();
+        frame.add(dvt);
+        frame.setLocation(100, 100); // đặt vị trí
+        frame.setSize(930, 580); // đặt kích thước
+        frame.setVisible(true);
+       
+
     }//GEN-LAST:event_btnDatVeActionPerformed
+
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable2.getSelectedRow();
         DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
-        
+        String maVT = (String) model.getValueAt(selectedRow, 0);
         model.removeRow(selectedRow);
         model.fireTableDataChanged();
+        /*ChiTietHoaDonVe cthd = new ChiTietHoaDonVe(maVT,MaHD , 1, 0);
+        con.UpdateSQL_CTHD(cthd, 2, maVT);*/
     }//GEN-LAST:event_btnXoaActionPerformed
+    public String CreateMAHD() {
+        try {
+            danhSachHD = con.layDL_HoaDon();
+        } catch (SQLException ex) {
+            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return "1001" + Integer.toString(danhSachHD.size() + 1);
 
+    }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         if (i > 1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chỉ Chọn Một Vé Tour");
-        }
-        else{
-        int selectedRow = jTable1.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        String maVT = (String) model.getValueAt(selectedRow, 0);
-        if (selectedRow == -1) {
-            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Thêm");
-        }
-
-        DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
-
-        for (VeTour vt : danhSachVT) {
-            if (vt.getMavetour().equals(maVT)) {
-                model1.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
-                break;
+        } else {
+            int selectedRow = jTable1.getSelectedRow();
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            String maVT = (String) model.getValueAt(selectedRow, 0);
+            if (selectedRow == -1) {
+                JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Vé Để Thêm");
             }
-        }
-        i++;
+
+            DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
+
+            for (VeTour vt : danhSachVT) {
+                if (vt.getMavetour().equals(maVT)) {
+                    model1.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+                    break;
+                }
+            }
+            this.setMaVeTour(maVT);
+            this.setMaHD(CreateMAHD());
+            /*ChiTietHoaDonVe cthd = new ChiTietHoaDonVe(maVT,MaHD , 1, 0);
+        con.UpdateSQL_CTHD(cthd, 1, maVT);*/
+            i++;
         }
     }//GEN-LAST:event_btnThemActionPerformed
 

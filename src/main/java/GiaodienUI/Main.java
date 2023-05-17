@@ -21,16 +21,16 @@ import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
 
-
 public class Main extends javax.swing.JFrame {
-    SideMenuPanel sp = new  SideMenuPanel(this);
+
+    SideMenuPanel sp = new SideMenuPanel(this);
+
     /**
      * Creates new form Main
      */
     public Main() {
         initComponents();
-        
-        
+
         sp.setSide(sideBar);
         sp.setMain(mainPanel);
         sp.setMinWidth(38);
@@ -38,7 +38,7 @@ public class Main extends javax.swing.JFrame {
         sp.setMainAnimation(true);
         sp.setSpeed(1);
         sp.setResponsiveMinWidth(600);
-        
+
         jButton1.setContentAreaFilled(false);
         setForeground(new Color(230, 230, 230));
         jButton1.setHorizontalAlignment(SwingConstants.LEFT);
@@ -47,74 +47,81 @@ public class Main extends javax.swing.JFrame {
         URL url = getClass().getResource("menu-bar.png");
         ImageIcon icon = new ImageIcon(url);
         jButton1.setIcon(icon);
-        
+
         menu1.setEvent(new MenuEvent() {
             @Override
             public void selected(int index, int subIndex) {
-                if (index == 0) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 0) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyTourDuLich());
                 }
-                if (index == 1 && subIndex == 1) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 1) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyNhanVien());
                 }
-                if (index == 1 && subIndex == 2) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 2) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyPhuongTien());
                 }
-                if (index == 1 && subIndex == 3) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 3) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyVeTour());
                 }
-                if (index == 1 && subIndex == 4) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 4) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyTourDuLich());
                 }
-                if (index == 1 && subIndex == 5) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 5) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyHoaDon());
                 }
-                
+
                 if (index == 2 && subIndex == 1) {
-                System.out.println(index +" "+subIndex);
-                showForm(new QlyThongKeTheoNgay());
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyThongKeTheoNgay());
                 }
                 if (index == 2 && subIndex == 2) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyThongKeTheoThang());
+                }
+              
+
+                if (index == 3 && subIndex == 1) {
+                    System.out.println(index + " " + subIndex);
+                    MuaVe muave = new MuaVe();
+                    showForm(muave);                
+                    
+
+                }/*if (index == 3 && subIndex == 2) {
+                maVT = muave.getMaVeTour();
+                maHD = muave.getMaHD();
                 System.out.println(index +" "+subIndex);
-                showForm(new QlyThongKeTheoThang());
+                showForm(new DatVeTour(maHD,maVT));
                 }
-                if (index == 3 && subIndex == 1) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new MuaVe());
-                }if (index == 3 && subIndex == 2) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new DatVeTour());
-                }
-                if (index == 3 && subIndex == 3) {                    
-                    System.out.println(index +" "+subIndex);
-                    showForm(new BieuMauHoaDon());
-                }
-                
-                if (index == 4) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 3 && subIndex == 3) {
+                System.out.println(index +" "+subIndex);
+                showForm(new BieuMauHoaDon());
+                }*/
+
+                if (index == 4) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyKhuyenMai());
                 }
-                if(index == 5){                    
+                if (index == 5) {
                     DX();
                 }
-               
+
             }
-        }); 
+        });
         this.setLocationRelativeTo(null);
-        
+
     }
-     
-    private void DX()
-    {
+
+    private void DX() {
         ModuleXuLy md = new ModuleXuLy();
-                    md.dangXuat(this);
+        md.dangXuat(this);
     }
+
     private void showForm(Component com) {
         mainPanel.setLayout(new java.awt.BorderLayout());
         mainPanel.removeAll();
@@ -122,9 +129,7 @@ public class Main extends javax.swing.JFrame {
         mainPanel.repaint();
         mainPanel.revalidate();
     }
-    
-    
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
