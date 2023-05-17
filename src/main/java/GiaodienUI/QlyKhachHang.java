@@ -31,20 +31,21 @@ public class QlyKhachHang extends javax.swing.JPanel {
     ArrayList<KhachHang> danhSachKH = new ArrayList<KhachHang>();
     config con = new config();
     DefaultTableModel model = new DefaultTableModel();
+
     /**
      * Creates new form QlyKhachHang
      */
     public QlyKhachHang() {
         initComponents();
-         try {
+        try {
             danhSachKH = con.layDL_KhachHang();
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
-          model = (DefaultTableModel) jTable1.getModel();
-          for (KhachHang kh : danhSachKH) {
-                model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
-            }
+        model = (DefaultTableModel) jTable1.getModel();
+        for (KhachHang kh : danhSachKH) {
+            model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
+        }
 
     }
 
@@ -446,8 +447,8 @@ public class QlyKhachHang extends javax.swing.JPanel {
         String diaChi = txtDiaChi.getText();
         String soDienThoai = txtSoDienThoai.getText();
         String email = txtEmail.getText();
+        model = (DefaultTableModel) jTable1.getModel();
 
-        
         if (tenKH.equals("") || diaChi.equals("") || soDienThoai.equals("") || email.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else {
@@ -465,15 +466,12 @@ public class QlyKhachHang extends javax.swing.JPanel {
 
             // tạo đối tượng KhachHang mới với thông tin lấy được
             KhachHang kh = new KhachHang(tenKH, maKH, diaChi, soDienThoai, email);
-            
+
             // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
             danhSachKH.add(kh);
             con.UpdateSQL_KhachHang(kh, 1, "null");
-            
 
 // lấy ra model của JTable hiện tại
-         
-
 // thêm đối tượng KhachHang vào model
             model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
 
@@ -491,25 +489,21 @@ public class QlyKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-try {
+        try {
             danhSachKH = con.layDL_KhachHang();
         } catch (SQLException ex) {
             Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-
+        model = (DefaultTableModel) jTable1.getModel();
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
             return;
         }
 
-        
-
 // lấy ra model của JTable hiện tại
-       
-
 // lấy mã khách hàng của hàng được chọn
         String maKH = (String) model.getValueAt(selectedRow, 1);
 
@@ -534,8 +528,6 @@ try {
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
-        
-
 // cập nhật lại model cho JTable
         jTable1.setModel(model);
 
@@ -547,7 +539,7 @@ try {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-        
+
         try {
             danhSachKH = con.layDL_KhachHang();
         } catch (SQLException ex) {
@@ -558,8 +550,6 @@ try {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
             return;
         }
-
-        
 
 // lấy ra model của JTable hiện tại
         model = (DefaultTableModel) jTable1.getModel();
@@ -651,7 +641,7 @@ try {
 
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-    
+
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
 
     }//GEN-LAST:event_jTable1MouseClicked

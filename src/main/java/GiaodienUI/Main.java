@@ -84,13 +84,11 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index + " " + subIndex);
                     showForm(new QlyThongKeTheoThang());
                 }
-              
 
                 if (index == 3 && subIndex == 1) {
                     System.out.println(index + " " + subIndex);
                     MuaVe muave = new MuaVe();
-                    showForm(muave);                
-                    
+                    showForm(muave);
 
                 }/*if (index == 3 && subIndex == 2) {
                 maVT = muave.getMaVeTour();
@@ -102,12 +100,39 @@ public class Main extends javax.swing.JFrame {
                 System.out.println(index +" "+subIndex);
                 showForm(new BieuMauHoaDon());
                 }*/
-
+                if (index == 1 && subIndex == 6) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyKhachHang());
+                }
+                if (index == 1 && subIndex == 7) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyDiaDiemTour());
+                }
+                if (index == 1 && subIndex == 8) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyDiaDiemVuiChoi());
+                }
+                if (index == 1 && subIndex == 9) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new QlyKhachSan());
+                }
+                if (index == 1 && subIndex == 10) {
+                    System.out.println(index + " " + subIndex);
+                    showForm(new TourDuLich_Details());
+                }
                 if (index == 4) {
                     System.out.println(index + " " + subIndex);
                     showForm(new QlyKhuyenMai());
                 }
-                if (index == 5) {
+                if (index == 1 && subIndex == 11) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyPhanHoiKhachHang());
+                }
+                if(index == 5){
+                    System.out.println(index +" "+subIndex);
+                    showForm(new Contact());
+                }
+                if(index == 6){                    
                     DX();
                 }
 
