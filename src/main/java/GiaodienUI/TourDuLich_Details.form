@@ -518,7 +518,7 @@
                 <Column editable="true" title="M&#xe3; Tour" type="java.lang.String"/>
                 <Column editable="true" title="Kh&#x1edf;i H&#xe0;nh" type="java.lang.String"/>
                 <Column editable="true" title="N&#x1a1;i &#x110;&#x1ebf;n" type="java.lang.String"/>
-                <Column editable="true" title="Th&#x1ee9; t&#x1ef1; ng&#xe0;y" type="java.lang.Integer"/>
+                <Column editable="true" title="Th&#x1ee9; T&#x1ef1; Ng&#xe0;y" type="java.lang.Integer"/>
                 <Column editable="true" title="M&#xe3; Kh&#xe1;ch S&#x1ea1;n" type="java.lang.String"/>
                 <Column editable="true" title="Ti&#x1ec1;n &#x102;n" type="java.lang.Long"/>
                 <Column editable="true" title="Ti&#x1ec1;n Ph&#xf2;ng" type="java.lang.Long"/>

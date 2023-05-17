@@ -291,7 +291,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Địa Điểm", "Mã Tour", "Khởi Hành", "Nơi Đến", "Thứ tự ngày", "Mã Khách Sạn", "Tiền Ăn", "Tiền Phòng", "Phí Dịch Vụ"
+                "Địa Điểm", "Mã Tour", "Khởi Hành", "Nơi Đến", "Thứ Tự Ngày", "Mã Khách Sạn", "Tiền Ăn", "Tiền Phòng", "Phí Dịch Vụ"
             }
         ) {
             Class[] types = new Class [] {
@@ -565,7 +565,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         }
 
         String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", diadiemTour);
-        String Matour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
+        String maTour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
         String khoiHanh = JOptionPane.showInputDialog(null, "Nhập địa điểm khởi hành", cttourCanSua.getKhoihanh());
         String noiDen = JOptionPane.showInputDialog(null, "Nhập nơi đến", cttourCanSua.getNoiden());
         String maKS = JOptionPane.showInputDialog(null, "Nhập mã khách sạn", cttourCanSua.getMaks());
@@ -578,18 +578,18 @@ public class TourDuLich_Details extends javax.swing.JPanel {
 
 // cập nhật thông tin khách hàng
         cttourCanSua.setDdtour(ddTour);
-        cttourCanSua.setMatour(Matour);
+        cttourCanSua.setMatour(maTour);
         cttourCanSua.setKhoihanh(khoiHanh);
         cttourCanSua.setNoiden(noiDen);
+        cttourCanSua.setThutungay(thutungay);
         cttourCanSua.setMaks(maKS);
         cttourCanSua.setTienan(tienAn);
         cttourCanSua.setTienphong(tienPhong);
         cttourCanSua.setPhidichvu(phiDV);
-        cttourCanSua.setThutungay(thutungay);
 
 // cập nhật lại model cho JTable
         model.setValueAt(ddTour, selectedRow, 0);
-        model.setValueAt(Matour, selectedRow, 1);
+        model.setValueAt(maTour, selectedRow, 1);
         model.setValueAt(khoiHanh, selectedRow, 2);
         model.setValueAt(noiDen, selectedRow, 3);
             model.setValueAt(thutungay, selectedRow, 4);

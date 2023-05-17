@@ -1315,8 +1315,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
                 }
                 stmt.close();
                 con.close();
@@ -1375,8 +1375,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
                 }
                 stmt.close();
                 con.close();
