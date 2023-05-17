@@ -522,21 +522,19 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String maTour = (String) model.getValueAt(selectedRow, 1);
+        String ddTour = (String) model.getValueAt(selectedRow, 1);
         
         ChiTietTourDuLich cttourCanXoa = null;
         for(ChiTietTourDuLich km : dsTour){
-            if(km.getMatour().equals(maTour)){
+            if(km.getDdtour().equals(ddTour)){
                 cttourCanXoa = km;
                 break;
             }
         }
         
-        con.UpdateSQL_CTTour(cttourCanXoa, 2, "null");
-        
         dsTour.remove(cttourCanXoa);
         model.removeRow(selectedRow);
-        
+        con.UpdateSQL_CTTour(cttourCanXoa, 2, ddTour);
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Thành Công");
@@ -556,17 +554,17 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String maTour = (String) model.getValueAt(selectedRow, 1);
+        String diadiemTour = (String) model.getValueAt(selectedRow, 1);
         
         ChiTietTourDuLich cttourCanSua = null;
         for(ChiTietTourDuLich tk : dsTour){
-            if(tk.getMatour().equals(maTour)){
+            if(tk.getDdtour().equals(diadiemTour)){
                 cttourCanSua = tk;
                 break;
             }
         }
 
-        String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", cttourCanSua.getDdtour());
+        String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", diadiemTour);
         String Matour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
         String khoiHanh = JOptionPane.showInputDialog(null, "Nhập địa điểm khởi hành", cttourCanSua.getKhoihanh());
         String noiDen = JOptionPane.showInputDialog(null, "Nhập nơi đến", cttourCanSua.getNoiden());
@@ -601,7 +599,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         model.setValueAt(phiDV, selectedRow,8);
        
 
-        con.UpdateSQL_CTTour(cttourCanSua,3,maTour);
+        con.UpdateSQL_CTTour(cttourCanSua,3,diadiemTour);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Thành Công");
                                
