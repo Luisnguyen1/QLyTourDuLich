@@ -95,6 +95,10 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index +" "+subIndex);
                     showForm(new TourDuLich_Details());
                 }
+                   if (index == 1 && subIndex == 11) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyPhanHoiKhachHang());
+                }
                 if (index == 2 && subIndex == 1) {
                 System.out.println(index +" "+subIndex);
                 showForm(new QlyThongKeTheoNgay());
@@ -119,7 +123,11 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyKhuyenMai());
                 }
-                if(index == 5){                    
+                if(index == 5){
+                    System.out.println(index +" "+subIndex);
+                    showForm(new Contact());
+                }
+                if(index == 6){                    
                     DX();
                 }
                
