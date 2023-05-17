@@ -524,11 +524,11 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String ddTour = (String) model.getValueAt(selectedRow, 1);
+        String MaTour = (String) model.getValueAt(selectedRow, 1);
         
         ChiTietTourDuLich cttourCanXoa = null;
         for(ChiTietTourDuLich km : dsTour){
-            if(km.getDdtour().equals(ddTour)){
+            if(km.getMatour().equals(MaTour)){
                 cttourCanXoa = km;
                 break;
             }
@@ -536,7 +536,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         dsTour.remove(cttourCanXoa);
         model.removeRow(selectedRow);
-        con.UpdateSQL_CTTour(cttourCanXoa, 2, ddTour);
+        con.UpdateSQL_CTTour(cttourCanXoa, 2, MaTour);
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Thành Công");
