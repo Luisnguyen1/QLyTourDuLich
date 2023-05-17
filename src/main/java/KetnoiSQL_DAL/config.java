@@ -1005,7 +1005,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?)";
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
@@ -1014,11 +1014,10 @@ public class config {
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
-                stmt.setString(1, KhuyenMai.getMatour());
                 stmt.setString(2, KhuyenMai.getMave());
                 stmt.setInt(3, KhuyenMai.getSoluongve());
                 stmt.setLong(4, KhuyenMai.getTienve());
-                stmt.setString(5, KhuyenMai.getMaHD());
+                stmt.setString(1, KhuyenMai.getMaHD());
                 stmt.execute();
 
                 // select all student
@@ -1028,7 +1027,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();
@@ -1060,7 +1059,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?)";
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
@@ -1069,11 +1068,10 @@ public class config {
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
-                stmt.setString(1, KhuyenMai.getMatour());
                 stmt.setString(2, KhuyenMai.getMave());
                 stmt.setInt(3, KhuyenMai.getSoluongve());
                 stmt.setLong(4, KhuyenMai.getTienve());
-                stmt.setString(5, KhuyenMai.getMaHD());
+                stmt.setString(1, KhuyenMai.getMaHD());
                 stmt.execute();
 
 
@@ -1084,7 +1082,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();
@@ -1290,7 +1288,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen, MaKS, TienAn, TienPhong, PhiDichVu, NgayDi, NgayVe) VALUES(?, ?, ?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
@@ -1317,8 +1315,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " + rs.getDate(9) + "  " + rs.getDate(10) + "  ");
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
                 }
                 stmt.close();
                 con.close();
@@ -1377,8 +1375,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " + rs.getDate(9) + "  " + rs.getDate(10) + "  ");
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) + "  " + rs.getString(10));
                 }
                 stmt.close();
                 con.close();
@@ -1717,7 +1715,7 @@ public class config {
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
             while (rs.next()) {
                 ChiTietHoaDonVe fb = new ChiTietHoaDonVe();
-                fb.setMatour(rs.getString("MaHD"));
+                fb.setMaHD(rs.getString("MaHD"));
                 fb.setMave(rs.getString("MaVe"));
                 fb.setSoluongve(rs.getInt("SoLuongVe"));
                 fb.setTienve(rs.getInt("TienVe"));

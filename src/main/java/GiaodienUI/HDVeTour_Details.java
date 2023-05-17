@@ -410,7 +410,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Thông Tin Thành Công");
-                con.UpdateSQL_CTHD(cthdCanXoa, 2, null);
+                con.UpdateSQL_CTHD(cthdCanXoa, 2, mahoadon);
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
@@ -419,6 +419,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Sửa");
+            return;
         }
         
         config con = new config();
@@ -436,7 +437,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             }
         }
         
-        String mahd = JOptionPane.showInputDialog(null,"Nhập mã hóa đơn",cthdCanSua.getMaHD());
+        String mahd = JOptionPane.showInputDialog(null,"Nhập mã hóa đơn",mahoadon);
         String maVe = JOptionPane.showInputDialog(null,"Nhập mã vé",cthdCanSua.getMave());
         int veCount = Integer.parseInt(JOptionPane.showInputDialog(null,"Nhập số lượng vé",cthdCanSua.getSoluongve()));
         long tienVe = Long.parseLong(JOptionPane.showInputDialog(null,"Nhập tiền vé",cthdCanSua.getTienve()));
@@ -451,13 +452,39 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         model.setValueAt(veCount,selectedRow,2);
         model.setValueAt(tienVe,selectedRow,3);
         
-        con.UpdateSQL_CTHD(cthdCanSua, 3, null);
+        con.UpdateSQL_CTHD(cthdCanSua, 3, mahoadon);
         
         JOptionPane.showMessageDialog(null,"Sửa Thông Tin Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        // TODO add your handling code here:
+        String tuKhoa = txtMahoadon.getText().toLowerCase().trim();
+        config con = new config();
+        
+        dsHDVe = con.LayDL_CTHD();
+        if (tuKhoa.length() == 0) {
+            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
+            return;
+        }
+
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        model.setRowCount(0);
+        /*for (int i = 0; i < danhSachTour.size(); i++) {
+        model.removeRow(i);
+        }*/
+        for (int i = 0; i < dsHDVe.size(); i++) {
+            ChiTietHoaDonVe tour = dsHDVe.get(i);
+            if (tour.getMaHD().toLowerCase().contains(tuKhoa)
+                    || tour.getMave().toLowerCase().contains(tuKhoa)) {
+                
+               
+                    if (tuKhoa.equals(dsHDVe.get(i).getMaHD())) {
+                        model.addRow(new Object[]{dsHDVe.get(i).getMaHD(), dsHDVe.get(i).getMave(), dsHDVe.get(i).getSoluongve(), dsHDVe.get(i).getTienve()});
+                    }
+                
+
+            }
+        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void loadChiTietHD(){

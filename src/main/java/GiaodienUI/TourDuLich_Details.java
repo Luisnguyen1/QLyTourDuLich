@@ -936,6 +936,7 @@ if(thang.equals("2")){
         
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Hàng Để Sửa");
+            return;
         }
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
@@ -950,8 +951,8 @@ if(thang.equals("2")){
             }
         }
 
-        String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", cttourCanSua.getDdtour());
-        String Matour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
+        String diadiemTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", cttourCanSua.getDdtour());
+        String matour = JOptionPane.showInputDialog(null, "Nhập mã tour", maTour);
         String khoiHanh = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getKhoihanh());
         String noiDen = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getNoiden());
         String maKS = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getMaks());
@@ -1037,8 +1038,8 @@ if(thang.equals("2")){
         String ngayVeString = dateFormat.format(ngayVeDate);
 
 // cập nhật thông tin khách hàng
-        cttourCanSua.setDdtour(ddTour);
-        cttourCanSua.setMatour(Matour);
+        cttourCanSua.setDdtour(diadiemTour);
+        cttourCanSua.setMatour(matour);
         cttourCanSua.setKhoihanh(khoiHanh);
         cttourCanSua.setNoiden(noiDen);
         cttourCanSua.setMaks(maKS);
@@ -1049,8 +1050,8 @@ if(thang.equals("2")){
         cttourCanSua.setNgayve(ngayVeDate);
 
 // cập nhật lại model cho JTable
-        model.setValueAt(ddTour, selectedRow, 0);
-        model.setValueAt(Matour, selectedRow, 1);
+        model.setValueAt(diadiemTour, selectedRow, 0);
+        model.setValueAt(matour, selectedRow, 1);
         model.setValueAt(khoiHanh, selectedRow, 2);
         model.setValueAt(noiDen, selectedRow, 3);
         model.setValueAt(maKS, selectedRow, 4);
