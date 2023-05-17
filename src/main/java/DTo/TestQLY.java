@@ -42,7 +42,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-QlyTourDuLich ql = new QlyTourDuLich();
+HDVeTour_Details ql = new HDVeTour_Details();
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí
