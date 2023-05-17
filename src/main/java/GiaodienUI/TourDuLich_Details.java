@@ -27,7 +27,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     /**
      * Creates new form TourDuLich_Details
      */
- 
    
              config con = new config();
     public TourDuLich_Details() {
@@ -446,7 +445,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienphongActionPerformed
     
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        con.LayDL_CTTour();
+        dsTour=con.LayDL_CTTour();
         String diaDiem = txtDiadiem.getText();
         String maTour = txtMatour.getText();
         String khoiHanh = txtKhoihanh.getText();
@@ -512,10 +511,8 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-         int selectedRow = jTable1.getSelectedRow();
-         
-
          dsTour = con.LayDL_CTTour();
+        int selectedRow = jTable1.getSelectedRow();     
    
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
@@ -543,13 +540,9 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
+         dsTour = con.LayDL_CTTour();
         int selectedRow = jTable1.getSelectedRow();
-        
-      
-       
-        dsTour = con.LayDL_CTTour();
     
-        
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Hàng Để Sửa");
         }

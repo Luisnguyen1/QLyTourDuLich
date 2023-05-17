@@ -75,7 +75,26 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyHoaDon());
                 }
-                
+                 if (index == 1 && subIndex == 6) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhachHang());
+                }
+                  if (index == 1 && subIndex == 7) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyDiaDiemTour());
+                }
+                 if (index == 1 && subIndex == 8) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyDiaDiemVuiChoi());
+                }
+                  if (index == 1 && subIndex == 9) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new QlyKhachSan());
+                }
+                   if (index == 1 && subIndex == 10) {                    
+                    System.out.println(index +" "+subIndex);
+                    showForm(new TourDuLich_Details());
+                }
                 if (index == 2 && subIndex == 1) {
                 System.out.println(index +" "+subIndex);
                 showForm(new QlyThongKeTheoNgay());
@@ -89,7 +108,7 @@ public class Main extends javax.swing.JFrame {
                     showForm(new MuaVe());
                 }if (index == 3 && subIndex == 2) {                    
                     System.out.println(index +" "+subIndex);
-                    showForm(new DatVeTour());
+                    showForm(new HDVeTour_Details());
                 }
                 if (index == 3 && subIndex == 3) {                    
                     System.out.println(index +" "+subIndex);

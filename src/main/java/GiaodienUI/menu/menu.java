@@ -51,7 +51,7 @@ public class menu extends JComponent{
     private String [][]menuItems = new String[][]
     {
         {"Dashboard"},        
-        {"Quản Lý","Quản Lý Nhân Viên","Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn"},
+        {"Quản Lý","Quản Lý Nhân Viên","Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn","Quản Lý Khách Hàng","Quản Lý Địa Điểm Tour","Quản Lý Địa Điểm Vui Chơi","Quản Lý Khách Sạn","Quản Lý Chi Tiết Tour"},
         {"Thống Kê","Thống Kê Theo Ngày","Thống Kê Theo Tháng"},
         {"Đặt Vé","Chọn Vé","Điền Thông Tin","Xuất Hóa Đơn"},        
         {"Khuyến Mãi"},      

@@ -1331,7 +1331,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM chitiettour WHERE DiaDiemTour = '" + ctt.getDdtour() + "';";
+                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + ctt.getMatour()+ "';";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1343,7 +1343,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM chitiettour WHERE DiaDiemTour = '" + ctt.getDdtour() + "';";
+                String delete = "DELETE FROM chitiettour WHERE MaTour = '" + ctt.getMatour()+ "';";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
