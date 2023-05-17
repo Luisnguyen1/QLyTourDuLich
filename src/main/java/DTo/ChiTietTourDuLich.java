@@ -19,12 +19,11 @@ public class ChiTietTourDuLich {
     private long tienan;
     private long tienphong;
     private long phidichvu;
-    private Date ngaydi;
-    private Date ngayve;
+    private int thutungay;
 
     public ChiTietTourDuLich(){}
 
-    public ChiTietTourDuLich(String ddtour, String matour, String khoihanh, String noiden, String maks, long tienan, long tienphong, long phidichvu, Date ngaydi, Date ngayve) {
+    public ChiTietTourDuLich(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu) {
         this.ddtour = ddtour;
         this.matour = matour;
         this.khoihanh = khoihanh;
@@ -33,8 +32,7 @@ public class ChiTietTourDuLich {
         this.tienan = tienan;
         this.tienphong = tienphong;
         this.phidichvu = phidichvu;
-        this.ngaydi = ngaydi;
-        this.ngayve = ngayve;
+        this.thutungay= thutungay;
     }
 
     public String getDdtour() {
@@ -101,21 +99,15 @@ public class ChiTietTourDuLich {
         this.phidichvu = phidichvu;
     }
 
-    public Date getNgaydi() {
-        return ngaydi;
+    public int getThutungay() {
+        return thutungay;
     }
 
-    public void setNgaydi(Date ngaydi) {
-        this.ngaydi = ngaydi;
+    public void setThutungay(int thutungay) {
+        this.thutungay = thutungay;
     }
-
-    public Date getNgayve() {
-        return ngayve;
-    }
-
-    public void setNgayve(Date ngayve) {
-        this.ngayve = ngayve;
-    }
+    
+    
     
     
     

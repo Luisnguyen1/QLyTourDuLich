@@ -5,11 +5,15 @@
 package GiaodienUI;
 
 import DTo.ChiTietTourDuLich;
+import DTo.Tour;
 import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JComboBox;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -23,9 +27,16 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     /**
      * Creates new form TourDuLich_Details
      */
+ 
+   
+             config con = new config();
     public TourDuLich_Details() {
         initComponents();
-        loadChiTietTour();
+        dsTour = con.LayDL_CTTour();
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (ChiTietTourDuLich nv : dsTour) {            
+            model.addRow(new Object[]{nv.getDdtour(),nv.getMatour(),nv.getKhoihanh(),nv.getNoiden(),nv.getThutungay(),nv.getMaks(),nv.getTienan(),nv.getTienphong(),nv.getPhidichvu()});
+    }
     }
 
     /**
@@ -64,22 +75,15 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         txtTienan = new javax.swing.JTextField();
         txtTienphong = new javax.swing.JTextField();
         txtPhidichvu = new javax.swing.JTextField();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jLabel11 = new javax.swing.JLabel();
-        cbxNgaydi = new javax.swing.JComboBox<>();
-        cbxThangdi = new javax.swing.JComboBox<>();
-        cbxNamdi = new javax.swing.JComboBox<>();
-        cbxNgayve = new javax.swing.JComboBox<>();
-        cbxThangve = new javax.swing.JComboBox<>();
-        cbxNamve = new javax.swing.JComboBox<>();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimkiem = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        txtThuTuNgay = new javax.swing.JTextField();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -127,7 +131,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 109, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -236,78 +240,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
             }
         });
 
-        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel10.setText("       Ngày Đi");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        jLabel11.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel11.setText("       Ngày Về");
-
-        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
-        jPanel10.setLayout(jPanel10Layout);
-        jPanel10Layout.setHorizontalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 110, Short.MAX_VALUE)
-        );
-        jPanel10Layout.setVerticalGroup(
-            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
-        cbxNgaydi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
-        cbxNgaydi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNgaydiActionPerformed(evt);
-            }
-        });
-
-        cbxThangdi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cbxThangdi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxThangdiActionPerformed(evt);
-            }
-        });
-
-        cbxNamdi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
-        cbxNamdi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNamdiActionPerformed(evt);
-            }
-        });
-
-        cbxNgayve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Ngày" }));
-        cbxNgayve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNgayveActionPerformed(evt);
-            }
-        });
-
-        cbxThangve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tháng", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
-        cbxThangve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxThangveActionPerformed(evt);
-            }
-        });
-
-        cbxNamve.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Năm", "2023" }));
-        cbxNamve.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxNamveActionPerformed(evt);
-            }
-        });
-
         btnThem.setBackground(new java.awt.Color(21, 110, 71));
         btnThem.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnThem.setForeground(new java.awt.Color(255, 255, 255));
@@ -353,11 +285,11 @@ public class TourDuLich_Details extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Địa Điểm", "Mã Tour", "Khởi Hành", "Nơi Đến", "Ngày Đi", "Ngày Về", "Mã Khách Sạn", "Tiền Ăn", "Tiền Phòng", "Phí Dịch Vụ"
+                "Địa Điểm", "Mã Tour", "Khởi Hành", "Nơi Đến", "Thứ tự ngày", "Mã Khách Sạn", "Tiền Ăn", "Tiền Phòng", "Phí Dịch Vụ"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.String.class, java.lang.Long.class, java.lang.Long.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -365,6 +297,21 @@ public class TourDuLich_Details extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(jTable1);
+
+        jLabel10.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(169, 0, 6));
+        jLabel10.setText("   Thứ tự ngày");
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -379,22 +326,15 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel4, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxNgaydi, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtDiadiem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(txtMatour)
-                                .addComponent(txtKhoihanh, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNoiden, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxNgayve, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(txtDiadiem, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                            .addComponent(txtMatour)
+                            .addComponent(txtKhoihanh, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtNoiden, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtThuTuNgay, javax.swing.GroupLayout.Alignment.LEADING))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -411,20 +351,9 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                                     .addComponent(txtPhidichvu)
                                     .addComponent(txtMaks)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(cbxThangve, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(cbxNamve, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                            .addComponent(cbxThangdi, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(26, 26, 26)
-                                            .addComponent(cbxNamdi, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(83, 83, 83)
-                                        .addComponent(btnTimkiem)))
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(83, 83, 83)
+                                .addComponent(btnTimkiem)
                                 .addGap(0, 0, Short.MAX_VALUE)))))
                 .addContainerGap(106, Short.MAX_VALUE))
             .addGroup(layout.createSequentialGroup()
@@ -477,21 +406,11 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(txtNoiden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxNgaydi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxThangdi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNamdi, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(cbxNgayve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxThangve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(cbxNamve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(36, 36, 36)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtThuTuNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
+                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(84, 84, 84)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
@@ -513,286 +432,14 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     private void txtMatourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatourActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMatourActionPerformed
-
-    private void cbxThangdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangdiActionPerformed
-        String thang = cbxThangdi.getSelectedItem().toString();
-    int day = 0;
-
-    //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
-    if(thang.equals("1")){
-        cbxNgaydi.removeAllItems();
-        cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("3")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("5")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("7")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("8")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("10")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("12")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 32 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-
-    //Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
-    if(thang.equals("4")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 31 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("6")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 31 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("9")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 31 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    else if(thang.equals("11")){
-        cbxNgaydi.removeAllItems();
-    cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 31 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-
-    //Còn lại là tháng 2 có 28 ngày trong năm 2023
-    if(thang.equals("2")){
-        cbxNgaydi.removeAllItems();
-        cbxNgaydi.addItem("Ngày");
-        for(int i = 1 ; i < 29 ; i++){
-            day = i;
-            String Day = Integer.toString(day);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-    }
-    }//GEN-LAST:event_cbxThangdiActionPerformed
     
     
-    private void cbxNamdiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamdiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNamdiActionPerformed
-
-    private void cbxNgayveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgayveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNgayveActionPerformed
-
-    private void cbxNamveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamveActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNamveActionPerformed
-
     private void txtTienphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienphongActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtTienphongActionPerformed
-
-    private void cbxThangveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangveActionPerformed
-         String thang = cbxThangve.getSelectedItem().toString();
-int day = 0;
-
-//Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
-if(thang.equals("1")){
-    cbxNgayve.removeAllItems();
-    cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("3")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("5")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("7")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("8")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("10")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("12")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 32 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-
-//Những tháng 4,6,9,11 thì có 30 ngày trong năm 2023
-if(thang.equals("4")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("6")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("9")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-else if(thang.equals("11")){
-    cbxNgayve.removeAllItems();
-cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 31 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-}
-
-//Còn lại là tháng 2 có 28 ngày trong năm 2023
-if(thang.equals("2")){
-    cbxNgayve.removeAllItems();
-    cbxNgayve.addItem("Ngày");
-    for(int i = 1 ; i < 29 ; i++){
-        day = i;
-        String Day = Integer.toString(day);
-        cbxNgayve.addItem(Day);
-        Day = "";
-    }
-    }//GEN-LAST:event_cbxThangveActionPerformed
-    }
+    
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        con.LayDL_CTTour();
         String diaDiem = txtDiadiem.getText();
         String maTour = txtMatour.getText();
         String khoiHanh = txtKhoihanh.getText();
@@ -801,16 +448,8 @@ if(thang.equals("2")){
         long tienAn = Long.parseLong(txtTienan.getText());
         long tienPhong = Long.parseLong(txtTienphong.getText());
         long phiDV = Long.parseLong(txtPhidichvu.getText());
-        int ngayDi = Integer.parseInt(cbxNgaydi.getSelectedItem().toString());
-        int thangDi = Integer.parseInt(cbxThangdi.getSelectedItem().toString());
-        int namDi = Integer.parseInt(cbxNamdi.getSelectedItem().toString());
-        int ngayVe = Integer.parseInt(cbxNgayve.getSelectedItem().toString());
-        int thangVe = Integer.parseInt(cbxThangve.getSelectedItem().toString());
-        int namVe = Integer.parseInt(cbxNamve.getSelectedItem().toString());
+        int thutungay = Integer.parseInt(txtThuTuNgay.getText());
         
-        config con = new config();
-            dsTour = con.LayDL_CTTour();
-            
         if(diaDiem.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
         }
@@ -834,45 +473,20 @@ if(thang.equals("2")){
         }
         else if(txtPhidichvu.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxNgaydi.getSelectedItem().toString().equals("Ngày")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxThangdi.getSelectedItem().toString().equals("Tháng")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxNamdi.getSelectedItem().toString().equals("Năm")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxNgayve.getSelectedItem().toString().equals("Ngày")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxThangve.getSelectedItem().toString().equals("Tháng")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(cbxNamve.getSelectedItem().toString().equals("Năm")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
+   
+    
         }
         else{
             
-            Calendar calendar = Calendar.getInstance();
-            calendar.set(namDi,thangDi - 1, ngayDi);
-            Date ngayDiDate = calendar.getTime();
-            calendar.set(namVe, thangVe - 1, ngayVe);
-            Date ngayVeDate = calendar.getTime();
-            
-            SimpleDateFormat dateFormat = new SimpleDateFormat();
-            String Ngaydi = dateFormat.format(ngayDiDate);
-            String Ngayve = dateFormat.format(ngayVeDate);
-            
-            ChiTietTourDuLich ctt = new ChiTietTourDuLich(diaDiem,maTour,khoiHanh,noiDen,maKS,tienAn,tienPhong,phiDV,ngayDiDate,ngayVeDate);
+        
+            ChiTietTourDuLich ctt = new ChiTietTourDuLich(diaDiem,maTour,khoiHanh,noiDen,thutungay,maKS,tienAn,tienPhong,phiDV);
             dsTour.add(ctt);
             
             con.UpdateSQL_CTTour(ctt, 1, null);
             
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             
-            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu(),Ngaydi,Ngayve});
+            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),ctt.getThutungay(),ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu()});
             
             jTable1.setModel(model);
             
@@ -881,6 +495,7 @@ if(thang.equals("2")){
             txtDiadiem.setText("");
             txtMatour.setText("");
             txtKhoihanh.setText("");
+            txtThuTuNgay.setText("");
             txtNoiden.setText("");
             txtMaks.setText("");
             txtTienan.setText("");
@@ -889,14 +504,10 @@ if(thang.equals("2")){
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void cbxNgaydiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNgaydiActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cbxNgaydiActionPerformed
-
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
          int selectedRow = jTable1.getSelectedRow();
          
-         config con = new config();
+
          dsTour = con.LayDL_CTTour();
    
         if(selectedRow == -1){
@@ -916,7 +527,7 @@ if(thang.equals("2")){
             }
         }
         
-        con.UpdateSQL_CTTour(cttourCanXoa, 2, maTour);
+        con.UpdateSQL_CTTour(cttourCanXoa, 2, "null");
         
         dsTour.remove(cttourCanXoa);
         model.removeRow(selectedRow);
@@ -929,7 +540,7 @@ if(thang.equals("2")){
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         
-        config con = new config();
+      
        
         dsTour = con.LayDL_CTTour();
     
@@ -952,89 +563,15 @@ if(thang.equals("2")){
 
         String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", cttourCanSua.getDdtour());
         String Matour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
-        String khoiHanh = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getKhoihanh());
-        String noiDen = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getNoiden());
-        String maKS = JOptionPane.showInputDialog(null, "Nhập tên khuyến mãi", cttourCanSua.getMaks());
+        String khoiHanh = JOptionPane.showInputDialog(null, "Nhập địa điểm khởi hành", cttourCanSua.getKhoihanh());
+        String noiDen = JOptionPane.showInputDialog(null, "Nhập nơi đến", cttourCanSua.getNoiden());
+        String maKS = JOptionPane.showInputDialog(null, "Nhập mã khách sạn", cttourCanSua.getMaks());
         long tienAn = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền ăn", cttourCanSua.getTienan()));
         long tienPhong = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền phòng", cttourCanSua.getTienphong()));
         long phiDV = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập phí dịch vụ", cttourCanSua.getPhidichvu()));
-
+        int thutungay = Integer.parseInt(JOptionPane.showInputDialog(null, "Nhập thứ tự ngày", cttourCanSua.getThutungay()));
 // thêm ComboBox để chọn loại nhân viên
-        JComboBox<String> cbxNamdi = new JComboBox<>();
-        cbxNamdi.addItem("2023");
-
-        cbxNamdi.setSelectedItem(cttourCanSua.getNgaydi());
-
-        JOptionPane.showMessageDialog(null, cbxNamdi, "Chọn năm đi", JOptionPane.QUESTION_MESSAGE);
-        String namDiString = (String) cbxNamdi.getSelectedItem();
-        int namDi = Integer.parseInt(namDiString);
-
-        JComboBox<String> cbxThangdi = new JComboBox<>();
-        int day = 0;
-        for (int i = 1; i < 13; i++) {
-            day = i;
-            String Day = Integer.toString(day);
-            cbxThangdi.addItem(Day);
-            Day = "";
-        }
-        cbxThangdi.setSelectedItem(cttourCanSua.getNgaydi());
-        JOptionPane.showMessageDialog(null, cbxThangdi, "Chọn tháng đi", JOptionPane.QUESTION_MESSAGE);
-        String TDiString = (String) cbxThangdi.getSelectedItem();
-        int ThangDi = Integer.parseInt(TDiString);
-
-        JComboBox<String> cbxNgaydi = new JComboBox<>();
-        for (int i = 1; i < 32; i++) {
-            String Day = Integer.toString(i);
-            cbxNgaydi.addItem(Day);
-            Day = "";
-        }
-        cbxNgaydi.setSelectedItem(cttourCanSua.getNgaydi());
-        JOptionPane.showMessageDialog(null, cbxNgaydi, "Chọn Ngày khuyến mãi", JOptionPane.QUESTION_MESSAGE);
-        String ngaydi = (String) cbxNgaydi.getSelectedItem();
-        int ngayDi = Integer.parseInt(ngaydi);
-
-        JComboBox<String> cbxNamve = new JComboBox<>();
-        cbxNamve.addItem("2023");
-
-        cbxNamve.setSelectedItem(cttourCanSua.getNgayve());
-
-        JOptionPane.showMessageDialog(null, cbxNamve, "Chọn năm về", JOptionPane.QUESTION_MESSAGE);
-        String namVeString = (String) cbxNamve.getSelectedItem();
-        int namVe = Integer.parseInt(namVeString);
-        
-        JComboBox<String> cbxThangve = new JComboBox<>();
-        for (int i = 1; i < 13; i++) {
-            day = i;
-            String Day = Integer.toString(day);
-            cbxThangve.addItem(Day);
-            Day = "";
-        }
-        cbxThangve.setSelectedItem(cttourCanSua.getNgayve());
-        JOptionPane.showMessageDialog(null, cbxThangve, "Chọn Tháng khuyến mãi", JOptionPane.QUESTION_MESSAGE);
-        String TVeString = (String) cbxThangve.getSelectedItem();
-        int ThangVe = Integer.parseInt(TVeString);
-
-        JComboBox<String> cbxNgayve = new JComboBox<>();
-        for (int i = 1; i < 32; i++) {
-            String Day = Integer.toString(i);
-            cbxNgayve.addItem(Day);
-            Day = "";
-        }
-        cbxNgayve.setSelectedItem(cttourCanSua.getNgayve());
-        JOptionPane.showMessageDialog(null, cbxNgayve, "Chọn Ngày khuyến mãi", JOptionPane.QUESTION_MESSAGE);
-        String ngayve = (String) cbxNgayve.getSelectedItem();
-        int ngayVe = Integer.parseInt(ngayve);
-
        
-
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(namDi, ThangDi - 1, ngayDi);
-        Date ngayDiDate = calendar.getTime();
-        calendar.set(namVe, ThangVe - 1, ngayVe);
-        Date ngayVeDate = calendar.getTime();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String ngayDiString = dateFormat.format(ngayDiDate);
-        String ngayVeString = dateFormat.format(ngayVeDate);
 
 // cập nhật thông tin khách hàng
         cttourCanSua.setDdtour(ddTour);
@@ -1045,20 +582,19 @@ if(thang.equals("2")){
         cttourCanSua.setTienan(tienAn);
         cttourCanSua.setTienphong(tienPhong);
         cttourCanSua.setPhidichvu(phiDV);
-        cttourCanSua.setNgaydi(ngayDiDate);
-        cttourCanSua.setNgayve(ngayVeDate);
+        cttourCanSua.setThutungay(thutungay);
 
 // cập nhật lại model cho JTable
         model.setValueAt(ddTour, selectedRow, 0);
         model.setValueAt(Matour, selectedRow, 1);
         model.setValueAt(khoiHanh, selectedRow, 2);
         model.setValueAt(noiDen, selectedRow, 3);
-        model.setValueAt(maKS, selectedRow, 4);
-        model.setValueAt(tienAn, selectedRow, 5);
-        model.setValueAt(tienPhong, selectedRow, 6);
-        model.setValueAt(phiDV, selectedRow, 7);
-        model.setValueAt(ngayDiString, selectedRow, 8);
-        model.setValueAt(ngayVeString, selectedRow, 9);
+            model.setValueAt(thutungay, selectedRow, 4);
+        model.setValueAt(maKS, selectedRow, 5);
+        model.setValueAt(tienAn, selectedRow, 6);
+        model.setValueAt(tienPhong, selectedRow, 7);
+        model.setValueAt(phiDV, selectedRow,8);
+       
 
         con.UpdateSQL_CTTour(cttourCanSua,3,maTour);
 // thông báo thành công
@@ -1067,7 +603,8 @@ if(thang.equals("2")){
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-     String tuKhoa = txtMatour.getText().toLowerCase().trim();
+        con.LayDL_CTHD();
+        String tuKhoa = txtMatour.getText().toLowerCase().trim();
         config con = new config();
             dsTour = con.LayDL_CTTour();
        
@@ -1088,34 +625,20 @@ if(thang.equals("2")){
                 
                
                     if (tuKhoa.equals(dsTour.get(i).getMatour())) {
-                        model.addRow(new Object[]{dsTour.get(i).getDdtour(), dsTour.get(i).getMatour(), dsTour.get(i).getKhoihanh(), dsTour.get(i).getNoiden(), dsTour.get(i).getMaks(),dsTour.get(i).getTienan(),dsTour.get(i).getTienphong(),dsTour.get(i).getPhidichvu(),dsTour.get(i).getNgaydi(),dsTour.get(i).getNgayve()});
+                        model.addRow(new Object[]{dsTour.get(i).getDdtour(), dsTour.get(i).getMatour(), dsTour.get(i).getKhoihanh(), dsTour.get(i).getNoiden(),dsTour.get(i).getThutungay(), dsTour.get(i).getMaks(),dsTour.get(i).getTienan(),dsTour.get(i).getTienphong(),dsTour.get(i).getPhidichvu()});
                     }
             }
         }
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
 
-    private void loadChiTietTour(){
-        config con = new config();
-        dsTour.clear();
-        dsTour.addAll(con.LayDL_CTTour());
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (ChiTietTourDuLich ctt : dsTour) {
-            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu(),ctt.getNgaydi(),ctt.getNgayve()});
-        }
-    }
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimkiem;
     private javax.swing.JButton btnXoa;
-    private javax.swing.JComboBox<String> cbxNamdi;
-    private javax.swing.JComboBox<String> cbxNamve;
-    private javax.swing.JComboBox<String> cbxNgaydi;
-    private javax.swing.JComboBox<String> cbxNgayve;
-    private javax.swing.JComboBox<String> cbxThangdi;
-    private javax.swing.JComboBox<String> cbxThangve;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -1147,6 +670,7 @@ if(thang.equals("2")){
     private javax.swing.JTextField txtMatour;
     private javax.swing.JTextField txtNoiden;
     private javax.swing.JTextField txtPhidichvu;
+    private javax.swing.JTextField txtThuTuNgay;
     private javax.swing.JTextField txtTienan;
     private javax.swing.JTextField txtTienphong;
     // End of variables declaration//GEN-END:variables

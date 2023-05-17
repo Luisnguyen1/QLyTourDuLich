@@ -41,7 +41,7 @@ public class TestQLY {
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
 
-TourDuLich_Details ql = new TourDuLich_Details();        
+QlyTourDuLich ql = new QlyTourDuLich();
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí

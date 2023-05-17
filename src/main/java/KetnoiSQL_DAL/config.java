@@ -1290,7 +1290,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen, MaKS, TienAn, TienPhong, PhiDichVu, NgayDi, NgayVe) VALUES(?, ?, ?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen,ThuTuNgay, MaKS, TienAn, TienPhong, PhiDichVu) VALUES(?, ?, ?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
@@ -1303,12 +1303,12 @@ public class config {
                 stmt.setString(2, fb.getMatour());
                 stmt.setString(3, fb.getKhoihanh());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setString(5, fb.getMaks());
-                stmt.setLong(6,fb.getTienan());
-                stmt.setLong(7, fb.getTienphong());
-                stmt.setLong(8, fb.getPhidichvu());
-                stmt.setDate(9, (Date) fb.getNgaydi());
-                stmt.setDate(10, (Date) fb.getNgayve());
+                stmt.setInt(5, fb.getThutungay());
+                stmt.setString(6, fb.getMaks());
+                stmt.setLong(7,fb.getTienan());
+                stmt.setLong(8, fb.getTienphong());
+                stmt.setLong(9, fb.getPhidichvu());
+                
                 stmt.execute();
 
                 // select all student
@@ -1318,7 +1318,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " + rs.getDate(9) + "  " + rs.getDate(10) + "  ");
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
                 }
                 stmt.close();
                 con.close();
@@ -1350,7 +1350,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
@@ -1363,12 +1363,12 @@ public class config {
                 stmt.setString(2, fb.getMatour());
                 stmt.setString(3, fb.getKhoihanh());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setString(5, fb.getMaks());
-                stmt.setLong(6,fb.getTienan());
-                stmt.setLong(7, fb.getTienphong());
-                stmt.setLong(8, fb.getPhidichvu());
-                stmt.setDate(9, (Date) fb.getNgaydi());
-                stmt.setDate(10, (Date) fb.getNgayve());
+                stmt.setInt(5, fb.getThutungay());
+                stmt.setString(6, fb.getMaks());
+                stmt.setLong(7,fb.getTienan());
+                stmt.setLong(8, fb.getTienphong());
+                stmt.setLong(9, fb.getPhidichvu());
+                
                 stmt.execute();
 
                 // select all student
@@ -1378,7 +1378,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " + rs.getDate(9) + "  " + rs.getDate(10) + "  ");
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
                 }
                 stmt.close();
                 con.close();
@@ -1740,12 +1740,12 @@ public class config {
                 fb.setMatour(rs.getString("MaTour"));
                 fb.setKhoihanh(rs.getString("DiaDiemKhoiHanh"));
                 fb.setNoiden(rs.getString("DiaDiemDen"));
+                fb.setThutungay(rs.getInt("ThuTuNgay"));
                 fb.setMaks(rs.getString("MaKS"));
                 fb.setTienan(rs.getLong("TienAn"));
                 fb.setTienphong(rs.getLong("TienPhong"));
                 fb.setPhidichvu(rs.getLong("PhiDichVu"));
-                fb.setNgaydi(rs.getDate("NgayDi"));
-                fb.setNgayve(rs.getDate("NgayVe"));
+                //
                 dsTour.add(fb);
             }
         } catch (SQLException ex) {
