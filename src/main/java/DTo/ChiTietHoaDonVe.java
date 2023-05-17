@@ -3,7 +3,6 @@ package DTo;
 import java.util.Scanner;
 
 public class ChiTietHoaDonVe {
-    private String matour;
     private String mave;
     private String maHD;
     private int soluongve;
@@ -12,22 +11,14 @@ public class ChiTietHoaDonVe {
     public ChiTietHoaDonVe() {
     }
 
-    public ChiTietHoaDonVe(String matour, String mave, String maHD, int soluongve, long tienve) {
-        this.matour = matour;
+    public ChiTietHoaDonVe(String mave, String maHD, int soluongve, long tienve) {
         this.mave = mave;
         this.maHD = maHD;
         this.soluongve = soluongve;
         this.tienve = tienve;
     }
 
-    public String getMatour() {
-        return matour;
-    }
-
-    public void setMatour(String matour) {
-        this.matour = matour;
-    }
-
+   
     public String getMave() {
         return mave;
     }

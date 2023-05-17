@@ -8,6 +8,7 @@ package DTo;
 import GiaodienUI.BieuMauHoaDon;
 import GiaodienUI.Contact;
 import GiaodienUI.DatVeTour;
+import GiaodienUI.HDVeTour_Details;
 import GiaodienUI.MuaVe;
 import GiaodienUI.QlyDiaDiemTour;
 import GiaodienUI.QlyDiaDiemVuiChoi;
