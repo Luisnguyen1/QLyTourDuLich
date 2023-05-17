@@ -90,8 +90,8 @@
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="txtMave" pref="250" max="32767" attributes="0"/>
-                          <Component id="txtSoluongve" max="32767" attributes="0"/>
                           <Component id="txtMahoadon" max="32767" attributes="0"/>
+                          <Component id="txtSoluongve" max="32767" attributes="0"/>
                       </Group>
                       <Component id="txtTienve" min="-2" pref="250" max="-2" attributes="0"/>
                   </Group>
@@ -135,7 +135,7 @@
                               <EmptySpace min="-2" pref="4" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel2" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtSoluongve" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtMahoadon" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -145,7 +145,7 @@
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="jPanel4" min="-2" max="-2" attributes="0"/>
-                                  <Component id="txtMahoadon" min="-2" pref="30" max="-2" attributes="0"/>
+                                  <Component id="txtSoluongve" min="-2" pref="30" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
@@ -282,9 +282,9 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="javax.swing.JTextField" name="txtMahoadon">
+        <Component class="javax.swing.JTextField" name="txtSoluongve">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMahoadonActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoluongveActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtMave">
@@ -292,9 +292,9 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMaveActionPerformed"/>
           </Events>
         </Component>
-        <Component class="javax.swing.JTextField" name="txtSoluongve">
+        <Component class="javax.swing.JTextField" name="txtMahoadon">
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtSoluongveActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="txtMahoadonActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="txtTienve">

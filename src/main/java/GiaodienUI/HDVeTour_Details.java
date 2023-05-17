@@ -48,9 +48,9 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         jLabel4 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
-        txtMahoadon = new javax.swing.JTextField();
-        txtMave = new javax.swing.JTextField();
         txtSoluongve = new javax.swing.JTextField();
+        txtMave = new javax.swing.JTextField();
+        txtMahoadon = new javax.swing.JTextField();
         txtTienve = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
         btnThem = new javax.swing.JButton();
@@ -135,9 +135,9 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
-        txtMahoadon.addActionListener(new java.awt.event.ActionListener() {
+        txtSoluongve.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMahoadonActionPerformed(evt);
+                txtSoluongveActionPerformed(evt);
             }
         });
 
@@ -147,9 +147,9 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             }
         });
 
-        txtSoluongve.addActionListener(new java.awt.event.ActionListener() {
+        txtMahoadon.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSoluongveActionPerformed(evt);
+                txtMahoadonActionPerformed(evt);
             }
         });
 
@@ -241,8 +241,8 @@ public class HDVeTour_Details extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(txtMave, javax.swing.GroupLayout.DEFAULT_SIZE, 250, Short.MAX_VALUE)
-                        .addComponent(txtSoluongve)
-                        .addComponent(txtMahoadon))
+                        .addComponent(txtMahoadon)
+                        .addComponent(txtSoluongve))
                     .addComponent(txtTienve, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(40, 40, 40)
                 .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -279,7 +279,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
                             .addGap(4, 4, 4)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtSoluongve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtMahoadon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -287,7 +287,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(txtMahoadon, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(txtSoluongve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                 .addComponent(txtTienve, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -323,17 +323,17 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void txtMahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMahoadonActionPerformed
+    private void txtSoluongveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongveActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtMahoadonActionPerformed
+    }//GEN-LAST:event_txtSoluongveActionPerformed
 
     private void txtMaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaveActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMaveActionPerformed
 
-    private void txtSoluongveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSoluongveActionPerformed
+    private void txtMahoadonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMahoadonActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSoluongveActionPerformed
+    }//GEN-LAST:event_txtMahoadonActionPerformed
 
     private void txtTienveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienveActionPerformed
         // TODO add your handling code here:
@@ -372,9 +372,9 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             
             JOptionPane.showMessageDialog(null, "Thêm Thông Tin Thành Công");
             
-            txtMahoadon.setText("");
-            txtMave.setText("");
             txtSoluongve.setText("");
+            txtMave.setText("");
+            txtMahoadon.setText("");
             txtTienve.setText("");
             
                         con.UpdateSQL_CTHD(cthd, 1, null);
@@ -458,7 +458,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtMahoadon.getText().toLowerCase().trim();
+        String tuKhoa = txtSoluongve.getText().toLowerCase().trim();
         config con = new config();
         
         dsHDVe = con.LayDL_CTHD();
