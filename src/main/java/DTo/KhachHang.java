@@ -137,12 +137,11 @@ public class KhachHang implements Comparable<KhachHang>{
         System.out.println("Email la: "+this.email);
     }
     
-    private ArrayList<KhachHang>danhSach;
+    private ArrayList<KhachHang>danhSach = new ArrayList<KhachHang>();
     config con = new config();
     public KhachHang() 
     {
-        this.danhSach = new ArrayList<KhachHang>();
-          this.danhSach = con.layDL_KhachHang(); //cach khai bao 1 arrayList
+        this.danhSach = con.layDL_KhachHang(); //cach khai bao 1 arrayList
     }
     public KhachHang traKH(int i){
         return danhSach.get(i);
@@ -214,20 +213,39 @@ public class KhachHang implements Comparable<KhachHang>{
         return this.danhSach.remove(kh);
     }
     public boolean xoaKhachHang(String ma)
-    {
-        int flat = 0;
+    {        
         int i = 0;
         for (KhachHang khachHang : danhSach) {
             if (ma.equalsIgnoreCase(khachHang.getMakh())) {
-                this.danhSach.remove(i);
-                flat = 1;
+                this.danhSach.remove(i); 
+                con.UpdateSQL_KhachHang(khachHang, 2, "null");
                 return true;
             }
             i++;
         }
-        if (flat == 1) {
-            return false;
+        
+        return false;
+        
+    }
+    
+    public boolean suaKhachHang(String maOld, String tenkh, String makh, String diachi, String sdt, String email)
+    {        
+        int i = 0;
+        for (KhachHang khachHang : danhSach) {
+            if (maOld.equalsIgnoreCase(khachHang.getMakh())) {
+                this.danhSach.get(i).setTenkh(tenkh); 
+                this.danhSach.get(i).setMakh(makh);
+                this.danhSach.get(i).setDiachi(diachi); 
+                this.danhSach.get(i).setSdt(sdt);
+                this.danhSach.get(i).setEmail(email);
+                
+                con.UpdateSQL_KhachHang(this.danhSach.get(i), 3, maOld);
+                
+                return true;
+            }
+            i++;
         }
+        
         return false;
         
     }
@@ -239,5 +257,38 @@ public class KhachHang implements Comparable<KhachHang>{
             if(khachHang.getMakh().contains(ma));
             System.out.println(khachHang);
         }
+    }
+    public ArrayList<KhachHang> timKhachHangUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<KhachHang> dskh = new ArrayList<>();
+        for (KhachHang khachHang : danhSach) 
+        {
+            if(khachHang.getMakh().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getTenkh().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getSdt().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getDiachi().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getEmail().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            i++;
+        }
+        if (dskh != null) {
+            return dskh;
+        }
+        return null;
     }
 }

@@ -1617,20 +1617,21 @@ public class config {
             
             
             while (rs.next()) {
-                KhachHang pt = new KhachHang();
-                pt.setMakh(rs.getString("MaKH"));
-                pt.setTenkh(rs.getString("TenKH"));
-                pt.setDiachi(rs.getString("DiaChi"));
-                pt.setSdt(Integer.toString(rs.getInt("SDT")));
-                pt.setEmail(rs.getString("email"));
                 
+                String makh = rs.getString("MaKh");
+                String ten = rs.getString("TenKh");
+                String diachi = rs.getString("DiaChi");
+                String sdt = Integer.toString(rs.getInt("SDT"));
+                String email = rs.getString("email");
+                
+                KhachHang pt = new KhachHang(ten, makh, diachi, sdt, email);
                 danhSachTour.add(pt);
             }
-                  
+            
         } catch (SQLException ex) {
-            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return null;    
+        return danhSachTour;    
 
         
         
