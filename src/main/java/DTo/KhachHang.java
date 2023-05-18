@@ -139,7 +139,7 @@ public class KhachHang implements Comparable<KhachHang>{
     
     private ArrayList<KhachHang>danhSach;
     config con = new config();
-    public KhachHang() throws SQLException
+    public KhachHang() 
     {
         this.danhSach = new ArrayList<KhachHang>();
           this.danhSach = con.layDL_KhachHang(); //cach khai bao 1 arrayList

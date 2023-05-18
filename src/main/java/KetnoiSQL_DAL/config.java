@@ -1607,16 +1607,14 @@ public class config {
     }
 
     public ArrayList<KhachHang> layDL_KhachHang(){
-        try {
-            // Khởi tạo kết nối đến cơ sở dữ liệu
-            Connection con;
+         ArrayList<KhachHang> danhSachTour = new ArrayList<>();
+        try (Connection con= DriverManager.getConnection(url, user, password)){
             
-            con = DriverManager.getConnection(url, user, password);
             // Thực hiện truy vấn và lấy kết quả
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
             
-            ArrayList<KhachHang> danhSachTour = new ArrayList<>();
+            
             
             while (rs.next()) {
                 KhachHang pt = new KhachHang();
@@ -1628,7 +1626,7 @@ public class config {
                 
                 danhSachTour.add(pt);
             }
-            return danhSachTour;        
+                  
         } catch (SQLException ex) {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
