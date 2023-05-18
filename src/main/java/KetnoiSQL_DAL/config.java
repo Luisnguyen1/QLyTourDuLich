@@ -305,9 +305,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -1606,27 +1606,36 @@ public class config {
         return danhSachTour;
     }
 
-    public ArrayList<KhachHang> layDL_KhachHang() throws SQLException {
-        // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
-
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
-
-        ArrayList<KhachHang> danhSachTour = new ArrayList<>();
-
-        while (rs.next()) {
-            KhachHang pt = new KhachHang();
-            pt.setMakh(rs.getString("MaKH"));
-            pt.setTenkh(rs.getString("TenKH"));
-            pt.setDiachi(rs.getString("DiaChi"));
-            pt.setSdt(Integer.toString(rs.getInt("SDT")));
-            pt.setEmail(rs.getString("email"));
-
-            danhSachTour.add(pt);
+    public ArrayList<KhachHang> layDL_KhachHang(){
+        try {
+            // Khởi tạo kết nối đến cơ sở dữ liệu
+            Connection con;
+            
+            con = DriverManager.getConnection(url, user, password);
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
+            
+            ArrayList<KhachHang> danhSachTour = new ArrayList<>();
+            
+            while (rs.next()) {
+                KhachHang pt = new KhachHang();
+                pt.setMakh(rs.getString("MaKH"));
+                pt.setTenkh(rs.getString("TenKH"));
+                pt.setDiachi(rs.getString("DiaChi"));
+                pt.setSdt(Integer.toString(rs.getInt("SDT")));
+                pt.setEmail(rs.getString("email"));
+                
+                danhSachTour.add(pt);
+            }
+            return danhSachTour;        
+        } catch (SQLException ex) {
+            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return danhSachTour;
+        return null;    
+
+        
+        
     }
 
     public ArrayList<FeedBack> LayDL_Feedback() {

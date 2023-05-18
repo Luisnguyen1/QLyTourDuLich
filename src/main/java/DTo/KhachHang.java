@@ -1,9 +1,13 @@
 package DTo;
 
 
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 public class KhachHang implements Comparable<KhachHang>{
     private String makh;
@@ -28,6 +32,7 @@ public class KhachHang implements Comparable<KhachHang>{
         this.diachi = diachi;
         this.sdt = sdt;
         this.email = email;
+        
     }
 
     KhachHang(String maKhachHang) {
@@ -133,21 +138,42 @@ public class KhachHang implements Comparable<KhachHang>{
     }
     
     private ArrayList<KhachHang>danhSach;
-
-    public KhachHang()
+    config con = new config();
+    public KhachHang() throws SQLException
     {
-        this.danhSach = new ArrayList<KhachHang>(); //cach khai bao 1 arrayList
+        this.danhSach = new ArrayList<KhachHang>();
+          this.danhSach = con.layDL_KhachHang(); //cach khai bao 1 arrayList
+    }
+    public KhachHang traKH(int i){
+        return danhSach.get(i);
+    }
+    public KhachHang traKH(String maKH){
+        for (KhachHang khachHang : danhSach) {
+            if (maKH.equalsIgnoreCase(khachHang.getMakh())) {
+                return khachHang;
+            }
+        }
+        return null;
     }
     
-    public KhachHang(ArrayList<KhachHang> danhSach) {
-        this.danhSach = danhSach;
-    }
+    /*public KhachHang(ArrayList<KhachHang> danhSach) {
+    this.danhSach = danhSach;
+    }*/
     
-    //1. Them khach hang vao danh sach 
     public void themKhachHang(KhachHang kh)
     {
         this.danhSach.add(kh);    
     }
+    
+    
+    
+    public void themKhachHang(String tenkh, String makh, String diachi, String sdt, String email)
+    {
+        KhachHang kh = new KhachHang(tenkh, makh, diachi, sdt, email);
+        this.danhSach.add(kh);    
+        con.UpdateSQL_KhachHang(kh, 1, "null");
+    }
+    
     
     //2. Them In danh sach khach hang ra man hinh
     public void inDanhSachKhachHang()
@@ -180,12 +206,31 @@ public class KhachHang implements Comparable<KhachHang>{
     {
         return this.danhSach.contains(kh);
     }
+    
+    
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
     public boolean  xoaKhachHang(KhachHang kh)
     {
         return this.danhSach.remove(kh);
     }
-    
+    public boolean xoaKhachHang(String ma)
+    {
+        int flat = 0;
+        int i = 0;
+        for (KhachHang khachHang : danhSach) {
+            if (ma.equalsIgnoreCase(khachHang.getMakh())) {
+                this.danhSach.remove(i);
+                flat = 1;
+                return true;
+            }
+            i++;
+        }
+        if (flat == 1) {
+            return false;
+        }
+        return false;
+        
+    }
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
     public void timKhachHang(String ma)
     {

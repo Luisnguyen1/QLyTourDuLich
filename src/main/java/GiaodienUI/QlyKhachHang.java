@@ -28,23 +28,18 @@ import javax.swing.table.TableRowSorter;
  */
 public class QlyKhachHang extends javax.swing.JPanel {
 
-    ArrayList<KhachHang> danhSachKH = new ArrayList<KhachHang>();
-    config con = new config();
+    KhachHang danhSachKH = new KhachHang();
+    
     DefaultTableModel model = new DefaultTableModel();
 
     /**
      * Creates new form QlyKhachHang
      */
     public QlyKhachHang() {
-        initComponents();
-        try {
-            danhSachKH = con.layDL_KhachHang();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        initComponents();     
         model = (DefaultTableModel) jTable1.getModel();
-        for (KhachHang kh : danhSachKH) {
-            model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
+        for (int i = 0; i < danhSachKH.laySoLuongKhachHang(); i++) {
+            model.addRow(new Object[]{danhSachKH.traKH(i).getTenkh(), danhSachKH.traKH(i).getMakh(), danhSachKH.traKH(i).getDiachi(), danhSachKH.traKH(i).getSdt(), danhSachKH.traKH(i).getEmail()});
         }
 
     }
@@ -438,12 +433,7 @@ public class QlyKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txtEmailActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            danhSachKH = con.layDL_KhachHang();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String tenKH = txtHoTen.getText();
+               String tenKH = txtHoTen.getText();
         String diaChi = txtDiaChi.getText();
         String soDienThoai = txtSoDienThoai.getText();
         String email = txtEmail.getText();
@@ -454,8 +444,8 @@ public class QlyKhachHang extends javax.swing.JPanel {
         } else {
             // Tìm mã khách hàng lớn nhất trong danh sách hiện có
             int maxMaKH = 0;
-            for (KhachHang kh : danhSachKH) {
-                int ma = Integer.parseInt(kh.getMakh().substring(2));
+            for (int i = 0; i < danhSachKH.laySoLuongKhachHang(); i++) {
+                int ma = Integer.parseInt(danhSachKH.traKH(i).getMakh().substring(2));
                 if (ma > maxMaKH) {
                     maxMaKH = ma;
                 }
@@ -465,16 +455,15 @@ public class QlyKhachHang extends javax.swing.JPanel {
             String maKH = "KH" + String.format("%04d", maxMaKH + 1);
 
             // tạo đối tượng KhachHang mới với thông tin lấy được
-            KhachHang kh = new KhachHang(tenKH, maKH, diaChi, soDienThoai, email);
+            danhSachKH.themKhachHang(tenKH, maKH, diaChi, soDienThoai, email);
 
             // gọi phương thức "themKhachHang" trong lớp DTO để thêm khách hàng vào danh sách
-            danhSachKH.add(kh);
-            con.UpdateSQL_KhachHang(kh, 1, "null");
-
+            
+              
 // lấy ra model của JTable hiện tại
 // thêm đối tượng KhachHang vào model
-            model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(), kh.getEmail()});
-
+            model.addRow(new Object[]{danhSachKH.traKH(maKH).getTenkh(), danhSachKH.traKH(maKH).getMakh(), danhSachKH.traKH(maKH).getDiachi(), danhSachKH.traKH(maKH).getSdt(), danhSachKH.traKH(maKH).getEmail()});
+            
 // cập nhật lại model cho JTable
             jTable1.setModel(model);
 
@@ -489,11 +478,7 @@ public class QlyKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try {
-            danhSachKH = con.layDL_KhachHang();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
         model = (DefaultTableModel) jTable1.getModel();
@@ -508,23 +493,16 @@ public class QlyKhachHang extends javax.swing.JPanel {
         String maKH = (String) model.getValueAt(selectedRow, 1);
 
 // tìm khách hàng trong danh sách dựa vào mã
-        KhachHang khachHangCanXoa = null;
-        for (KhachHang kh : danhSachKH) {
-            if (kh.getMakh().equals(maKH)) {
-                khachHangCanXoa = kh;
-                break;
-            }
-        }
+        boolean a = danhSachKH.xoaKhachHang(maKH);
 
 // nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (khachHangCanXoa == null) {
+        if (a == false) {
             JOptionPane.showMessageDialog(null, "Khách Hàng Không Tồn Tại");
             return;
         }
 
 // xóa khách hàng khỏi danh sách
-        danhSachKH.remove(khachHangCanXoa);
-        con.UpdateSQL_KhachHang(khachHangCanXoa, 2, maKH);
+        
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
