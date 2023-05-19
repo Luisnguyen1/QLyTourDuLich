@@ -609,7 +609,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt() + "'";
+                String delete = "DELETE FROM phuongtien WHERE MaPT = '" + PhuongTien.getMapt() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -621,7 +621,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt() + "'";
+                String delete = "DELETE FROM phuongtien WHERE MaPT = '" + PhuongTien.getMapt() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1590,25 +1590,31 @@ public class config {
         return danhSachTour;
     }
 
-    public ArrayList<PhuongTien> layDL_PhuongTien() throws SQLException {
+    public ArrayList<PhuongTien> layDL_PhuongTien() {
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+        
+         ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM phuongtien");
 
-        ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+       
 
         while (rs.next()) {
-            PhuongTien pt = new PhuongTien();
-            pt.setMapt(rs.getString("MaPT"));
-            pt.setLoaipt(rs.getString("LoaiPT"));
-            pt.setBienso(rs.getString("TenPT"));
-            pt.setTongsocho(rs.getLong("SoChoTrong"));
-            pt.setSochocondu(rs.getLong("SoChoConDu"));
+            
+            String Mapt = rs.getString("MaPT");
+            String Loaipt = rs.getString("LoaiPT");
+            String Tenpt = rs.getString("TenPT");
+            long Tongsocho = rs.getLong("SoChoTrong");
+            long Sochodu = rs.getLong("SoChoConDu");
 
+            PhuongTien pt = new PhuongTien(Mapt,Loaipt,Tenpt,Tongsocho,Sochodu);
             danhSachTour.add(pt);
+        }
+        }catch(SQLException e){
+            
         }
         return danhSachTour;
     }
