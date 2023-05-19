@@ -19,11 +19,6 @@ public class DiaDiem {
         this.khuvuc = khuvuc;
     }
 
-    public DiaDiem() {
-    }
-
-    
-
     public String getMadd() {
         return madd;
     }

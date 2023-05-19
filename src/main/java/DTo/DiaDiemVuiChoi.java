@@ -21,8 +21,6 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         return this.maDiaDiem.compareTo(o.maDiaDiem);
     }
 
-    public DiaDiemVuiChoi() {
-    }
     
     public DiaDiemVuiChoi(String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
         this.diaDiemTour = diaDiemTour;
@@ -71,9 +69,9 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         return danhSach.get(i);
     }
 
-    public DiaDiemVuiChoi traDiaDiem(String maDiaDiem) {
+    public DiaDiemVuiChoi traDiaDiem(String maDD) {
         for (DiaDiemVuiChoi diaDiem : danhSach) {
-            if (maDiaDiem.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
+            if (maDD.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
                 return diaDiem;
             }
         }
@@ -98,10 +96,10 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         return this.danhSach.remove(diaDiem);
     }
 
-    public boolean xoaDiaDiem(String maDiaDiem) {
+    public boolean xoaDiaDiem(String maDD) {
         int i = 0;
         for (DiaDiemVuiChoi diaDiem : danhSach) {
-            if (maDiaDiem.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
+            if (maDD.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
                 this.danhSach.remove(i);
                 con.UpdateSQL_DDVC(diaDiem, 2, "null");
                 return true;
@@ -126,24 +124,24 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         return false;
     }
 
-    public void timDiaDiem(String maDiaDiem) {
+    public void timDiaDiem(String maDD) {
         for (DiaDiemVuiChoi diaDiem : danhSach) {
-            if (diaDiem.getMaDiaDiem().contains(maDiaDiem)) {
+            if (diaDiem.getMaDiaDiem().contains(maDD)) {
                 System.out.println(diaDiem);
             }
         }
     }
 
-    public ArrayList<DiaDiemVuiChoi> timDiaDiemUnlimit(String maDiaDiem) {
+    public ArrayList<DiaDiemVuiChoi> timDiaDiemUnlimit(String maDD) {
         ArrayList<DiaDiemVuiChoi> dsDiaDiem = new ArrayList<>();
         for (DiaDiemVuiChoi diaDiem : danhSach) {
-            if (diaDiem.getMaDiaDiem().equalsIgnoreCase(maDiaDiem)) {
+            if (diaDiem.getMaDiaDiem().equalsIgnoreCase(maDD)) {
                 dsDiaDiem.add(diaDiem);
             }
-            if (diaDiem.getTenDiaDiem().equalsIgnoreCase(maDiaDiem)) {
+            if (diaDiem.getTenDiaDiem().equalsIgnoreCase(maDD)) {
                 dsDiaDiem.add(diaDiem);
             }
-            if (diaDiem.getDiaDiemTour().equalsIgnoreCase(maDiaDiem)) {
+            if (diaDiem.getDiaDiemTour().equalsIgnoreCase(maDD)) {
                 dsDiaDiem.add(diaDiem);
             }
         }

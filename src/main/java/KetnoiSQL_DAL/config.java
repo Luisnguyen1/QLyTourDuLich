@@ -17,7 +17,6 @@ import DTo.DiaDiemVuiChoi;
 import DTo.FeedBack;
 import DTo.KhachHang;
 import DTo.KhachSan;
-import DTo.QlyHoaDon;
 import DTo.Tour;
 import DTo.VeTour;
 
@@ -1729,7 +1728,7 @@ public class config {
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
             while (rs.next()) {
                 ChiTietHoaDonVe fb = new ChiTietHoaDonVe();
-                fb.setMatour(rs.getString("MaHD"));
+                fb.setMaHD(rs.getString("MaHD"));
                 fb.setMave(rs.getString("MaVe"));
                 fb.setSoluongve(rs.getInt("SoLuongVe"));
                 fb.setTienve(rs.getInt("TienVe"));
@@ -1764,7 +1763,6 @@ public class config {
 
         }
         return dsTour;
-    }
-    
+     }
 
 }

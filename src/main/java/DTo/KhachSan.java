@@ -32,10 +32,6 @@ public class KhachSan implements Comparable<KhachSan>{
         
     }
 
-    public KhachSan() {
-    }
-    
-    
     public KhachSan(KhachSan x){
         diaDiemTour = x.diaDiemTour;
         tenKhachSan = x.tenKhachSan;
@@ -99,112 +95,145 @@ public class KhachSan implements Comparable<KhachSan>{
         this.maKhachSan = maKhachSan;
     }
 
-    private ArrayList<KhachSan> danhSach = new ArrayList<KhachSan>();
-    private config con = new config();
-    
-     public KhachSan()  
+     private ArrayList<KhachSan>danhSach = new ArrayList<KhachSan>();
+    config con = new config();
+    public KhachSan() 
     {
         this.danhSach = con.LayDL_KhachSan(); //cach khai bao 1 arrayList
     }
     
-    
-    
-    public KhachSan traKS(int i) {
+    public KhachSan traKH(int i){
         return danhSach.get(i);
     }
-    
-    public KhachSan traKS(String maKS) {
-        for (KhachSan khachSan : danhSach) {
-            if (maKS == khachSan.getMaKhachSan()) {
-                return khachSan;
+    public KhachSan traKH(String maKH){
+        for (KhachSan khachHang : danhSach) {
+            if (maKH.equalsIgnoreCase(khachHang.getMaKhachSan())) {
+                return khachHang;
             }
         }
         return null;
     }
     
-    public void themKhachSan(KhachSan ks) {
-        this.danhSach.add(ks);
+    /*public KhachHang(ArrayList<KhachHang> danhSach) {
+    this.danhSach = danhSach;
+    }*/
+    
+    public void themKhachSan(KhachSan kh)
+    {
+        this.danhSach.add(kh);    
     }
     
-    public void themKhachSan(String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
-        KhachSan ks = new KhachSan(diaDiemTour, tenKhachSan, sdt, tienKhachSan, tienPhong, maKhachSan);
-        this.danhSach.add(ks);
-        con.UpdateSQL_KhachSan(ks, 1, "null");
+    
+    
+    public void themKhachSan(String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
+    {
+        KhachSan kh = new KhachSan( diaDiemTour,  tenKhachSan,  sdt,  tienKhachSan,  tienPhong,  maKhachSan);
+        this.danhSach.add(kh);    
+        con.UpdateSQL_KhachSan(kh, 1, "null");
     }
     
-    public int laySoLuongKhachSan() {
+    
+    
+    
+    //4. Lay ra so luong khach hang trong danh sach
+    public int laySoLuongKhachSan()
+    {
         return this.danhSach.size();
     }
     
-    public boolean xoaKhachSan(KhachSan ks) {
-        return this.danhSach.remove(ks);
+    
+    
+    //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
+    public boolean  xoaKhachSan(KhachSan kh)
+    {
+        return this.danhSach.remove(kh);
     }
     
-    public boolean xoaKhachSan(String ma) {
+    public boolean xoaKhachSan(String ma)
+    {        
         int i = 0;
-        for (KhachSan khachSan : danhSach) {
-            if (ma == khachSan.getMaKhachSan()) {
-                this.danhSach.remove(i);
-                con.UpdateSQL_KhachSan(khachSan, 2, "null");
+        for (KhachSan khachHang : danhSach) {
+            if (ma.equalsIgnoreCase(khachHang.getMaKhachSan())) {
+                this.danhSach.remove(i); 
+                con.UpdateSQL_KhachSan(khachHang, 2, "null");
                 return true;
             }
             i++;
         }
+        
         return false;
+        
     }
     
-    public boolean suaKhachSan(String maOld, String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
+    public boolean suaKhachSan(String maOld, String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
+    {        
         int i = 0;
-        for (KhachSan khachSan : danhSach) {
-            if (maOld == khachSan.getMaKhachSan()) {
-                this.danhSach.get(i).setDiaDiemTour(diaDiemTour);
-                this.danhSach.get(i).setTenKhachSan(tenKhachSan);
-                this.danhSach.get(i).setSdt(sdt);
-                this.danhSach.get(i).setTienKhachSan(tienKhachSan);
-                this.danhSach.get(i).setTienPhong(tienPhong);
+        for (KhachSan khachHang : danhSach) {
+            if (maOld.equalsIgnoreCase(khachHang.getMaKhachSan())) {
+                this.danhSach.get(i).setDiaDiemTour(diaDiemTour); 
                 this.danhSach.get(i).setMaKhachSan(maKhachSan);
+                this.danhSach.get(i).setSdt(sdt); 
+                this.danhSach.get(i).setTenKhachSan(tenKhachSan);
+                this.danhSach.get(i).getTienKhachSan();
+                this.danhSach.get(i).setTienPhong(tienPhong);
                 
-                con.UpdateSQL_KhachSan(this.danhSach.get(i), 3, String.valueOf(maOld));
+                con.UpdateSQL_KhachSan(this.danhSach.get(i), 3, maOld);
                 
                 return true;
             }
             i++;
         }
+        
         return false;
+        
     }
-    
-    public void timKhachSan(String ma) {
-        for (KhachSan khachSan : danhSach) {
-            if (ma == khachSan.getMaKhachSan()) {
-                System.out.println(khachSan);
-            }
+    //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
+    public void timKhachSan(String ma)
+    {
+        for (KhachSan khachHang : danhSach) 
+        {
+            if(khachHang.getMaKhachSan().contains(ma));
+            System.out.println(khachHang);
         }
     }
     
-    public ArrayList<KhachSan> timKhachSanUnlimit(String ma) {
-        ArrayList<KhachSan> dsks = new ArrayList<>();
-        for (KhachSan khachSan : danhSach) {
-            if (String.valueOf(khachSan.getMaKhachSan()).equalsIgnoreCase(ma)) {
-                dsks.add(khachSan);
+    public ArrayList<KhachSan> timKhachSanUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<KhachSan> dskh = new ArrayList<>();
+        for (KhachSan khachHang : danhSach) 
+        {
+            if(khachHang.getMaKhachSan().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
             }
-            if (khachSan.getDiaDiemTour().equalsIgnoreCase(ma)) {
-                dsks.add(khachSan);
+            if(khachHang.getDiaDiemTour().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
             }
-            if (khachSan.getTenKhachSan().equalsIgnoreCase(ma)) {
-                dsks.add(khachSan);
+            if(khachHang.getSdt().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
             }
-            if (khachSan.getSdt().equalsIgnoreCase(ma)) {
-                dsks.add(khachSan);
+            if(khachHang.getTenKhachSan().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
             }
-            if (khachSan.getTienKhachSan() == Long.parseLong(ma)) {
-                dsks.add(khachSan);
+            String tienKS = Long.toString(khachHang.getTienKhachSan());
+            if(tienKS.equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
             }
-            if (khachSan.getTienPhong() == Long.parseLong(ma)) {
-                dsks.add(khachSan);
+            String tienPhong = Long.toString(khachHang.getTienPhong());
+            if(tienPhong.equalsIgnoreCase(ma)){{
+                dskh.add(khachHang);
             }
+            i++;
         }
-        return dsks;
+        if (dskh != null) {
+            return dskh;
+        }
     }
-    
-    
+        return null;
+}
 }

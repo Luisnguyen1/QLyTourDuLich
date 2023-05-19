@@ -5,8 +5,6 @@
 package GiaodienUI;
 
 import DTo.DiaDiemVuiChoi;
-import DTo.KhachSan;
-import DTo.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -22,22 +20,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
+    DiaDiemVuiChoi ddvc = new DiaDiemVuiChoi();
     DefaultTableModel model = new DefaultTableModel();
-
-    /**
-     * Creates new form QlyKhachSan
-     */
-    ArrayList<DiaDiemVuiChoi> danhSachdd = new ArrayList<DiaDiemVuiChoi>();
     config con = new config();
 
     public QlyDiaDiemVuiChoi() {
         initComponents();
-    
-            danhSachdd= con.LayDL_DDVC();
-        
-        model = (DefaultTableModel) jTable1.getModel();
-        for (DiaDiemVuiChoi nv : danhSachdd) {
-            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+    model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < ddvc.laySoLuongDiaDiem(); i++) {
+            model.addRow(new Object[]{ddvc.traDiaDiem(i).getDiaDiemTour(), ddvc.traDiaDiem(i).getTenDiaDiem(), ddvc.traDiaDiem(i).getMaDiaDiem()});
         }
     }
 
@@ -58,7 +49,6 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         cbxDiaDiemTour = new javax.swing.JComboBox<>();
         txtDiaDiem = new javax.swing.JTextField();
-        txtMaDiaDiem = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
@@ -69,8 +59,6 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jSeparator5 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -122,12 +110,6 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         txtDiaDiem.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtDiaDiemActionPerformed(evt);
-            }
-        });
-
-        txtMaDiaDiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaDiaDiemActionPerformed(evt);
             }
         });
 
@@ -196,7 +178,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3)
+            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
@@ -212,23 +194,9 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4)
-        );
-
-        jLabel5.setBackground(new java.awt.Color(0, 0, 0));
-        jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel5.setText("   Mã Địa Điểm");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 114, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 24, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -237,22 +205,16 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(249, 249, 249)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
-                        .addComponent(txtMaDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(txtDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
-                                .addComponent(cbxDiaDiemTour, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addGap(18, 18, 18)
+                        .addComponent(cbxDiaDiemTour, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(263, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                 .addContainerGap(54, Short.MAX_VALUE)
@@ -273,18 +235,14 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(24, 24, 24)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(cbxDiaDiemTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 14, Short.MAX_VALUE)
+                .addGap(0, 26, Short.MAX_VALUE)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(cbxDiaDiemTour, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
+                .addGap(18, 30, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 16, Short.MAX_VALUE)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(txtMaDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(txtDiaDiem))
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -358,53 +316,37 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiaDiemActionPerformed
 
-    private void txtMaDiaDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDiaDiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaDiaDiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-       
-                 danhSachdd = con.LayDL_DDVC();
 
         String diadiemTour = cbxDiaDiemTour.getSelectedItem().toString();
         String diadiem = txtDiaDiem.getText();
-        String madiadiem = txtMaDiaDiem.getText();
-
 
         if (diadiemTour.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else if (diadiem.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-        } else if (madiadiem.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-     
         } else {
-            // Tạo đối tượng DTO
-            DiaDiemVuiChoi nv = new DiaDiemVuiChoi(diadiemTour,diadiem,madiadiem);
-
-            // Thêm đối tượng vào danh sách
-            danhSachdd.add(nv);
-            con.UpdateSQL_DDVC(nv, 1, "null");
-            // Tạo đối tượng DefaultTableModel
+            int maxMaDD = ddvc.laySoLuongDiaDiem();
+            String maDDVC = "DDVC" + String.format("%04d", maxMaDD + 1);
+            
+            ddvc.themDiaDiem(diadiemTour, diadiem, maDDVC);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            // thêm đối tượng KhachHang vào model
-            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+            model.addRow(new Object[]{ddvc.traDiaDiem(maDDVC).getDiaDiemTour(), ddvc.traDiaDiem(maDDVC).getTenDiaDiem(), ddvc.traDiaDiem(maDDVC).getMaDiaDiem()});
 
 // cập nhật lại model cho JTable
             jTable1.setModel(model);
 
 // thông báo thành công
-            JOptionPane.showMessageDialog(null, "Thêm Địa điểm vui chơi Thành Công");
+            JOptionPane.showMessageDialog(null, "Thêm Địa Điểm Vui Chơi Thành Công");
             
             txtDiaDiem.setText("");
-            txtMaDiaDiem.setText("");
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
-    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-                danhSachdd = con.LayDL_DDVC();
 
+    private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -419,39 +361,19 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 2);
 
-// tìm khách hàng trong danh sách dựa vào mã
-        DiaDiemVuiChoi nhanVienCanXoa = null;
-        for (DiaDiemVuiChoi nv : danhSachdd) {
-            if (nv.getMaDiaDiem().equalsIgnoreCase(maNV)) {
-                nhanVienCanXoa = nv;
-                break;
-            }
-        }
-
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
-            return;
-        }
-
-// xóa khách hàng khỏi danh sách
-        danhSachdd.remove(nhanVienCanXoa);
-            con.UpdateSQL_DDVC(nhanVienCanXoa, 2, "null");
-// xóa hàng được chọn trong model
+        boolean a = ddvc.xoaDiaDiem(maNV);
+        
         model.removeRow(selectedRow);
 
 // cập nhật lại model cho JTable
         jTable1.setModel(model);
 
 // thông báo thành công
-        JOptionPane.showMessageDialog(null, "Xóa địa điểm vui chơi Thành Công");
+        JOptionPane.showMessageDialog(null, "Xóa Địa Điểm Vui Chơi Thành Công");
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // lấy chỉ số hàng được chọn trong JTable
-                 danhSachdd = con.LayDL_DDVC();
-
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -465,51 +387,31 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 2);
-        String oldNV = maNV;
-// tìm khách hàng trong danh sách dựa vào mã
-        DiaDiemVuiChoi nhanVienCanSua = null;
-        for (DiaDiemVuiChoi nv : danhSachdd) {
-            if (nv.getMaDiaDiem().equals(maNV)) {
-                nhanVienCanSua = nv;
-                break;
-            }
-        }
-
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanSua == null) {
-            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
-            return;
-        }
-
-// hiển thị form sửa thông tin khách hàng
+        
+        ddvc.traDiaDiem(maNV);
      
 // thêm ComboBox để chọn loại nhân viên
         JComboBox<String> cbxDiaDiemTour = new JComboBox<>();
         cbxDiaDiemTour.addItem("Nhân Viên Bán Hàng");
         cbxDiaDiemTour.addItem("Quản Lý Kho");
         cbxDiaDiemTour.addItem("Nhân Viên Văn Phòng");
-        cbxDiaDiemTour.setSelectedItem(nhanVienCanSua.getDiaDiemTour());
+        cbxDiaDiemTour.setSelectedItem(ddvc.traDiaDiem(maNV).getDiaDiemTour());
         JOptionPane.showMessageDialog(null, cbxDiaDiemTour, "Chọn địa điểm Tour", JOptionPane.QUESTION_MESSAGE);
 
         String diaDiemTour = (String) cbxDiaDiemTour.getSelectedItem();
 // thêm ComboBox để chọn chức vụ
-      String maNVNew = JOptionPane.showInputDialog(null, "Nhập mã địa điểm", maNV);
-      String diadiem = JOptionPane.showInputDialog(null, "Nhập diadiem", nhanVienCanSua.getTenDiaDiem());
+      String maNVNew = JOptionPane.showInputDialog(null, "Nhập mã địa điểm", ddvc.traDiaDiem(maNV).getMaDiaDiem());
+      String diadiem = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", ddvc.traDiaDiem(maNV).getTenDiaDiem());
       
 
 // cập nhật thông tin khách hàng
-        nhanVienCanSua.setDiaDiemTour(diaDiemTour);
-        nhanVienCanSua.setTenDiaDiem(diadiem);
-        nhanVienCanSua.setMaDiaDiem(maNVNew);
+        ddvc.suaDiaDiem(maNV, diaDiemTour, diadiem, maNVNew);
 
 
 // cập nhật lại model cho JTable
         model.setValueAt(diaDiemTour, selectedRow, 0);
         model.setValueAt(diadiem, selectedRow, 1);
         model.setValueAt(maNVNew, selectedRow, 2);
-        
-            con.UpdateSQL_DDVC(nhanVienCanSua, 3, oldNV);
-
 
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
@@ -517,42 +419,33 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-                 danhSachdd = con.LayDL_DDVC();
+   String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        String maNVCanTim = txtMaDiaDiem.getText();
-
-        // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<DiaDiemVuiChoi> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (DiaDiemVuiChoi nv : danhSachdd) {
-            if (nv.getMaDiaDiem().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       ddvc.timDiaDiemUnlimit(dkTim);
 
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (ddvc.timDiaDiemUnlimit(dkTim) == null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Địa Điểm Tour");
+            model.addColumn("Điểm Vui Chơi");
+            model.addColumn("Mã Địa Điểm");
+        
+            // Thêm các khách hàng tìm được vào model
+            for (DiaDiemVuiChoi kh : ddvc.timDiaDiemUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getDiaDiemTour(), kh.getTenDiaDiem(), kh.getMaDiaDiem()});
+            }
 
-        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Địa điểm Tour");
-        model.addColumn("Điểm vui chơi");
-        model.addColumn("Mã địa điểm");
-       
-
-        // Thêm các khách hàng tìm được vào model
-        for (DiaDiemVuiChoi nv : ketQuaTimKiem) {
-            model.addRow(new Object[]{nv.getDiaDiemTour(), nv.getTenDiaDiem(), nv.getMaDiaDiem()});
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
         }
 
-        // Cập nhật lại model cho JTable
-        jTable1.setModel(model);
     }//GEN-LAST:event_btnTimKiemActionPerformed
-    }
+
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnExportActionPerformed
@@ -569,12 +462,10 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
@@ -582,6 +473,5 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField txtDiaDiem;
-    private javax.swing.JTextField txtMaDiaDiem;
     // End of variables declaration//GEN-END:variables
 }
