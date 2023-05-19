@@ -14,6 +14,9 @@ import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.net.URL;
+import java.sql.SQLException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
@@ -127,6 +130,14 @@ public class Main extends javax.swing.JFrame {
                 if (index == 1 && subIndex == 11) {                    
                     System.out.println(index +" "+subIndex);
                     showForm(new QlyPhanHoiKhachHang());
+                }
+                if (index == 1 && subIndex == 12) {                    
+                    System.out.println(index +" "+subIndex);
+                    try {
+                        showForm(new QlyTaiKhoan());
+                    } catch (SQLException ex) {
+                        Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                 }
                 if(index == 5){
                     System.out.println(index +" "+subIndex);
