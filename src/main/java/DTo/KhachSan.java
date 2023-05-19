@@ -14,7 +14,7 @@ import java.util.Scanner;
  * @author Huu Quoc Bao
  */
 public class KhachSan implements Comparable<KhachSan>{
-    public String diaDiemTour;
+    
     public String tenKhachSan;
     public String sdt;
     public long tienKhachSan;
@@ -22,8 +22,8 @@ public class KhachSan implements Comparable<KhachSan>{
     public String maKhachSan;
    
 
-    public KhachSan(String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
-        this.diaDiemTour = diaDiemTour;
+    public KhachSan( String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
+       
         this.tenKhachSan = tenKhachSan;
         this.sdt = sdt;
         this.tienKhachSan = tienKhachSan;
@@ -33,7 +33,7 @@ public class KhachSan implements Comparable<KhachSan>{
     }
 
     public KhachSan(KhachSan x){
-        diaDiemTour = x.diaDiemTour;
+       
         tenKhachSan = x.tenKhachSan;
         sdt = x.sdt;
         tienKhachSan = x.tienKhachSan;
@@ -47,13 +47,6 @@ public class KhachSan implements Comparable<KhachSan>{
         return this.maKhachSan.compareTo(o.maKhachSan);
     }
 
-    public String getDiaDiemTour() {
-        return diaDiemTour;
-    }
-
-    public void setDiaDiemTour(String diaDiemTour) {
-        this.diaDiemTour = diaDiemTour;
-    }
 
     public String getTenKhachSan() {
         return tenKhachSan;
@@ -125,9 +118,9 @@ public class KhachSan implements Comparable<KhachSan>{
     
     
     
-    public void themKhachSan(String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
+    public void themKhachSan( String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
     {
-        KhachSan kh = new KhachSan( diaDiemTour,  tenKhachSan,  sdt,  tienKhachSan,  tienPhong,  maKhachSan);
+        KhachSan kh = new KhachSan(  tenKhachSan,  sdt,  tienKhachSan,  tienPhong,  maKhachSan);
         this.danhSach.add(kh);    
         con.UpdateSQL_KhachSan(kh, 1, "null");
     }
@@ -165,12 +158,12 @@ public class KhachSan implements Comparable<KhachSan>{
         
     }
     
-    public boolean suaKhachSan(String maOld, String diaDiemTour, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
+    public boolean suaKhachSan(String maOld, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
     {        
         int i = 0;
         for (KhachSan khachHang : danhSach) {
             if (maOld.equalsIgnoreCase(khachHang.getMaKhachSan())) {
-                this.danhSach.get(i).setDiaDiemTour(diaDiemTour); 
+              
                 this.danhSach.get(i).setMaKhachSan(maKhachSan);
                 this.danhSach.get(i).setSdt(sdt); 
                 this.danhSach.get(i).setTenKhachSan(tenKhachSan);
@@ -207,10 +200,7 @@ public class KhachSan implements Comparable<KhachSan>{
             {   
                 dskh.add(khachHang);
             }
-            if(khachHang.getDiaDiemTour().equalsIgnoreCase(ma))
-            {   
-                dskh.add(khachHang);
-            }
+           
             if(khachHang.getSdt().equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);

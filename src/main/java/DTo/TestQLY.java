@@ -42,7 +42,7 @@ public class TestQLY {
         // Sử dụng bố cục mặc định của FlowLayout
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
-  QlyNhanVien ql = new QlyNhanVien();
+QlyKhachSan ql = new QlyKhachSan();
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí

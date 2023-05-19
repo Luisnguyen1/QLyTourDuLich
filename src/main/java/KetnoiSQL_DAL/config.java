@@ -411,7 +411,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khachsan WHERE maks = '" + nhanvien.getMaKhachSan() + "'";
+                String delete = "DELETE FROM khachsan WHERE MaKS = '" + nhanvien.getMaKhachSan() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -424,7 +424,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khachsan WHERE maks = '" + nhanvien.getMaKhachSan() + "'";
+                String delete = "DELETE FROM khachsan WHERE MaKS = '" + nhanvien.getMaKhachSan()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1693,13 +1693,13 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachsan");
             while (rs.next()) {
-                KhachSan fb = new KhachSan();
-                fb.setMaKhachSan(rs.getString("MaKS"));
-                fb.setTenKhachSan(rs.getString("TenKS"));
-                fb.setTenKhachSan(rs.getString("TienKS"));
-                fb.setSdt(rs.getString("SDT"));
-                fb.setTienPhong(rs.getLong("TienPhong"));
-
+                
+                String maks=rs.getString("MaKS");
+                String tenks=rs.getString("TenKS");
+                String tienks=rs.getString("TienKS");
+               String sdt=rs.getString("SDT");
+                Long tienphong=rs.getLong("TienPhong");
+                    KhachSan fb = new KhachSan(tenks, sdt, 0, 0, maks);
                 danhSachKH.add(fb);
             }
         } catch (SQLException ex) {

@@ -530,7 +530,7 @@ return;
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !","");
 
 // Tạo một danh sách để lưu khách hàng tìm được
        danhSachKH.timKhachHangUnlimit(dkTim);
