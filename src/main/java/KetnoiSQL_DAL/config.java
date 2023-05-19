@@ -951,7 +951,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = '" + KhuyenMai.getMakm() + "'";
+                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenMai = '" + KhuyenMai.getMakm() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -963,7 +963,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khuyenmai WHERE makhuyenmai = '" + KhuyenMai.getMakm() + "'";
+                String delete = "DELETE FROM khuyenmai WHERE MaKhuyenMai = '" + KhuyenMai.getMakm() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1492,24 +1492,27 @@ public class config {
       
     //--------------------------------------------------------
 
-    public ArrayList<KhuyenMai> layDL_KhuyenMai() throws SQLException {
+    public ArrayList<KhuyenMai> layDL_KhuyenMai(){
+                ArrayList<KhuyenMai> danhSachTaiKhoan = new ArrayList<>();
+
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM khuyenmai");
-
-        ArrayList<KhuyenMai> danhSachTaiKhoan = new ArrayList<>();
-
         while (rs.next()) {
-            KhuyenMai taikhoan = new KhuyenMai();
-            taikhoan.setMakm(rs.getString("makhuyenmai"));
-            taikhoan.setTenkm(rs.getString("tenkhuyenmai"));
-            taikhoan.setNgaykm(rs.getDate("ngaykhuyenmai"));
-            taikhoan.setHansudung(rs.getDate("hansudung"));
-            taikhoan.setTiengiam(rs.getLong("tiengiam"));
-            danhSachTaiKhoan.add(taikhoan);
+            String MAKM = rs.getString("MaKhuyenMai");
+            String TENKM = rs.getString("TenKM");
+            Date NGAYKM = rs.getDate("NgayKM");
+            Date HANSD = rs.getDate("HanSuDung");
+            long TIENGIAM = rs.getLong("TienGiam");
+            
+            KhuyenMai km = new KhuyenMai(MAKM,TENKM,NGAYKM,HANSD,TIENGIAM);
+            danhSachTaiKhoan.add(km);
+        }
+        }catch(SQLException e){
+            
         }
         return danhSachTaiKhoan;
     }
