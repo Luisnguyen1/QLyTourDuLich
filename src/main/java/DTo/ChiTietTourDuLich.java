@@ -215,6 +215,6 @@ public class ChiTietTourDuLich {
         if(dstour != null){
             return dstour;
         }
-        return dstour;
+        return null;
     }
 }

@@ -498,7 +498,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         if(ctt.timCTTourUnlimit(dkTim) == null){
             JOptionPane.showMessageDialog(null, "Kết quả không tìm thấy");
         }else{
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("Địa Điểm");
             model.addColumn("Mã Tour");
             model.addColumn("Khởi Hành");
