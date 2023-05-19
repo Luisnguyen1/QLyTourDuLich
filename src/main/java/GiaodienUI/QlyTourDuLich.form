@@ -642,10 +642,10 @@
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="5">
                 <StringItem index="0" value="Lo&#x1ea1;i Tour"/>
-                <StringItem index="1" value="Nh&#xe2;n Vi&#xea;n B&#xe1;n H&#xe0;ng"/>
-                <StringItem index="2" value="Qu&#x1ea3;n L&#xfd; Kho"/>
-                <StringItem index="3" value="Nh&#xe2;n Vi&#xea;n V&#x103;n Ph&#xf2;ng"/>
-                <StringItem index="4" value=" "/>
+                <StringItem index="1" value="Tour Tham Quan"/>
+                <StringItem index="2" value="Tour V&#x103;n H&#xf3;a"/>
+                <StringItem index="3" value="Tour &#x1ea8;m Th&#x1ef1;c"/>
+                <StringItem index="4" value="Team Building"/>
               </StringArray>
             </Property>
           </Properties>

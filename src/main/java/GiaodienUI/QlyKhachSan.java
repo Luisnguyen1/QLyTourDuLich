@@ -105,7 +105,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
         jPanel1.setBackground(new java.awt.Color(167, 169, 177));
 
-        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", " " }));
+        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", "Miền Nam - Thành phố Hồ Chí Minh", "Miền Nam - Vũng Tàu", "Miền Trung - Đà Nẵng ", "Miền Trung - Huế", "Miền Bắc - Hà Nội", "Miền Bắc - Hải Phòng" }));
         cbxDiaDiemTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDiaDiemTourActionPerformed(evt);
@@ -425,7 +425,37 @@ public class QlyKhachSan extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxDiaDiemTourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDiaDiemTourActionPerformed
-        // TODO add your handling code here:
+        String ddtour = cbxDiaDiemTour.getSelectedItem().toString();
+        if(ddtour.equalsIgnoreCase("Miền Nam - Thành phố Hồ Chí Minh")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("HANZ Friday Hotel");
+            cbxTenKhachSan.addItem("Beautiful Saigon Hotel");
+        }
+        else if(ddtour.equalsIgnoreCase("Miền Nam - Vũng Tàu")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("Sun Beach Hotel");
+            cbxTenKhachSan.addItem("Ruby Hotel");
+        }
+        else if(ddtour.equalsIgnoreCase("Miền Trung - Đà Nẵng")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("Hanami Hotel Danang");
+            cbxTenKhachSan.addItem("Angel Hotel Danang");
+        }
+        else if(ddtour.equalsIgnoreCase("Miền Trung - Huế")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("Timothy Homestay Hue");
+            cbxTenKhachSan.addItem("Soleil Boutique");
+        }
+        else if(ddtour.equalsIgnoreCase("Miền Bắc - Hà Nội")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("Mayflower Hotel Hanoi");
+            cbxTenKhachSan.addItem("AMI Central Hotel Hanoi");
+        }
+        else if(ddtour.equalsIgnoreCase("Miền Bắc - Hải Phòng")){
+            cbxTenKhachSan.removeAllItems();
+            cbxTenKhachSan.addItem("Punt Hotel");
+            cbxTenKhachSan.addItem("Paloma Hotel");
+        }
     }//GEN-LAST:event_cbxDiaDiemTourActionPerformed
 
     private void cbxTenKhachSanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTenKhachSanActionPerformed
