@@ -1301,10 +1301,10 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getDdtour());
                 stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(3, fb.getMaks());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
+                stmt.setString(5, fb.getKhoihanh());
+                stmt.setInt(6, fb.getThutungay());
                 stmt.setLong(7,fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
@@ -1361,10 +1361,10 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getDdtour());
                 stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(3, fb.getMaks());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
+                stmt.setString(5, fb.getKhoihanh());
+                stmt.setInt(6, fb.getThutungay());
                 stmt.setLong(7,fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
