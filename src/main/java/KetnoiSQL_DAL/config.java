@@ -799,12 +799,13 @@ public class config {
             
             
             while (rs.next()) {
-                HoaDon HoaDon = new HoaDon();
-                HoaDon.setMahd(rs.getString("MaHD"));
-                HoaDon.setMakhachdatve(rs.getString("makh"));
-                HoaDon.setTongtien(Long.parseLong(rs.getString("tongtien")));
-                HoaDon.setNgayxuathoadon(rs.getDate("ngayxuathoadon"));
-                HoaDon.setManv(rs.getString("manv"));
+                
+                String mahd = rs.getString("MaHD");
+                String makh = rs.getString("makh");
+                long tongtien = Long.parseLong(rs.getString("tongtien"));
+                java.sql.Date ngayxuat = rs.getDate("ngayxuathoadon");
+                String manv = rs.getString("manv");
+                HoaDon HoaDon = new HoaDon(mahd, manv, makh, tongtien, ngayxuat);
                 danhSachHoaDon.add(HoaDon);
             }
             return danhSachHoaDon;

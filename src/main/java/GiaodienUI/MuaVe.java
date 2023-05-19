@@ -23,43 +23,28 @@ import javax.swing.table.DefaultTableModel;
  */
 public class MuaVe extends javax.swing.JPanel {
 
-    ArrayList<VeTour> danhSachVT = new ArrayList<>();
+    VeTour danhSachVT = new VeTour();
     HoaDon danhSachHD = new HoaDon();
+    Tour danhsachTour = new Tour();
     config con = new config();
     String MaHD;
     String MaVeTour;
     int i = 0;
+    DefaultTableModel model = new DefaultTableModel();
 
     /**
      * Creates new form MuaVe
      */
     public MuaVe() {
         initComponents();
-        DefaultTableModel model = new DefaultTableModel();
-        ArrayList<Tour> danhsachTour = new ArrayList<>();
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
-        try {
-                danhsachTour = con.layDL_Tour();
-            } catch (SQLException ex) {
-                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-            }
         
         model = (DefaultTableModel) jTable1.getModel();
         
-        for (VeTour vt : danhSachVT) {
-            Tour tour = new Tour();
-            for (Tour tour1 : danhsachTour) {
-                if (tour1.getMaTour().equals(vt.getMatour())) {
-                    tour = tour1;
-                    break;
-                }
-            }
-            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(),tour.getTenTour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+        for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
+            System.err.println(danhSachVT.traKH(i).getMatour());
+            System.out.println(danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour());
+            //model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
         }
     }
 
@@ -111,7 +96,7 @@ public class MuaVe extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Vé Tour", "Mã Tour", "Tên Tour", "Ngày Đặt Vé", "Hạn Sử Dụng", "Tiền Giảm"
+                "Mã Vé Tour", "Mã Tour", "Tên Tour", "Ngày Vé Có Hiệu Lực", "Hạn Sử Dụng", "Tiền Giảm"
             }
         ) {
             Class[] types = new Class [] {
@@ -279,20 +264,17 @@ public class MuaVe extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable2.getSelectedRow();
-        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        model = (DefaultTableModel) jTable2.getModel();
         String maVT = (String) model.getValueAt(selectedRow, 0);
         model.removeRow(selectedRow);
         model.fireTableDataChanged();
+        i--;
         /*ChiTietHoaDonVe cthd = new ChiTietHoaDonVe(maVT,MaHD , 1, 0);
         con.UpdateSQL_CTHD(cthd, 2, maVT);*/
     }//GEN-LAST:event_btnXoaActionPerformed
     public String CreateMAHD() {
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        return "1001" + Integer.toString(danhSachHD.size() + 1);
+        
+        return "HD00" + Integer.toString(danhSachHD.laySoLuongHoaDon() + 1);
 
     }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
@@ -308,9 +290,9 @@ public class MuaVe extends javax.swing.JPanel {
 
             DefaultTableModel model1 = (DefaultTableModel) jTable2.getModel();
 
-            for (VeTour vt : danhSachVT) {
-                if (vt.getMavetour().equals(maVT)) {
-                    model1.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+            for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
+                if (danhSachVT.traKH(i).getMavetour().equals(maVT)) {
+                    model1.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
                     break;
                 }
             }
