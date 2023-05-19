@@ -1532,25 +1532,31 @@ public class config {
 
     //--------------------------------------------------------------------
     public ArrayList<NhanVien> layDL_NhanVien() throws SQLException {
-        // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
-
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM nhanvien");
-
-        ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
-
-        while (rs.next()) {
-            NhanVien nv = new NhanVien();
-            nv.setManv(rs.getString("manv"));
-            nv.setLoainv(rs.getString("loainv"));
-            nv.setTennv(rs.getString("tennv"));
-            nv.setChucvu(rs.getString("chucvu"));
-            nv.setDiachi(rs.getString("diachi"));
-            danhSachNhanVien.add(nv);
+         ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
+        try (Connection con= DriverManager.getConnection(url, user, password)){
+            
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM nhanvien");
+            
+            
+            
+            while (rs.next()) {
+                
+                String manv = rs.getString("Manv");
+                String tennv = rs.getString("Tennv");
+                String loainv = rs.getString("Loai nv");
+                String diachi = Integer.toString(rs.getInt("DiaChi"));
+                String chucvu = rs.getString("chucvu");
+                
+                NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
+                danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
+            }
+            
+        } catch (SQLException ex) {
+            //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return danhSachNhanVien;
+        return danhSachNhanVien;    
     }
 
     public ArrayList<Tour> layDL_Tour() throws SQLException {
@@ -1624,19 +1630,18 @@ public class config {
                 String sdt = Integer.toString(rs.getInt("SDT"));
                 String email = rs.getString("email");
                 
-                KhachHang pt = new KhachHang(ten, makh, diachi, sdt, email);
-                danhSachTour.add(pt);
+                KhachHang pt = new KhachHang(ten, makh, diachi, sdt, email); // tao ra dữ liệu con 
+                danhSachTour.add(pt); // add dữ liệu con vào arraylist
             }
             
         } catch (SQLException ex) {
             //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return danhSachTour;    
-
-        
-        
+        return danhSachTour;           
     }
-
+    
+   
+    
     public ArrayList<FeedBack> LayDL_Feedback() {
         ArrayList<FeedBack> danhSachFB = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
@@ -1680,7 +1685,7 @@ public class config {
     }
 
 
-    public ArrayList<DiaDiemVuiChoi> LayDL_DDVC() {
+    public ArrayList<DiaDiemVuiChoi> LayDL_DiaDiemVuiChoi() {
         ArrayList<DiaDiemVuiChoi> DiaDiemVuiChoi = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();

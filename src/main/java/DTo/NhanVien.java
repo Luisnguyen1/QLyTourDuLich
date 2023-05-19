@@ -1,6 +1,8 @@
 package DTo;
 
 
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -144,62 +146,93 @@ public class NhanVien implements Comparable<NhanVien> {
         System.out.println("Chuc vu nhan vien: "+this.chucvu);
     }
     
-   private ArrayList<NhanVien>danhSach;
-
-    public NhanVien() {
+   
+    private ArrayList<NhanVien>danhSach = new ArrayList<NhanVien>();
+    config con = new config();
+    public NhanVien() throws SQLException 
+    {
+        this.danhSach = con.layDL_NhanVien(); //cach khai bao 1 arrayList
     }
-
-    
-    
-    public NhanVien(ArrayList<NhanVien> danhSach) {
-        this.danhSach = danhSach;
+    public NhanVien traNV(int i){
+        return danhSach.get(i);
     }
-    
-    //1. Them khach hang vao danh sach 
+    public NhanVien traNV(String maNV){
+        for (NhanVien nhanVien : danhSach) {
+            if (maNV.equalsIgnoreCase(nhanVien.getManv())) {
+                return nhanVien;
+            }
+        }
+        return null;
+    }
     public void themNhanVien(NhanVien nv)
     {
         this.danhSach.add(nv);    
     }
     
-    //2. Them In danh sach khach hang ra man hinh
-    public void inDanhSachNhanVien()
+    
+    
+    public void themNhanVien(String tennv,String manv,  String diachi,String loainv, String chucvu)
     {
-        for (NhanVien nhanVien : danhSach) 
-        {
-            System.out.println(nhanVien);
-        }
+        NhanVien nv = new NhanVien(tennv, manv,  diachi, loainv,  chucvu);
+        this.danhSach.add(nv);    
+        con.UpdateSQL_NhanVien(nv, 1, "null");
     }
     
-    //3. Kiem tra danh sach khach hang co rong hay khong
-    public boolean kiemTraDanhSachRong()
-    {
-        return this.danhSach.isEmpty();
-    }
+    
+    
     
     //4. Lay ra so luong khach hang trong danh sach
-    public int laySoLuong()
+    public int laySoLuongNhanVien()
     {
         return this.danhSach.size();
     }
-    //5. lam rong danh sach khach hang
-    public void lamRongDanhSach()
-    {
-        this.danhSach.removeAll(danhSach);
-    }
     
-    //6. Kiem tra khach hang co ton tai trong danh sach hay khong, dua tren ma khach hang
-    public boolean kiemTraTonTai(NhanVien nv)
-    {
-        return this.danhSach.contains(nv);
-    }
+    
+    
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
-    public boolean  xoaKhachHang(NhanVien nv)
+    public boolean  xoaNhanVien(NhanVien nv)
     {
         return this.danhSach.remove(nv);
     }
+    public boolean xoaNhanVien(String ma)
+    {        
+        int i = 0;
+        for (NhanVien nhanVien : danhSach) {
+            if (ma.equalsIgnoreCase(nhanVien.getManv())) {
+                this.danhSach.remove(i); 
+                con.UpdateSQL_NhanVien(nhanVien, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
     
+    public boolean suaNhanVien(String maOld, String tennv,String manv,  String diachi,String loainv, String chucvu)
+    {        
+        int i = 0;
+        for (NhanVien nhanVien : danhSach) {
+            if (maOld.equalsIgnoreCase(nhanVien.getManv())) {
+                this.danhSach.get(i).setTennv(tennv); 
+                this.danhSach.get(i).setManv(manv);
+                this.danhSach.get(i).setDiachi(diachi); 
+                this.danhSach.get(i).setLoainv(loainv);
+                this.danhSach.get(i).setChucvu(chucvu);
+                
+                con.UpdateSQL_NhanVien(this.danhSach.get(i), 3, maOld);
+                
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
-    public void timKhachHang(String ma)
+    public void timNhanVien(String ma)
     {
         for (NhanVien nhanVien : danhSach) 
         {
@@ -207,4 +240,38 @@ public class NhanVien implements Comparable<NhanVien> {
             System.out.println(nhanVien);
         }
     }
+    public ArrayList<NhanVien> timNhanVienUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<NhanVien> dsnv = new ArrayList<>();
+        for (NhanVien nhanVien : danhSach) 
+        {
+            if(nhanVien.getManv().equalsIgnoreCase(ma))
+            {   
+                dsnv.add(nhanVien);
+            }
+            if(nhanVien.getTennv().equalsIgnoreCase(ma))
+            {   //String tennv,String manv,  String diachi,String loainv, String chucvu
+                dsnv.add(nhanVien);
+            }
+            if(nhanVien.getLoainv().equalsIgnoreCase(ma))
+            {   
+                dsnv.add(nhanVien);
+            }
+            if(nhanVien.getDiachi().equalsIgnoreCase(ma))
+            {   
+                dsnv.add(nhanVien);
+            }
+            if(nhanVien.getChucvu().equalsIgnoreCase(ma))
+            {   
+                dsnv.add(nhanVien);
+            }
+            i++;
+        }
+        if (dsnv != null) {
+            return dsnv;
+        }
+        return null;
+    }
 }
+// 

@@ -174,37 +174,14 @@ public class KhachHang implements Comparable<KhachHang>{
     }
     
     
-    //2. Them In danh sach khach hang ra man hinh
-    public void inDanhSachKhachHang()
-    {
-        for (KhachHang khachHang : danhSach) 
-        {
-            System.out.println(khachHang);
-        }
-    }
     
-    //3. Kiem tra danh sach khach hang co rong hay khong
-    public boolean kiemTraDanhSachRong()
-    {
-        return this.danhSach.isEmpty();
-    }
     
     //4. Lay ra so luong khach hang trong danh sach
     public int laySoLuongKhachHang()
     {
         return this.danhSach.size();
     }
-    //5. lam rong danh sach khach hang
-    public void lamRongDanhSach()
-    {
-        this.danhSach.removeAll(danhSach);
-    }
     
-    //6. Kiem tra khach hang co ton tai trong danh sach hay khong, dua tren ma khach hang
-    public boolean kiemTraTonTai(KhachHang kh)
-    {
-        return this.danhSach.contains(kh);
-    }
     
     
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang

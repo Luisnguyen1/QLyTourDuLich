@@ -1,5 +1,7 @@
 package DTo;
 
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Objects;
 import java.util.Scanner;
@@ -144,60 +146,99 @@ public class PhuongTien implements Comparable<PhuongTien>{
         System.out.println("So cho con du la: "+this.sochocondu);
     }
     
-    private ArrayList<PhuongTien>danhSachPT;
-
-    public PhuongTien() {
-    }
-
     
-    public PhuongTien(ArrayList<PhuongTien> danhSachPT) {
-        this.danhSachPT = danhSachPT;
+    
+    
+    private ArrayList<PhuongTien>danhSachPT = new ArrayList<PhuongTien>();
+    config con = new config();
+    public PhuongTien() throws SQLException 
+    {
+        this.danhSachPT = con.layDL_PhuongTien(); //cach khai bao 1 arrayList
+    }
+    public PhuongTien traPT(int i){
+        return danhSachPT.get(i);
+    }
+    public PhuongTien traPT(String maPT){
+        for (PhuongTien phuongTien : danhSachPT) {
+            if (maPT.equalsIgnoreCase(phuongTien.getMapt())) {
+                return phuongTien;
+            }
+        }
+        return null;
     }
     
-    //1. Them phuong tien vao danh sach 
+    /*public KhachHang(ArrayList<KhachHang> danhSach) {
+    this.danhSach = danhSach;
+    }*/
+    
     public void themPhuongTien(PhuongTien pt)
     {
         this.danhSachPT.add(pt);    
     }
     
-    //2. Them In danh sach phuong tien ra man hinh
-    public void inDanhSachPhuongTien()
+    
+    
+    public void themPhuongTien(String mapt, String loaipt, String bienso, long tongsocho, long sochocondu)
     {
-        for (PhuongTien phuongTien : danhSachPT) 
-        {
-            System.out.println(phuongTien);
-        }
+        PhuongTien pt = new PhuongTien(mapt, loaipt, bienso, tongsocho, sochocondu);
+        this.danhSachPT.add(pt);    
+        con.UpdateSQL_PhuongTien(pt, 1, "null");
     }
     
-    //3. Kiem tra danh sach phuong tien co rong hay khong
-    public boolean kiemTraDanhSachRong()
-    {
-        return this.danhSachPT.isEmpty();
-    }
     
-    //4. Lay ra so luong phuong tien trong danh sach
+    
+    
+    //4. Lay ra so luong khach hang trong danh sach
     public int laySoLuongPhuongTien()
     {
         return this.danhSachPT.size();
     }
-    //5. lam rong danh sach phuong tien
-    public void lamRongDanhSach()
-    {
-        this.danhSachPT.removeAll(danhSachPT);
-    }
     
-    //6. Kiem tra phuong tien co ton tai trong danh sach hay khong, dua tren ma phuong tien
-    public boolean kiemTraTonTai(PhuongTien pt)
-    {
-        return this.danhSachPT.contains(pt);
-    }
-    //7. Xoa mot phuong tien ra khoi danh sach phuong tien dua tren ma phuong tien 
+    
+    
+    //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
     public boolean  xoaPhuongTien(PhuongTien pt)
     {
         return this.danhSachPT.remove(pt);
     }
+    public boolean xoaPhuongTien(String ma)
+    {        
+        int i = 0;
+        for (PhuongTien phuongTien : danhSachPT) {
+            if (ma.equalsIgnoreCase(phuongTien.getMapt())) {
+                this.danhSachPT.remove(i); 
+                con.UpdateSQL_PhuongTien(phuongTien, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
     
-    //8. Tim kiem tat ca phuong tien dua tren Ma phuong tien duoc nhap tu ban phim
+    public boolean suaPhuongTien(String maOld, String mapt, String loaipt, String bienso, long tongsocho, long sochocondu)
+    {        
+        int i = 0;
+        for (PhuongTien phuongTien : danhSachPT) {
+            if (maOld.equalsIgnoreCase(phuongTien.getMapt())) {
+                this.danhSachPT.get(i).setLoaipt(loaipt); 
+                this.danhSachPT.get(i).setMapt(mapt);
+                this.danhSachPT.get(i).setBienso(bienso); 
+                this.danhSachPT.get(i).setTongsocho(tongsocho);
+                this.danhSachPT.get(i).setSochocondu(sochocondu);
+                
+                con.UpdateSQL_PhuongTien(this.danhSachPT.get(i), 3, maOld);
+                
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
+    //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
     public void timPhuongTien(String ma)
     {
         for (PhuongTien phuongTien : danhSachPT) 
@@ -205,6 +246,31 @@ public class PhuongTien implements Comparable<PhuongTien>{
             if(phuongTien.getMapt().contains(ma));
             System.out.println(phuongTien);
         }
+    }
+    public ArrayList<PhuongTien> timPhuongTienUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<PhuongTien> dspt = new ArrayList<>();
+        for (PhuongTien phuongTien : danhSachPT) 
+        {
+            if(phuongTien.getMapt().equalsIgnoreCase(ma))
+            {   
+                dspt.add(phuongTien);
+            }
+            if(phuongTien.getLoaipt().equalsIgnoreCase(ma))
+            {   
+                dspt.add(phuongTien);
+            }
+            if(phuongTien.getBienso().equalsIgnoreCase(ma))
+            {   
+                dspt.add(phuongTien);
+            }
+            i++;
+        }
+        if (dspt != null) {
+            return dspt;
+        }
+        return null;
     }
 }    
     

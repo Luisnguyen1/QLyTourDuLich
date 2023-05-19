@@ -1,6 +1,12 @@
 
 package DTo;
 
+
+import KetnoiSQL_DAL.config;
+import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Objects;
+import java.util.Scanner;
 /**
  *
  * @author Huu Quoc Bao
@@ -54,5 +60,93 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
         this.maDiaDiem = maDiaDiem;
     }
     
+    private ArrayList<DiaDiemVuiChoi> danhSach = new ArrayList<>();
+    private config con = new config();
+
+    public DiaDiemVuiChoi() throws SQLException {
+        this.danhSach = con.LayDL_DiaDiemVuiChoi();
+    }
     
+    public DiaDiemVuiChoi traDiaDiem(int i) {
+        return danhSach.get(i);
+    }
+
+    public DiaDiemVuiChoi traDiaDiem(String maDiaDiem) {
+        for (DiaDiemVuiChoi diaDiem : danhSach) {
+            if (maDiaDiem.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
+                return diaDiem;
+            }
+        }
+        return null;
+    }
+
+    public void themDiaDiem(DiaDiemVuiChoi diaDiem) {
+        this.danhSach.add(diaDiem);
+    }
+
+    public void themDiaDiem(String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
+        DiaDiemVuiChoi diaDiem = new DiaDiemVuiChoi(diaDiemTour, tenDiaDiem, maDiaDiem);
+        this.danhSach.add(diaDiem);
+        con.UpdateSQL_DDVC(diaDiem, 1, "null");
+    }
+
+    public int laySoLuongDiaDiem() {
+        return this.danhSach.size();
+    }
+
+    public boolean xoaDiaDiem(DiaDiemVuiChoi diaDiem) {
+        return this.danhSach.remove(diaDiem);
+    }
+
+    public boolean xoaDiaDiem(String maDiaDiem) {
+        int i = 0;
+        for (DiaDiemVuiChoi diaDiem : danhSach) {
+            if (maDiaDiem.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
+                this.danhSach.remove(i);
+                con.UpdateSQL_DDVC(diaDiem, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
+    public boolean suaDiaDiem(String maOld, String diaDiemTour, String tenDiaDiem, String maDiaDiem) {
+        int i = 0;
+        for (DiaDiemVuiChoi diaDiem : danhSach) {
+            if (maOld.equalsIgnoreCase(diaDiem.getMaDiaDiem())) {
+                this.danhSach.get(i).setDiaDiemTour(diaDiemTour);
+                this.danhSach.get(i).setTenDiaDiem(tenDiaDiem);
+                this.danhSach.get(i).setMaDiaDiem(maDiaDiem);
+                con.UpdateSQL_DDVC(this.danhSach.get(i), 3, maOld);
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+
+    public void timDiaDiem(String maDiaDiem) {
+        for (DiaDiemVuiChoi diaDiem : danhSach) {
+            if (diaDiem.getMaDiaDiem().contains(maDiaDiem)) {
+                System.out.println(diaDiem);
+            }
+        }
+    }
+
+    public ArrayList<DiaDiemVuiChoi> timDiaDiemUnlimit(String maDiaDiem) {
+        ArrayList<DiaDiemVuiChoi> dsDiaDiem = new ArrayList<>();
+        for (DiaDiemVuiChoi diaDiem : danhSach) {
+            if (diaDiem.getMaDiaDiem().equalsIgnoreCase(maDiaDiem)) {
+                dsDiaDiem.add(diaDiem);
+            }
+            if (diaDiem.getTenDiaDiem().equalsIgnoreCase(maDiaDiem)) {
+                dsDiaDiem.add(diaDiem);
+            }
+            if (diaDiem.getDiaDiemTour().equalsIgnoreCase(maDiaDiem)) {
+                dsDiaDiem.add(diaDiem);
+            }
+        }
+        return dsDiaDiem;
+    }
 }
