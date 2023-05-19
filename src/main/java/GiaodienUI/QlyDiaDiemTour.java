@@ -23,19 +23,17 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     /**
      * Creates new form QlyKhachSan
      */
-    ArrayList<DiaDiem> danhSachDD = new ArrayList<>();
+    DiaDiem dd = new DiaDiem();
     config con = new config();
     
     /**
      * Creates new form QlyDiaDiemTour
      */
     public QlyDiaDiemTour() {
-        initComponents();
-         danhSachDD= con.LayDL_DiaDiem();
-        
+        initComponents();        
         model = (DefaultTableModel) jTable1.getModel();
-        for (DiaDiem dd : danhSachDD) {
-                model.addRow(new Object[]{dd.getKhuvuc(),dd.getThuoctinh(),dd.getTendd(),dd.getMadd()});
+        for(int i = 0 ; i < dd.laySoLuongDiaDiem() ; i++ ) {
+                model.addRow(new Object[]{dd.traDiaDiem(i).getKhuvuc(),dd.traDiaDiem(i).getThuoctinh(),dd.traDiaDiem(i).getTendd(),dd.traDiaDiem(i).getMadd()});
         }
     }
 
@@ -59,11 +57,8 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel4 = new javax.swing.JLabel();
-        txtMaDiaDiem = new javax.swing.JTextField();
         cbxTinhThanhPho = new javax.swing.JComboBox<>();
-        btnExport1 = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jSeparator3 = new javax.swing.JSeparator();
@@ -159,39 +154,22 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
             }
         });
 
-        jLabel4.setBackground(new java.awt.Color(255, 204, 204));
-        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel4.setText("  Mã Địa Điểm");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 101, Short.MAX_VALUE)
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 32, Short.MAX_VALUE)
-        );
-
-        txtMaDiaDiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaDiaDiemActionPerformed(evt);
-            }
-        });
-
-        cbxTinhThanhPho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Tỉnh / Thành Phố", " " }));
+        cbxTinhThanhPho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Tỉnh / Thành Phố" }));
         cbxTinhThanhPho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTinhThanhPhoActionPerformed(evt);
             }
         });
 
-        btnExport1.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport1.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport1.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport1.setText("Export");
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -199,33 +177,30 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(81, 81, 81)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(82, 82, 82)
-                        .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(78, 78, 78)
-                        .addComponent(btnTimKiem)
-                        .addGap(79, 79, 79)
-                        .addComponent(btnExport1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jSeparator2)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addComponent(cbxKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(110, 110, 110)
-                                .addComponent(cbxTinhThanhPho, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel5Layout.createSequentialGroup()
-                                .addGap(200, 200, 200)
-                                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(18, 18, 18)
-                                .addComponent(txtMaDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 188, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addComponent(cbxKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 175, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(110, 110, 110)
+                        .addComponent(cbxTinhThanhPho, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 123, Short.MAX_VALUE)
                         .addComponent(cbxDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(10, 10, 10)))
-                .addGap(79, 79, 79))
+                        .addGap(89, 89, 89))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel5Layout.createSequentialGroup()
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 747, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel5Layout.createSequentialGroup()
+                                .addComponent(btnThem, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(79, 79, 79)
+                                .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(84, 84, 84)
+                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnTimKiem)
+                                .addGap(64, 64, 64)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(94, 94, 94))))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -235,23 +210,18 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
                     .addComponent(cbxDiaDiem, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxKhuVuc, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(cbxTinhThanhPho, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(23, 23, 23)
-                        .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel5Layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
-                        .addComponent(txtMaDiaDiem)))
-                .addGap(18, 18, 18)
-                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
-                    .addComponent(btnXoa)
-                    .addComponent(btnSua)
-                    .addComponent(btnTimKiem)
-                    .addComponent(btnExport1))
-                .addGap(19, 19, 19))
+                .addGap(35, 35, 35)
+                .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThem)
+                        .addComponent(btnXoa))
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnReset)
+                        .addComponent(btnTimKiem)
+                        .addComponent(btnSua)))
+                .addGap(32, 32, 32))
         );
 
         jTable1.setAutoCreateRowSorter(true);
@@ -299,7 +269,25 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxKhuVucActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxKhuVucActionPerformed
-        // TODO add your handling code here:
+        String khuVuc = cbxKhuVuc.getSelectedItem().toString();
+        if(khuVuc.equals("Miền Nam")){
+            cbxTinhThanhPho.removeAllItems();
+            cbxTinhThanhPho.addItem("Thành phố Hồ Chí Minh");
+            cbxTinhThanhPho.addItem("Bà Rịa - Vũng Tàu");
+
+        }
+        else if(khuVuc.equals("Miền Trung")){
+            cbxTinhThanhPho.removeAllItems();
+                        cbxTinhThanhPho.addItem("Đà Nẵng");
+            cbxTinhThanhPho.addItem("Huế");
+
+        }
+        else if(khuVuc.equals("Miền Bắc")){
+            cbxTinhThanhPho.removeAllItems();
+                        cbxTinhThanhPho.addItem("Hà Nội");
+            cbxTinhThanhPho.addItem("Hải Phòng");
+
+        }
     }//GEN-LAST:event_cbxKhuVucActionPerformed
 
     private void cbxDiaDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxDiaDiemActionPerformed
@@ -307,16 +295,11 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxDiaDiemActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-          danhSachDD = con.LayDL_DiaDiem();
-        String khuVuc = cbxKhuVuc.getSelectedItem().toString();
+        String kVuc = cbxKhuVuc.getSelectedItem().toString();
         String tinhTP = cbxTinhThanhPho.getSelectedItem().toString();
                 String diaDiem = cbxDiaDiem.getSelectedItem().toString();
-                String maDiaDiem = txtMaDiaDiem.getText();
                 
-                if(maDiaDiem.equals("")){
-                    JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Lại Và Thêm Đầy Đủ Thông Tin");
-                }
-                else if(khuVuc.equals("Chọn Khu Vực")){
+                if(kVuc.equals("Chọn Khu Vực")){
                                         JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Lại Và Thêm Đầy Đủ Thông Tin");
 
                 }
@@ -324,32 +307,27 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
                                         JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Lại Và Thêm Đầy Đủ Thông Tin");
 
                 }
-                else if(khuVuc.equals("Chọn Địa Điểm")){
+                else if(diaDiem.equals("Chọn Địa Điểm")){
                                         JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Lại Và Thêm Đầy Đủ Thông Tin");
 
                 }
                 else{
+                    int maxMaDD = dd.laySoLuongDiaDiem();
+                    String maDiaDiem = "DD" + String.format("%04d", maxMaDD + 1);
+                    
+                    dd.themDiaDiem(maDiaDiem, diaDiem, tinhTP, kVuc);
                     DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-                
-                DiaDiem dd = new DiaDiem(maDiaDiem, diaDiem, tinhTP, khuVuc);
-                danhSachDD.add(dd);
-                 con.UpdateSQL_DiaDiem(dd, 1, "null");
-                model.addRow(new Object[]{dd.getKhuvuc(),dd.getThuoctinh(),dd.getTendd(),dd.getMadd()});
+               
+                model.addRow(new Object[]{dd.traDiaDiem(maDiaDiem).getKhuvuc(),dd.traDiaDiem(maDiaDiem).getThuoctinh(),dd.traDiaDiem(maDiaDiem).getTendd(),dd.traDiaDiem(maDiaDiem).getMadd()});
                 
                 jTable1.setModel(model);
                 
                 JOptionPane.showMessageDialog(null,"Thêm Địa Điểm Thành Công");
-                txtMaDiaDiem.setText("");
                 }
-              
-                
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-          danhSachDD = con.LayDL_DiaDiem();
-
         int selectedRow = jTable1.getSelectedRow();
-
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Xóa");
@@ -360,27 +338,10 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
-        String maNV = (String) model.getValueAt(selectedRow, 3);
+        String maDiaDiem = (String) model.getValueAt(selectedRow, 3);
 
-// tìm khách hàng trong danh sách dựa vào mã
-        DiaDiem nhanVienCanXoa = null;
-        for (DiaDiem nv : danhSachDD) {
-            if (nv.getMadd().equalsIgnoreCase(maNV)) {
-                nhanVienCanXoa = nv;
-                break;
-            }
-        }
-
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
-            return;
-        }
-
-// xóa khách hàng khỏi danh sách
-        danhSachDD.remove(nhanVienCanXoa);
-            con.UpdateSQL_DiaDiem(nhanVienCanXoa, 2, "null");
-// xóa hàng được chọn trong model
+        boolean a = dd.xoaDiaDiem(maDiaDiem);
+        
         model.removeRow(selectedRow);
 
 // cập nhật lại model cho JTable
@@ -392,7 +353,6 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        danhSachDD = con.LayDL_DiaDiem();
         int selectedRow = jTable1.getSelectedRow();
         
         if(selectedRow == -1 ){
@@ -402,30 +362,20 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         String maDD = (String) model.getValueAt(selectedRow,3);
         
-        DiaDiem ddCanSua = null;
-        for(DiaDiem dd : danhSachDD){
-            if(dd.getMadd().equals(maDD)){
-                ddCanSua = dd;
-                break;
-            }
-        }
-        if (ddCanSua == null) {
-            JOptionPane.showMessageDialog(null, "Địa điểm Không Tồn Tại");
-            return;
-        }
-        
+        dd.traDiaDiem(maDD);
         JComboBox<String> cbxKhuVuc = new JComboBox<>();
         cbxKhuVuc.addItem("Miền Nam");
         cbxKhuVuc.addItem("Miền Trung");
         cbxKhuVuc.addItem("Miền Bắc");
+        cbxKhuVuc.setSelectedItem(dd.traDiaDiem(maDD).getKhuvuc());
         JOptionPane.showMessageDialog(null,cbxKhuVuc, "Chọn khu vực", JOptionPane.QUESTION_MESSAGE);
         String khuVuc = cbxKhuVuc.getSelectedItem().toString();
         
         JComboBox<String> cbxTinhThanhPho = new JComboBox<>();
+        
         if(khuVuc.equals("Miền Nam")){
             cbxTinhThanhPho.addItem("Thành phố Hồ CHí Minh");
                         cbxTinhThanhPho.addItem("Bà Rịa - Vũng Tàu");
-            cbxTinhThanhPho.addItem("Đồng Nai");
 
         }
         else if(khuVuc.equals("Miền Trung")){
@@ -438,87 +388,131 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
             cbxTinhThanhPho.addItem("Hải Phòng");
 
         }
-        JOptionPane.showMessageDialog(null,cbxTinhThanhPho, "Chọn khu vực", JOptionPane.QUESTION_MESSAGE);
+        cbxTinhThanhPho.setSelectedItem(dd.traDiaDiem(maDD).getThuoctinh());
+        JOptionPane.showMessageDialog(null,cbxTinhThanhPho, "Chọn tỉnh/thành phố", JOptionPane.QUESTION_MESSAGE);
         String tinhTP = cbxTinhThanhPho.getSelectedItem().toString();
         
         JComboBox<String> cbxDiaDiem = new JComboBox<>();
-        if(khuVuc.equals("Miền Nam")){
-            cbxDiaDiem.addItem("1");
+        if(tinhTP.equals("Thành phố Hồ Chí Minh")){
+            cbxDiaDiem.addItem("Dinh Độc Lập - Hội trường Thống Nhất");
+            cbxDiaDiem.addItem("Bảo tàng thành phố Hồ Chí Minh");
 
         }
-        else if(khuVuc.equals("Miền Trung")){
-            cbxDiaDiem.addItem("2");
+        else if(tinhTP.equals("Bà Rịa - Vũng Tàu")){
+            cbxDiaDiem.addItem("Ngọn Hải Đăng Vũng Tàu");
+            cbxDiaDiem.addItem("Bạch Dinh");
+        }
+        else if(tinhTP.equals("Đà Nẵng")){
+            cbxDiaDiem.addItem("Ba Na Hills");
+            cbxDiaDiem.addItem("Ngũ Hành Sơn");
 
         }
-        else if(khuVuc.equals("Miền Bắc")){
-            cbxDiaDiem.addItem("3");
+        else if(tinhTP.equals("Huế")){
+            cbxDiaDiem.addItem("Đồi Vọng Cảnh");
+            cbxDiaDiem.addItem("Lăng Khải Định");
+        }
+        else if(tinhTP.equals("Hà Nội")){
+            cbxDiaDiem.addItem("Quảng Trường Ba Đình - Lăng Bác");
+            cbxDiaDiem.addItem("Văn Miếu Quốc Tử Giám");
 
         }
-        JOptionPane.showMessageDialog(null,cbxDiaDiem, "Chọn khu vực", JOptionPane.QUESTION_MESSAGE);
+        else if(tinhTP.equals("Hải Phòng")){
+            cbxDiaDiem.addItem("Vịnh Lan Hạ");
+            cbxDiaDiem.addItem("Bảo Tàng Hải Phòng");
+        }
+        cbxDiaDiem.setSelectedItem(dd.traDiaDiem(maDD).getTendd());
+        JOptionPane.showMessageDialog(null,cbxDiaDiem, "Chọn địa điểm", JOptionPane.QUESTION_MESSAGE);
         String diaDiem = cbxDiaDiem.getSelectedItem().toString();
         
-        String maDiaDiem = JOptionPane.showInputDialog(null,"Nhập Mã Địa Điểm",ddCanSua.getMadd());
+        String maDiaDiemNew = JOptionPane.showInputDialog(null,"Nhập Mã Địa Điểm",dd.traDiaDiem(maDD).getMadd());
         
-        ddCanSua.setMadd(maDD);
-        ddCanSua.setTendd(diaDiem);
-        ddCanSua.setKhuvuc(khuVuc);
-        ddCanSua.setThuoctinh(tinhTP);
+        dd.suaDiaDiem(maDD, maDiaDiemNew, diaDiem, tinhTP, khuVuc);
 
         model.setValueAt(khuVuc,selectedRow,0);
         model.setValueAt(tinhTP,selectedRow,1);
         model.setValueAt(diaDiem,selectedRow,2);
-        model.setValueAt(maDiaDiem,selectedRow,3);
+        model.setValueAt(maDiaDiemNew,selectedRow,3);
                 
-         con.UpdateSQL_DiaDiem(ddCanSua, 3, "null");
         JOptionPane.showMessageDialog(null,"Sửa Địa Điểm Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        danhSachDD = con.LayDL_DiaDiem(); 
-        String maNVCanTim = txtMaDiaDiem.getText();
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<DiaDiem> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (DiaDiem nv : danhSachDD) {
-            if (nv.getMadd().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       dd.timDiaDiemUnlimit(dkTim);
 
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (dd.timDiaDiemUnlimit(dkTim) == null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
-
             // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
             DefaultTableModel model = new DefaultTableModel();
-            model.addColumn("Khu vực");
-            model.addColumn("Tỉnh/Thành phố");
-            model.addColumn("Địa điểm ");
-            model.addColumn("Mã địa điểm");
-       
+            model.addColumn("Khu Vực");
+            model.addColumn("Tỉnh/Thành Phố");
+            model.addColumn("Địa Điểm");
+            model.addColumn("Mã Địa Điểm");
+
             // Thêm các khách hàng tìm được vào model
-            for (DiaDiem nv : ketQuaTimKiem) {
-                model.addRow(new Object[]{nv.getKhuvuc(), nv.getThuoctinh(), nv.getTendd(),  nv.getMadd()});
+            for (DiaDiem kh : dd.timDiaDiemUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getKhuvuc(), kh.getThuoctinh(), kh.getTendd(), kh.getMadd()});
             }
 
             // Cập nhật lại model cho JTable
             jTable1.setModel(model);
+        }
     }//GEN-LAST:event_btnTimKiemActionPerformed
-    }
-    private void txtMaDiaDiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaDiaDiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaDiaDiemActionPerformed
-
+ 
     private void cbxTinhThanhPhoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxTinhThanhPhoActionPerformed
-        // TODO add your handling code here:
+        String tinhTP = cbxTinhThanhPho.getSelectedItem().toString();
+        if(tinhTP.equals("Thành phố Hồ Chí Minh")){
+            cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Dinh Độc Lập - Hội trường Thống Nhất");
+            cbxDiaDiem.addItem("Bảo tàng thành phố Hồ Chí Minh");
+
+        }
+        else if(tinhTP.equals("Bà Rịa - Vũng Tàu")){
+                        cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Ngọn Hải Đăng Vũng Tàu");
+            cbxDiaDiem.addItem("Bạch Dinh");
+        }
+        else if(tinhTP.equals("Đà Nẵng")){
+            cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Ba Na Hills");
+            cbxDiaDiem.addItem("Ngũ Hành Sơn");
+
+        }
+        else if(tinhTP.equals("Huế")){
+            cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Đồi Vọng Cảnh");
+            cbxDiaDiem.addItem("Lăng Khải Định");
+        }
+        else if(tinhTP.equals("Hà Nội")){
+            cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Quảng Trường Ba Đình - Lăng Bác");
+            cbxDiaDiem.addItem("Văn Miếu Quốc Tử Giám");
+
+        }
+        else if(tinhTP.equals("Hải Phòng")){
+            cbxDiaDiem.removeAllItems();
+            cbxDiaDiem.addItem("Vịnh Lan Hạ");
+            cbxDiaDiem.addItem("Bảo Tàng Hải Phòng");
+        }
     }//GEN-LAST:event_cbxTinhThanhPhoActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < dd.laySoLuongDiaDiem(); i++) {
+            model.addRow(new Object[]{dd.traDiaDiem(i).getKhuvuc(), dd.traDiaDiem(i).getThuoctinh(), dd.traDiaDiem(i).getTendd(), dd.traDiaDiem(i).getMadd()});
+        }
+        jTable1.setModel(model);
+
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport1;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
@@ -526,16 +520,13 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> cbxDiaDiem;
     private javax.swing.JComboBox<String> cbxKhuVuc;
     private javax.swing.JComboBox<String> cbxTinhThanhPho;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtMaDiaDiem;
     // End of variables declaration//GEN-END:variables
 }

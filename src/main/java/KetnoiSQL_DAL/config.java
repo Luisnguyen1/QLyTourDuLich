@@ -1719,11 +1719,12 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
             while (rs.next()) {
-                DiaDiem fb = new DiaDiem();
-                fb.setMadd(rs.getString("MaDD"));
-                fb.setTendd(rs.getString("TenDD"));
-                fb.setThuoctinh(rs.getString("ThuocTinh"));
-                fb.setKhuvuc(rs.getString("KhuVuc"));
+                String maDD = rs.getString("MaDD");
+                String tenDD = rs.getString("TenDD");
+                String thuocTinh = rs.getString("ThuocTinh");
+                String khuVuc = rs.getString("KhuVuc");
+                
+                DiaDiem fb = new DiaDiem(maDD,tenDD,thuocTinh,khuVuc);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
