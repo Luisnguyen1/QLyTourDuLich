@@ -24,7 +24,7 @@ import javax.swing.table.DefaultTableModel;
 public class MuaVe extends javax.swing.JPanel {
 
     ArrayList<VeTour> danhSachVT = new ArrayList<>();
-    ArrayList<HoaDon> danhSachHD = new ArrayList<>();
+    HoaDon danhSachHD = new HoaDon();
     config con = new config();
     String MaHD;
     String MaVeTour;

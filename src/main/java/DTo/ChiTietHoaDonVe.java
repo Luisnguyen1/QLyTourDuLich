@@ -1,24 +1,24 @@
 package DTo;
 
+import KetnoiSQL_DAL.config;
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class ChiTietHoaDonVe {
     private String mave;
     private String maHD;
+    private String MaCTHD;
     private int soluongve;
     private long tienve;
 
-    public ChiTietHoaDonVe() {
-    }
-
-    public ChiTietHoaDonVe(String mave, String maHD, int soluongve, long tienve) {
+    public ChiTietHoaDonVe(String mave, String maHD, String MaCTHD, int soluongve, long tienve) {
         this.mave = mave;
         this.maHD = maHD;
+        this.MaCTHD = MaCTHD;
         this.soluongve = soluongve;
         this.tienve = tienve;
     }
 
-   
     public String getMave() {
         return mave;
     }
@@ -33,6 +33,14 @@ public class ChiTietHoaDonVe {
 
     public void setMaHD(String maHD) {
         this.maHD = maHD;
+    }
+
+    public String getMaCTHD() {
+        return MaCTHD;
+    }
+
+    public void setMaCTHD(String MaCTHD) {
+        this.MaCTHD = MaCTHD;
     }
 
     public int getSoluongve() {
@@ -50,6 +58,18 @@ public class ChiTietHoaDonVe {
     public void setTienve(long tienve) {
         this.tienve = tienve;
     }
+
+    public config getCon() {
+        return con;
+    }
+
+    public void setCon(config con) {
+        this.con = con;
+    }
+
+
+
+    
 
     
 
@@ -73,5 +93,137 @@ public class ChiTietHoaDonVe {
     public void xuat() {
         System.out.println("So luong ve: " + soluongve);
         System.out.println("Tien ve: " + tienve);
+    }
+    
+    private ArrayList<ChiTietHoaDonVe>danhSach = new ArrayList<ChiTietHoaDonVe>();
+    config con = new config();
+    public ChiTietHoaDonVe() 
+    {
+        this.danhSach = con.LayDL_CTHD(); //cach khai bao 1 arrayList
+    }
+    public ChiTietHoaDonVe traKH(int i){
+        return danhSach.get(i);
+    }
+    public ChiTietHoaDonVe traKH(String maKH){
+        for (ChiTietHoaDonVe khachHang : danhSach) {
+            if (maKH.equalsIgnoreCase(khachHang.getMaHD())) {
+                return khachHang;
+            }
+        }
+        return null;
+    }
+    
+    /*public KhachHang(ArrayList<KhachHang> danhSach) {
+    this.danhSach = danhSach;
+    }*/
+    
+    public void themKhachHang(ChiTietHoaDonVe kh)
+    {
+        this.danhSach.add(kh);    
+    }
+    
+    
+    
+    public void themKhachHang(String mave,String MaCTHD, String maHD, int soluongve, long tienve)
+    {
+        ChiTietHoaDonVe kh = new ChiTietHoaDonVe(mave,MaCTHD, maHD, soluongve, tienve);
+        this.danhSach.add(kh);    
+        con.UpdateSQL_CTHD(kh, 1, "null");
+    }
+    
+    
+    
+    
+    //4. Lay ra so luong khach hang trong danh sach
+    public int laySoLuong()
+    {
+        return this.danhSach.size();
+    }
+    
+    
+    
+    //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
+    public boolean  xoaCTHD(ChiTietHoaDonVe kh)
+    {
+        return this.danhSach.remove(kh);
+    }
+    public boolean xoaKhachHang(String ma)
+    {        
+        int i = 0;
+        for (ChiTietHoaDonVe khachHang : danhSach) {
+            if (ma.equalsIgnoreCase(khachHang.getMaHD())) {
+                this.danhSach.remove(i); 
+                con.UpdateSQL_CTHD(khachHang, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
+    
+    public boolean suaKhachHang(String maOld, String mave, String maHD, String MaCTHD, int soluongve, long tienve)
+    {        
+        int i = 0;
+        for (ChiTietHoaDonVe khachHang : danhSach) {
+            if (maOld.equalsIgnoreCase(khachHang.getMaHD())) {
+                this.danhSach.get(i).setMaHD(maHD); 
+                this.danhSach.get(i).setMave(mave);
+                this.danhSach.get(i).setMaCTHD(MaCTHD); 
+                this.danhSach.get(i).setSoluongve(soluongve);
+                this.danhSach.get(i).setTienve(tienve);
+                
+                con.UpdateSQL_CTHD(this.danhSach.get(i), 3, maOld);
+                
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
+    //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
+    public void timKhachHang(String ma)
+    {
+        for (ChiTietHoaDonVe khachHang : danhSach) 
+        {
+            if(khachHang.getMaCTHD().contains(ma));
+            System.out.println(khachHang);
+        }
+    }
+    public ArrayList<ChiTietHoaDonVe> timKhachHangUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<ChiTietHoaDonVe> dskh = new ArrayList<>();
+        for (ChiTietHoaDonVe khachHang : danhSach) 
+        {
+            if(khachHang.getMaHD().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getMaCTHD().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getMave().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getSoluongve() == Integer.parseInt(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getTienve() == Long.parseLong(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            i++;
+        }
+        if (dskh != null) {
+            return dskh;
+        }
+        return null;
     }
 }

@@ -99,7 +99,7 @@ public class HoaDon {
     private ArrayList<HoaDon>danhSach = new ArrayList<>();
     config con = new config();
     
-    public HoaDon() throws SQLException 
+    public HoaDon()
     {
         this.danhSach = con.layDL_HoaDon(); //cach khai bao 1 arrayList
     }

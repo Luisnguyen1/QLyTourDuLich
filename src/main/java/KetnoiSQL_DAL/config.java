@@ -788,24 +788,30 @@ public class config {
         }
     }
 
-    public ArrayList<HoaDon> layDL_HoaDon() throws SQLException {
-        // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
-
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM hoadon");
-
+    public ArrayList<HoaDon> layDL_HoaDon() {
         ArrayList<HoaDon> danhSachHoaDon = new ArrayList<>();
-
-        while (rs.next()) {
-            HoaDon HoaDon = new HoaDon();
-            HoaDon.setMahd(rs.getString("MaHD"));
-            HoaDon.setMakhachdatve(rs.getString("makh"));
-            HoaDon.setTongtien(Long.parseLong(rs.getString("tongtien")));
-            HoaDon.setNgayxuathoadon(rs.getDate("ngayxuathoadon"));
-            HoaDon.setManv(rs.getString("manv"));
-            danhSachHoaDon.add(HoaDon);
+        try {
+            // Khởi tạo kết nối đến cơ sở dữ liệu
+            Connection con = DriverManager.getConnection(url, user, password);
+            
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM hoadon");
+            
+            
+            
+            while (rs.next()) {
+                HoaDon HoaDon = new HoaDon();
+                HoaDon.setMahd(rs.getString("MaHD"));
+                HoaDon.setMakhachdatve(rs.getString("makh"));
+                HoaDon.setTongtien(Long.parseLong(rs.getString("tongtien")));
+                HoaDon.setNgayxuathoadon(rs.getDate("ngayxuathoadon"));
+                HoaDon.setManv(rs.getString("manv"));
+                danhSachHoaDon.add(HoaDon);
+            }
+            return danhSachHoaDon;
+        } catch (SQLException ex) {
+            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
         return danhSachHoaDon;
     }
@@ -1004,7 +1010,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?)";
+            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
@@ -1017,6 +1023,8 @@ public class config {
                 stmt.setString(2, KhuyenMai.getMave());
                 stmt.setLong(3, KhuyenMai.getSoluongve());
                 stmt.setLong(4, KhuyenMai.getTienve());
+                stmt.setString(5, KhuyenMai.getMaCTHD());
+                
                 stmt.execute();
 
                 // select all student
@@ -1041,7 +1049,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaHD()+ "'";
+                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1053,12 +1061,12 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaHD()+ "'";
+                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD()+ "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?)";
+            String sqlInsert = "INSERT INTO cthd VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
@@ -1071,8 +1079,7 @@ public class config {
                 stmt.setString(2, KhuyenMai.getMave());
                 stmt.setLong(3, KhuyenMai.getSoluongve());
                 stmt.setLong(4, KhuyenMai.getTienve());
-                
-                stmt.execute();
+                stmt.setString(5, KhuyenMai.getMaCTHD());
 
 
                 // select all student
@@ -1731,11 +1738,13 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
             while (rs.next()) {
+                
+                String mahd = rs.getString("MaHD");
+                String mave = rs.getString("MaVe");
+                int sl = rs.getInt("SoLuongVe");
+                long tienve = rs.getInt("TienVe");
+                String macthd = rs.getString("maCTHD");
                 ChiTietHoaDonVe fb = new ChiTietHoaDonVe();
-                fb.setMaHD(rs.getString("MaHD"));
-                fb.setMave(rs.getString("MaVe"));
-                fb.setSoluongve(rs.getInt("SoLuongVe"));
-                fb.setTienve(rs.getInt("TienVe"));
                 dd.add(fb);
             }
         } catch (SQLException ex) {
