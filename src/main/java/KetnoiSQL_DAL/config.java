@@ -58,21 +58,28 @@ public class config {
         }
     }
 
-    public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
+    public ArrayList<TaiKhoan> layDL_TK(){
+                ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
+
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
 
-        ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
 
         while (rs.next()) {
-            TaiKhoan taikhoan = new TaiKhoan();
-            taikhoan.setMatk(rs.getString("tentaikhoan"));
-            taikhoan.setMatkhau(rs.getString("matkhau"));
-            danhSachTaiKhoan.add(taikhoan);
+            
+            String user = rs.getString("tentaikhoan");
+            String password = rs.getString("matkhau");
+            String Email = rs.getString("email");
+            String qtruycap = rs.getString("quyentruycap");
+            
+            TaiKhoan tk = new TaiKhoan(user,password,Email,qtruycap);
+            danhSachTaiKhoan.add(tk);
+        }
+        }catch(SQLException e){
         }
         return danhSachTaiKhoan;
     }

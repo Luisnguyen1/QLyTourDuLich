@@ -15,8 +15,7 @@ import javax.swing.JTextField;
  * @author Thanh Tran
  */
 public class SignUp extends javax.swing.JFrame {
-
-    ArrayList<TaiKhoan> danhSachTK = new ArrayList<>();
+    TaiKhoan tk = new TaiKhoan();
     /**
      * Creates new form register
      */
@@ -202,24 +201,21 @@ public class SignUp extends javax.swing.JFrame {
     private void btnCreateAccountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCreateAccountActionPerformed
         String user = txtUser.getText();
         String password = txtPassword.getText();
-        String email = txtEmail.getText();
+        String Email = txtEmail.getText();
         
-        if(user.equals("") || password.equals("") || email.equals("")){
+        if(user.equals("") || password.equals("") || Email.equals("")){
             JOptionPane.showMessageDialog(null,"Nhập Đầy Đủ Thông Tin");
         }
         else{
-            TaiKhoan tk = new TaiKhoan(user,password,email,null);
-            danhSachTK.add(tk);
-            Register(tk);
+            tk.themKhachHang(user, password, Email, null);
             
             JOptionPane.showMessageDialog(null,"Tạo Tài Khoản Thành Công");
+            txtUser.setText("");
+            txtPassword.setText("");
+            txtEmail.setText("");
         }
     }//GEN-LAST:event_btnCreateAccountActionPerformed
 
-    private void Register(TaiKhoan tk) {
-       config con = new config();
-       con.UpdateSQL_TaiKhoan(tk,1,null);
-    }
     
     /**
      * @param args the command line arguments
