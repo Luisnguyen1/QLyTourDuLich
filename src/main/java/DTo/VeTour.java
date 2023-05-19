@@ -27,7 +27,6 @@ public class VeTour implements Comparable<VeTour> {
         hansudung = x.hansudung;
     }
 
-    
     public VeTour(String mavetour, String matour, long tiengiam, Date ngaydatve, Date hansudung) {
         this.mavetour = mavetour;
         this.matour = matour;
@@ -81,7 +80,7 @@ public class VeTour implements Comparable<VeTour> {
     public int compareTo(VeTour o) {
         return this.mavetour.compareTo(o.mavetour);
     }
-     private ArrayList<VeTour> danhSach = new ArrayList<VeTour>();
+    private ArrayList<VeTour> danhSach = new ArrayList<VeTour>();
     config con = new config();
 
     public VeTour() {
@@ -97,6 +96,17 @@ public class VeTour implements Comparable<VeTour> {
             if (maKH.equalsIgnoreCase(vetour.getMavetour())) {
                 return vetour;
             }
+        }
+        return null;
+    }
+
+    public Long tinhTongTien(int Sl, String Ma) {
+        Tour tour = new Tour();
+        for (VeTour veTour : danhSach) {
+            System.out.println(veTour.getMatour());
+
+            return Sl * tour.traTour(veTour.getMatour()).getGiaTour();
+
         }
         return null;
     }

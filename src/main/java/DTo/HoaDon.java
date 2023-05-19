@@ -142,7 +142,11 @@ public class HoaDon {
         return this.danhSach.size();
     }
     
-    
+    public String maHD()
+    {
+        String s = "HD00" + Integer.toString(laySoLuongHoaDon()+ 1 );
+        return s;
+    }
     
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
     public boolean  xoaHoaDon(HoaDon kh)

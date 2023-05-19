@@ -124,6 +124,17 @@ public class ChiTietHoaDonVe {
         this.danhSach.add(kh);    
     }
     
+    public String maCTHD(String MaHD)
+    {
+        int i= 0;
+        for (ChiTietHoaDonVe chiTietHoaDonVe : danhSach) {
+            if (chiTietHoaDonVe.getMaHD().equals(MaHD)) {
+                i++;
+            }
+        }
+        
+        return MaHD +"_00"+Integer.toString(i);
+    }
     
     
     public void themKhachHang(String mave,String MaCTHD, String maHD, int soluongve, long tienve)
@@ -194,6 +205,11 @@ public class ChiTietHoaDonVe {
             if(khachHang.getMaCTHD().contains(ma));
             System.out.println(khachHang);
         }
+    }
+    public String maCTHD()
+    {
+        String s = "CTHD00" + Integer.toString(laySoLuong()+ 1 );
+        return s;
     }
     public ArrayList<ChiTietHoaDonVe> timCTHDVeUnlimit(String ma)
     {   

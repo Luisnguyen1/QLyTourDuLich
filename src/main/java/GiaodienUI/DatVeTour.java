@@ -4,22 +4,18 @@
  */
 package GiaodienUI;
 
-import DTo.BookVe;
+import DTo.ChiTietHoaDonVe;
+import DTo.HoaDon;
 import DTo.KhachHang;
 import DTo.ModuleXuLy;
 import DTo.Tour;
 import DTo.VeTour;
-import GiaodienUI.menu.menu;
 import KetnoiSQL_DAL.config;
 import java.awt.Window;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.Date;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,36 +23,33 @@ import javax.swing.table.DefaultTableModel;
  */
 public class DatVeTour extends javax.swing.JPanel {
 
-    ArrayList<VeTour> danhSachVe = new ArrayList<>();
-    ArrayList<Tour> danhsachTour = new ArrayList<>();
+    VeTour danhSachVe = new VeTour();
+    HoaDon danhSachHD = new HoaDon();
+    ChiTietHoaDonVe danhSaChiTietHoaDonVe = new ChiTietHoaDonVe();
+    Tour danhsachTour = new Tour();
     config con = new config();
+
+    String mavt;
 
     public DatVeTour(String MaHD, String MaVT) {
         initComponents();
+
+        mavt = MaVT;
         if (MaHD.equals("null") == true && MaVT.equals("null") == true) {
             JOptionPane.showMessageDialog(null, "Vui lòng chọn vé");
         } else {
-            try {
-                danhSachVe = con.layDL_VeTour();
-            } catch (SQLException ex) {
-                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-            }
+
             VeTour vt = new VeTour();
-            for (VeTour veTour : danhSachVe) {
-                if (veTour.getMavetour().equals(MaVT)) {
-                    vt = veTour;
+            for (int i = 0; i < danhSachVe.laySoLuongVeTour(); i++) {
+                if (danhSachVe.traKH(i).getMavetour().equals(MaVT)) {
+                    vt = danhSachVe.traKH(i);
                     break;
                 }
             }
-            try {
-                danhsachTour = con.layDL_Tour();
-            } catch (SQLException ex) {
-                Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-            }
             Tour tour = new Tour();
-            for (Tour tour1 : danhsachTour) {
-                if (tour1.getMaTour().equals(vt.getMatour())) {
-                    tour = tour1;
+            for (int i = 0; i < danhsachTour.laySoLuongTour(); i++) {
+                if (danhsachTour.traTour(i).getMaTour().equals(vt.getMatour())) {
+                    tour = danhsachTour.traTour(i);
                     break;
                 }
             }
@@ -320,9 +313,9 @@ public class DatVeTour extends javax.swing.JPanel {
         String dchi = txtDiachi.getText();
         String sdt = txtSdt.getText();
         String Email = txtEmail.getText();
-
         String soluong = txtSoLuong.getText();
 
+        KhachHang kh = new KhachHang();
         if (hoten.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else if (dchi.equals("")) {
@@ -334,13 +327,23 @@ public class DatVeTour extends javax.swing.JPanel {
         } else if (soluong.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else {
+            String makh = kh.maKH();
+            String mahoadon = danhSachHD.maHD();
+            kh.themKhachHang(hoten, makh, dchi, sdt, Email);
 
-            JOptionPane.showMessageDialog(null, "Đặt Vé Thành Công");
+                  
+           
 
-            txtHoten.setText("");
-            txtDiachi.setText("");
-            txtSdt.setText("");
-            txtEmail.setText("");
+           
+            
+            
+            danhSaChiTietHoaDonVe.themKhachHang(mavt, danhSaChiTietHoaDonVe.maCTHD(),mahoadon,Integer.parseInt(soluong), danhsachTour.traTour(danhSachVe.traKH(mavt).getMatour()).getGiaTour());
+            
+            int input = JOptionPane.showOptionDialog(null, "Đặt Vé Thành Công", "The title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
+            if (input == JOptionPane.OK_OPTION) {
+                ModuleXuLy md = new ModuleXuLy();
+                md.chuyenFrameMuaVe(mahoadon, mavt, makh, danhSachVe.traKH(mavt).getMatour(), Integer.parseInt(soluong), 1);
+            }
 
         }
     }//GEN-LAST:event_btnDatVeActionPerformed

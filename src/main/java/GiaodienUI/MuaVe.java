@@ -6,6 +6,7 @@ package GiaodienUI;
 
 import DTo.ChiTietHoaDonVe;
 import DTo.HoaDon;
+import DTo.ModuleXuLy;
 import DTo.Tour;
 import DTo.VeTour;
 import KetnoiSQL_DAL.config;
@@ -29,6 +30,7 @@ public class MuaVe extends javax.swing.JPanel {
     config con = new config();
     String MaHD;
     String MaVeTour;
+    String Manv;
     int i = 0;
     DefaultTableModel model = new DefaultTableModel();
 
@@ -37,15 +39,13 @@ public class MuaVe extends javax.swing.JPanel {
      */
     public MuaVe() {
         initComponents();
-        
+   
         
         model = (DefaultTableModel) jTable1.getModel();
         
         for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
-            System.out.println(danhSachVT.traKH(i).getMatour());
-            System.out.println("----------------------------------");
-            System.out.println(danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour());
-            //model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
+            
+            model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
         }
     }
 
@@ -251,13 +251,12 @@ public class MuaVe extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnDatVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDatVeActionPerformed
-        DatVeTour dvt = new DatVeTour(MaHD, MaVeTour);
-        System.out.println(MaHD);
-        JFrame frame = new JFrame();
-        frame.add(dvt);
-        frame.setLocation(100, 100); // đặt vị trí
-        frame.setSize(930, 580); // đặt kích thước
-        frame.setVisible(true);
+        DefaultTableModel model = (DefaultTableModel) jTable2.getModel();
+        String maVT = (String) model.getValueAt(0, 0);
+        setMaVeTour(maVT);
+        setMaHD(CreateMAHD());
+        ModuleXuLy md = new ModuleXuLy();
+        md.chuyenFrameMuaVe(MaHD, MaVeTour, "null", "null", 1, 0);
        
 
     }//GEN-LAST:event_btnDatVeActionPerformed
@@ -279,7 +278,7 @@ public class MuaVe extends javax.swing.JPanel {
 
     }
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        if (i > 1) {
+        if (i > 0) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chỉ Chọn Một Vé Tour");
         } else {
             int selectedRow = jTable1.getSelectedRow();
@@ -297,8 +296,7 @@ public class MuaVe extends javax.swing.JPanel {
                     break;
                 }
             }
-            this.setMaVeTour(maVT);
-            this.setMaHD(CreateMAHD());
+            
             /*ChiTietHoaDonVe cthd = new ChiTietHoaDonVe(maVT,MaHD , 1, 0);
         con.UpdateSQL_CTHD(cthd, 1, maVT);*/
             i++;

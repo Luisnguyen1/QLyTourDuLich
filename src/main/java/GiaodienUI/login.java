@@ -15,6 +15,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 import javax.swing.SwingUtilities;
@@ -300,12 +301,17 @@ public class login extends javax.swing.JFrame {
         
         ModuleXuLy md = new ModuleXuLy();
         try {
-            boolean check = md.login(tk, mk);
-            if (check ==true) {
+            
+            if (md.login(tk, mk) == false) {
+                JOptionPane.showMessageDialog(null, "Mật khẩu hoặc tài khoản không đúng.");
+                txtPassword.setText("");
+                txtUser.setText("");
                 
+                
+            }else{
                 md.chuyenFrame(this);
-                
             }
+            
         } catch (SQLException ex) {
             Logger.getLogger(login.class.getName()).log(Level.SEVERE, null, ex);
         }

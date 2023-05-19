@@ -72,9 +72,80 @@ public class config {
             TaiKhoan taikhoan = new TaiKhoan();
             taikhoan.setMatk(rs.getString("tentaikhoan"));
             taikhoan.setMatkhau(rs.getString("matkhau"));
+            taikhoan.setEmail(rs.getString("manv"));
+            taikhoan.setQuyentruycap(rs.getString("loaitk"));
             danhSachTaiKhoan.add(taikhoan);
         }
         return danhSachTaiKhoan;
+    }
+    public String layDL_QTC() {
+        String s = null;
+        try {
+            // Khởi tạo kết nối đến cơ sở dữ liệu
+            Connection con = DriverManager.getConnection(url, user, password);
+            
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM quyentruycap");
+            
+            
+            
+            while (rs.next()) {
+                s=rs.getString("MaNV");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return s;
+    }
+    
+    public void UpdateSQL_QTC(int i,String maNV) {
+        // Khởi tạo kết nối đến cơ sở dữ liệu
+        Connection con;
+        //1 là thêm
+        if (i == 1) {
+            String sqlInsert = "INSERT INTO quyentruycap VALUES(?)";
+            String selectAll = "SELECT * FROM quyentruycap";
+            try {
+                // connect to database
+                Class.forName("com.mysql.jdbc.Driver");
+                con = DriverManager.getConnection(url, user, password);
+
+                // crate statement to insert student
+                PreparedStatement stmt = con.prepareStatement(sqlInsert);
+                stmt.setString(1, maNV);
+                
+                stmt.execute();
+
+                // select all student
+                stmt = con.prepareStatement(selectAll);
+                // get data from table 'student'
+                ResultSet rs = stmt.executeQuery();
+                // show data
+                while (rs.next()) {
+                    System.out.println(rs.getInt(1));
+                }
+                stmt.close();
+                con.close();
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+            } catch (ClassNotFoundException e) {
+                e.printStackTrace();
+            }
+        }
+        if (i == 2) { // xóa
+            try {
+
+                con = DriverManager.getConnection(url, user, password);
+                Statement stmt = con.createStatement();
+                String delete = "DELETE FROM quyentruycap WHERE MaNV = '" + maNV+ "'";
+                stmt.executeUpdate(delete);
+            } catch (SQLException ex) {
+                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+        }
+        
     }
 
     public void UpdateSQL_HoaDon(HoaDon HoaDon, int i, String MaNV_OLD) {
@@ -111,9 +182,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa
@@ -1009,8 +1080,8 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, KhuyenMai.getMaHD());
                 stmt.setString(2, KhuyenMai.getMave());
-                stmt.setLong(3, KhuyenMai.getSoluongve());
-                stmt.setLong(4, KhuyenMai.getTienve());
+                stmt.setInt(3, KhuyenMai.getSoluongve());
+                stmt.setInt(4, (int)KhuyenMai.getTienve());
                 stmt.setString(5, KhuyenMai.getMaCTHD());
                 
                 stmt.execute();

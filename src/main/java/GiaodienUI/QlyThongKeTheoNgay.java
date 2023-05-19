@@ -22,21 +22,17 @@ import javax.swing.table.DefaultTableModel;
  */
 public class QlyThongKeTheoNgay extends javax.swing.JPanel {
 
-    ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+    HoaDon danhSachHD = new HoaDon();
     config con = new config();
     DefaultTableModel model = new DefaultTableModel();
 
     public QlyThongKeTheoNgay() {
         initComponents();
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         model = (DefaultTableModel) jTable1.getModel();
 
-        for (HoaDon nv : danhSachHD) {
-            model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
+        for (int i = 0; i < danhSachHD.laySoLuongHoaDon(); i++) {
+            model.addRow(new Object[]{danhSachHD.traHD(i).getMahd(),danhSachHD.traHD(i).getNgayxuathoadon(), danhSachHD.traHD(i).getTongtien()});
 
         }
 
@@ -371,11 +367,7 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxThangDiActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
 
         int ngayDi = Integer.parseInt(cbxNgayDi.getSelectedItem().toString());
         int thangDi = Integer.parseInt(cbxThangDi.getSelectedItem().toString());
@@ -392,11 +384,11 @@ public class QlyThongKeTheoNgay extends javax.swing.JPanel {
         System.out.println(ngayXuat);
 
         ArrayList<HoaDon> tempHD = new ArrayList<>();
-        for (HoaDon hoaDon : danhSachHD) {
-            System.out.println(hoaDon.getNgayxuathoadon());
+        for (int i = 0; i < danhSachHD.laySoLuongHoaDon(); i++) {
+            System.out.println(danhSachHD.traHD(i).getNgayxuathoadon());
 
-            if (ngayXuat.getDate() == hoaDon.getNgayxuathoadon().getDate() && ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear() == hoaDon.getNgayxuathoadon().getYear()) {
-                tempHD.add(hoaDon);
+            if (ngayXuat.getDate() == danhSachHD.traHD(i).getNgayxuathoadon().getDate() && ngayXuat.getMonth() == danhSachHD.traHD(i).getNgayxuathoadon().getMonth() && ngayXuat.getYear() == danhSachHD.traHD(i).getNgayxuathoadon().getYear()) {
+                tempHD.add(danhSachHD.traHD(i));
                 System.out.println("Đúng");
             } else {
                 System.out.println("Sai");

@@ -31,9 +31,11 @@ public class Main extends javax.swing.JFrame {
     /**
      * Creates new form Main
      */
+    private static String manv;
     public Main() {
         initComponents();
 
+        System.out.println(manv);
         sp.setSide(sideBar);
         sp.setMain(mainPanel);
         sp.setMinWidth(38);

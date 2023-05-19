@@ -20,7 +20,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyThongKeTheoThang extends javax.swing.JPanel {
-ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+
+    HoaDon danhSachHD = new HoaDon();
     config con = new config();
     DefaultTableModel model = new DefaultTableModel();
     /**
@@ -230,36 +231,29 @@ ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
     }//GEN-LAST:event_txtDoanhThuActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyThongKeTheoNgay.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         int ngayDi = 1;
         int thangDi = Integer.parseInt(cbxThangTK.getSelectedItem().toString());
         int namDi = Integer.parseInt(cbxNamTK.getSelectedItem().toString());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDi, thangDi-1, ngayDi);
+        calendar.set(namDi, thangDi - 1, ngayDi);
         Date ngayDiDate = calendar.getTime();
-        
+
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         String ngayDiString = dateFormat.format(ngayDiDate);
-                
-        
+
         java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
-        System.out.println(ngayXuat); 
-        
+        System.out.println(ngayXuat);
+
         ArrayList<HoaDon> tempHD = new ArrayList<>();
-        for (HoaDon hoaDon : danhSachHD) {
-            System.out.println(hoaDon.getNgayxuathoadon());
-            
-            if (ngayXuat.getMonth() == hoaDon.getNgayxuathoadon().getMonth() && ngayXuat.getYear()== hoaDon.getNgayxuathoadon().getYear()) {
-                tempHD.add(hoaDon);
+        for (int i = 0; i < danhSachHD.laySoLuongHoaDon(); i++) {
+            System.out.println(danhSachHD.traHD(i).getNgayxuathoadon());
+
+            if (ngayXuat.getMonth() == danhSachHD.traHD(i).getNgayxuathoadon().getMonth() && ngayXuat.getYear() == danhSachHD.traHD(i).getNgayxuathoadon().getYear()) {
+                tempHD.add(danhSachHD.traHD(i));
                 System.out.println("Đúng");
-            }
-            else{   
+            } else {
                 System.out.println("Sai");
             }
         }
@@ -269,8 +263,8 @@ ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
             tong = tong + nv.getTongtien();
         }
-        
-        txtDoanhThu.setText( Long.toString(tong));
+
+        txtDoanhThu.setText(Long.toString(tong) + "VND");
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void cbxThangTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxThangTKActionPerformed
@@ -278,7 +272,7 @@ ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
         int day = 0;
 
         //Những tháng 1,3,5,7,8,10,12 thì có 31 ngày trong năm 2023
-        
+
     }//GEN-LAST:event_cbxThangTKActionPerformed
 
 

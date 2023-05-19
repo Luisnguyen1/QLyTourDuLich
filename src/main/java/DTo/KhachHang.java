@@ -181,7 +181,11 @@ public class KhachHang implements Comparable<KhachHang>{
     {
         return this.danhSach.size();
     }
-    
+    public String maKH()
+    {
+        String s = "KH00" + Integer.toString(laySoLuongKhachHang() + 1 );
+        return s;
+    }
     
     
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
