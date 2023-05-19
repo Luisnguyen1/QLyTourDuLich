@@ -1193,7 +1193,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO feedback(hoten, sdt, email, diachi, noidung) VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?,?)";
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
@@ -1203,10 +1203,11 @@ public class config {
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getHoten());
-                stmt.setString(2, fb.getSdt());
-                stmt.setString(3, fb.getEmail());
-                stmt.setString(4, fb.getDiachi());
-                stmt.setString(5, fb.getNoidung());
+                stmt.setString(2,fb.getMakh());
+                stmt.setString(3, fb.getSdt());
+                stmt.setString(4, fb.getEmail());
+                stmt.setString(5, fb.getDiachi());
+                stmt.setString(6, fb.getNoidung());
                 stmt.execute();
 
                 // select all student
@@ -1216,7 +1217,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getString(6));
                 }
                 stmt.close();
                 con.close();
@@ -1248,7 +1249,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?)";
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?,?)";
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
@@ -1258,10 +1259,11 @@ public class config {
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getHoten());
-                stmt.setString(2, fb.getSdt());
-                stmt.setString(3, fb.getEmail());
-                stmt.setString(4, fb.getDiachi());
-                stmt.setString(5, fb.getNoidung());
+                stmt.setString(2,fb.getMakh());
+                stmt.setString(3, fb.getSdt());
+                stmt.setString(4, fb.getEmail());
+                stmt.setString(5, fb.getDiachi());
+                stmt.setString(6, fb.getNoidung());
                 stmt.execute();
 
                 // select all student
@@ -1271,7 +1273,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5)+ "  " + rs.getString(6));
                 }
                 stmt.close();
                 con.close();
@@ -1647,13 +1649,15 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM feedback");
             while (rs.next()) {
-                FeedBack fb = new FeedBack();
-                fb.setHoten(rs.getString("hoten"));
-                fb.setSdt(rs.getString("sdt"));
-                fb.setEmail(rs.getString("email"));
-                fb.setDiachi(rs.getString("diachi"));
-                fb.setNoidung(rs.getString("noidung"));
 
+                String hten = rs.getString("hoten");
+                String makhachhang = rs.getString("makh");
+                String sodt = rs.getString("sdt");
+                String email = rs.getString("email");
+                String dchi = rs.getString("diachi");
+                String ndung = rs.getString("noidung");
+
+                FeedBack fb = new FeedBack (hten, makhachhang, email, sodt, dchi, ndung);
                 danhSachFB.add(fb);
             }
         } catch (SQLException ex) {

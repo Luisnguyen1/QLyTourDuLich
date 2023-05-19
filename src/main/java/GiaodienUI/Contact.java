@@ -15,7 +15,8 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class Contact extends javax.swing.JPanel {
-    ArrayList<FeedBack> danhSachFB = new ArrayList<>();
+    FeedBack fb = new FeedBack();
+    config con = new config();
     /**
      * Creates new form Contact
      */
@@ -372,10 +373,15 @@ public class Contact extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Nội Dung Muốn Gửi");
         }
         else {
-            FeedBack fb = new FeedBack(hoTen,Email,soDT,dchi,ndung);
+            
+            int maxMaKH = fb.laySoLuongFeedBack();
+
+            // Tạo mã khách hàng mới
+            String maKH = "KH" + String.format("%04d", maxMaKH + 1);
+            
+            fb.themFeedBack(hoTen, maKH, Email, soDT, dchi, ndung);
             //Save to database
             Send_Feedback(fb);
-            danhSachFB.add(fb);
             
             JOptionPane.showMessageDialog(null,"Gửi Thành Công");
             
@@ -421,7 +427,6 @@ public class Contact extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     private void Send_Feedback(FeedBack fb) {
-       config con = new config();
        con.UpdateSQL_FeedBack(fb,1,null);
     }
 }

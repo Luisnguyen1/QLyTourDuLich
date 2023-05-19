@@ -20,7 +20,8 @@ import java.util.logging.Logger;
  */
 public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
-    ArrayList<FeedBack> danhSachFB = new ArrayList<>();
+    FeedBack fb = new FeedBack();
+    config con = new config();
     /**
      * Creates new form QlyPhanHoiKhachHang
      */
@@ -44,10 +45,10 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
         txtTimKiem = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblFeedback = new javax.swing.JTable();
+        btnReset = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -92,16 +93,6 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             }
         });
 
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
-            }
-        });
-
         jSeparator1.setForeground(new java.awt.Color(0, 0, 0));
 
         tblFeedback.setAutoCreateRowSorter(true);
@@ -111,11 +102,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Họ và Tên", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
+                "Họ và Tên", "Mã Khách Hàng", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -123,6 +114,16 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             }
         });
         jScrollPane1.setViewportView(tblFeedback);
+
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset Bảng");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -142,8 +143,8 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                                .addComponent(btnReset)))
+                        .addGap(0, 310, Short.MAX_VALUE)))
                 .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
@@ -155,7 +156,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnTimKiem)
                         .addComponent(btnXoa)
-                        .addComponent(btnExport)))
+                        .addComponent(btnReset)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -182,24 +183,16 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = tblFeedback.getSelectedRow();
-                config con = new config();
-                danhSachFB = con.LayDL_Feedback();
+      
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 FeedBack Để Xóa");
         }
         
         DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+       
+        String hoTen = (String) model.getValueAt(selectedRow, 0);
         
-        String Hoten = (String) model.getValueAt(selectedRow, 0);
-        FeedBack fbCanXoa = null;
-        for(FeedBack fb : danhSachFB){
-            if(fb.getHoten().equals(Hoten)){
-                fbCanXoa = fb;
-                break;
-            }
-        }
-        con.UpdateSQL_FeedBack(fbCanXoa,2,Hoten);
-        danhSachFB.remove(fbCanXoa);
+        boolean a = fb.xoaFeedBack(hoTen);
         model.removeRow(selectedRow);
         
         tblFeedback.setModel(model);
@@ -209,40 +202,47 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtTimKiem.getText().toLowerCase().trim();
-        config con = new config();
-        ArrayList<FeedBack> danhSanhFB = con.LayDL_Feedback();
+       String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        if (tuKhoa.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Từ Khóa Tìm Kiếm");
-            return;
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       fb.timFeedBackUnlimit(dkTim);
 
-        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
-        model.setRowCount(0);
-        /*for (int i = 0; i < danhSachTour.size(); i++) {
-        model.removeRow(i);
-        }*/
-        for (int i = 0; i < danhSanhFB.size(); i++) {
-            FeedBack tour = danhSanhFB.get(i);
-            if (tour.getHoten().toLowerCase().contains(tuKhoa)
-                    || tour.getEmail().toLowerCase().contains(tuKhoa)) {
-                
-               
-                    if (tuKhoa.equals(danhSanhFB.get(i).getHoten())) {
-                        model.addRow(new Object[]{danhSanhFB.get(i).getHoten(), danhSanhFB.get(i).getSdt(), danhSanhFB.get(i).getEmail(), danhSanhFB.get(i).getDiachi(), danhSanhFB.get(i).getNoidung()});
-                    }
+// Kiểm tra kết quả tìm kiếm
+        if (fb.timFeedBackUnlimit(dkTim) == null) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Họ và Tên");
+            model.addColumn("Mã Khách Hàng");
+            model.addColumn("Điện Thoại");
+            model.addColumn("Email");
+            model.addColumn("Địa Chỉ");
+            model.addColumn("Nội Dung");
+            
+
+            // Thêm các khách hàng tìm được vào model
+            for (FeedBack kh : fb.timFeedBackUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getHoten(),kh.getMakh(), kh.getSdt(), kh.getEmail(), kh.getDiachi(),kh.getNoidung()});
             }
+
+            // Cập nhật lại model cho JTable
+            tblFeedback.setModel(model);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
+        for (int i = 0; i < fb.laySoLuongFeedBack(); i++) {
+            model.addRow(new Object[]{fb.traFB(i).getHoten(), fb.traFB(i).getSdt(), fb.traFB(i).getEmail(), fb.traFB(i).getDiachi(), fb.traFB(i).getNoidung()});
+        }
+        tblFeedback.setModel(model);
+    }//GEN-LAST:event_btnResetActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;
@@ -256,12 +256,9 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
 
     private void loadPhanHoi() {
-        config con = new config();
-        danhSachFB.clear();
-        danhSachFB.addAll(con.LayDL_Feedback());
         DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
-        for (FeedBack nv : danhSachFB) {
-            model.addRow(new Object[]{nv.getHoten(), nv.getSdt(), nv.getEmail(), nv.getDiachi(), nv.getNoidung()});
+        for (int i = 0; i < fb.laySoLuongFeedBack(); i++) {
+            model.addRow(new Object[]{fb.traFB(i).getHoten(), fb.traFB(i).getMakh() ,fb.traFB(i).getSdt(), fb.traFB(i).getEmail(), fb.traFB(i).getDiachi(), fb.traFB(i).getNoidung()});
         }
     }
 }
