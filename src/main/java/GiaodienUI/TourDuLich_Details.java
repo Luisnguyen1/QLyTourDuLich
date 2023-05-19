@@ -491,7 +491,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm", " ");
+        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm", "");
         
         ctt.timCTTourUnlimit(dkTim);
         
