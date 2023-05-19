@@ -481,7 +481,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
             int maxMaNV = danhSachNV.laySoLuongNhanVien();
             String maNV = "NV" + String.format("%04d", maxMaNV + 1);
        
-            danhSachNV.themNhanVien(maNV, maNV, diaChi, loaiNV, chucVu);
+            danhSachNV.themNhanVien(hoTen, maNV, diaChi, loaiNV, chucVu);
             // Tạo đối tượng DefaultTableModel
 
 
@@ -610,27 +610,29 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        ExportExcel ex = new ExportExcel();
-        ex.ExportNhanVien(danhSachNV);
+        /*ExportExcel ex = new ExportExcel();
+        ex.ExportNhanVien(danhSachNV);*/
     }//GEN-LAST:event_btnExportActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed
+
+        
         ImportExcel im = new ImportExcel();
         try {
-            im.ImportNhanVien();
-            JOptionPane.showMessageDialog(null, "Import thành công");
+        im.ImportNhanVien();
+        JOptionPane.showMessageDialog(null, "Import thành công");
         } catch (InvalidFormatException ex) {
-            JOptionPane.showMessageDialog(null, "Import thất bại");
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        JOptionPane.showMessageDialog(null, "Import thất bại");
+        Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
         try {
-            danhSachNV = con.layDL_NhanVien();
+        danhSachNV = con.layDL_NhanVien();
         } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
         }
         model = (DefaultTableModel) jTable1.getModel();
         for (NhanVien nv : danhSachNV) {
-            model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+        model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
         }
         
     }//GEN-LAST:event_btnImportActionPerformed

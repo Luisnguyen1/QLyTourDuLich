@@ -484,8 +484,7 @@ public class config {
                 stmt.setDate(2, ngayDV);
                 java.sql.Date ngaySD = new java.sql.Date(nhanvien.getHansudung().getTime());
                 stmt.setDate(3, ngaySD);
-                stmt.setString(4, nhanvien.getMatour());
-                
+                stmt.setString(4, nhanvien.getMatour());               
                 stmt.setLong(5, nhanvien.getTiengiam());
                 stmt.execute();
 
@@ -501,9 +500,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -511,7 +510,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM vetour WHERE mavetour = '" + nhanvien.getMavetour() + "'";
+                String delete = "DELETE FROM ve WHERE mave = '" + nhanvien.getMavetour() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -523,13 +522,13 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM vetour WHERE mavetour = '" + nhanvien.getMavetour() + "'";
+                String delete = "DELETE FROM ve WHERE mave = '" + nhanvien.getMavetour() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO vetour VALUES(?, ?, ?,?,?)";
-            String selectAll = "SELECT * FROM vetour";
+            String sqlInsert = "INSERT INTO ve VALUES(?, ?, ?,?,?)";
+            String selectAll = "SELECT * FROM ve";
             try {
                 // connect to database
                 Class.forName("com.mysql.jdbc.Driver");
@@ -559,9 +558,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
@@ -599,9 +598,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -1527,12 +1526,13 @@ public class config {
         
 
         while (rs.next()) {
-            VeTour vt = new VeTour();
-            vt.setMavetour(rs.getString("mave")); 
-            vt.setMatour(rs.getString("matour")); 
-            vt.setHansudung(rs.getDate("hansudung"));
-            vt.setNgaydatve(rs.getDate("ngaytaove"));
-            vt.setTiengiam((int) rs.getLong("tiengiam"));
+            
+            String mavt = rs.getString("MaVe"); 
+            String maTour = rs.getString("MaTour"); 
+            Date hansudung = rs.getDate("HanSuDung");
+            Date ngayTaove = rs.getDate("NgayTaoVe");
+            long tiengiam = rs.getLong("tiengiam");
+            VeTour vt = new VeTour(mavt, maTour, tiengiam, ngayTaove, hansudung);
             danhSachVeTour.add(vt);
         }
         } catch (SQLException ex) {
