@@ -4,6 +4,8 @@
  */
 package DTo;
 
+import KetnoiSQL_DAL.config;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -21,7 +23,6 @@ public class ChiTietTourDuLich {
     private long phidichvu;
     private int thutungay;
 
-    public ChiTietTourDuLich(){}
 
     public ChiTietTourDuLich(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu) {
         this.ddtour = ddtour;
@@ -107,9 +108,113 @@ public class ChiTietTourDuLich {
         this.thutungay = thutungay;
     }
     
+    private ArrayList<ChiTietTourDuLich> danhsach = new ArrayList<>();
+    config con = new config();
+    public ChiTietTourDuLich(){
+        this.danhsach = con.LayDL_CTTour();
+    }
     
+    public ChiTietTourDuLich traCTTour(int i){
+        return danhsach.get(i);
+    }
     
+    public ChiTietTourDuLich traCTTour(String ma1, String ma2){
+        for(ChiTietTourDuLich ctt : danhsach){
+            if(ma1.equalsIgnoreCase(ctt.getMatour()) && ma2.equalsIgnoreCase(ctt.getMaks())){
+                return ctt;
+            }
+        }
+        return null;
+    }
     
+    public void themCTTour(ChiTietTourDuLich ctt){
+        this.danhsach.add(ctt);
+    }
     
+    public void themCTTour(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu){
+        ChiTietTourDuLich ctt = new ChiTietTourDuLich( ddtour,  matour,  khoihanh,  noiden,  thutungay,  maks,  tienan,  tienphong,  phidichvu);
+        this.danhsach.add(ctt);
+        con.UpdateSQL_CTTour(ctt, 1, "null");
+    }
     
+    public int laySoLuongCTTour(){
+        return this.danhsach.size();
+    }
+    
+    public boolean xoaCTTour(ChiTietTourDuLich ctt){
+        return this.danhsach.remove(ctt);
+    }
+    
+    public boolean xoaCTTour(String ma){
+        int i = 0;
+        for(ChiTietTourDuLich ctt : danhsach){
+            if(ma.equalsIgnoreCase(ctt.getMatour())){
+                con.UpdateSQL_CTTour(ctt, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+    
+    public boolean suaCTTour(String maOld, String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu){
+        int i = 0;
+        for(ChiTietTourDuLich ctt : danhsach){
+            if(maOld.equalsIgnoreCase(ctt.getMatour())){
+                this.danhsach.get(i).setDdtour(ddtour);
+                this.danhsach.get(i).setMatour(matour);
+                this.danhsach.get(i).setKhoihanh(khoihanh);
+                this.danhsach.get(i).setNoiden(noiden);
+                this.danhsach.get(i).setThutungay(thutungay);
+                this.danhsach.get(i).setMaks(maks);
+                this.danhsach.get(i).setTienan(tienan);
+                this.danhsach.get(i).setTienphong(tienphong);
+                this.danhsach.get(i).setPhidichvu(phidichvu);
+                
+                con.UpdateSQL_CTTour(ctt, 3, maOld);
+                return true;
+            }
+            i++;
+        }
+        return false;
+    }
+    
+    public ArrayList<ChiTietTourDuLich> timCTTourUnlimit (String ma){
+        int i = 0;
+        ArrayList<ChiTietTourDuLich> dstour = new ArrayList<>();
+        for(ChiTietTourDuLich ctt : danhsach){
+            if(ctt.getDdtour().equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            if(ctt.getMatour().equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            if(ctt.getKhoihanh().equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            if(ctt.getNoiden().equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            if(ctt.getMaks().equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            String tienAn = Long.toString(ctt.getTienan());
+            if(tienAn.equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            String tienPhong = Long.toString(ctt.getTienphong());
+            if(tienPhong.equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            String phiDV = Long.toString(ctt.getPhidichvu());
+            if(phiDV.equalsIgnoreCase(ma)){
+                dstour.add(ctt);
+            }
+            i++;
+        }
+        if(dstour != null){
+            return dstour;
+        }
+        return dstour;
+    }
 }

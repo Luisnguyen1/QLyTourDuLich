@@ -265,6 +265,16 @@ public class PhuongTien implements Comparable<PhuongTien>{
             {   
                 dspt.add(phuongTien);
             }
+            
+            String tongCho = Long.toString(phuongTien.getTongsocho());
+            if(tongCho.equalsIgnoreCase(ma)){
+                dspt.add(phuongTien);
+            }
+            
+            String sochodu = Long.toString(phuongTien.getSochocondu());
+            if(sochodu.equalsIgnoreCase(ma)){
+                dspt.add(phuongTien);
+            }
             i++;
         }
         if (dspt != null) {

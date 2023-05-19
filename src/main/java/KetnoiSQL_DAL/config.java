@@ -1290,7 +1290,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO chitiettour (DiaDiemTour, MaTour, DiaDiemKhoiHanh, DiaDiemDen,ThuTuNgay, MaKS, TienAn, TienPhong, TienDichVu) VALUES(?, ?, ?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO chitiettour VALUES(?, ?, ?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
@@ -1317,8 +1317,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
                 }
                 stmt.close();
                 con.close();
@@ -1377,8 +1377,8 @@ public class config {
                 ResultSet rs = stmt.executeQuery();
                 // show data
                 while (rs.next()) {
-                    System.out.println(rs.getString(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getLong(6) + "  " + rs.getLong(7) + "  " + rs.getLong(8) + "  " );
+                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
                 }
                 stmt.close();
                 con.close();
@@ -1750,18 +1750,20 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM chitiettour");
             while (rs.next()) {
-                ChiTietTourDuLich fb = new ChiTietTourDuLich();
-                fb.setDdtour(rs.getString("DiaDiemTour"));
-                fb.setMatour(rs.getString("MaTour"));
-                fb.setKhoihanh(rs.getString("DiaDiemKhoiHanh"));
-                fb.setNoiden(rs.getString("DiaDiemDen"));
-                fb.setThutungay(rs.getInt("ThuTuNgay"));
-                fb.setMaks(rs.getString("MaKS"));
-                fb.setTienan(rs.getLong("TienAn"));
-                fb.setTienphong(rs.getLong("TienPhong"));
-                fb.setPhidichvu(rs.getLong("PhiDichVu"));
-                //
-                dsTour.add(fb);
+                
+                String ddTour = rs.getString("DiaDiemTour");
+                String MaTour = rs.getString("MaTour");
+                String khoiHanh = rs.getString("DiaDiemKhoiHanh");
+                String noiDen = rs.getString("DiaDiemDen");
+                int thuTuNgay = rs.getInt("ThuTuNgay");
+                String maKS = rs.getString("MaKS");
+                long tienAn = rs.getLong("TienAn");
+                long tienPhong = rs.getLong("TienPhong");
+                long phiDV = rs.getLong("PhiDichVu");
+                
+                ChiTietTourDuLich ctt = new ChiTietTourDuLich(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
+                
+                dsTour.add(ctt);
             }
         } catch (SQLException ex) {
 

@@ -23,20 +23,15 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class TourDuLich_Details extends javax.swing.JPanel {
-    ArrayList<ChiTietTourDuLich> dsTour = new ArrayList<>();;
+    ChiTietTourDuLich ctt = new ChiTietTourDuLich();
+    config con = new config();
     /**
      * Creates new form TourDuLich_Details
      */
-   
-             config con = new config();
     public TourDuLich_Details() {
         initComponents();
-        dsTour = con.LayDL_CTTour();
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (ChiTietTourDuLich nv : dsTour) {            
-            model.addRow(new Object[]{nv.getDdtour(),nv.getMatour(),nv.getKhoihanh(),nv.getNoiden(),nv.getThutungay(),nv.getMaks(),nv.getTienan(),nv.getTienphong(),nv.getPhidichvu()});
-    }
-    }
+        loadCTTour();
+}
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -52,23 +47,17 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jSeparator1 = new javax.swing.JSeparator();
         jPanel1 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel5 = new javax.swing.JLabel();
         txtDiadiem = new javax.swing.JTextField();
-        txtMaks = new javax.swing.JTextField();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
-        txtMatour = new javax.swing.JTextField();
         txtKhoihanh = new javax.swing.JTextField();
         txtNoiden = new javax.swing.JTextField();
         txtTienan = new javax.swing.JTextField();
@@ -100,30 +89,11 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel3.setText("      Mã Tour");
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -135,12 +105,12 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addComponent(jLabel4)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
 
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -151,7 +121,9 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -164,27 +136,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
             }
         });
 
-        txtMaks.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMaksActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel6.setText("  Mã Khách Sạn");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 111, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-        );
-
         jLabel7.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(169, 0, 6));
         jLabel7.setText("       Tiền Ăn");
@@ -193,7 +144,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -210,7 +161,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 106, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -219,25 +170,19 @@ public class TourDuLich_Details extends javax.swing.JPanel {
 
         jLabel9.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel9.setText("     Phí Dịch Vụ");
+        jLabel9.setText("    Phí Dịch Vụ");
         jLabel9.setToolTipText("");
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
         );
-
-        txtMatour.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtMatourActionPerformed(evt);
-            }
-        });
 
         txtTienphong.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -335,28 +280,23 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(18, 18, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(txtMatour, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                                .addComponent(txtKhoihanh, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtNoiden, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtThuTuNgay, javax.swing.GroupLayout.Alignment.LEADING))
-                            .addComponent(txtDiadiem, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel5, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(txtNoiden)
+                            .addComponent(txtKhoihanh)
+                            .addComponent(txtThuTuNgay)
+                            .addComponent(txtDiadiem))
+                        .addGap(77, 77, 77)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(txtTienan, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(txtTienphong)
-                            .addComponent(txtPhidichvu)
-                            .addComponent(txtMaks))))
+                            .addComponent(txtPhidichvu))))
                 .addGap(106, 106, 106))
             .addComponent(jScrollPane1)
             .addGroup(layout.createSequentialGroup()
@@ -380,31 +320,27 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(22, 22, 22)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(txtMaks, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(txtDiadiem))
-                    .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(txtDiadiem, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtMatour, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtKhoihanh, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtNoiden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtThuTuNgay, javax.swing.GroupLayout.DEFAULT_SIZE, 30, Short.MAX_VALUE)
-                            .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(28, 28, 28)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(txtKhoihanh, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(txtNoiden, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(txtThuTuNgay, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(42, 42, 42)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(btnThem)
                             .addComponent(btnXoa)
@@ -412,13 +348,13 @@ public class TourDuLich_Details extends javax.swing.JPanel {
                             .addComponent(btnTimkiem)))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTienan, javax.swing.GroupLayout.PREFERRED_SIZE, 32, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienan, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(txtTienphong, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel7, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtTienphong, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(txtPhidichvu, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
@@ -430,14 +366,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     private void txtDiadiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiadiemActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtDiadiemActionPerformed
-
-    private void txtMaksActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMaksActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMaksActionPerformed
-
-    private void txtMatourActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMatourActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtMatourActionPerformed
     
     
     private void txtTienphongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTienphongActionPerformed
@@ -445,12 +373,9 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_txtTienphongActionPerformed
     
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        dsTour=con.LayDL_CTTour();
         String diaDiem = txtDiadiem.getText();
-        String maTour = txtMatour.getText();
         String khoiHanh = txtKhoihanh.getText();
         String noiDen = txtNoiden.getText();
-        String maKS = txtMaks.getText();
         long tienAn = Long.parseLong(txtTienan.getText());
         long tienPhong = Long.parseLong(txtTienphong.getText());
         long phiDV = Long.parseLong(txtPhidichvu.getText());
@@ -459,16 +384,10 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         if(diaDiem.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
         }
-        else if(maTour.equals("")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
         else if(khoiHanh.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
         }
         else if(noiDen.equals("")){
-            JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(maKS.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
         }
         else if(txtTienan.getText().equals("")){
@@ -479,31 +398,28 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         }
         else if(txtPhidichvu.getText().equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Nhập Đầy Đủ Thông Tin");
-   
-    
         }
         else{
+            int maxMaTour = ctt.laySoLuongCTTour();
+            String maTour = "CTT" + String.format("%04d", maxMaTour + 1);
             
-        
-            ChiTietTourDuLich ctt = new ChiTietTourDuLich(diaDiem,maTour,khoiHanh,noiDen,thutungay,maKS,tienAn,tienPhong,phiDV);
-            dsTour.add(ctt);
+            int maxMaKS = ctt.laySoLuongCTTour();
+            String maKS = "KS" + String.format("%04d", maxMaKS + 1);
             
-            con.UpdateSQL_CTTour(ctt, 1, null);
+            ctt.themCTTour(diaDiem, maTour, khoiHanh, noiDen, thutungay, maKS, tienAn, tienPhong, phiDV);
             
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             
-            model.addRow(new Object[]{ctt.getDdtour(),ctt.getMatour(),ctt.getKhoihanh(),ctt.getNoiden(),ctt.getThutungay(),ctt.getMaks(),ctt.getTienan(),ctt.getTienphong(),ctt.getPhidichvu()});
+            model.addRow(new Object[]{ctt.traCTTour(maTour,maKS).getDdtour(),ctt.traCTTour(maTour,maKS).getMatour(),ctt.traCTTour(maTour,maKS).getKhoihanh(),ctt.traCTTour(maTour,maKS).getNoiden(),ctt.traCTTour(maTour,maKS).getThutungay(),ctt.traCTTour(maTour,maKS).getMaks(),ctt.traCTTour(maTour,maKS).getTienan(),ctt.traCTTour(maTour,maKS).getTienphong(),ctt.traCTTour(maTour,maKS).getPhidichvu()});
             
             jTable1.setModel(model);
             
             JOptionPane.showMessageDialog(null, "Thêm Thông Tin Thành Công");
             
             txtDiadiem.setText("");
-            txtMatour.setText("");
             txtKhoihanh.setText("");
             txtThuTuNgay.setText("");
             txtNoiden.setText("");
-            txtMaks.setText("");
             txtTienan.setText("");
             txtTienphong.setText("");
             txtPhidichvu.setText("");
@@ -511,7 +427,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-         dsTour = con.LayDL_CTTour();
         int selectedRow = jTable1.getSelectedRow();     
    
         if(selectedRow == -1){
@@ -523,24 +438,15 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         String MaTour = (String) model.getValueAt(selectedRow, 1);
         
-        ChiTietTourDuLich cttourCanXoa = null;
-        for(ChiTietTourDuLich km : dsTour){
-            if(km.getMatour().equals(MaTour)){
-                cttourCanXoa = km;
-                break;
-            }
-        }
+        boolean a = ctt.xoaCTTour(MaTour);
         
-        dsTour.remove(cttourCanXoa);
         model.removeRow(selectedRow);
-        con.UpdateSQL_CTTour(cttourCanXoa, 2, MaTour);
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Thành Công");
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-         dsTour = con.LayDL_CTTour();
         int selectedRow = jTable1.getSelectedRow();
     
         if(selectedRow == -1){
@@ -549,87 +455,71 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String diadiemTour = (String) model.getValueAt(selectedRow, 0);
+        String MaTour = (String) model.getValueAt(selectedRow, 1);
+        String MaKS = (String) model.getValueAt(selectedRow,5);
         
-        ChiTietTourDuLich cttourCanSua = null;
-        for(ChiTietTourDuLich tk : dsTour){
-            if(tk.getDdtour().equals(diadiemTour)){
-                cttourCanSua = tk;
-                break;
-            }
-        }
-
-        String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", diadiemTour);
-        String maTour = JOptionPane.showInputDialog(null, "Nhập mã tour", cttourCanSua.getMatour());
-        String khoiHanh = JOptionPane.showInputDialog(null, "Nhập địa điểm khởi hành", cttourCanSua.getKhoihanh());
-        String noiDen = JOptionPane.showInputDialog(null, "Nhập nơi đến", cttourCanSua.getNoiden());
-        String maKS = JOptionPane.showInputDialog(null, "Nhập mã khách sạn", cttourCanSua.getMaks());
-        long tienAn = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền ăn", cttourCanSua.getTienan()));
-        long tienPhong = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền phòng", cttourCanSua.getTienphong()));
-        long phiDV = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập phí dịch vụ", cttourCanSua.getPhidichvu()));
-        int thutungay = Integer.parseInt(JOptionPane.showInputDialog(null, "Nhập thứ tự ngày", cttourCanSua.getThutungay()));
-// thêm ComboBox để chọn loại nhân viên
-       
+        ctt.traCTTour(MaTour,MaKS);
+        String ddTour = JOptionPane.showInputDialog(null, "Nhập tên địa điểm", ctt.traCTTour(MaTour,MaKS).getDdtour());
+        String maTourNew = JOptionPane.showInputDialog(null, "Nhập mã tour", ctt.traCTTour(MaTour,MaKS).getMatour());
+        String khoiHanh = JOptionPane.showInputDialog(null, "Nhập địa điểm khởi hành", ctt.traCTTour(MaTour,MaKS).getKhoihanh());
+        String noiDen = JOptionPane.showInputDialog(null, "Nhập nơi đến", ctt.traCTTour(MaTour,MaKS).getNoiden());
+        String maKS = JOptionPane.showInputDialog(null, "Nhập mã khách sạn", ctt.traCTTour(MaTour,MaKS).getMaks());
+        long tienAn = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền ăn", ctt.traCTTour(MaTour,MaKS).getTienan()));
+        long tienPhong = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tiền phòng", ctt.traCTTour(MaTour,MaKS).getTienphong()));
+        long phiDV = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập phí dịch vụ", ctt.traCTTour(MaTour,MaKS).getPhidichvu()));
+        int thutungay = Integer.parseInt(JOptionPane.showInputDialog(null, "Nhập thứ tự ngày", ctt.traCTTour(MaTour,MaKS).getThutungay()));       
 
 // cập nhật thông tin khách hàng
-        cttourCanSua.setDdtour(ddTour);
-        cttourCanSua.setMatour(maTour);
-        cttourCanSua.setKhoihanh(khoiHanh);
-        cttourCanSua.setNoiden(noiDen);
-        cttourCanSua.setThutungay(thutungay);
-        cttourCanSua.setMaks(maKS);
-        cttourCanSua.setTienan(tienAn);
-        cttourCanSua.setTienphong(tienPhong);
-        cttourCanSua.setPhidichvu(phiDV);
-
+       ctt.suaCTTour(MaTour, ddTour, maTourNew, khoiHanh, noiDen, thutungay, maKS, tienAn, tienPhong, phiDV);
 // cập nhật lại model cho JTable
         model.setValueAt(ddTour, selectedRow, 0);
-        model.setValueAt(maTour, selectedRow, 1);
+        model.setValueAt(maTourNew, selectedRow, 1);
         model.setValueAt(khoiHanh, selectedRow, 2);
         model.setValueAt(noiDen, selectedRow, 3);
-            model.setValueAt(thutungay, selectedRow, 4);
+        model.setValueAt(thutungay, selectedRow, 4);
         model.setValueAt(maKS, selectedRow, 5);
         model.setValueAt(tienAn, selectedRow, 6);
         model.setValueAt(tienPhong, selectedRow, 7);
         model.setValueAt(phiDV, selectedRow,8);
        
-
-        con.UpdateSQL_CTTour(cttourCanSua,3,diadiemTour);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Thành Công");
                                
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        con.LayDL_CTHD();
-        String tuKhoa = txtMatour.getText().toLowerCase().trim();
-        config con = new config();
-            dsTour = con.LayDL_CTTour();
-       
-        if (tuKhoa.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
-            return;
-        }
-
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        /*for (int i = 0; i < danhSachTour.size(); i++) {
-        model.removeRow(i);
-        }*/
-        for (int i = 0; i < dsTour.size(); i++) {
-            ChiTietTourDuLich tour = dsTour.get(i);
-            if (tour.getDdtour().toLowerCase().contains(tuKhoa)
-                    || tour.getMatour().toLowerCase().contains(tuKhoa)) {
-                
-               
-                    if (tuKhoa.equals(dsTour.get(i).getMatour())) {
-                        model.addRow(new Object[]{dsTour.get(i).getDdtour(), dsTour.get(i).getMatour(), dsTour.get(i).getKhoihanh(), dsTour.get(i).getNoiden(),dsTour.get(i).getThutungay(), dsTour.get(i).getMaks(),dsTour.get(i).getTienan(),dsTour.get(i).getTienphong(),dsTour.get(i).getPhidichvu()});
-                    }
+        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm", " ");
+        
+        ctt.timCTTourUnlimit(dkTim);
+        
+        if(ctt.timCTTourUnlimit(dkTim) == null){
+            JOptionPane.showMessageDialog(null, "Kết quả không tìm thấy");
+        }else{
+            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+            model.addColumn("Địa Điểm");
+            model.addColumn("Mã Tour");
+            model.addColumn("Khởi Hành");
+            model.addColumn("Nơi Đến");
+            model.addColumn("Thứ Tự Ngày");
+            model.addColumn("Mã Khách Sạn");
+            model.addColumn("Tiền Ăn");
+            model.addColumn("Tiền Phòng");
+            model.addColumn("Phí Dịch Vụ");
+            
+            for(ChiTietTourDuLich a : ctt.timCTTourUnlimit(dkTim)){
+                model.addRow(new Object[]{a.getDdtour(),a.getMatour(),a.getKhoihanh(),a.getNoiden(),a.getThutungay(),a.getMaks(),a.getTienan(),a.getTienphong(),a.getPhidichvu()});
             }
+            jTable1.setModel(model);
         }
+               
     }//GEN-LAST:event_btnTimkiemActionPerformed
 
-
+    private void loadCTTour(){
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0 ; i < ctt.laySoLuongCTTour(); i++) {            
+            model.addRow(new Object[]{ctt.traCTTour(i).getDdtour(),ctt.traCTTour(i).getMatour(),ctt.traCTTour(i).getKhoihanh(),ctt.traCTTour(i).getNoiden(),ctt.traCTTour(i).getThutungay(),ctt.traCTTour(i).getMaks(),ctt.traCTTour(i).getTienan(),ctt.traCTTour(i).getTienphong(),ctt.traCTTour(i).getPhidichvu()});
+    }
+    }
     
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -640,19 +530,15 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -662,8 +548,6 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField txtDiadiem;
     private javax.swing.JTextField txtKhoihanh;
-    private javax.swing.JTextField txtMaks;
-    private javax.swing.JTextField txtMatour;
     private javax.swing.JTextField txtNoiden;
     private javax.swing.JTextField txtPhidichvu;
     private javax.swing.JTextField txtThuTuNgay;
