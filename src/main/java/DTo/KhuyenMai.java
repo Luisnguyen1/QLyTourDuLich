@@ -188,38 +188,35 @@ public class KhuyenMai {
         return false;
         
     }
-    //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
-    public void timKhachHang(String ma)
-    {
-        for (KhachHang khachHang : danhSach) 
-        {
-            if(khachHang.getMakh().contains(ma));
-            System.out.println(khachHang);
-        }
-    }
-    public ArrayList<KhachHang> timKhachHangUnlimit(String ma)
+    
+    
+    public ArrayList<KhuyenMai> timKhuyenMaiUnlimit(String ma)
     {   
         int i =0;
-        ArrayList<KhachHang> dskh = new ArrayList<>();
-        for (KhachHang khachHang : danhSach) 
+        ArrayList<KhuyenMai> dskh = new ArrayList<>();
+        for (KhuyenMai khachHang : danhSach) 
         {
-            if(khachHang.getMakh().equalsIgnoreCase(ma))
+            if(khachHang.getTenkm().equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);
             }
-            if(khachHang.getTenkh().equalsIgnoreCase(ma))
+            if(khachHang.getMakm().equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);
             }
-            if(khachHang.getSdt().equalsIgnoreCase(ma))
+            SimpleDateFormat dateFormat = new SimpleDateFormat();
+            String ngayKMString = dateFormat.format(ngaykm);
+            String hanSDString = dateFormat.format(hansudung);
+            String tienGiam = Long.toString(khachHang.getTiengiam());
+            if(ngayKMString.equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);
             }
-            if(khachHang.getDiachi().equalsIgnoreCase(ma))
+            if(hanSDString.equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);
             }
-            if(khachHang.getEmail().equalsIgnoreCase(ma))
+            if(tienGiam.equalsIgnoreCase(ma))
             {   
                 dskh.add(khachHang);
             }
