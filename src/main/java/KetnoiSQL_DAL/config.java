@@ -217,7 +217,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = '" + nhanvien.getManv() + "'";
+                String delete = "DELETE FROM nhanvien WHERE MaNV = '" + nhanvien.getManv() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,7 +230,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = '" + MaNV_OLD + "'";
+                String delete = "DELETE FROM nhanvien WHERE MaNV = '" + MaNV_OLD + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1547,11 +1547,11 @@ public class config {
             
             while (rs.next()) {
                 
-                String manv = rs.getString("Manv");
-                String tennv = rs.getString("Tennv");
-                String loainv = rs.getString("Loai nv");
+                String manv = rs.getString("MaNV");
+                String tennv = rs.getString("TenNV");
+                String loainv = rs.getString("LoaiNV");
                 String diachi = Integer.toString(rs.getInt("DiaChi"));
-                String chucvu = rs.getString("chucvu");
+                String chucvu = rs.getString("ChucVu");
                 
                 NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
                 danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
@@ -1722,11 +1722,12 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
             while (rs.next()) {
-                DiaDiem fb = new DiaDiem();
-                fb.setMadd(rs.getString("MaDD"));
-                fb.setTendd(rs.getString("TenDD"));
-                fb.setThuoctinh(rs.getString("ThuocTinh"));
-                fb.setKhuvuc(rs.getString("KhuVuc"));
+                String maDD = rs.getString("MaDD");
+                String tenDD = rs.getString("TenDD");
+                String thuocTinh = rs.getString("ThuocTinh");
+                String khuVuc = rs.getString("KhuVuc");
+                
+                DiaDiem fb = new DiaDiem(maDD,tenDD,thuocTinh,khuVuc);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
