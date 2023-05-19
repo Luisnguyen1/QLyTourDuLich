@@ -19,6 +19,8 @@ public class ChiTietHoaDonVe {
         this.tienve = tienve;
     }
 
+   
+
     public String getMave() {
         return mave;
     }
@@ -193,7 +195,7 @@ public class ChiTietHoaDonVe {
             System.out.println(khachHang);
         }
     }
-    public ArrayList<ChiTietHoaDonVe> timKhachHangUnlimit(String ma)
+    public ArrayList<ChiTietHoaDonVe> timCTHDVeUnlimit(String ma)
     {   
         int i =0;
         ArrayList<ChiTietHoaDonVe> dskh = new ArrayList<>();

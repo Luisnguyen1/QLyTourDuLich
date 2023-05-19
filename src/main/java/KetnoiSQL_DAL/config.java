@@ -1033,7 +1033,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4)+ "  " + rs.getString(5));
                 }
                 stmt.close();
                 con.close();
@@ -1756,12 +1756,13 @@ public class config {
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
             while (rs.next()) {
                 
-                String mahd = rs.getString("MaHD");
-                String mave = rs.getString("MaVe");
-                int sl = rs.getInt("SoLuongVe");
-                long tienve = rs.getInt("TienVe");
-                String macthd = rs.getString("maCTHD");
-                ChiTietHoaDonVe fb = new ChiTietHoaDonVe();
+                String Mahoadon = rs.getString("MaHD");
+                String maVe = rs.getString("MaVe");
+                int sluong = rs.getInt("SoLuongVe");
+                long tVe = rs.getLong("TienVe");
+                String Machitiethoadon = rs.getString("maCTHD");
+                
+                ChiTietHoaDonVe fb = new ChiTietHoaDonVe(maVe,Mahoadon,Machitiethoadon,sluong,tVe);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
