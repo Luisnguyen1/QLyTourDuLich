@@ -1700,10 +1700,11 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiemvuichoi");
             while (rs.next()) {
-                DiaDiemVuiChoi fb = new DiaDiemVuiChoi();
-                fb.setDiaDiemTour(rs.getString("MaDDVC"));
-                fb.setTenDiaDiem(rs.getString("TenDDVC"));
-                fb.setMaDiaDiem(rs.getString("ThuocDiaDiemTour"));
+                
+                String maddvc = rs.getString("MaDDVC");
+                String tenddvc = rs.getString("TenDDVC");
+                String diadiemTour = rs.getString("ThuocDiaDiemTour");
+                DiaDiemVuiChoi fb = new DiaDiemVuiChoi(diadiemTour,tenddvc,maddvc);
                 DiaDiemVuiChoi.add(fb);
             }
         } catch (SQLException ex) {

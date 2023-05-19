@@ -21,7 +21,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
     PhuongTien danhSachPT = new PhuongTien();
     DefaultTableModel model = new DefaultTableModel();
-    config con = new config();
+
     
     public QlyPhuongTien() {
         initComponents();
