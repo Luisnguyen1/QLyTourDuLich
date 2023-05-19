@@ -214,7 +214,7 @@ public class Tour implements Comparable<Tour>{
                this.ds.get(i).setNgayve(ngayve);
                this.ds.get(i).setGiaTour(giaTour);
                
-               con.UpdateSQL_Tour(t, 3, maOld);
+               con.UpdateSQL_Tour(this.ds.get(i), 3, maOld);
                return true;
            }
            i++;

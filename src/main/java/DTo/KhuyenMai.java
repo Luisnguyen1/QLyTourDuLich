@@ -1,6 +1,8 @@
 package DTo;
+import KetnoiSQL_DAL.config;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Scanner;
@@ -18,9 +20,6 @@ public class KhuyenMai {
         this.ngaykm = ngaykm;
         this.hansudung = hansudung;
         this.tiengiam = tiengiam;
-    }
-
-    public KhuyenMai() {
     }
     
     public KhuyenMai(KhuyenMai x)
@@ -115,10 +114,124 @@ public class KhuyenMai {
         }
         return Objects.equals(this.hansudung, other.hansudung);
     }
+    
+    private ArrayList<KhuyenMai>danhSach = new ArrayList<KhuyenMai>();
+    config con = new config();
+    public KhuyenMai() 
+    {
+        this.danhSach = con.layDL_KhuyenMai(); //cach khai bao 1 arrayList
+    }
+    public KhuyenMai traKH(int i){
+        return danhSach.get(i);
+    }
+    public KhuyenMai traKH(String maKH){
+        for (KhuyenMai khachHang : danhSach) {
+            if (maKH.equalsIgnoreCase(khachHang.getMakm())) {
+                return khachHang;
+            }
+        }
+        return null;
+    }
+    
+  
+    
+    public void themKhuyenMai(String tenkm,String makm, Date ngaykm, Date hansudung, long tiengiam)
+    {
+        KhuyenMai kh = new KhuyenMai( tenkm, makm,  ngaykm,  hansudung,  tiengiam);
+        this.danhSach.add(kh);    
+        con.UpdateSQL_KhuyenMai(kh, 1, "null");
+    }
+    
+    
+    
+    
+    //4. Lay ra so luong khach hang trong danh sach
+    public int laySoLuongKhuyenMai()
+    {
+        return this.danhSach.size();
+    }
+
+    public boolean xoaKhuyenMai(String ma)
+    {        
+        int i = 0;
+        for (KhuyenMai khachHang : danhSach) {
+            if (ma.equalsIgnoreCase(khachHang.getMakm())) {
+                this.danhSach.remove(i); 
+                con.UpdateSQL_KhuyenMai(khachHang, 2, "null");
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
+    
+    public boolean suaKhuyenMai(String maOld, String tenkm,String makm, Date ngaykm, Date hansudung, long tiengiam)
+    {        
+        int i = 0;
+        for (KhuyenMai khachHang : danhSach) {
+            if (maOld.equalsIgnoreCase(khachHang.getMakm())) {
+                this.danhSach.get(i).setTenkm(tenkm); 
+                this.danhSach.get(i).setMakm(makm);
+                this.danhSach.get(i).setNgaykm(ngaykm); 
+                this.danhSach.get(i).setHansudung(hansudung);
+                this.danhSach.get(i).setTiengiam(tiengiam);
+                
+                con.UpdateSQL_KhuyenMai(this.danhSach.get(i), 3, maOld);
+                
+                return true;
+            }
+            i++;
+        }
+        
+        return false;
+        
+    }
+    //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
+    public void timKhachHang(String ma)
+    {
+        for (KhachHang khachHang : danhSach) 
+        {
+            if(khachHang.getMakh().contains(ma));
+            System.out.println(khachHang);
+        }
+    }
+    public ArrayList<KhachHang> timKhachHangUnlimit(String ma)
+    {   
+        int i =0;
+        ArrayList<KhachHang> dskh = new ArrayList<>();
+        for (KhachHang khachHang : danhSach) 
+        {
+            if(khachHang.getMakh().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getTenkh().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getSdt().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getDiachi().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            if(khachHang.getEmail().equalsIgnoreCase(ma))
+            {   
+                dskh.add(khachHang);
+            }
+            i++;
+        }
+        if (dskh != null) {
+            return dskh;
+        }
+        return null;
+    }
 }
     
     
    
-    
-    
-    
+

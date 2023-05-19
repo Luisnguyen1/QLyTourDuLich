@@ -171,7 +171,7 @@ public class ChiTietTourDuLich {
                 this.danhsach.get(i).setTienphong(tienphong);
                 this.danhsach.get(i).setPhidichvu(phidichvu);
                 
-                con.UpdateSQL_CTTour(ctt, 3, maOld);
+                con.UpdateSQL_CTTour(this.danhsach.get(i), 3, maOld);
                 return true;
             }
             i++;
