@@ -18,8 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class HDVeTour_Details extends javax.swing.JPanel {
-
-    ArrayList<ChiTietHoaDonVe> dsHDVe = new ArrayList<>();
+    ChiTietHoaDonVe cthdv = new ChiTietHoaDonVe();
     /**
      * Creates new form VeTour_Details
      */
@@ -74,7 +73,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+            .addComponent(jLabel4, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -163,11 +162,11 @@ public class HDVeTour_Details extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Hóa Đơn", "Mã Vé ", "Số Lượng Vé", "Tiền Vé"
+                "Mã Hóa Đơn", "Mã Vé ", "Mã Chi Tiết Hóa Đơn", "Số Lượng Vé", "Tiền Vé"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Long.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Integer.class, java.lang.Long.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -294,30 +293,31 @@ public class HDVeTour_Details extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String tuKhoa = txtSoluongve.getText().toLowerCase().trim();
-        config con = new config();
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        dsHDVe = con.LayDL_CTHD();
-        if (tuKhoa.length() == 0) {
-            JOptionPane.showMessageDialog(null, "Vui lòng nhập từ khóa tìm kiếm");
-            return;
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       cthdv.timCTHDVeUnlimit(dkTim);
 
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        model.setRowCount(0);
-        /*for (int i = 0; i < danhSachTour.size(); i++) {
-            model.removeRow(i);
-        }*/
-        for (int i = 0; i < dsHDVe.size(); i++) {
-            ChiTietHoaDonVe tour = dsHDVe.get(i);
-            if (tour.getMaHD().toLowerCase().contains(tuKhoa)
-                || tour.getMave().toLowerCase().contains(tuKhoa)) {
+// Kiểm tra kết quả tìm kiếm
+        if (cthdv.timCTHDVeUnlimit(dkTim) == null) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Mã Hóa Đơn");
+            model.addColumn("Mã Vé");
+            model.addColumn("Mã Chi Tiết Hóa Đơn");
+            model.addColumn("Số Lượng Vé");
+            model.addColumn("Tiền Vé");
 
-                if (tuKhoa.equals(dsHDVe.get(i).getMaHD())) {
-                    model.addRow(new Object[]{dsHDVe.get(i).getMaHD(), dsHDVe.get(i).getMave(), dsHDVe.get(i).getSoluongve(), dsHDVe.get(i).getTienve()});
-                }
-
+            // Thêm các khách hàng tìm được vào model
+            for (ChiTietHoaDonVe kh : cthdv.timCTHDVeUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getMaHD(), kh.getMave(), kh.getMaCTHD(), kh.getSoluongve(),kh.getTienve()});
             }
+
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
@@ -329,37 +329,25 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             return;
         }
 
-        config con = new config();
-        dsHDVe = con.LayDL_CTHD();
-
+        
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         String mahoadon = (String) model.getValueAt(selectedRow,0);
 
-        ChiTietHoaDonVe cthdCanSua = null;
-        for(ChiTietHoaDonVe ct : dsHDVe){
-            if(ct.getMaHD().equals(mahoadon)){
-                cthdCanSua = ct;
-                break;
-            }
-        }
+        cthdv.traKH(mahoadon);
+        String mahdNew = JOptionPane.showInputDialog(null,"Nhập mã hóa đơn",cthdv.traKH(mahoadon).getMaHD());
+        String maVe = JOptionPane.showInputDialog(null,"Nhập mã vé",cthdv.traKH(mahoadon).getMave());
+        String maCTHD = JOptionPane.showInputDialog(null,"Nhập mã chi tiết hóa đơn",cthdv.traKH(mahoadon).getMaCTHD());
+        int veCount = Integer.parseInt(JOptionPane.showInputDialog(null,"Nhập số lượng vé",cthdv.traKH(mahoadon).getSoluongve()));
+        long tienVe = Long.parseLong(JOptionPane.showInputDialog(null,"Nhập tiền vé",cthdv.traKH(mahoadon).getTienve()));
 
-        String mahd = JOptionPane.showInputDialog(null,"Nhập mã hóa đơn",mahoadon);
-        String maVe = JOptionPane.showInputDialog(null,"Nhập mã vé",cthdCanSua.getMave());
-        int veCount = Integer.parseInt(JOptionPane.showInputDialog(null,"Nhập số lượng vé",cthdCanSua.getSoluongve()));
-        long tienVe = Long.parseLong(JOptionPane.showInputDialog(null,"Nhập tiền vé",cthdCanSua.getTienve()));
+        cthdv.suaKhachHang(mahoadon, maVe, mahdNew, maCTHD, veCount, tienVe);
 
-        cthdCanSua.setMaHD(mahd);
-        cthdCanSua.setMave(maVe);
-        cthdCanSua.setSoluongve(veCount);
-        cthdCanSua.setTienve(tienVe);
-
-        model.setValueAt(mahd,selectedRow,0);
+        model.setValueAt(mahdNew,selectedRow,0);
         model.setValueAt(maVe,selectedRow,1);
-        model.setValueAt(veCount,selectedRow,2);
-        model.setValueAt(tienVe,selectedRow,3);
-
-        con.UpdateSQL_CTHD(cthdCanSua, 3, mahoadon);
+        model.setValueAt(maCTHD,selectedRow,2);
+        model.setValueAt(veCount,selectedRow,3);
+        model.setValueAt(tienVe,selectedRow,4);
 
         JOptionPane.showMessageDialog(null,"Sửa Thông Tin Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -371,70 +359,49 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
         }
 
-        config con = new config();
-        dsHDVe = con.LayDL_CTHD();
-
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
         String mahoadon = (String) model.getValueAt(selectedRow,0);
 
-        ChiTietHoaDonVe cthdCanXoa = null;
-        for(ChiTietHoaDonVe ct : dsHDVe){
-            if(ct.getMaHD().equals(mahoadon)){
-                cthdCanXoa = ct;
-                break;
-            }
-        }
-
-        dsHDVe.remove(cthdCanXoa);
+        boolean a = cthdv.xoaKhachHang(mahoadon);
+       
         model.removeRow(selectedRow);
 
         jTable1.setModel(model);
 
         JOptionPane.showMessageDialog(null,"Xóa Thông Tin Thành Công");
-        con.UpdateSQL_CTHD(cthdCanXoa, 2, mahoadon);
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        String maHoaDon = txtMahoadon.getText();
-        String maVe = txtMave.getText();
+
         int veCount = Integer.parseInt(txtSoluongve.getText());
         long tienVe = Long.parseLong(txtTienve.getText());
 
-        if(maHoaDon.equals("")){
-            JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(maVe.equals("")){
-            JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Đầy Đủ Thông Tin");
-        }
-        else if(txtSoluongve.getText().equals("")){
+       
+         if(txtSoluongve.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Đầy Đủ Thông Tin");
         }else if(txtTienve.getText().equals("")){
             JOptionPane.showMessageDialog(null, "Vui Lòng Nhập Đầy Đủ Thông Tin");
         }
         else {
-
-            config con = new config();
-            dsHDVe = con.LayDL_CTHD();
-
-            ChiTietHoaDonVe cthd = new ChiTietHoaDonVe(maVe,maHoaDon,veCount,tienVe);
-            dsHDVe.add(cthd);
-
+            int maxMaHD = cthdv.laySoLuong();
+            String maHD = "HD" + String.format("%04d", maxMaHD + 1);
+            int maxMaVe = cthdv.laySoLuong();
+            String maVe = "VE" + String.format("%04d", maxMaVe + 1);
+            int maxMaCTHD = cthdv.laySoLuong();
+            String maCTHD = "CTHD" + String.format("%04d", maxMaCTHD + 1);
+            
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
-            model.addRow(new Object[]{cthd.getMaHD(),cthd.getMave(),cthd.getSoluongve(),cthd.getTienve()});
+            model.addRow(new Object[]{cthdv.traKH(maHD).getMaHD(),cthdv.traKH(maHD).getMave(),cthdv.traKH(maHD).getMaCTHD(),cthdv.traKH(maHD).getSoluongve(),cthdv.traKH(maHD).getTienve()});
 
             jTable1.setModel(model);
 
             JOptionPane.showMessageDialog(null, "Thêm Thông Tin Thành Công");
 
             txtSoluongve.setText("");
-            txtMave.setText("");
-            txtMahoadon.setText("");
+            
             txtTienve.setText("");
-
-            con.UpdateSQL_CTHD(cthd, 1, null);
-
         }
     }//GEN-LAST:event_btnThemActionPerformed
 
@@ -447,17 +414,19 @@ public class HDVeTour_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_txtSoluongveActionPerformed
 
     private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < cthdv.laySoLuong(); i++) {
+            model.addRow(new Object[]{cthdv.traKH(i).getMaHD(), cthdv.traKH(i).getMave(), cthdv.traKH(i).getMaCTHD(), cthdv.traKH(i).getSoluongve(), cthdv.traKH(i).getTienve()});
+        }
+        jTable1.setModel(model);
     }//GEN-LAST:event_btnResetActionPerformed
 
     private void loadChiTietHD(){
-         config con = new config();
-        dsHDVe.clear();
-        dsHDVe.addAll(con.LayDL_CTHD());
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (ChiTietHoaDonVe cthd : dsHDVe) {
-            model.addRow(new Object[]{cthd.getMaHD(),cthd.getMave(),cthd.getSoluongve(),cthd.getTienve()});
+         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < cthdv.laySoLuong(); i++) {
+            model.addRow(new Object[]{cthdv.traKH(i).getMaHD(), cthdv.traKH(i).getMave(), cthdv.traKH(i).getMaCTHD(), cthdv.traKH(i).getSoluongve(), cthdv.traKH(i).getTienve()});
         }
+        jTable1.setModel(model);
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
