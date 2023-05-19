@@ -43,7 +43,6 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnXoa = new javax.swing.JButton();
-        btnSua = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
         txtMaVeTour = new javax.swing.JTextField();
         btnTimKiem = new javax.swing.JButton();
@@ -100,16 +99,6 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
             }
         });
 
-        btnSua.setBackground(new java.awt.Color(21, 110, 71));
-        btnSua.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnSua.setForeground(new java.awt.Color(255, 255, 255));
-        btnSua.setText("Sửa");
-        btnSua.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnSuaActionPerformed(evt);
-            }
-        });
-
         btnExport.setBackground(new java.awt.Color(21, 110, 71));
         btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         btnExport.setForeground(new java.awt.Color(255, 255, 255));
@@ -144,9 +133,7 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
                                 .addComponent(btnTimKiem)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 701, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(0, 217, Short.MAX_VALUE)))
@@ -164,7 +151,6 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(btnTimKiem)
                         .addComponent(btnXoa)
-                        .addComponent(btnSua)
                         .addComponent(btnExport)))
                 .addGap(10, 10, 10)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -204,110 +190,6 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
         
         JOptionPane.showMessageDialog(null,"Xóa Vé Tour Thành Công");
     }//GEN-LAST:event_btnXoaActionPerformed
-
-    private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-       int selectedRow = jTable1.getSelectedRow();
-        
-       
-        if(selectedRow == -1){
-            JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Sửa");
-        }
-        
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        
-        String maVT = (String) model.getValueAt(selectedRow,0);
-        String old = maVT;
-        VeTour veTourCanSua = null;
-        for(VeTour vt : danhSachVT){
-            if(vt.getMavetour().equals(maVT)){
-                veTourCanSua = vt;
-                break;
-            }
-        }
-        
-        
-        if(veTourCanSua == null){
-            JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
-        }
-        
-        String MaVT = JOptionPane.showInputDialog(null,"Nhập mã vé tour",veTourCanSua.getMavetour());
-        String MaTour = JOptionPane.showInputDialog(null,"Nhập mã tour",veTourCanSua.getMatour());
-    
-        String TienGiam = JOptionPane.showInputDialog(null,"Nhập tiền vé giảm",veTourCanSua.getTiengiam());
-       
-        JComboBox<String> NgayDV = new JComboBox<>();
-        for(int i = 1 ; i < 32 ; i++){
-            NgayDV.addItem(Integer.toString(i));
-        }
-        NgayDV.setSelectedItem(veTourCanSua.getNgaydatve());
-        JOptionPane.showMessageDialog(null,NgayDV,"Chọn ngày đặt vé",JOptionPane.QUESTION_MESSAGE);
-        int ngayDV = Integer.parseInt(NgayDV.getSelectedItem().toString());
-        
-        JComboBox<String> ThangDV = new JComboBox<>();
-        for(int i = 1 ; i < 13 ; i++){
-            ThangDV.addItem(Integer.toString(i));
-        }
-        ThangDV.setSelectedItem(veTourCanSua.getNgaydatve());
-        JOptionPane.showMessageDialog(null, ThangDV,"Chọn tháng đặt vé",JOptionPane.QUESTION_MESSAGE);
-                int thangDV = Integer.parseInt(ThangDV.getSelectedItem().toString());
-
-        JComboBox<String> NamDV = new JComboBox<>();
-        NamDV.addItem("2023");
-        NamDV.setSelectedItem(veTourCanSua.getNgaydatve());
-        JOptionPane.showMessageDialog(null, NamDV,"Chọn năm đặt vé",JOptionPane.QUESTION_MESSAGE);
-                int namDV = Integer.parseInt(NamDV.getSelectedItem().toString());
-
-        JComboBox<String> NgayHSD = new JComboBox<>();
-        for(int i = 1 ; i < 32 ; i++){
-            NgayHSD.addItem(Integer.toString(i));
-        }
-        NgayHSD.setSelectedItem(veTourCanSua.getHansudung());
-        JOptionPane.showMessageDialog(null, NgayHSD,"Chọn ngày hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
-                int ngayHSD = Integer.parseInt(NgayHSD.getSelectedItem().toString());
-
-        JComboBox<String> ThangHSD = new JComboBox<>();
-        for(int i = 1 ; i < 13 ; i++){
-            ThangHSD.addItem(Integer.toString(i));
-        }
-        ThangHSD.setSelectedItem(veTourCanSua.getHansudung());
-        JOptionPane.showMessageDialog(null, ThangHSD,"Chọn tháng hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
-                int thangHSD = Integer.parseInt(ThangHSD.getSelectedItem().toString());
-
-        JComboBox<String> NamHSD = new JComboBox<>();
-        NamHSD.addItem("2023");
-        NamHSD.setSelectedItem(veTourCanSua.getHansudung());
-        JOptionPane.showMessageDialog(null, NamHSD,"Chọn năm hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
-                int namHSD = Integer.parseInt(NamHSD.getSelectedItem().toString());
-        
-        Calendar calendar = Calendar.getInstance();
-        calendar.set(namDV,thangDV ,ngayDV);
-        Date ngayDVDate = calendar.getTime();
-        calendar.set(namHSD,thangHSD,ngayHSD);
-        Date hanSDDate = calendar.getTime();
-        
-        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        String ngayDVString = dateFormat.format(ngayDVDate);
-        String hanSDString = dateFormat.format(hanSDDate);
-        
-        veTourCanSua.setMavetour(MaVT);
-                veTourCanSua.setMatour(MaTour);
- 
-        veTourCanSua.setTiengiam(Long.parseLong(TienGiam));
-        veTourCanSua.setNgaydatve(ngayDVDate);
-        veTourCanSua.setHansudung(hanSDDate);
-
-        model.setValueAt(MaVT,selectedRow,0);
-        model.setValueAt(MaTour,selectedRow,1);
-       
-        model.setValueAt(TienGiam,selectedRow,4);
-        model.setValueAt(ngayDVString,selectedRow,2);
-        model.setValueAt(hanSDString,selectedRow,3);
-        
-        jTable1.setModel(model);
-   
-        JOptionPane.showMessageDialog(null,"Sửa Thông Tin Vé Tour Thành Công");
-        
-    }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
         String maNVCanTim = txtMaVeTour.getText();
@@ -354,7 +236,6 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
     private Date ngayVeDate;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
-    private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;
     private javax.swing.JLabel jLabel1;

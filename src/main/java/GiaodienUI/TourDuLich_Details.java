@@ -439,7 +439,10 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         String MaTour = (String) model.getValueAt(selectedRow, 1);
         
         boolean a = ctt.xoaCTTour(MaTour);
-        
+         if (a == false) {
+            JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
+            return;
+        }
         model.removeRow(selectedRow);
         jTable1.setModel(model);
         
