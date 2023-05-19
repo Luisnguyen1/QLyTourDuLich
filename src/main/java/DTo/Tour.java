@@ -17,8 +17,6 @@ public class Tour implements Comparable<Tour>{
     public String  DiaDiemdi;
     public String DiaDiemden;
     public int songaydi;
-    public Date ngaydi;
-    public Date ngayve;
     public long giaTour;
     
 
@@ -32,12 +30,11 @@ public class Tour implements Comparable<Tour>{
         DiaDiemdi=x.DiaDiemdi;
         DiaDiemden=x.DiaDiemden;
         songaydi=x.songaydi;
-        ngaydi=x.ngaydi;
-        ngayve=x.ngayve;
+        
         giaTour=x.giaTour;
     }
 
-    public Tour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi,Date ngaydi, Date ngayve, long giaTour) {
+    public Tour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi, long giaTour) {
         this.tenTour = tenTour;
         this.maTour = maTour;
         this.loaiTour = loaiTour;
@@ -47,8 +44,7 @@ public class Tour implements Comparable<Tour>{
         this.DiaDiemdi = DiaDiemdi;
         this.DiaDiemden = DiaDiemden;
         this.songaydi = songaydi;
-        this.ngaydi = ngaydi;
-        this.ngayve = ngayve;
+        
         this.giaTour = giaTour;
        
     }
@@ -130,21 +126,7 @@ public class Tour implements Comparable<Tour>{
         this.songaydi = songaydi;
     }
 
-    public Date getNgaydi() {
-        return ngaydi;
-    }
-
-    public void setNgaydi(Date ngaydi) {
-        this.ngaydi = ngaydi;
-    }
-
-    public Date getNgayve() {
-        return ngayve;
-    }
-
-    public void setNgayve(Date ngayve) {
-        this.ngayve = ngayve;
-    }
+    
 
     public long getGiaTour() {
         return giaTour;
@@ -178,8 +160,8 @@ public class Tour implements Comparable<Tour>{
        return this.ds.size();
    }
    
-   public void themTour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi,Date ngaydi, Date ngayve, long giaTour){
-        Tour tour = new Tour( tenTour,  maTour,  loaiTour,  Tongsocho,  Sochodu,  DiaDiemTour,  DiaDiemdi,  DiaDiemden,  songaydi, ngaydi,  ngayve,  giaTour);
+   public void themTour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi, long giaTour){
+        Tour tour = new Tour( tenTour,  maTour,  loaiTour,  Tongsocho,  Sochodu,  DiaDiemTour,  DiaDiemdi,  DiaDiemden,  songaydi,  giaTour);
         con.UpdateSQL_Tour(tour, 1, "null");
         ds.add(tour);
    }
@@ -197,7 +179,7 @@ public class Tour implements Comparable<Tour>{
        return false;
    }
    
-   public boolean suaTour(String maOld, String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi,Date ngaydi, Date ngayve, long giaTour){
+   public boolean suaTour(String maOld, String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi, long giaTour){
        int i = 0;
        for(Tour t : ds){
            if(maOld.equalsIgnoreCase(t.getMaTour())){
@@ -210,8 +192,7 @@ public class Tour implements Comparable<Tour>{
                this.ds.get(i).setDiaDiemdi(DiaDiemdi);
                this.ds.get(i).setDiaDiemden(DiaDiemden);
                this.ds.get(i).setSongaydi(songaydi);
-               this.ds.get(i).setNgaydi(ngaydi);
-               this.ds.get(i).setNgayve(ngayve);
+               
                this.ds.get(i).setGiaTour(giaTour);
                
                con.UpdateSQL_Tour(this.ds.get(i), 3, maOld);
@@ -256,15 +237,15 @@ public class Tour implements Comparable<Tour>{
            if(soNgay.equalsIgnoreCase(ma)){
                ds.add(t);
            }
-           SimpleDateFormat dateFormat = new SimpleDateFormat();
+           /*SimpleDateFormat dateFormat = new SimpleDateFormat();
            String ngaydiString = dateFormat.format(ngaydi);
            String ngayveString = dateFormat.format(ngayve);
            if(ngaydiString.equalsIgnoreCase(ma)){
-               ds.add(t);
+           ds.add(t);
            }
            if(ngayveString.equalsIgnoreCase(ma)){
-               ds.add(t);
-           }
+           ds.add(t);
+           }*/
            String giatour = Long.toString(t.getGiaTour());
            if(giatour.equalsIgnoreCase(ma)){
                ds.add(t);

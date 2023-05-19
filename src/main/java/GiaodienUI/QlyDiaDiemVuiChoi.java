@@ -100,7 +100,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
 
         jPanel2.setBackground(new java.awt.Color(167, 169, 177));
 
-        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", "Cầu vượt" }));
+        cbxDiaDiemTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Địa Điểm Tour", "Miền Nam - Thành phố Hồ Chí Minh", "Miền Nam - Vũng Tàu", "Miền Trung - Đà Nẵng ", "Miền Trung - Huế", "Miền Bắc - Hà Nội", "Miền Bắc - Hải Phòng" }));
         cbxDiaDiemTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxDiaDiemTourActionPerformed(evt);
