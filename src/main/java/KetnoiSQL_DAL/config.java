@@ -1557,7 +1557,7 @@ public class config {
                 String manv = rs.getString("MaNV");
                 String tennv = rs.getString("TenNV");
                 String loainv = rs.getString("LoaiNV");
-                String diachi = Integer.toString(rs.getInt("DiaChi"));
+                String diachi = rs.getString("DiaChi");
                 String chucvu = rs.getString("ChucVu");
                 
                 NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
@@ -1565,7 +1565,7 @@ public class config {
             }
             
         } catch (SQLException ex) {
-            //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
         return danhSachNhanVien;    
     }

@@ -30,6 +30,7 @@ import java.awt.BorderLayout;
 import javax.swing.JFrame;
 import java.sql.Connection;
 import java.sql.SQLException;
+import net.miginfocom.layout.AC;
 
 
 /**
@@ -41,7 +42,7 @@ public class TestQLY {
         // Sử dụng bố cục mặc định của FlowLayout
 JFrame js = new JFrame();
 js.setTitle("Quản lý");
-        QlyVeTour ql = new QlyVeTour();
+  QlyNhanVien ql = new QlyNhanVien();
             
 js.add(ql);
 js.setLocation(100, 100); // đặt vị trí

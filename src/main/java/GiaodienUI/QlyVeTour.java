@@ -799,12 +799,12 @@ public class QlyVeTour extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-       String maNVCanTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
+       String maNVCanTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !","");
 
         // Tạo một danh sách để lưu khách hàng tìm được
         danhSachVT.timKhachHangUnlimit(maNVCanTim);
 // Kiểm tra kết quả tìm kiếm
-        if (danhSachVT.timKhachHangUnlimit(maNVCanTim).isEmpty()) {
+        if (danhSachVT.timKhachHangUnlimit(maNVCanTim)==null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
 

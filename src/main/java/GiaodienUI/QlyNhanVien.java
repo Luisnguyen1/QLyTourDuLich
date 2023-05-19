@@ -624,15 +624,10 @@ public class QlyNhanVien extends javax.swing.JPanel {
         } catch (InvalidFormatException ex) {
         JOptionPane.showMessageDialog(null, "Import thất bại");
         Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        try {
-        danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-        Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        }        
         model = (DefaultTableModel) jTable1.getModel();
-        for (NhanVien nv : danhSachNV) {
-        model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+        for (int i = 0; i < danhSachNV.laySoLuongNhanVien(); i++) {
+        model.addRow(new Object[]{danhSachNV.traNV(i).getTennv(), danhSachNV.traNV(i).getManv(), danhSachNV.traNV(i).getDiachi(), danhSachNV.traNV(i).getLoainv(), danhSachNV.traNV(i).getChucvu()});
         }
         
     }//GEN-LAST:event_btnImportActionPerformed
