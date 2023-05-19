@@ -19,25 +19,20 @@ import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 public class QlyNhanVien extends javax.swing.JPanel {
-
+    NhanVien danhSachNV = new NhanVien();
     DefaultTableModel model = new DefaultTableModel();
 
-    ArrayList<NhanVien> danhSachNV = new ArrayList<NhanVien>();
-    config con = new config();
+   
 
     /**
      * Creates new form QlyNhanVien
      */
     public QlyNhanVien() {
         initComponents();
-        try {
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         model = (DefaultTableModel) jTable1.getModel();
-        for (NhanVien nv : danhSachNV) {
-            model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+        for (int i = 0; i < danhSachNV.laySoLuongNhanVien(); i++) {
+            model.addRow(new Object[]{danhSachNV.traNV(i).getTennv(), danhSachNV.traNV(i).getManv(), danhSachNV.traNV(i).getDiachi(), danhSachNV.traNV(i).getLoainv(), danhSachNV.traNV(i).getChucvu()});
         }
 
     }
@@ -451,12 +446,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxChucVuActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            // Lấy thông tin từ GUI
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         String maNV = txtMaNhanVien.getText();
         String hoTen = txtHoTen.getText();
         String diaChi = txtDiaChi.getText();
@@ -474,14 +464,13 @@ public class QlyNhanVien extends javax.swing.JPanel {
         } else if (chucVu.equals("Chức Vụ")) {
             JOptionPane.showMessageDialog(null, "Chọn Thông Tin Cụ Thể");
         } else {
-            // Tạo đối tượng DTO
-            NhanVien nv = new NhanVien(hoTen, maNV, diaChi, loaiNV, chucVu);
+       
+           
 
-            // Thêm đối tượng vào danh sách
-            danhSachNV.add(nv);
-            con.UpdateSQL_NhanVien(nv, 1, "null");
+       
+            danhSachNV.themNhanVien(maNV, maNV, diaChi, loaiNV, chucVu);
             // Tạo đối tượng DefaultTableModel
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
 
             // thêm đối tượng KhachHang vào model
             model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});

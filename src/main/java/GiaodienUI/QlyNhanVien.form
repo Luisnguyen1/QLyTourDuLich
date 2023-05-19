@@ -196,7 +196,7 @@
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="102" attributes="0">
-                          <Component id="cbxLoaiNhanVien" pref="25" max="32767" attributes="0"/>
+                          <Component id="cbxLoaiNhanVien" pref="27" max="32767" attributes="0"/>
                           <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
@@ -215,7 +215,7 @@
                               <Component id="btnSua" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="btnXoa" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="28" max="32767" attributes="0"/>
+                          <EmptySpace pref="30" max="32767" attributes="0"/>
                           <Component id="jSeparator2" min="-2" pref="10" max="-2" attributes="0"/>
                       </Group>
                       <Component id="btnTimKiem" min="-2" max="-2" attributes="0"/>

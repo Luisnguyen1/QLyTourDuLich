@@ -149,7 +149,7 @@ public class NhanVien implements Comparable<NhanVien> {
    
     private ArrayList<NhanVien>danhSach = new ArrayList<NhanVien>();
     config con = new config();
-    public NhanVien() throws SQLException 
+    public NhanVien()
     {
         this.danhSach = con.layDL_NhanVien(); //cach khai bao 1 arrayList
     }

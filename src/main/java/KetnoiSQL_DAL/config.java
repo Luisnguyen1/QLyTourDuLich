@@ -1532,7 +1532,7 @@ public class config {
     }
 
     //--------------------------------------------------------------------
-    public ArrayList<NhanVien> layDL_NhanVien() throws SQLException {
+    public ArrayList<NhanVien> layDL_NhanVien()  {
          ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
         try (Connection con= DriverManager.getConnection(url, user, password)){
             
