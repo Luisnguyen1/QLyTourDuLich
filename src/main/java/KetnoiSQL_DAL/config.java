@@ -1509,15 +1509,15 @@ public class config {
         return danhSachTaiKhoan;
     }
 
-    public ArrayList<VeTour> layDL_VeTour() throws SQLException {
-        // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+    public ArrayList<VeTour> layDL_VeTour()  {
+        ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
+        try (Connection con= DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM ve");
 
-        ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
+        
 
         while (rs.next()) {
             VeTour vt = new VeTour();
@@ -1527,6 +1527,9 @@ public class config {
             vt.setNgaydatve(rs.getDate("ngaytaove"));
             vt.setTiengiam((int) rs.getLong("tiengiam"));
             danhSachVeTour.add(vt);
+        }
+        } catch (SQLException ex) {
+            //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
         return danhSachVeTour;
     }
