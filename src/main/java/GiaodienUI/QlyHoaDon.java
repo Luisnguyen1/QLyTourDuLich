@@ -23,20 +23,16 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyHoaDon extends javax.swing.JPanel {
-
-    ArrayList<HoaDon> danhSachHD = new ArrayList<HoaDon>();
+    HoaDon dshd = new HoaDon();
     DefaultTableModel model = new DefaultTableModel();
 
     public QlyHoaDon() {
         initComponents();
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < dshd.laySoLuongHoaDon(); i++) {
+            model.addRow(new Object[]{dshd.traHD(i).getMahd(), dshd.traHD(i).getMakhachdatve(), dshd.traHD(i).getManv(), dshd.traHD(i).getNgayxuathoadon(), dshd.traHD(i).getTongtien()});
         }
-        for (HoaDon nv : danhSachHD) {
-            model.addRow(new Object[]{nv.getMahd(), nv.getMakhachdatve(), nv.getManv(), nv.getNgayxuathoadon(), nv.getTongtien()});
-        }
+        jTable1.setModel(model); 
     }
     config con = new config();
 
@@ -67,7 +63,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
         jSeparator2 = new javax.swing.JSeparator();
         btnXoa = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
         jPanel9 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
@@ -209,13 +205,13 @@ public class QlyHoaDon extends javax.swing.JPanel {
             }
         });
 
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -290,7 +286,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(btnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnTimKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(btnExport, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(btnSua, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(152, 152, 152))
         );
@@ -309,7 +305,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(btnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 26, Short.MAX_VALUE))
                             .addComponent(jSeparator2))
                         .addGap(13, 13, 13))
@@ -521,53 +517,36 @@ public class QlyHoaDon extends javax.swing.JPanel {
     }//GEN-LAST:event_txtMaHoaDonActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String maNVCanTim = txtMaHoaDon.getText();
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<HoaDon> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (HoaDon nv : danhSachHD) {
-            if (nv.getMahd().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       dshd.timHoaDonUnlimit(dkTim);
 
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (dshd.timHoaDonUnlimit(dkTim) == null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Mã Hóa Đơn");
+            model.addColumn("Mã Khách Hàng");
+            model.addColumn("Mã Nhân Viên");
+            model.addColumn("Ngày Xuất");
+            model.addColumn("Tổng Tiền");
 
-        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
-        model.addColumn("Mã hóa đơn");
-        model.addColumn("Mã khách hàng");
-        model.addColumn("Mã nhân viên");
-        model.addColumn("Ngày xuất");
-        model.addColumn("Tổng tiền");
+            // Thêm các khách hàng tìm được vào model
+            for (HoaDon kh : dshd.timHoaDonUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getMahd(), kh.getMakhachdatve(), kh.getManv(), kh.getNgayxuathoadon(),kh.getTongtien()});
+            }
 
-        // Thêm các khách hàng tìm được vào model
-        for (HoaDon nv : ketQuaTimKiem) {
-            model.addRow(new Object[]{nv.getMahd(), nv.getMakhachdatve(), nv.getManv(), nv.getNgayxuathoadon(), nv.getTongtien()});
-        }
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
         
-
-        // Cập nhật lại model cho JTable
-        jTable1.setModel(model);
-
     }//GEN-LAST:event_btnTimKiemActionPerformed
     }
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -582,19 +561,9 @@ public class QlyHoaDon extends javax.swing.JPanel {
 // lấy mã khách hàng của hàng được chọn
         String mahoadon = (String) model.getValueAt(selectedRow, 0);
 
+        boolean a = dshd.xoaHoaDon(mahoadon);
 // tìm khách hàng trong danh sách dựa vào mã
-        HoaDon hoadonCanXoa = null;
-        for (HoaDon nv : danhSachHD) {
-            if (nv.getMahd().equals(mahoadon)) {
-                hoadonCanXoa = nv;
-                break;
-            }
-        }
-
-// xóa khách hàng khỏi danh sách
-        danhSachHD.remove(hoadonCanXoa);
-        con.UpdateSQL_HoaDon(hoadonCanXoa, 2, mahoadon);
-// xóa hàng được chọn trong model
+       
         model.removeRow(selectedRow);
 
 // cập nhật lại model cho JTable
@@ -605,17 +574,16 @@ public class QlyHoaDon extends javax.swing.JPanel {
 
     }//GEN-LAST:event_btnXoaActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < dshd.laySoLuongHoaDon(); i++) {
+            model.addRow(new Object[]{dshd.traHD(i).getMahd(), dshd.traHD(i).getMakhachdatve(), dshd.traHD(i).getManv(), dshd.traHD(i).getNgayxuathoadon(), dshd.traHD(i).getTongtien()});
+        }
+        jTable1.setModel(model);
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // lấy chỉ số hàng được chọn trong JTable
-        try {
-            danhSachHD = con.layDL_HoaDon();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -629,27 +597,19 @@ public class QlyHoaDon extends javax.swing.JPanel {
         
 // lấy mã khách hàng của hàng được chọn
         String mahoadon = (String) model.getValueAt(selectedRow, 0);
-        String old = mahoadon;
 // tìm khách hàng trong danh sách dựa vào mã
-        HoaDon hoadonCanSua = null;
-        for (HoaDon nv : danhSachHD) {
-            if (nv.getMahd().equals(mahoadon)) {
-                hoadonCanSua = nv;
-                break;
-            }
-        }
-
+        dshd.traHD(mahoadon);
 // hiển thị form sửa thông tin khách hàng
-        String maKH = JOptionPane.showInputDialog(null, "Nhập mã khách hàng", hoadonCanSua.getMakhachdatve());
-        String maNVien = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", hoadonCanSua.getManv());
-        String maHDnew = JOptionPane.showInputDialog(null, "Nhập mã hóa đơn", hoadonCanSua.getMahd());
-        String tongtien = JOptionPane.showInputDialog(null, "Nhập tổng tiền", hoadonCanSua.getTongtien());
+        String maKH = JOptionPane.showInputDialog(null, "Nhập mã khách hàng", dshd.traHD(mahoadon).getMakhachdatve());
+        String maNVien = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", dshd.traHD(mahoadon).getManv());
+        String maHDnew = JOptionPane.showInputDialog(null, "Nhập mã hóa đơn", dshd.traHD(mahoadon).getMahd());
+        String tongtien = JOptionPane.showInputDialog(null, "Nhập tổng tiền", dshd.traHD(mahoadon).getTongtien());
         long tongTien = Long.parseLong(tongtien);
 // thêm ComboBox để chọn loại nhân viên
         JComboBox<String> cbxNamXuat = new JComboBox<>();
         cbxNamXuat.addItem("2023");
 
-        cbxNamXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
+        cbxNamXuat.setSelectedItem(dshd.traHD(mahoadon).getNgayxuathoadon());
 
         JOptionPane.showMessageDialog(null, cbxNamXuat, "Chọn năm xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String namDiString = (String) cbxNamXuat.getSelectedItem();
@@ -661,7 +621,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
             cbxThangXuat.addItem(Day);
             Day = "";
         }
-        cbxThangXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
+        cbxThangXuat.setSelectedItem(dshd.traHD(mahoadon).getNgayxuathoadon());
         JOptionPane.showMessageDialog(null, cbxThangXuat, "Chọn tháng xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String TDiString = (String) cbxThangXuat.getSelectedItem();
         int ThangDi = Integer.parseInt(TDiString);
@@ -672,7 +632,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
             cbxNgayXuat.addItem(Day);
             Day = "";
         }
-        cbxNgayXuat.setSelectedItem(hoadonCanSua.getNgayxuathoadon());
+        cbxNgayXuat.setSelectedItem(dshd.traHD(mahoadon).getNgayxuathoadon());
         JOptionPane.showMessageDialog(null, cbxNgayXuat, "Chọn ngày xuất hóa đơn", JOptionPane.QUESTION_MESSAGE);
         String ngaydi = (String) cbxNgayXuat.getSelectedItem();
         int ngayDi = Integer.parseInt(ngaydi);
@@ -685,27 +645,21 @@ public class QlyHoaDon extends javax.swing.JPanel {
         String ngayDiString = dateFormat.format(ngayDiDate);
 
 // cập nhật thông tin khách hàng
-        hoadonCanSua.setMahd(maHDnew);
-        hoadonCanSua.setMakhachdatve(maKH);
-        hoadonCanSua.setNgayxuathoadon(ngayDiDate);
-        hoadonCanSua.setTongtien(tongTien);
-        hoadonCanSua.setManv(maNVien);
+        dshd.suaHoaDon(mahoadon, maHDnew, maNVien, maKH, tongTien, ngayDiDate);
 // cập nhật lại model cho JTable
         model.setValueAt(maHDnew, selectedRow, 0);
         model.setValueAt(maKH, selectedRow, 1);
         model.setValueAt(maNVien, selectedRow, 2);
         model.setValueAt(ngayDiDate, selectedRow, 3);
         model.setValueAt(tongTien, selectedRow, 4);
-        
-        con.UpdateSQL_HoaDon(hoadonCanSua, 3, old);
-// thông báo thành công
+        // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Hóa Đơn Thành Công");
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnTimKiem;
     private javax.swing.JButton btnXoa;

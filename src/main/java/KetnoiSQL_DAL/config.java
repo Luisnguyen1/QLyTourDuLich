@@ -121,7 +121,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE mahoadon = '" + HoaDon.getMahd() + "'";
+                String delete = "DELETE FROM hoadon WHERE MaHD = '" + HoaDon.getMahd() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -133,7 +133,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM hoadon WHERE mahoadon = '" + HoaDon.getMahd() + "'";
+                String delete = "DELETE FROM hoadon WHERE MaHD = '" + HoaDon.getMahd() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -790,10 +790,10 @@ public class config {
             while (rs.next()) {
                 
                 String mahd = rs.getString("MaHD");
-                String makh = rs.getString("makh");
-                long tongtien = Long.parseLong(rs.getString("tongtien"));
-                java.sql.Date ngayxuat = rs.getDate("ngayxuathoadon");
-                String manv = rs.getString("manv");
+                String makh = rs.getString("maKh");
+                long tongtien = Long.parseLong(rs.getString("TongTien"));
+                java.sql.Date ngayxuat = rs.getDate("NgayXuatHoaDon");
+                String manv = rs.getString("MaNV");
                 HoaDon HoaDon = new HoaDon(mahd, manv, makh, tongtien, ngayxuat);
                 danhSachHoaDon.add(HoaDon);
             }
