@@ -25,23 +25,17 @@ import java.sql.Connection;
  * @author Thanh Tran
  */
 public class QlyTourDuLich extends javax.swing.JPanel {
-
-    ArrayList<Tour> danhSachTour = new ArrayList<Tour>();
+    Tour tour = new Tour();
     config con = new config();
     /**
      * Creates new form QlyVeTour
      */
     public QlyTourDuLich() {
         initComponents();
-        
-        try {
-            danhSachTour = con.layDL_Tour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (Tour nv : danhSachTour) {            
-        model.addRow(new Object[]{nv.getTenTour(), nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(), nv.getDiaDiemTour(), nv.getDiaDiemdi(), nv.getDiaDiemden(), nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
+        for (int i = 0 ; i < tour.laySoLuongTour() ; i++) {            
+        model.addRow(new Object[]{tour.traTour(i).getTenTour(), tour.traTour(i).getMaTour(), tour.traTour(i).getLoaiTour(), tour.traTour(i).getTongsocho(), tour.traTour(i).getSochodu(), tour.traTour(i).getDiaDiemTour(), tour.traTour(i).getDiaDiemdi(), tour.traTour(i).getDiaDiemden(), tour.traTour(i).getSongaydi(), tour.traTour(i).getNgaydi(), tour.traTour(i).getNgayve(), tour.traTour(i).getGiaTour()});
     }
     }
 
@@ -62,8 +56,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel2 = new javax.swing.JPanel();
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel3 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
@@ -71,7 +63,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel7 = new javax.swing.JPanel();
         jLabel6 = new javax.swing.JLabel();
         txtTenTour = new javax.swing.JTextField();
-        txtMaTour = new javax.swing.JTextField();
         txtTongSoCho = new javax.swing.JTextField();
         txtSoChoDu = new javax.swing.JTextField();
         jSeparator2 = new javax.swing.JSeparator();
@@ -106,7 +97,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         btnSua = new javax.swing.JButton();
         btnTimKiem = new javax.swing.JButton();
         cbxLoaiTour = new javax.swing.JComboBox<>();
-        btnExport = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -148,26 +139,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel3Layout.createSequentialGroup()
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-        );
-
-        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(169, 0, 6));
-        jLabel3.setText("     Mã Tour");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -178,7 +156,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -193,11 +173,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel5, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
         );
 
         jLabel6.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -208,11 +190,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 94, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 22, Short.MAX_VALUE)
         );
 
         jSeparator2.setForeground(new java.awt.Color(0, 0, 0));
@@ -430,13 +414,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             }
         });
 
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -452,18 +436,17 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(txtMaTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTenTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cbxLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(txtTongSoCho, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(txtTenTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(cbxLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(txtTongSoCho, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(txtSoChoDu, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(38, 38, 38)
+                        .addGap(47, 47, 47)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 16, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(27, 27, 27)
+                        .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -493,7 +476,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                                 .addGap(54, 54, 54)
                                 .addComponent(btnTimKiem)
                                 .addGap(54, 54, 54)
-                                .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jSeparator4, javax.swing.GroupLayout.PREFERRED_SIZE, 688, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(37, 37, 37)))
                 .addGap(95, 95, 95))
@@ -536,22 +519,18 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(txtTenTour)
                                     .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtMaTour)
-                                    .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jPanel5, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(cbxLoaiTour, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtTongSoCho)
-                                    .addComponent(jPanel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(txtSoChoDu)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtTongSoCho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtSoChoDu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel2Layout.createSequentialGroup()
                                 .addGap(3, 3, 3)
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -569,9 +548,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtSoNgayDi)))))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 134, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -596,7 +573,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnThem)
                     .addComponent(btnXoa)
-                    .addComponent(btnExport)
+                    .addComponent(btnReset)
                     .addComponent(btnTimKiem)
                     .addComponent(btnSua))
                 .addContainerGap(20, Short.MAX_VALUE))
@@ -923,17 +900,10 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
         // Lấy dữ liệu từ các trường nhập liệu trên GUI
-        config con = new config();
-        try {
-            danhSachTour = con.layDL_Tour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
-        }
         try {
 
             String tenTour = txtTenTour.getText();
-            String maTour = txtMaTour.getText();
-            String loaiTour = cbxLoaiTour.getSelectedItem().toString();
+            String loaitour = cbxLoaiTour.getSelectedItem().toString();
             int tongSoCho = Integer.parseInt(txtTongSoCho.getText());
             int soChoDu = Integer.parseInt(txtSoChoDu.getText());
             String diaDiemTour = txtDiaDiemTour.getText();
@@ -960,18 +930,16 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
                 String ngayDiString = dateFormat.format(ngayDiDate);
                 String ngayVeString = dateFormat.format(ngayVeDate);
-            long giaTour = Long.parseLong(txtGiaTour.getText());
+            long giatour = Long.parseLong(txtGiaTour.getText());
 
 // Tạo đối tượng DTO
-            Tour nv = new Tour(tenTour, maTour, loaiTour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgayDi, ngayDiDate, ngayVeDate, giaTour);
-
-            // Thêm đối tượng vào danh sách
-            danhSachTour.add(nv);
-            con.UpdateSQL_Tour(nv, 1, "old");
-            // Tạo đối tượng DefaultTableModel
+            int maxMaTour = tour.laySoLuongTour();
+            String matour = "Tour" + String.format("%04d", maxMaTour + 1);
+            
+            tour.themTour(tenTour, matour, loaitour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgayDi, ngayDiDate, ngayVeDate, giatour);
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
           
-            model.addRow(new Object[]{nv.getTenTour(), nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(), nv.getDiaDiemTour(), nv.getDiaDiemdi(), nv.getDiaDiemden(), nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
+            model.addRow(new Object[]{tour.traTour(matour).getTenTour(), tour.traTour(matour).getMaTour(), tour.traTour(matour).getLoaiTour(), tour.traTour(matour).getTongsocho(), tour.traTour(matour).getSochodu(), tour.traTour(matour).getDiaDiemTour(), tour.traTour(matour).getDiaDiemdi(), tour.traTour(matour).getDiaDiemden(), tour.traTour(matour).getSongaydi(), ngayDiString, ngayVeString, tour.traTour(matour).getGiaTour()});
 
             // thêm đối tượng KhachHang vào model
 // cập nhật lại model cho JTable
@@ -980,8 +948,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
 // thông báo thành công
             JOptionPane.showMessageDialog(null, "Thêm Tour Thành Công");
             txtTenTour.setText("");
-            txtMaTour.setText("");
-
             txtDiaDiemTour.setText("");
             txtDiaDiemDi.setText("");
             txtDiaDiemDen.setText("");
@@ -997,56 +963,40 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String maNVCanTim = txtMaTour.getText();
-
-        // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<Tour> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (Tour nv : danhSachTour) {
-            if (nv.getMaTour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
+        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm"," ");
+        
+        tour.timTourUnlimit(dkTim);
 
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (tour.timTourUnlimit(dkTim) == null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("Tên Tour");
+            model.addColumn("Mã Tour");
+            model.addColumn("Loại Tour");
+            model.addColumn("Tổng Số Chỗ");
+            model.addColumn("Số Chỗ Dư");
+            model.addColumn("Địa Điểm Tour");
+            model.addColumn("Địa Điểm Đi");
+            model.addColumn("Địa Điểm Đến");
+            model.addColumn("Số Ngày Đi");
+            model.addColumn("Ngày Đi");
+            model.addColumn("Ngày Về");
+            model.addColumn("Giá Tour");
 
-        // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
-        DefaultTableModel model = new DefaultTableModel();
-        model.addColumn("Tên Tour");
-        model.addColumn("Mã Tour");
-        model.addColumn("Loại Tour");
-        model.addColumn("Tổng số chỗ");
-        model.addColumn("Số chỗ dư");
-        model.addColumn("Địa điểm Tour");
-        model.addColumn("Địa điểm đi");
-       model.addColumn("Địa điểm đến");
-       model.addColumn("Số ngày đi");
-       model.addColumn("Ngày đi");
-       model.addColumn("Ngày về");
-       model.addColumn("Giá Tour");
+            // Thêm các khách hàng tìm được vào model
+            for (Tour kh : tour.timTourUnlimit(dkTim)){              
+                model.addRow(new Object[]{kh.getTenTour(),kh.getMaTour(),kh.getLoaiTour(),kh.getTongsocho(),kh.getSochodu(),kh.getDiaDiemTour(),kh.getDiaDiemdi(),kh.getDiaDiemden(),kh.getSongaydi(),kh.getNgaydi(),kh.getNgayve(),kh.getGiaTour()});
+            }
 
-        // Thêm các khách hàng tìm được vào model
-        for (Tour nv : ketQuaTimKiem) {
-            model.addRow(new Object[]{nv.getTenTour(), nv.getMaTour(), nv.getLoaiTour(), nv.getTongsocho(), nv.getSochodu(), nv.getDiaDiemTour(), nv.getDiaDiemdi(), nv.getDiaDiemden(), nv.getSongaydi(), ngayDiString, ngayVeString, nv.getGiaTour()});
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
         }
-
-        // Cập nhật lại model cho JTable
-        jTable1.setModel(model);
-    }       
+     
     }//GEN-LAST:event_btnTimKiemActionPerformed
-    private Date convertStringToDate(String dateString) {
-        try {
-            SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-            return dateFormat.parse(dateString);
-        } catch (ParseException ex) {
-            return null;
-        }
-    }
+
     private void cbxNamVeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxNamVeActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxNamVeActionPerformed
@@ -1054,13 +1004,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-        config con = new config();
-        try {
-            danhSachTour = con.layDL_Tour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
@@ -1072,26 +1015,9 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
-        String maNV = (String) model.getValueAt(selectedRow, 1);
+        String matour = (String) model.getValueAt(selectedRow, 1);
 
-// tìm khách hàng trong danh sách dựa vào mã
-        Tour tourCanXoa = null;
-        for (Tour nv : danhSachTour) {
-            if (nv.getMaTour().equals(maNV)) {
-                tourCanXoa = nv;
-                break;
-            }
-        }
-        
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (tourCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
-            return;
-        }
-
-// xóa khách hàng khỏi danh sách
-        danhSachTour.remove(tourCanXoa);
-        con.UpdateSQL_Tour(tourCanXoa, 2, "null");
+        boolean a = tour.xoaTour(matour);
 // xóa hàng được chọn trong model
         model.removeRow(selectedRow);
 
@@ -1106,13 +1032,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
 // lấy chỉ số hàng được chọn trong JTable
         int selectedRow = jTable1.getSelectedRow();
-        
-        config con = new config();
-        try {
-            danhSachTour = con.layDL_Tour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTourDuLich.class.getName()).log(Level.SEVERE, null, ex);
-        }
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
         if (selectedRow == -1) {
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn Một Hàng Để Sửa");
@@ -1123,45 +1042,33 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
 
 // lấy mã khách hàng của hàng được chọn
-        String maNV = (String) model.getValueAt(selectedRow, 1);
-        String olDNV = maNV;
-// tìm khách hàng trong danh sách dựa vào mã
-        Tour tourCanSua = null;
-        for (Tour nv : danhSachTour) {
-            if (nv.getMaTour().equals(maNV)) {
-                tourCanSua = nv;
-                break;
-            }
-        }
-        
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (tourCanSua == null) {
-            JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
-            return;
-        }
+        String matour = (String) model.getValueAt(selectedRow, 1);
 
+        tour.traTour(matour);
 // hiển thị form sửa thông tin khách hàng
-        String tenTour = JOptionPane.showInputDialog(null, "Nhập tên Tour", tourCanSua.getTenTour());
-        String maTour = JOptionPane.showInputDialog(null, "Nhập mã Tour", maNV);
+        String tentour = JOptionPane.showInputDialog(null, "Nhập tên Tour", tour.traTour(matour).getTenTour());
+        String matournew = JOptionPane.showInputDialog(null, "Nhập mã Tour", tour.traTour(matour).getMaTour());
+        
         JComboBox<String> cbxLoaiTour = new JComboBox<>();
         cbxLoaiTour.addItem("Nhân Viên Bán Hàng");
         cbxLoaiTour.addItem("Quản Lý Kho");
         cbxLoaiTour.addItem("Nhân Viên Văn Phòng");
-        cbxLoaiTour.setSelectedItem(tourCanSua.getLoaiTour());
+        cbxLoaiTour.setSelectedItem(tour.traTour(matour).getLoaiTour());
         JOptionPane.showMessageDialog(null, cbxLoaiTour, "Chọn loại Tour", JOptionPane.QUESTION_MESSAGE);
-        String loaiTour = (String) cbxLoaiTour.getSelectedItem();
+        String loaitour = (String) cbxLoaiTour.getSelectedItem();
 
-        String tongSoCho = JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", tourCanSua.getTongsocho());
-        String soChoDu = JOptionPane.showInputDialog(null, "Nhập số chỗ dư", tourCanSua.getSochodu());
-        String diaDiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", tourCanSua.getDiaDiemTour());
-        String diaDiemDi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi", tourCanSua.getDiaDiemdi());
-        String diaDiemDen = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", tourCanSua.getDiaDiemden());
-        String soNgayDi = JOptionPane.showInputDialog(null, "Nhập số ngày đi", tourCanSua.getSongaydi());
+        long tongSoCho = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập tổng số chỗ", tour.traTour(matour).getTongsocho()));
+        long soChoDu = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập số chỗ dư", tour.traTour(matour).getSochodu()));
+        String diaDiemTour = JOptionPane.showInputDialog(null, "Nhập địa điểm Tour", tour.traTour(matour).getDiaDiemTour());
+        String diaDiemDi = JOptionPane.showInputDialog(null, "Nhập địa điểm đi", tour.traTour(matour).getDiaDiemdi());
+        String diaDiemDen = JOptionPane.showInputDialog(null, "Nhập địa điểm đến", tour.traTour(matour).getDiaDiemden());
+        int soNgayDi = Integer.parseInt(JOptionPane.showInputDialog(null, "Nhập số ngày đi", tour.traTour(matour).getSongaydi()));
+        
 // thêm ComboBox để chọn loại nhân viên
         JComboBox<String> cbxnamDi = new JComboBox<>();
         cbxnamDi.addItem("2023");
 
-        cbxnamDi.setSelectedItem(tourCanSua.getNgaydi());
+        cbxnamDi.setSelectedItem(tour.traTour(matour).getNgaydi());
 
         JOptionPane.showMessageDialog(null, cbxnamDi, "Chọn năm đi", JOptionPane.QUESTION_MESSAGE);
         String namDiString = (String) cbxnamDi.getSelectedItem();
@@ -1175,7 +1082,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             cbxThangDi.addItem(Day);
             Day = "";
         }
-        cbxThangDi.setSelectedItem(tourCanSua.getNgaydi());
+        cbxThangDi.setSelectedItem(tour.traTour(matour).getNgaydi());
         JOptionPane.showMessageDialog(null, cbxThangDi, "Chọn Tháng Đi", JOptionPane.QUESTION_MESSAGE);
         String TDiString = (String) cbxThangDi.getSelectedItem();
         int ThangDi = Integer.parseInt(TDiString);
@@ -1186,7 +1093,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             cbxNgayDi.addItem(Day);
             Day = "";
         }
-        cbxNgayDi.setSelectedItem(tourCanSua.getNgaydi());
+        cbxNgayDi.setSelectedItem(tour.traTour(matour).getNgaydi());
         JOptionPane.showMessageDialog(null, cbxNgayDi, "Chọn Ngày Đi", JOptionPane.QUESTION_MESSAGE);
         String ngaydi = (String) cbxNgayDi.getSelectedItem();
         int ngayDi = Integer.parseInt(ngaydi);
@@ -1194,7 +1101,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         JComboBox<String> cbxnamVe = new JComboBox<>();
         cbxnamVe.addItem("2023");
 
-        cbxnamVe.setSelectedItem(tourCanSua.getNgaydi());
+        cbxnamVe.setSelectedItem(tour.traTour(matour).getNgaydi());
 
         JOptionPane.showMessageDialog(null, cbxnamVe, "Chọn năm về", JOptionPane.QUESTION_MESSAGE);
         String namVeString = (String) cbxnamDi.getSelectedItem();
@@ -1206,7 +1113,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             cbxThangVe.addItem(Day);
             Day = "";
         }
-        cbxThangVe.setSelectedItem(tourCanSua.getNgaydi());
+        cbxThangVe.setSelectedItem(tour.traTour(matour).getNgaydi());
         JOptionPane.showMessageDialog(null, cbxThangVe, "Chọn Tháng Về", JOptionPane.QUESTION_MESSAGE);
         String TVeString = (String) cbxThangVe.getSelectedItem();
         int ThangVe = Integer.parseInt(TVeString);
@@ -1217,12 +1124,12 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             cbxNgayVe.addItem(Day);
             Day = "";
         }
-        cbxNgayVe.setSelectedItem(tourCanSua.getNgaydi());
+        cbxNgayVe.setSelectedItem(tour.traTour(matour).getNgaydi());
         JOptionPane.showMessageDialog(null, cbxNgayVe, "Chọn Ngày Về", JOptionPane.QUESTION_MESSAGE);
         String ngayve = (String) cbxNgayVe.getSelectedItem();
         int ngayVe = Integer.parseInt(ngayve);
 
-        String giaTour = JOptionPane.showInputDialog(null, "Nhập Giá Tour", tourCanSua.getGiaTour());
+        long giatour = Long.parseLong(JOptionPane.showInputDialog(null, "Nhập Giá Tour", tour.traTour(matour).getGiaTour()));
 
         Calendar calendar = Calendar.getInstance();
             calendar.set(namDi , ThangDi, ngayDi);
@@ -1235,29 +1142,13 @@ public class QlyTourDuLich extends javax.swing.JPanel {
                 String ngayVeString = dateFormat.format(ngayVeDate);
         
 // cập nhật thông tin khách hàng
-        tourCanSua.setTenTour(tenTour);
-        tourCanSua.setMaTour(maTour);
-        tourCanSua.setLoaiTour(loaiTour);
-        int tongsocho = Integer.parseInt(tongSoCho);
-        int sochodu = Integer.parseInt(soChoDu);
-        tourCanSua.setTongsocho(tongsocho);
-        tourCanSua.setSochodu(sochodu);
-        tourCanSua.setDiaDiemTour(diaDiemTour);
-        tourCanSua.setDiaDiemdi(diaDiemDi);
-        tourCanSua.setDiaDiemden(diaDiemDen);
-        int songaydi = Integer.parseInt(soNgayDi);
-        tourCanSua.setSongaydi(songaydi);
-        tourCanSua.setNgaydi(ngayDiDate);
-        tourCanSua.setNgayve(ngayVeDate);
-        long giatour = Long.parseLong(giaTour);
-        tourCanSua.setGiaTour(giatour);
+       tour.suaTour(matour, tentour, matournew, loaitour, ngayVe, ngayDi, diaDiemTour, diaDiemDi, diaDiemDen, ngayDi, ngayDiDate, ngayVeDate, giatour);
         
         
-        con.UpdateSQL_Tour(tourCanSua,3,olDNV );
 // cập nhật lại model cho JTable
-        model.setValueAt(tenTour, selectedRow, 0);
-        model.setValueAt(maTour, selectedRow, 1);
-        model.setValueAt(loaiTour, selectedRow, 2);
+        model.setValueAt(tentour, selectedRow, 0);
+        model.setValueAt(matournew, selectedRow, 1);
+        model.setValueAt(loaitour, selectedRow, 2);
         model.setValueAt(tongSoCho, selectedRow, 3);
         model.setValueAt(soChoDu, selectedRow, 4);
         model.setValueAt(diaDiemTour, selectedRow, 5);
@@ -1266,7 +1157,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         model.setValueAt(soNgayDi, selectedRow, 8);
         model.setValueAt(ngayDiString, selectedRow, 9);
         model.setValueAt(ngayVeString, selectedRow, 10);
-        model.setValueAt(giaTour, selectedRow, 11);
+        model.setValueAt(giatour, selectedRow, 11);
 
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Tour Thành Công");
@@ -1276,9 +1167,12 @@ public class QlyTourDuLich extends javax.swing.JPanel {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbxLoaiTourActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for(int i = 0 ; i < tour.laySoLuongTour() ; i++){
+            model.addRow(new Object[]{tour.traTour(i).getTenTour(), tour.traTour(i).getMaTour(), tour.traTour(i).getLoaiTour(), tour.traTour(i).getTongsocho(), tour.traTour(i).getSochodu(), tour.traTour(i).getDiaDiemTour(), tour.traTour(i).getDiaDiemdi(), tour.traTour(i).getDiaDiemden(), tour.traTour(i).getSongaydi(), tour.traTour(i).getNgaydi(), tour.traTour(i).getNgayve(), tour.traTour(i).getGiaTour()});
+        }
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private void txtDiaDiemDenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDiaDiemDenActionPerformed
         // TODO add your handling code here:
@@ -1288,7 +1182,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private Date ngayDiDate;
     private Date ngayVeDate;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;
@@ -1307,7 +1201,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1322,7 +1215,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel14;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -1338,7 +1230,6 @@ public class QlyTourDuLich extends javax.swing.JPanel {
     private javax.swing.JTextField txtDiaDiemDi;
     private javax.swing.JTextField txtDiaDiemTour;
     private javax.swing.JTextField txtGiaTour;
-    private javax.swing.JTextField txtMaTour;
     private javax.swing.JTextField txtSoChoDu;
     private javax.swing.JTextField txtSoNgayDi;
     private javax.swing.JTextField txtTenTour;

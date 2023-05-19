@@ -665,7 +665,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?,?)";
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -688,7 +688,6 @@ public class config {
                 stmt.setLong(11, Tour.getGiaTour());
                 java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
                 stmt.setDate(12, ngayVe);
-                stmt.setString(13, "null");
                 stmt.execute();
 
                 // select all student
@@ -713,7 +712,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour() + "'";
+                String delete = "DELETE FROM tour WHERE MaTour = '" + Tour.getMaTour() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -726,7 +725,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour() + "'";
+                String delete = "DELETE FROM tour WHERE MaTour = '" + Tour.getMaTour() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -735,7 +734,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE matour = '" + Tour.getMaTour() + "'";
+                String delete = "DELETE FROM tour WHERE MaTour = '" + Tour.getMaTour() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -743,7 +742,7 @@ public class config {
             // Khởi tạo kết nối đến cơ sở dữ liệu
 
             //1 là thêm
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -766,7 +765,6 @@ public class config {
                 stmt.setLong(11, Tour.getGiaTour());
                 java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
                 stmt.setDate(12, ngayVe);
-                stmt.setString(13, "null");
                 stmt.execute();
                 // select all student
                 stmt = con.prepareStatement(selectAll);
@@ -1558,9 +1556,9 @@ public class config {
                 String tennv = rs.getString("TenNV");
                 String loainv = rs.getString("LoaiNV");
                 String diachi = Integer.toString(rs.getInt("DiaChi"));
-                String chucvu = rs.getString("ChucVu");
+                String chucVu = rs.getString("ChucVu");
                 
-                NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
+                NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucVu); // tao ra dữ liệu con 
                 danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
             }
             
@@ -1570,32 +1568,34 @@ public class config {
         return danhSachNhanVien;    
     }
 
-    public ArrayList<Tour> layDL_Tour() throws SQLException {
+    public ArrayList<Tour> layDL_Tour(){
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+                ArrayList<Tour> danhSachTour = new ArrayList<>();
+
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM tour");
-
-        ArrayList<Tour> danhSachTour = new ArrayList<>();
-
         while (rs.next()) {
-            Tour tour = new Tour();
-            tour.setMaTour(rs.getString("matour"));
-            tour.setTongsocho(rs.getInt("tongsocho"));
-            tour.setSochodu(rs.getInt("sochocontrong"));
-            tour.setTenTour(rs.getString("tentour"));
-            tour.setDiaDiemTour(rs.getString("diadiemtour"));
-            tour.setDiaDiemdi(rs.getString("diadiemdi"));
-            tour.setDiaDiemden(rs.getString("diadiemden"));
-            tour.setLoaiTour(rs.getString("loaitour"));
-            tour.setSongaydi(rs.getInt("songay"));
-            tour.setNgaydi(rs.getDate("ngaykhoihanh"));
-            tour.setGiaTour(rs.getInt("giatour"));
-            tour.setNgayve(rs.getDate("ngayketthuc"));
+            String matour = rs.getString("MaTour");
+            int tongSoCho = rs.getInt("TongSoCho");
+            int soChoDu = rs.getInt("SoChoConTrong");
+            String tentour = rs.getString("TenTour");
+            String diaDiemTour = rs.getString("DiaDiemTour");
+            String diaDiemDi = rs.getString("DiaDiemTour");
+            String diaDiemDen = rs.getString("DiaDiemDen");
+            String loaitour = rs.getString("LoaiTour");
+            int soNgay = rs.getInt("SoNgay");
+            Date ngayKH = rs.getDate("NgayKhoiHanh");
+            long giatour = rs.getInt("GiaTour");
+            Date ngayKT = rs.getDate("NgayKetThuc");
 
+            Tour tour = new Tour(tentour, matour, loaitour, tongSoCho, soChoDu, diaDiemTour, diaDiemDi, diaDiemDen, soNgay, ngayKH, ngayKT, giatour);
             danhSachTour.add(tour);
+        }
+        }catch(SQLException e){
+            
         }
         return danhSachTour;
     }
