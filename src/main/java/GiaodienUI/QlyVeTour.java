@@ -23,23 +23,14 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyVeTour extends javax.swing.JPanel {
-
-    ArrayList<VeTour> danhSachVT = new ArrayList<>();
-    /**
-     * Creates new form QlyVeTour
-     */
-    config con = new config();
+    
+    VeTour danhSachVT = new VeTour();
+    DefaultTableModel model = new DefaultTableModel();
     public QlyVeTour() {
         initComponents();
-        DefaultTableModel model = new DefaultTableModel();
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyVeTour.class.getName()).log(Level.SEVERE, null, ex);
-        }
         model = (DefaultTableModel) jTable1.getModel();
-        for (VeTour vt : danhSachVT) {
-            model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), vt.ngaydatve, vt.hansudung, vt.getTiengiam()});
+        for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
+            model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(), danhSachVT.traKH(i).ngaydatve, danhSachVT.traKH(i).hansudung, danhSachVT.traKH(i).getTiengiam()});
         }
     }
 
@@ -673,11 +664,7 @@ if(thang.equals("2")){
     }//GEN-LAST:event_cbxThangHanSDActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         try{
         String maVT = txtMaVeTour.getText();
         String maTour = txtMaTour.getText();
@@ -696,17 +683,14 @@ if(thang.equals("2")){
         calendar.set(namHSD,thangHSD ,ngayHSD);
         Date hanSDDate = calendar.getTime();
         
-             VeTour vt = new VeTour (maVT, maTour, tienGiam, ngayDVDate, hanSDDate);
-             danhSachVT.add(vt);
-             con.UpdateSQL_VeTour(vt, 1, "null");
-             
-             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+          
+           danhSachVT.themVeTour(maTour, maTour, tienGiam, ngayDVDate, hanSDDate);
   
              SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
              String ngayDVString = dateFormat.format(ngayDVDate);
              String hanSDString = dateFormat.format(hanSDDate);
-             
-             model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
+             danhSachVT.themVeTour(maTour, maTour, tienGiam, ngayDVDate, hanSDDate);
+             model.addRow(new Object[]{danhSachVT.traKH(maVT).getMavetour(), danhSachVT.traKH(maVT).getMatour(), ngayDVString, hanSDString, danhSachVT.traKH(maVT).getTiengiam()});
              jTable1.setModel(model);
              
              JOptionPane.showMessageDialog(null, "Thêm Vé Tour Thành Công");
@@ -722,11 +706,7 @@ if(thang.equals("2")){
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+       
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Xóa");
             return;
@@ -736,19 +716,15 @@ if(thang.equals("2")){
         
         String maVT = (String) model.getValueAt(selectedRow, 0);
         
-        VeTour veTourCanXoa = null;
-        for(VeTour vt : danhSachVT){
-            if(vt.getMavetour().equals(maVT)){
-                veTourCanXoa = vt;
-                break;
-            }
-        }
-        con.UpdateSQL_VeTour(veTourCanXoa, 2, "null");
-        if(veTourCanXoa == null){
-            JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
-        }
+        boolean a =danhSachVT.xoaVeTour(maVT);
         
-        danhSachVT.remove(veTourCanXoa);
+        if (a == false) {
+            JOptionPane.showMessageDialog(null, "Vé Tour Không Tồn Tại");
+            return;
+        }
+
+        
+       
         model.removeRow(selectedRow);
         
         jTable1.setModel(model);
@@ -760,42 +736,26 @@ if(thang.equals("2")){
         
         int selectedRow = jTable1.getSelectedRow();
         
-        try {
-            danhSachVT = con.layDL_VeTour();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null, "Vui Lòng Chọn 1 Hàng Để Sửa");
         }
         
-        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+         model = (DefaultTableModel) jTable1.getModel();
         
         String maVT = (String) model.getValueAt(selectedRow,0);
-        String old = maVT;
-        VeTour veTourCanSua = null;
-        for(VeTour vt : danhSachVT){
-            if(vt.getMavetour().equals(maVT)){
-                veTourCanSua = vt;
-                break;
-            }
-        }
         
-        
-        if(veTourCanSua == null){
-            JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
-        }
-        
-        String MaVT = JOptionPane.showInputDialog(null,"Nhập mã vé tour",veTourCanSua.getMavetour());
-        String MaTour = JOptionPane.showInputDialog(null,"Nhập mã tour",veTourCanSua.getMatour());
+        danhSachVT.traKH(maVT);
+        String MaVT = JOptionPane.showInputDialog(null,"Nhập mã vé tour",danhSachVT.traKH(maVT).getMavetour());
+        String MaTour = JOptionPane.showInputDialog(null,"Nhập mã tour",danhSachVT.traKH(maVT).getMatour());
     
-        String TienGiam = JOptionPane.showInputDialog(null,"Nhập tiền vé giảm",veTourCanSua.getTiengiam());
+        String TienGiam = JOptionPane.showInputDialog(null,"Nhập tiền vé giảm",danhSachVT.traKH(maVT).getTiengiam());
        
         JComboBox<String> NgayDV = new JComboBox<>();
         for(int i = 1 ; i < 32 ; i++){
             NgayDV.addItem(Integer.toString(i));
         }
-        NgayDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        NgayDV.setSelectedItem(danhSachVT.traKH(maVT).getNgaydatve());
         JOptionPane.showMessageDialog(null,NgayDV,"Chọn ngày đặt vé",JOptionPane.QUESTION_MESSAGE);
         int ngayDV = Integer.parseInt(NgayDV.getSelectedItem().toString());
         
@@ -803,13 +763,13 @@ if(thang.equals("2")){
         for(int i = 1 ; i < 13 ; i++){
             ThangDV.addItem(Integer.toString(i));
         }
-        ThangDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        ThangDV.setSelectedItem(danhSachVT.traKH(maVT).getNgaydatve());
         JOptionPane.showMessageDialog(null, ThangDV,"Chọn tháng đặt vé",JOptionPane.QUESTION_MESSAGE);
                 int thangDV = Integer.parseInt(ThangDV.getSelectedItem().toString());
 
         JComboBox<String> NamDV = new JComboBox<>();
         NamDV.addItem("2023");
-        NamDV.setSelectedItem(veTourCanSua.getNgaydatve());
+        NamDV.setSelectedItem(danhSachVT.traKH(maVT).getNgaydatve());
         JOptionPane.showMessageDialog(null, NamDV,"Chọn năm đặt vé",JOptionPane.QUESTION_MESSAGE);
                 int namDV = Integer.parseInt(NamDV.getSelectedItem().toString());
 
@@ -817,7 +777,7 @@ if(thang.equals("2")){
         for(int i = 1 ; i < 32 ; i++){
             NgayHSD.addItem(Integer.toString(i));
         }
-        NgayHSD.setSelectedItem(veTourCanSua.getHansudung());
+        NgayHSD.setSelectedItem(danhSachVT.traKH(maVT).getHansudung());
         JOptionPane.showMessageDialog(null, NgayHSD,"Chọn ngày hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
                 int ngayHSD = Integer.parseInt(NgayHSD.getSelectedItem().toString());
 
@@ -825,13 +785,13 @@ if(thang.equals("2")){
         for(int i = 1 ; i < 13 ; i++){
             ThangHSD.addItem(Integer.toString(i));
         }
-        ThangHSD.setSelectedItem(veTourCanSua.getHansudung());
+        ThangHSD.setSelectedItem(danhSachVT.traKH(maVT).getHansudung());
         JOptionPane.showMessageDialog(null, ThangHSD,"Chọn tháng hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
                 int thangHSD = Integer.parseInt(ThangHSD.getSelectedItem().toString());
 
         JComboBox<String> NamHSD = new JComboBox<>();
         NamHSD.addItem("2023");
-        NamHSD.setSelectedItem(veTourCanSua.getHansudung());
+        NamHSD.setSelectedItem(danhSachVT.traKH(maVT).getHansudung());
         JOptionPane.showMessageDialog(null, NamHSD,"Chọn năm hạn sử dụng",JOptionPane.QUESTION_MESSAGE);
                 int namHSD = Integer.parseInt(NamHSD.getSelectedItem().toString());
         
@@ -845,12 +805,8 @@ if(thang.equals("2")){
         String ngayDVString = dateFormat.format(ngayDVDate);
         String hanSDString = dateFormat.format(hanSDDate);
         
-        veTourCanSua.setMavetour(MaVT);
-                veTourCanSua.setMatour(MaTour);
- 
-        veTourCanSua.setTiengiam(Long.parseLong(TienGiam));
-        veTourCanSua.setNgaydatve(ngayDVDate);
-        veTourCanSua.setHansudung(hanSDDate);
+        
+        danhSachVT.suaVeTour(MaTour, MaTour, MaTour, thangHSD, ngayDVDate, hanSDDate);
 
         model.setValueAt(MaVT,selectedRow,0);
         model.setValueAt(MaTour,selectedRow,1);
@@ -860,7 +816,7 @@ if(thang.equals("2")){
         model.setValueAt(hanSDString,selectedRow,3);
         
         jTable1.setModel(model);
-        con.UpdateSQL_VeTour(veTourCanSua, 3, old);
+        
         JOptionPane.showMessageDialog(null,"Sửa Thông Tin Vé Tour Thành Công");
         
     }//GEN-LAST:event_btnSuaActionPerformed
@@ -869,18 +825,9 @@ if(thang.equals("2")){
         String maNVCanTim = txtMaVeTour.getText();
 
         // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<VeTour> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (VeTour nv : danhSachVT) {
-            if (nv.getMavetour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
-
+        danhSachVT.timKhachHangUnlimit(maNVCanTim);
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (danhSachVT.timKhachHangUnlimit(maNVCanTim).isEmpty()) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
 
@@ -888,14 +835,13 @@ if(thang.equals("2")){
         DefaultTableModel model = new DefaultTableModel();
         model.addColumn("Mã vé Tour");
         model.addColumn("Mã Tour");
-      
         model.addColumn("Ngày đặt vé");
         model.addColumn("Hạn sử dụng");
         model.addColumn("Tiền vé giảm");
         
 
         // Thêm các khách hàng tìm được vào model
-        for (VeTour vt : ketQuaTimKiem) {
+        for (VeTour vt : danhSachVT.timKhachHangUnlimit(maNVCanTim)) {
              model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
         }
 

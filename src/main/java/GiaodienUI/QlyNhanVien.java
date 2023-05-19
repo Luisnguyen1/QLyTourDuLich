@@ -19,25 +19,20 @@ import static org.apache.poi.hssf.usermodel.HeaderFooter.file;
 import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
 
 public class QlyNhanVien extends javax.swing.JPanel {
-
+    NhanVien danhSachNV = new NhanVien();
     DefaultTableModel model = new DefaultTableModel();
 
-    ArrayList<NhanVien> danhSachNV = new ArrayList<NhanVien>();
-    config con = new config();
+   
 
     /**
      * Creates new form QlyNhanVien
      */
     public QlyNhanVien() {
         initComponents();
-        try {
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        
         model = (DefaultTableModel) jTable1.getModel();
-        for (NhanVien nv : danhSachNV) {
-            model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+        for (int i = 0; i < danhSachNV.laySoLuongNhanVien(); i++) {
+            model.addRow(new Object[]{danhSachNV.traNV(i).getTennv(), danhSachNV.traNV(i).getManv(), danhSachNV.traNV(i).getDiachi(), danhSachNV.traNV(i).getLoainv(), danhSachNV.traNV(i).getChucvu()});
         }
 
     }
@@ -80,6 +75,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnImport = new javax.swing.JButton();
         btnExport = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(167, 169, 177));
 
@@ -330,7 +326,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(cbxLoaiNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 25, Short.MAX_VALUE)
+                        .addComponent(cbxLoaiNhanVien, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
                         .addGap(61, 61, 61))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -344,7 +340,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
                             .addComponent(btnThem)
                             .addComponent(btnSua)
                             .addComponent(btnXoa))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 30, Short.MAX_VALUE)
                         .addComponent(jSeparator2, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(btnTimKiem)))
             .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -394,6 +390,16 @@ public class QlyNhanVien extends javax.swing.JPanel {
             }
         });
 
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -410,7 +416,9 @@ public class QlyNhanVien extends javax.swing.JPanel {
                         .addContainerGap()
                         .addComponent(btnImport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -423,7 +431,9 @@ public class QlyNhanVien extends javax.swing.JPanel {
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(btnExport)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnExport)
+                        .addComponent(btnReset))
                     .addComponent(btnImport))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
@@ -451,21 +461,14 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxChucVuActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
-        try {
-            // Lấy thông tin từ GUI
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        String maNV = txtMaNhanVien.getText();
+        
         String hoTen = txtHoTen.getText();
         String diaChi = txtDiaChi.getText();
         String loaiNV = cbxLoaiNhanVien.getSelectedItem().toString();
         String chucVu = cbxChucVu.getSelectedItem().toString();
 
-        if (maNV.equals("")) {
-            JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
-        } else if (hoTen.equals("")) {
+        
+        if (hoTen.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
         } else if (diaChi.equals("")) {
             JOptionPane.showMessageDialog(null, "Nhập Đầy Đủ Thông Tin");
@@ -474,24 +477,22 @@ public class QlyNhanVien extends javax.swing.JPanel {
         } else if (chucVu.equals("Chức Vụ")) {
             JOptionPane.showMessageDialog(null, "Chọn Thông Tin Cụ Thể");
         } else {
-            // Tạo đối tượng DTO
-            NhanVien nv = new NhanVien(hoTen, maNV, diaChi, loaiNV, chucVu);
-
-            // Thêm đối tượng vào danh sách
-            danhSachNV.add(nv);
-            con.UpdateSQL_NhanVien(nv, 1, "null");
+       
+            int maxMaNV = danhSachNV.laySoLuongNhanVien();
+            String maNV = "NV" + String.format("%04d", maxMaNV + 1);
+       
+            danhSachNV.themNhanVien(maNV, maNV, diaChi, loaiNV, chucVu);
             // Tạo đối tượng DefaultTableModel
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+
 
             // thêm đối tượng KhachHang vào model
-            model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+            model.addRow(new Object[]{danhSachNV.traNV(maNV).getTennv(), danhSachNV.traNV(maNV).getManv(), danhSachNV.traNV(maNV).getDiachi(), danhSachNV.traNV(maNV).getLoainv(), danhSachNV.traNV(maNV).getChucvu()});
 
 // cập nhật lại model cho JTable
             jTable1.setModel(model);
 
 // thông báo thành công
             JOptionPane.showMessageDialog(null, "Thêm Nhân Viên Thành Công");
-            txtMaNhanVien.setText("");
             txtHoTen.setText("");
             txtDiaChi.setText("");
         }
@@ -499,13 +500,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnThemActionPerformed
 
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
-        // lấy chỉ số hàng được chọn trong JTable
-        try {
-            // Lấy thông tin từ GUI
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+      
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -520,25 +515,8 @@ public class QlyNhanVien extends javax.swing.JPanel {
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
 
-// tìm khách hàng trong danh sách dựa vào mã
-        NhanVien nhanVienCanXoa = null;
-        for (NhanVien nv : danhSachNV) {
-            if (nv.getManv().equals(maNV)) {
-                nhanVienCanXoa = nv;
-                break;
-            }
-        }
-
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanXoa == null) {
-            JOptionPane.showMessageDialog(null, "Nhân Viên Không Tồn Tại");
-            return;
-        }
-
-// xóa khách hàng khỏi danh sách
-        danhSachNV.remove(nhanVienCanXoa);
-        con.UpdateSQL_NhanVien(nhanVienCanXoa, 2, "null");
-// xóa hàng được chọn trong model
+        boolean a = danhSachNV.xoaNhanVien(maNV);
+        
         model.removeRow(selectedRow);
 
 // cập nhật lại model cho JTable
@@ -550,14 +528,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnXoaActionPerformed
 
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
-        // lấy chỉ số hàng được chọn trong JTable
-        // lấy chỉ số hàng được chọn trong JTable
-        try {
-            // Lấy thông tin từ GUI
-            danhSachNV = con.layDL_NhanVien();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
-        }
+
         int selectedRow = jTable1.getSelectedRow();
 
 // nếu không có hàng nào được chọn, thông báo lỗi và kết thúc
@@ -571,82 +542,54 @@ public class QlyNhanVien extends javax.swing.JPanel {
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
-        String oldNV = maNV;
-// tìm khách hàng trong danh sách dựa vào mã
-        NhanVien nhanVienCanSua = null;
-        for (NhanVien nv : danhSachNV) {
-            if (nv.getManv().equals(maNV)) {
-                nhanVienCanSua = nv;
-                break;
-            }
-        }
 
-// nếu không tìm thấy khách hàng, thông báo lỗi và kết thúc
-        if (nhanVienCanSua == null) {
-            JOptionPane.showMessageDialog(null, "Nhân Viên Không Tồn Tại");
-            return;
-        }
-
+        danhSachNV.traNV(maNV);
 // hiển thị form sửa thông tin khách hàng
-        String tenNV = JOptionPane.showInputDialog(null, "Nhập tên nhân viên", nhanVienCanSua.getTennv());
-        String maNVNew = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", maNV);
-        String diaChi = JOptionPane.showInputDialog(null, "Nhập địa chỉ", nhanVienCanSua.getDiachi());
+        String tenNV = JOptionPane.showInputDialog(null, "Nhập tên nhân viên", danhSachNV.traNV(maNV).getTennv());
+        String maNVNew = JOptionPane.showInputDialog(null, "Nhập mã nhân viên", danhSachNV.traNV(maNV).getManv());
+        String diaChi = JOptionPane.showInputDialog(null, "Nhập địa chỉ", danhSachNV.traNV(maNV).getDiachi());
 // thêm ComboBox để chọn loại nhân viên
         JComboBox<String> cbxLoaiNhanVien = new JComboBox<>();
         cbxLoaiNhanVien.addItem("Nhân Viên Bán Hàng");
         cbxLoaiNhanVien.addItem("Quản Lý Kho");
         cbxLoaiNhanVien.addItem("Nhân Viên Văn Phòng");
-        cbxLoaiNhanVien.setSelectedItem(nhanVienCanSua.getLoainv());
+        cbxLoaiNhanVien.setSelectedItem(danhSachNV.traNV(maNV).getLoainv());
         JOptionPane.showMessageDialog(null, cbxLoaiNhanVien, "Chọn loại nhân viên", JOptionPane.QUESTION_MESSAGE);
 
-        String loainv = (String) cbxLoaiNhanVien.getSelectedItem();
+        String loaiNV = (String) cbxLoaiNhanVien.getSelectedItem();
 // thêm ComboBox để chọn chức vụ
         JComboBox<String> cbxChucVu = new JComboBox<>();
         cbxChucVu.addItem("Nhân Viên");
         cbxChucVu.addItem("Quản Lý");
-        cbxChucVu.setSelectedItem(nhanVienCanSua.getChucvu());
+        cbxChucVu.setSelectedItem(danhSachNV.traNV(maNV).getChucvu());
         JOptionPane.showMessageDialog(null, cbxChucVu, "Chọn chức vụ", JOptionPane.QUESTION_MESSAGE);
 
-        String chucvu = (String) cbxChucVu.getSelectedItem();
+        String chucVu = (String) cbxChucVu.getSelectedItem();
 
 // cập nhật thông tin khách hàng
-        nhanVienCanSua.setTennv(tenNV);
-        nhanVienCanSua.setManv(maNVNew);
-        nhanVienCanSua.setDiachi(diaChi);
-        nhanVienCanSua.setLoainv(loainv);
-        nhanVienCanSua.setChucvu(chucvu);
+       danhSachNV.suaNhanVien(maNV, tenNV, maNVNew, diaChi, loaiNV, chucVu);
 
 // cập nhật lại model cho JTable
         model.setValueAt(tenNV, selectedRow, 0);
         model.setValueAt(maNVNew, selectedRow, 1);
         model.setValueAt(diaChi, selectedRow, 2);
-        model.setValueAt(loainv, selectedRow, 3);
-        model.setValueAt(chucvu, selectedRow, 4);
-
-        con.UpdateSQL_NhanVien(nhanVienCanSua, 3, oldNV);
+        model.setValueAt(loaiNV, selectedRow, 3);
+        model.setValueAt(chucVu, selectedRow, 4);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
 
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimKiemActionPerformed
-        String maNVCanTim = txtMaNhanVien.getText();
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
-        // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<NhanVien> ketQuaTimKiem = new ArrayList<>();
-
-        // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (NhanVien nv : danhSachNV) {
-            if (nv.getManv().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
-            }
-        }
+// Tạo một danh sách để lưu khách hàng tìm được
+       danhSachNV.timNhanVienUnlimit(dkTim);
 
 // Kiểm tra kết quả tìm kiếm
-        if (ketQuaTimKiem.isEmpty()) {
+        if (danhSachNV.timNhanVienUnlimit(dkTim) == null) {
             JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
         } else {
-
             // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("Họ và Tên");
@@ -656,8 +599,9 @@ public class QlyNhanVien extends javax.swing.JPanel {
             model.addColumn("Chức Vụ");
 
             // Thêm các khách hàng tìm được vào model
-            for (NhanVien nv : ketQuaTimKiem) {
-                model.addRow(new Object[]{nv.getTennv(), nv.getManv(), nv.getDiachi(), nv.getLoainv(), nv.getChucvu()});
+            for (NhanVien kh : danhSachNV.timNhanVienUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getTennv(), kh.getManv(), kh.getDiachi(), kh.getLoainv(),kh.getChucvu()});
             }
 
             // Cập nhật lại model cho JTable
@@ -691,10 +635,19 @@ public class QlyNhanVien extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btnImportActionPerformed
 
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < danhSachNV.laySoLuongNhanVien(); i++) {
+            model.addRow(new Object[]{danhSachNV.traNV(i).getTennv(), danhSachNV.traNV(i).getManv(), danhSachNV.traNV(i).getDiachi(), danhSachNV.traNV(i).getLoainv(), danhSachNV.traNV(i).getChucvu()});
+        }
+        jTable1.setModel(model);
+    }//GEN-LAST:event_btnResetActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnExport;
     private javax.swing.JButton btnImport;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnTimKiem;

@@ -151,13 +151,15 @@ public class PhuongTien implements Comparable<PhuongTien>{
     
     private ArrayList<PhuongTien>danhSachPT = new ArrayList<PhuongTien>();
     config con = new config();
-    public PhuongTien() throws SQLException 
+    public PhuongTien() 
     {
         this.danhSachPT = con.layDL_PhuongTien(); //cach khai bao 1 arrayList
     }
+    
     public PhuongTien traPT(int i){
         return danhSachPT.get(i);
     }
+    
     public PhuongTien traPT(String maPT){
         for (PhuongTien phuongTien : danhSachPT) {
             if (maPT.equalsIgnoreCase(phuongTien.getMapt())) {

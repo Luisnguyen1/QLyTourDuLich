@@ -217,7 +217,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = '" + nhanvien.getManv() + "'";
+                String delete = "DELETE FROM nhanvien WHERE MaNV = '" + nhanvien.getManv() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -230,7 +230,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM nhanvien WHERE manv = '" + MaNV_OLD + "'";
+                String delete = "DELETE FROM nhanvien WHERE MaNV = '" + MaNV_OLD + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -609,7 +609,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt() + "'";
+                String delete = "DELETE FROM phuongtien WHERE MaPT = '" + PhuongTien.getMapt() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -621,7 +621,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM phuongtien WHERE maphuongtien = '" + PhuongTien.getMapt() + "'";
+                String delete = "DELETE FROM phuongtien WHERE MaPT = '" + PhuongTien.getMapt() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1308,10 +1308,10 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getDdtour());
                 stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(3, fb.getMaks());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
+                stmt.setString(5, fb.getKhoihanh());
+                stmt.setInt(6, fb.getThutungay());
                 stmt.setLong(7,fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
@@ -1368,10 +1368,10 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getDdtour());
                 stmt.setString(2, fb.getMatour());
-                stmt.setString(3, fb.getKhoihanh());
+                stmt.setString(3, fb.getMaks());
                 stmt.setString(4, fb.getNoiden());
-                stmt.setInt(5, fb.getThutungay());
-                stmt.setString(6, fb.getMaks());
+                stmt.setString(5, fb.getKhoihanh());
+                stmt.setInt(6, fb.getThutungay());
                 stmt.setLong(7,fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
@@ -1516,15 +1516,15 @@ public class config {
         return danhSachTaiKhoan;
     }
 
-    public ArrayList<VeTour> layDL_VeTour() throws SQLException {
-        // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+    public ArrayList<VeTour> layDL_VeTour()  {
+        ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
+        try (Connection con= DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM ve");
 
-        ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
+        
 
         while (rs.next()) {
             VeTour vt = new VeTour();
@@ -1535,11 +1535,14 @@ public class config {
             vt.setTiengiam((int) rs.getLong("tiengiam"));
             danhSachVeTour.add(vt);
         }
+        } catch (SQLException ex) {
+            //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+        }
         return danhSachVeTour;
     }
 
     //--------------------------------------------------------------------
-    public ArrayList<NhanVien> layDL_NhanVien() throws SQLException {
+    public ArrayList<NhanVien> layDL_NhanVien()  {
          ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
         try (Connection con= DriverManager.getConnection(url, user, password)){
             
@@ -1551,11 +1554,11 @@ public class config {
             
             while (rs.next()) {
                 
-                String manv = rs.getString("Manv");
-                String tennv = rs.getString("Tennv");
-                String loainv = rs.getString("Loai nv");
+                String manv = rs.getString("MaNV");
+                String tennv = rs.getString("TenNV");
+                String loainv = rs.getString("LoaiNV");
                 String diachi = Integer.toString(rs.getInt("DiaChi"));
-                String chucvu = rs.getString("chucvu");
+                String chucvu = rs.getString("ChucVu");
                 
                 NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
                 danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
@@ -1597,25 +1600,31 @@ public class config {
         return danhSachTour;
     }
 
-    public ArrayList<PhuongTien> layDL_PhuongTien() throws SQLException {
+    public ArrayList<PhuongTien> layDL_PhuongTien() {
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+        
+         ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM phuongtien");
 
-        ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+       
 
         while (rs.next()) {
-            PhuongTien pt = new PhuongTien();
-            pt.setMapt(rs.getString("MaPT"));
-            pt.setLoaipt(rs.getString("LoaiPT"));
-            pt.setBienso(rs.getString("TenPT"));
-            pt.setTongsocho(rs.getLong("SoChoTrong"));
-            pt.setSochocondu(rs.getLong("SoChoConDu"));
+            
+            String Mapt = rs.getString("MaPT");
+            String Loaipt = rs.getString("LoaiPT");
+            String Tenpt = rs.getString("TenPT");
+            long Tongsocho = rs.getLong("SoChoTrong");
+            long Sochodu = rs.getLong("SoChoConDu");
 
+            PhuongTien pt = new PhuongTien(Mapt,Loaipt,Tenpt,Tongsocho,Sochodu);
             danhSachTour.add(pt);
+        }
+        }catch(SQLException e){
+            
         }
         return danhSachTour;
     }
@@ -1701,10 +1710,11 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiemvuichoi");
             while (rs.next()) {
-                DiaDiemVuiChoi fb = new DiaDiemVuiChoi();
-                fb.setDiaDiemTour(rs.getString("MaDDVC"));
-                fb.setTenDiaDiem(rs.getString("TenDDVC"));
-                fb.setMaDiaDiem(rs.getString("ThuocDiaDiemTour"));
+                
+                String maddvc = rs.getString("MaDDVC");
+                String tenddvc = rs.getString("TenDDVC");
+                String diadiemTour = rs.getString("ThuocDiaDiemTour");
+                DiaDiemVuiChoi fb = new DiaDiemVuiChoi(diadiemTour,tenddvc,maddvc);
                 DiaDiemVuiChoi.add(fb);
             }
         } catch (SQLException ex) {
@@ -1719,11 +1729,12 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
             while (rs.next()) {
-                DiaDiem fb = new DiaDiem();
-                fb.setMadd(rs.getString("MaDD"));
-                fb.setTendd(rs.getString("TenDD"));
-                fb.setThuoctinh(rs.getString("ThuocTinh"));
-                fb.setKhuvuc(rs.getString("KhuVuc"));
+                String maDD = rs.getString("MaDD");
+                String tenDD = rs.getString("TenDD");
+                String thuocTinh = rs.getString("ThuocTinh");
+                String khuVuc = rs.getString("KhuVuc");
+                
+                DiaDiem fb = new DiaDiem(maDD,tenDD,thuocTinh,khuVuc);
                 dd.add(fb);
             }
         } catch (SQLException ex) {

@@ -61,7 +61,7 @@ public class DiaDiemVuiChoi implements Comparable<DiaDiemVuiChoi>{
     private ArrayList<DiaDiemVuiChoi> danhSach = new ArrayList<>();
     private config con = new config();
 
-    public DiaDiemVuiChoi() throws SQLException {
+    public DiaDiemVuiChoi(){
         this.danhSach = con.LayDL_DiaDiemVuiChoi();
     }
     
