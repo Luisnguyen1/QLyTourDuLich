@@ -42,7 +42,8 @@ public class MuaVe extends javax.swing.JPanel {
         model = (DefaultTableModel) jTable1.getModel();
         
         for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
-            System.err.println(danhSachVT.traKH(i).getMatour());
+            System.out.println(danhSachVT.traKH(i).getMatour());
+            System.out.println("----------------------------------");
             System.out.println(danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour());
             //model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
         }

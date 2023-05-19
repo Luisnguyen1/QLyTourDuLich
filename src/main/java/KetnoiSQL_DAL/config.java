@@ -665,7 +665,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -683,12 +683,10 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                java.sql.Date ngayDi = new java.sql.Date(Tour.getNgaydi().getTime());
-                stmt.setDate(10, ngayDi);
-                stmt.setLong(11, Tour.getGiaTour());
-                java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
-                stmt.setDate(12, ngayVe);
                 
+                stmt.setLong(10, Tour.getGiaTour());
+                
+                stmt.setString(11, "null");
                 stmt.execute();
 
                 // select all student
@@ -731,19 +729,11 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            try {
-
-                con = DriverManager.getConnection(url, user, password);
-                Statement stmt = con.createStatement();
-                String delete = "DELETE FROM tour WHERE MaTour = '" + Tour.getMaTour() + "'";
-                stmt.executeUpdate(delete);
-            } catch (SQLException ex) {
-                Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
-            }
+            
             // Khởi tạo kết nối đến cơ sở dữ liệu
 
             //1 là thêm
-            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?,?,?,?,?,?,?,?,?,?)";
+            String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
@@ -761,11 +751,10 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                java.sql.Date ngayDi = new java.sql.Date(Tour.getNgaydi().getTime());
-                stmt.setDate(10, ngayDi);
-                stmt.setLong(11, Tour.getGiaTour());
-                java.sql.Date ngayVe = new java.sql.Date(Tour.getNgayve().getTime());
-                stmt.setDate(12, ngayVe);
+                
+                stmt.setLong(10, Tour.getGiaTour());
+                
+                stmt.setString(11, "null");
                 stmt.execute();
                 // select all student
                 stmt = con.prepareStatement(selectAll);
@@ -1593,11 +1582,11 @@ public class config {
             String ddDen = rs.getString("DiaDiemDen");
             String LoaiTour = rs.getString("LoaiTour");
             int Songaydi = rs.getInt("SoNgay");
-            Date Ngaydi = rs.getDate("NgayKhoiHanh");
+            
             long GiaTour = rs.getLong("GiaTour");
-            Date Ngayve = rs.getDate("NgayKetThuc");
+            
 
-            Tour tour = new Tour(TenTour,MaTour,LoaiTour,tongSocho,soChodu,diadiemTour,diaDiemDi,ddDen,Songaydi,Ngaydi,Ngayve,GiaTour);
+            Tour tour = new Tour(TenTour,MaTour,LoaiTour,tongSocho,soChodu,diadiemTour,diaDiemDi,ddDen,Songaydi,GiaTour);
             danhSachTour.add(tour);
         }
         }catch(SQLException e){
