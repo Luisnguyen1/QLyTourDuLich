@@ -650,8 +650,10 @@ public class QlyVeTour extends javax.swing.JPanel {
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
 
         try {
-            String maVT = txtMaVeTour.getText();
-            String maTour = txtMaTour.getText();
+            int maxMaVT = danhSachVT.laySoLuongVeTour();
+            int maxMaTour = danhSachVT.laySoLuongVeTour();
+            String maVT = "VT" + String.format("%04d", maxMaVT + 1);
+            String maTour = "Tour" + String.format("%04d", maxMaTour + 1);
 
             long tienGiam = Long.parseLong(txtTienVeGiam.getText());
             int ngayDV = Integer.parseInt(cbxNgayDatVe.getSelectedItem().toString());
@@ -674,9 +676,6 @@ public class QlyVeTour extends javax.swing.JPanel {
             model.addRow(new Object[]{danhSachVT.traKH(maVT).getMavetour(), danhSachVT.traKH(maVT).getMatour(), ngayDVString, hanSDString, danhSachVT.traKH(maVT).getTiengiam()});
             jTable1.setModel(model);
             JOptionPane.showMessageDialog(null, "Thêm Vé Tour Thành Công");
-
-            txtMaVeTour.setText("");
-            txtMaTour.setText("");
 
             txtTienVeGiam.setText("");
             
