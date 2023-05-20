@@ -53,7 +53,7 @@ public class menu extends JComponent{
         {"Dashboard"},        
         {"Quản Lý","Quản Lý Nhân Viên","Quản Lý Phương Tiện","Quản Lý Vé Tour","Quản Lý Tour Du Lịch","Quản Lý Hóa Đơn","Quản Lý Khách Hàng","Quản Lý Địa Điểm Tour","Quản Lý Địa Điểm Vui Chơi","Quản Lý Khách Sạn","Quản Lý Chi Tiết Tour","Quản Lý Phản Hồi","Quản Lý Tài Khoản"},
         {"Thống Kê","Thống Kê Theo Ngày","Thống Kê Theo Tháng"},
-        {"Đặt Vé","Chọn Vé","Điền Thông Tin","Xuất Hóa Đơn"},        
+        {"Đặt Vé"},        
         {"Khuyến Mãi"},      
         {"Liên Hệ"},
         {"Đăng Xuất"},

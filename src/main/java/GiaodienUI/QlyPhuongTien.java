@@ -314,7 +314,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Tên Phương Tiện", "Loại Phương Tiện", "Mã Phương Tiện", "Tổng Số Chỗ", "Số Chỗ Dư"
+                "Tên Phương Tiện", "Loại Phương Tiện", "Mã Phương Tiện", "Số Chỗ Dư", "Tổng Số Chỗ"
             }
         ) {
             Class[] types = new Class [] {

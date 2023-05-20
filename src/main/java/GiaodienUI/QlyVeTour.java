@@ -289,12 +289,13 @@ public class QlyVeTour extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addComponent(jSeparator3, javax.swing.GroupLayout.PREFERRED_SIZE, 11, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnThem)
-                    .addComponent(btnXoa)
-                    .addComponent(btnSua)
-                    .addComponent(btnTimKiem)
-                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(btnReset, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(btnThem)
+                        .addComponent(btnXoa)
+                        .addComponent(btnSua)
+                        .addComponent(btnTimKiem)))
                 .addGap(16, 16, 16))
         );
 
@@ -619,9 +620,9 @@ public class QlyVeTour extends javax.swing.JPanel {
             int namHSD = Integer.parseInt(cbxNamHanSD.getSelectedItem().toString());
 
             Calendar calendar = Calendar.getInstance();
-            calendar.set(namDV, thangDV, ngayDV);
+            calendar.set(namDV, thangDV - 1, ngayDV);
             Date ngayDVDate = calendar.getTime();
-            calendar.set(namHSD, thangHSD, ngayHSD);
+            calendar.set(namHSD, thangHSD - 1, ngayHSD);
             Date hanSDDate = calendar.getTime();
 
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -728,9 +729,9 @@ public class QlyVeTour extends javax.swing.JPanel {
         int namHSD = Integer.parseInt(NamHSD.getSelectedItem().toString());
 
         Calendar calendar = Calendar.getInstance();
-        calendar.set(namDV, thangDV, ngayDV);
+        calendar.set(namDV, thangDV -1 , ngayDV);
         Date ngayDVDate = calendar.getTime();
-        calendar.set(namHSD, thangHSD, ngayHSD);
+        calendar.set(namHSD, thangHSD - 1, ngayHSD);
         Date hanSDDate = calendar.getTime();
 
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
