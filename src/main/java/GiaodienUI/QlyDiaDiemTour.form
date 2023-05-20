@@ -284,8 +284,13 @@
         <Component class="javax.swing.JComboBox" name="cbxTinhThanhPho">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="1">
+              <StringArray count="6">
                 <StringItem index="0" value="Ch&#x1ecd;n T&#x1ec9;nh / Th&#xe0;nh Ph&#x1ed1;"/>
+                <StringItem index="1" value="Th&#xe0;nh ph&#x1ed1; H&#x1ed3; Ch&#xed; Minh"/>
+                <StringItem index="2" value="B&#xe0; R&#x1ecb;a - V&#x169;ng T&#xe0;u"/>
+                <StringItem index="3" value="&#x110;&#xe0; N&#x1eb5;ng"/>
+                <StringItem index="4" value="Hu&#x1ebf;"/>
+                <StringItem index="5" value="H&#xe0; N&#x1ed9;i"/>
               </StringArray>
             </Property>
           </Properties>

@@ -95,7 +95,7 @@ public class Main extends javax.swing.JFrame {
                     showForm(new QlyThongKeTheoThang());
                 }
 
-                if (index == 3 && subIndex == 1) {
+                if (index == 3 ) {
                     System.out.println(index + " " + subIndex);
                     MuaVe muave = new MuaVe();
                     showForm(muave);

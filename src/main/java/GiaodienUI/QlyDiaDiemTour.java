@@ -154,7 +154,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
             }
         });
 
-        cbxTinhThanhPho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Tỉnh / Thành Phố" }));
+        cbxTinhThanhPho.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Chọn Tỉnh / Thành Phố", "Thành phố Hồ Chí Minh", "Bà Rịa - Vũng Tàu", "Đà Nẵng", "Huế", "Hà Nội" }));
         cbxTinhThanhPho.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxTinhThanhPhoActionPerformed(evt);
