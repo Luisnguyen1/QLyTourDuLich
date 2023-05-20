@@ -164,11 +164,11 @@ public class QlyHoaDon extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Mã Hóa Đơn", "Mã Nhân Viên", "Ngày Xuất", "Tổng Tiền"
+                "Mã Hóa Đơn", "Mã Nhân Viên", "Tổng tiền", "Ngày xuất"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.Object.class, java.lang.String.class, java.lang.Long.class
+                java.lang.String.class, java.lang.Object.class, java.lang.Long.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {

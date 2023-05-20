@@ -227,8 +227,8 @@
               <Table columnCount="4" rowCount="0">
                 <Column editable="true" title="M&#xe3; H&#xf3;a &#x110;&#x1a1;n" type="java.lang.String"/>
                 <Column editable="true" title="M&#xe3; Nh&#xe2;n Vi&#xea;n" type="java.lang.Object"/>
-                <Column editable="true" title="Ng&#xe0;y Xu&#x1ea5;t" type="java.lang.String"/>
-                <Column editable="true" title="T&#x1ed5;ng Ti&#x1ec1;n" type="java.lang.Long"/>
+                <Column editable="true" title="T&#x1ed5;ng ti&#x1ec1;n" type="java.lang.Long"/>
+                <Column editable="true" title="Ng&#xe0;y xu&#x1ea5;t" type="java.lang.String"/>
               </Table>
             </Property>
             <Property name="columnModel" type="javax.swing.table.TableColumnModel" editor="org.netbeans.modules.form.editors2.TableColumnModelEditor">

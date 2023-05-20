@@ -40,20 +40,14 @@ import net.miginfocom.layout.AC;
 public class TestQLY {
     public static void main(String[] args) throws SQLException {
         // Sử dụng bố cục mặc định của FlowLayout
-        /*JFrame js = new JFrame();
+        JFrame js = new JFrame();
         js.setTitle("Quản lý");
-        QlyNhanVien ql = new QlyNhanVien();
-        
+        TourDuLich_Details ql = new TourDuLich_Details();
         js.add(ql);
         js.setLocation(100, 100); // đặt vị trí
         js.setSize(930, 580); // đặt kích thước
-        js.setVisible(true);*/
-        long millis = System.currentTimeMillis();
-
-            // creating a new object of the class Date  
-            java.sql.Date date = new java.sql.Date(millis);
-            System.out.println(date);
-
+        js.setVisible(true);
+       
 
     }    
 }

@@ -1849,7 +1849,7 @@ public class config {
                 String maKS = rs.getString("MaKS");
                 long tienAn = rs.getLong("TienAn");
                 long tienPhong = rs.getLong("TienPhong");
-                long phiDV = rs.getLong("PhiDichVu");
+                long phiDV = rs.getLong("TienDichVu");
                 
                 ChiTietTourDuLich ctt = new ChiTietTourDuLich(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
                 
