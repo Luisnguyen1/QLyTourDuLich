@@ -20,6 +20,7 @@ import java.util.logging.Logger;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import javax.swing.JComponent;
+import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.SwingConstants;
 import javax.swing.border.EmptyBorder;
@@ -32,6 +33,7 @@ public class Main extends javax.swing.JFrame {
      * Creates new form Main
      */
     private static String manv;
+
     public Main() {
         initComponents();
 
@@ -52,6 +54,9 @@ public class Main extends javax.swing.JFrame {
         URL url = getClass().getResource("menu-bar.png");
         ImageIcon icon = new ImageIcon(url);
         jButton1.setIcon(icon);
+
+        setResizable(false);
+
 
         menu1.setEvent(new MenuEvent() {
             @Override
@@ -129,23 +134,23 @@ public class Main extends javax.swing.JFrame {
                     System.out.println(index + " " + subIndex);
                     showForm(new QlyKhuyenMai());
                 }
-                if (index == 1 && subIndex == 11) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 11) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new QlyPhanHoiKhachHang());
                 }
-                if (index == 1 && subIndex == 12) {                    
-                    System.out.println(index +" "+subIndex);
+                if (index == 1 && subIndex == 12) {
+                    System.out.println(index + " " + subIndex);
                     try {
                         showForm(new QlyTaiKhoan());
                     } catch (SQLException ex) {
                         Logger.getLogger(Main.class.getName()).log(Level.SEVERE, null, ex);
                     }
                 }
-                if(index == 5){
-                    System.out.println(index +" "+subIndex);
+                if (index == 5) {
+                    System.out.println(index + " " + subIndex);
                     showForm(new Contact());
                 }
-                if(index == 6){                    
+                if (index == 6) {
                     DX();
                 }
 

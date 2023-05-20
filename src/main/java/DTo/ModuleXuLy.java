@@ -54,6 +54,8 @@ public class ModuleXuLy {
     }
 
     public void dangXuat(JFrame mot) {
+        String a = setup.layDL_QTC();
+        setup.UpdateSQL_QTC(2, a);
         login main = new login();
         main.setVisible(true);
         mot.setVisible(false);
