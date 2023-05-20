@@ -13,15 +13,13 @@ import java.util.ArrayList;
  */
 public class FeedBack {
     private String hoten;
-    private String makh;
     private String email;
     private String sdt;
     private String diachi;
     private String noidung;
 
-    public FeedBack(String hoten,String makh, String email, String sdt, String diachi, String noidung) {
+    public FeedBack(String hoten, String email, String sdt, String diachi, String noidung) {
         this.hoten = hoten;
-        this.makh = makh;
         this.email = email;
         this.sdt = sdt;
         this.diachi = diachi;
@@ -36,19 +34,11 @@ public class FeedBack {
         this.hoten = hoten;
     }
 
-    public String getMakh() {
-        return makh;
-    }
-
-    public void setMakh(String makh) {
-        this.makh = makh;
-    }
-
-    
     public String getEmail() {
         return email;
     }
 
+    
     public void setEmail(String email) {
         this.email = email;
     }
@@ -107,9 +97,9 @@ public class FeedBack {
     
     
     
-    public void themFeedBack(String hoten, String makh, String email, String sdt, String diachi, String noidung)
+    public void themFeedBack(String hoten, String email, String sdt, String diachi, String noidung)
     {
-        FeedBack kh = new FeedBack( hoten, makh,  email,  sdt,  diachi,  noidung);
+        FeedBack kh = new FeedBack( hoten,  email,  sdt,  diachi,  noidung);
         this.danhSach.add(kh);   
         con.UpdateSQL_FeedBack(kh, 1, "null");
     }
@@ -153,13 +143,12 @@ public class FeedBack {
         
     }
     
-    public boolean suaFeedBack(String maOld, String hoten, String makh, String email, String sdt, String diachi, String noidung)
+    public boolean suaFeedBack(String maOld, String hoten, String email, String sdt, String diachi, String noidung)
     {        
         int i = 0;
         for (FeedBack fb : danhSach) {
             if (maOld.equalsIgnoreCase(fb.getHoten())) {
                 this.danhSach.get(i).setHoten(hoten); 
-                this.danhSach.get(i).setMakh(makh);
                 this.danhSach.get(i).setEmail(email);
                 this.danhSach.get(i).setSdt(sdt); 
                 this.danhSach.get(i).setDiachi(diachi);
@@ -176,14 +165,7 @@ public class FeedBack {
         
     }
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
-    public void timFeedBack(String ma)
-    {
-        for (FeedBack fb : danhSach) 
-        {
-            if(fb.getMakh().contains(ma));
-            System.out.println(fb);
-        }
-    }
+    
     public ArrayList<FeedBack> timFeedBackUnlimit(String ma)
     {   
         int i =0;
@@ -192,9 +174,6 @@ public class FeedBack {
         {
             if(fb.getHoten().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
-            }
-            if(fb.getMakh().equalsIgnoreCase(ma)){
                 dskh.add(fb);
             }
             if(fb.getEmail().equalsIgnoreCase(ma))

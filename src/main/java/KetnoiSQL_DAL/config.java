@@ -458,8 +458,8 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, nhanvien.getMaKhachSan());
                 stmt.setString(2, nhanvien.getTenKhachSan());
-                stmt.setString(3, nhanvien.getSdt());
-                stmt.setInt(4, (int) nhanvien.getTienKhachSan());
+                stmt.setString(4, nhanvien.getSdt());
+                stmt.setInt(3, (int) nhanvien.getTienKhachSan());
                 stmt.setInt(5, (int) nhanvien.getTienPhong());
                 stmt.execute();
 
@@ -515,8 +515,8 @@ public class config {
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, nhanvien.getMaKhachSan());
                 stmt.setString(2, nhanvien.getTenKhachSan());
-                stmt.setString(3, nhanvien.getSdt());
-                stmt.setInt(4, (int) nhanvien.getTienKhachSan());
+                stmt.setString(4, nhanvien.getSdt());
+                stmt.setInt(3, (int) nhanvien.getTienKhachSan());
                 stmt.setInt(5, (int) nhanvien.getTienPhong());
                 stmt.execute();
 
@@ -1262,7 +1262,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?,?)";
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
@@ -1272,11 +1272,10 @@ public class config {
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getHoten());
-                stmt.setString(2,fb.getMakh());
-                stmt.setString(3, fb.getSdt());
-                stmt.setString(4, fb.getEmail());
-                stmt.setString(5, fb.getDiachi());
-                stmt.setString(6, fb.getNoidung());
+                stmt.setString(2, fb.getSdt());
+                stmt.setString(3, fb.getEmail());
+                stmt.setString(4, fb.getDiachi());
+                stmt.setString(5, fb.getNoidung());
                 stmt.execute();
 
                 // select all student
@@ -1291,9 +1290,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -1318,7 +1317,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            String sqlInsert = "INSERT INTO feedback VALUES(?, ?, ?,?,?,?)";
+            String sqlInsert = "INSERT INTO feedback VALUES(?, ?,?,?,?)";
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
@@ -1328,11 +1327,10 @@ public class config {
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, fb.getHoten());
-                stmt.setString(2,fb.getMakh());
-                stmt.setString(3, fb.getSdt());
-                stmt.setString(4, fb.getEmail());
-                stmt.setString(5, fb.getDiachi());
-                stmt.setString(6, fb.getNoidung());
+                stmt.setString(2, fb.getSdt());
+                stmt.setString(3, fb.getEmail());
+                stmt.setString(4, fb.getDiachi());
+                stmt.setString(5, fb.getNoidung());
                 stmt.execute();
 
                 // select all student
@@ -1465,7 +1463,7 @@ public class config {
         Connection con;
         //1 là thêm
         if (i == 1) {
-            String sqlInsert = "INSERT INTO taikhoan(tentaikhoan, matkhau, email, loaitk) VALUES(?, ?, ?,?)";
+            String sqlInsert = "INSERT INTO taikhoan(tentaikhoan, matkhau, manv, loaitk) VALUES(?, ?, ?,?)";
             String selectAll = "SELECT * FROM taikhoan";
             try {
                 // connect to database
@@ -1492,9 +1490,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -1546,9 +1544,9 @@ public class config {
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
+                ex.printStackTrace();
             } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                e.printStackTrace();
             }
         }
     }
@@ -1736,13 +1734,12 @@ public class config {
             while (rs.next()) {
 
                 String hten = rs.getString("hoten");
-                String makhachhang = rs.getString("makh");
                 String sodt = rs.getString("sdt");
                 String email = rs.getString("email");
                 String dchi = rs.getString("diachi");
                 String ndung = rs.getString("noidung");
 
-                FeedBack fb = new FeedBack (hten, makhachhang, email, sodt, dchi, ndung);
+                FeedBack fb = new FeedBack (hten, email, sodt, dchi, ndung);
                 danhSachFB.add(fb);
             }
         } catch (SQLException ex) {
@@ -1757,14 +1754,14 @@ public class config {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachsan");
             while (rs.next()) {
-                KhachSan fb = new KhachSan();
-                fb.setMaKhachSan(rs.getString("MaKS"));
-                fb.setTenKhachSan(rs.getString("TenKS"));
-                fb.setTenKhachSan(rs.getString("TienKS"));
-                fb.setSdt(rs.getString("SDT"));
-                fb.setTienPhong(rs.getLong("TienPhong"));
-
-                danhSachKH.add(fb);
+                 String maKS = rs.getString("MaKS");
+                String tenKS = rs.getString("TenKS");
+                long tienKS = rs.getLong("TienKS");
+                String soDT = rs.getString("SDT");
+                long tienPhong = rs.getLong("TienPhong");
+                
+                KhachSan ks = new KhachSan(tenKS, soDT, tienKS, tienPhong, maKS);
+                danhSachKH.add(ks);
             }
         } catch (SQLException ex) {
 

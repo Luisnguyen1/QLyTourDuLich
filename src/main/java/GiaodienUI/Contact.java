@@ -379,7 +379,7 @@ public class Contact extends javax.swing.JPanel {
             // Tạo mã khách hàng mới
             String maKH = "KH" + String.format("%04d", maxMaKH + 1);
             
-            fb.themFeedBack(hoTen, maKH, Email, soDT, dchi, ndung);
+            fb.themFeedBack(hoTen, Email, soDT, dchi, ndung);
             //Save to database
             Send_Feedback(fb);
             

@@ -102,11 +102,11 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Họ và Tên", "Mã Khách Hàng", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
+                "Họ và Tên", "Điện Thoại", "Email", "Địa Chỉ", "Nội Dung"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -224,7 +224,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             // Thêm các khách hàng tìm được vào model
             for (FeedBack kh : fb.timFeedBackUnlimit(dkTim)) {              
             
-                model.addRow(new Object[]{kh.getHoten(),kh.getMakh(), kh.getSdt(), kh.getEmail(), kh.getDiachi(),kh.getNoidung()});
+                model.addRow(new Object[]{kh.getHoten(), kh.getSdt(), kh.getEmail(), kh.getDiachi(),kh.getNoidung()});
             }
 
             // Cập nhật lại model cho JTable
@@ -258,7 +258,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
     private void loadPhanHoi() {
         DefaultTableModel model = (DefaultTableModel) tblFeedback.getModel();
         for (int i = 0; i < fb.laySoLuongFeedBack(); i++) {
-            model.addRow(new Object[]{fb.traFB(i).getHoten(), fb.traFB(i).getMakh() ,fb.traFB(i).getSdt(), fb.traFB(i).getEmail(), fb.traFB(i).getDiachi(), fb.traFB(i).getNoidung()});
+            model.addRow(new Object[]{fb.traFB(i).getHoten() ,fb.traFB(i).getSdt(), fb.traFB(i).getEmail(), fb.traFB(i).getDiachi(), fb.traFB(i).getNoidung()});
         }
     }
 }
