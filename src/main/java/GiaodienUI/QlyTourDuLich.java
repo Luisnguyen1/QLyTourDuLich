@@ -325,7 +325,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             }
         });
 
-        cbxLoaiTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loại Tour", "Nhân Viên Bán Hàng", "Quản Lý Kho", "Nhân Viên Văn Phòng", " " }));
+        cbxLoaiTour.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Loại Tour", "Tour Tham Quan", "Tour Văn Hóa", "Tour Ẩm Thực", "Team Building" }));
         cbxLoaiTour.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbxLoaiTourActionPerformed(evt);

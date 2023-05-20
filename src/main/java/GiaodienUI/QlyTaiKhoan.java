@@ -20,8 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyTaiKhoan extends javax.swing.JPanel {
-
-    ArrayList<TaiKhoan> danhSachTK = new ArrayList<>();
+    TaiKhoan dstk = new TaiKhoan();
     /**
      * Creates new form QlyTaiKhoan
      */
@@ -60,7 +59,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         btnThem = new javax.swing.JButton();
         btnXoa = new javax.swing.JButton();
         btnSua = new javax.swing.JButton();
-        btnExport = new javax.swing.JButton();
+        btnReset = new javax.swing.JButton();
         jSeparator3 = new javax.swing.JSeparator();
         jTextField1 = new javax.swing.JTextField();
         btnThem1 = new javax.swing.JButton();
@@ -204,13 +203,13 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
             }
         });
 
-        btnExport.setBackground(new java.awt.Color(21, 110, 71));
-        btnExport.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
-        btnExport.setForeground(new java.awt.Color(255, 255, 255));
-        btnExport.setText("Export");
-        btnExport.addActionListener(new java.awt.event.ActionListener() {
+        btnReset.setBackground(new java.awt.Color(21, 110, 71));
+        btnReset.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
+        btnReset.setForeground(new java.awt.Color(255, 255, 255));
+        btnReset.setText("Reset");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnExportActionPerformed(evt);
+                btnResetActionPerformed(evt);
             }
         });
 
@@ -255,7 +254,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(46, 46, 46)
-                        .addComponent(btnExport, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,7 +300,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
                                 .addGap(18, 18, 18)
                                 .addComponent(btnSua)
                                 .addGap(18, 18, 18)
-                                .addComponent(btnExport)
+                                .addComponent(btnReset)
                                 .addGap(2, 2, 2))))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(59, 59, 59)
@@ -356,12 +355,6 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
         String Email = txtEmail.getText();
         String Qtruycap = cbxQuyenTruyCap.getSelectedItem().toString();
         
-        config con = new config();
-        try {
-            danhSachTK = con.layDL_TK();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
-        }
         
         if(uSer.equals("")){
             JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
@@ -376,14 +369,11 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Vui Lòng Kiểm Tra Và Điền Đầy Đủ Thông Tin");
         }
         else{
-            TaiKhoan tk = new TaiKhoan(uSer,passWord,Email,Qtruycap);
-            danhSachTK.add(tk);
-            
-            con.UpdateSQL_TaiKhoan(tk, 1, null);
+            dstk.themKhachHang(uSer, passWord, Email, Qtruycap);
             
             DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
             
-            model.addRow(new Object[]{tk.getMatk(),tk.getMatkhau(),tk.getEmail(),tk.getQuyentruycap()});
+            model.addRow(new Object[]{dstk.traKH(uSer).getMatk(),dstk.traKH(uSer).getMatkhau(),dstk.traKH(uSer).getEmail(),dstk.traKH(uSer).getQuyentruycap()});
             
             jTable1.setModel(model);
             
@@ -398,34 +388,17 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
     private void btnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnXoaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         
-            config con = new config();
-        try {
-            danhSachTK = con.layDL_TK();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
-        
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Xóa");
         }
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String matKhau = (String) model.getValueAt(selectedRow, 1);
+        String user = (String) model.getValueAt(selectedRow, 0);
         
-        TaiKhoan tkCanXoa = null;
-        for(TaiKhoan tk : danhSachTK){
-            if(tk.getMatkhau().equals(matKhau)){
-                tkCanXoa = tk;
-                break;
-            }
-        }
-        
-        danhSachTK.remove(tkCanXoa);
+        boolean a = dstk.xoaKhachHang(user);
         model.removeRow(selectedRow);
         
-        con.UpdateSQL_TaiKhoan(tkCanXoa, 2, matKhau);
         jTable1.setModel(model);
         
         JOptionPane.showMessageDialog(null,"Xóa Tài Khoản Thành Công");
@@ -434,74 +407,82 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
     private void btnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuaActionPerformed
         int selectedRow = jTable1.getSelectedRow();
         
-        config con = new config();
-        try {
-            danhSachTK = con.layDL_TK();
-        } catch (SQLException ex) {
-            Logger.getLogger(QlyTaiKhoan.class.getName()).log(Level.SEVERE, null, ex);
-        }
-        
         if(selectedRow == -1){
             JOptionPane.showMessageDialog(null,"Vui Lòng Chọn 1 Tài Khoản Để Sửa");
         }
         
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
         
-        String matKhau = (String) model.getValueAt(selectedRow, 1);
+        String user = (String) model.getValueAt(selectedRow, 1);
         
-        TaiKhoan tkCanSua = null;
-        for(TaiKhoan tk : danhSachTK){
-            if(tk.getMatkhau().equals(matKhau)){
-                tkCanSua = tk;
-                break;
-            }
-        }
+        dstk.traKH(user);
         
-        String User = JOptionPane.showInputDialog(null,"Nhập user",tkCanSua.getMatk());
-        String Password = JOptionPane.showInputDialog(null,"Nhập password",tkCanSua.getMatkhau());
-        String Email = JOptionPane.showInputDialog(null,"Nhập email",tkCanSua.getEmail());
+        String Usernew = JOptionPane.showInputDialog(null,"Nhập user",dstk.traKH(user).getMatk());
+        String Password = JOptionPane.showInputDialog(null,"Nhập password",dstk.traKH(user).getMatkhau());
+        String Email = JOptionPane.showInputDialog(null,"Nhập email",dstk.traKH(user).getEmail());
         JComboBox<String> cbxQuyenTruyCap = new JComboBox<>();
         cbxQuyenTruyCap.addItem("Khách Hàng");
         cbxQuyenTruyCap.addItem("Nhân Viên");
         cbxQuyenTruyCap.addItem("Admin");
-        cbxQuyenTruyCap.setSelectedItem(tkCanSua.getQuyentruycap());
+        cbxQuyenTruyCap.setSelectedItem(dstk.traKH(user).getQuyentruycap());
         JOptionPane.showMessageDialog(null,cbxQuyenTruyCap,"Chọn Quyền Truy Cập",JOptionPane.QUESTION_MESSAGE);
         String Qtruycap = cbxQuyenTruyCap.getSelectedItem().toString();
         
-        tkCanSua.setMatk(User);
-        tkCanSua.setMatkhau(Password);
-        tkCanSua.setEmail(Email);
-        tkCanSua.setQuyentruycap(Qtruycap);
+        dstk.suaKhachHang(user, Usernew, Password, Email, Qtruycap);
       
-        model.setValueAt(User,selectedRow,0);
+        model.setValueAt(Usernew,selectedRow,0);
         model.setValueAt(Password,selectedRow,1);
         model.setValueAt(Email,selectedRow,2);
         model.setValueAt(Qtruycap,selectedRow,3);
         
-        con.UpdateSQL_TaiKhoan(tkCanSua, 3, matKhau);
        JOptionPane.showMessageDialog(null, "Sửa Tài Khoản Thành Công");
     }//GEN-LAST:event_btnSuaActionPerformed
 
-    private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_btnExportActionPerformed
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < dstk.laySoLuongKhachHang(); i++) {
+            model.addRow(new Object[]{dstk.traKH(i).getMatk(), dstk.traKH(i).getMatkhau(), dstk.traKH(i).getEmail(), dstk.traKH(i).getQuyentruycap()});
+        }
+        jTable1.setModel(model);    }//GEN-LAST:event_btnResetActionPerformed
 
     private void btnThem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThem1ActionPerformed
-        // TODO add your handling code here:
+        String dkTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
+
+// Tạo một danh sách để lưu khách hàng tìm được
+       dstk.timKhachHangUnlimit(dkTim);
+
+// Kiểm tra kết quả tìm kiếm
+        if (dstk.timKhachHangUnlimit(dkTim) == null) {
+            JOptionPane.showMessageDialog(null, "Kết Quả Không Tìm Thấy");
+        } else {
+            // Tạo một model mới để hiển thị kết quả tìm kiếm trên JTable
+            DefaultTableModel model = new DefaultTableModel();
+            model.addColumn("User");
+            model.addColumn("Password");
+            model.addColumn("Email");
+            model.addColumn("Quyền Truy Cập");
+
+            // Thêm các khách hàng tìm được vào model
+            for (TaiKhoan kh : dstk.timKhachHangUnlimit(dkTim)) {              
+            
+                model.addRow(new Object[]{kh.getMatk(), kh.getMatkhau(), kh.getEmail(), kh.getQuyentruycap()});
+            }
+
+            // Cập nhật lại model cho JTable
+            jTable1.setModel(model);
+        }
     }//GEN-LAST:event_btnThem1ActionPerformed
 
     private void loadTaiKhoan() throws SQLException {
-        config con = new config();
-        danhSachTK.clear();
-        danhSachTK.addAll(con.layDL_TK());
         DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
-        for (TaiKhoan nv : danhSachTK) {
-            model.addRow(new Object[]{nv.getMatk(), nv.getMatkhau(), nv.getEmail(), nv.getQuyentruycap()});
+        for (int i = 0; i < dstk.laySoLuongKhachHang(); i++) {
+            model.addRow(new Object[]{dstk.traKH(i).getMatk(), dstk.traKH(i).getMatkhau(), dstk.traKH(i).getEmail(), dstk.traKH(i).getQuyentruycap()});
         }
+        jTable1.setModel(model);
     } 
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton btnExport;
+    private javax.swing.JButton btnReset;
     private javax.swing.JButton btnSua;
     private javax.swing.JButton btnThem;
     private javax.swing.JButton btnThem1;

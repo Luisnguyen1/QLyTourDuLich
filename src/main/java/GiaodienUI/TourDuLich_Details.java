@@ -439,7 +439,10 @@ public class TourDuLich_Details extends javax.swing.JPanel {
         String MaTour = (String) model.getValueAt(selectedRow, 1);
         
         boolean a = ctt.xoaCTTour(MaTour);
-        
+         if (a == false) {
+            JOptionPane.showMessageDialog(null, "Tour Không Tồn Tại");
+            return;
+        }
         model.removeRow(selectedRow);
         jTable1.setModel(model);
         
@@ -488,14 +491,14 @@ public class TourDuLich_Details extends javax.swing.JPanel {
     }//GEN-LAST:event_btnSuaActionPerformed
 
     private void btnTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTimkiemActionPerformed
-        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm", " ");
+        String dkTim = JOptionPane.showInputDialog(null,"Nhập điều kiện tìm", "");
         
         ctt.timCTTourUnlimit(dkTim);
         
         if(ctt.timCTTourUnlimit(dkTim) == null){
             JOptionPane.showMessageDialog(null, "Kết quả không tìm thấy");
         }else{
-            DefaultTableModel model = (DefaultTableModel) jTable1.getModel();
+             DefaultTableModel model = new DefaultTableModel();
             model.addColumn("Địa Điểm");
             model.addColumn("Mã Tour");
             model.addColumn("Khởi Hành");

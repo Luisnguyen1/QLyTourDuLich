@@ -204,9 +204,14 @@
         <Component class="javax.swing.JComboBox" name="cbxDiaDiemTour">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-              <StringArray count="2">
+              <StringArray count="7">
                 <StringItem index="0" value="Ch&#x1ecd;n &#x110;&#x1ecb;a &#x110;i&#x1ec3;m Tour"/>
-                <StringItem index="1" value="C&#x1ea7;u v&#x1b0;&#x1ee3;t"/>
+                <StringItem index="1" value="Mi&#x1ec1;n Nam - Th&#xe0;nh ph&#x1ed1; H&#x1ed3; Ch&#xed; Minh"/>
+                <StringItem index="2" value="Mi&#x1ec1;n Nam - V&#x169;ng T&#xe0;u"/>
+                <StringItem index="3" value="Mi&#x1ec1;n Trung - &#x110;&#xe0; N&#x1eb5;ng "/>
+                <StringItem index="4" value="Mi&#x1ec1;n Trung - Hu&#x1ebf;"/>
+                <StringItem index="5" value="Mi&#x1ec1;n B&#x1eaf;c - H&#xe0; N&#x1ed9;i"/>
+                <StringItem index="6" value="Mi&#x1ec1;n B&#x1eaf;c - H&#x1ea3;i Ph&#xf2;ng"/>
               </StringArray>
             </Property>
           </Properties>
