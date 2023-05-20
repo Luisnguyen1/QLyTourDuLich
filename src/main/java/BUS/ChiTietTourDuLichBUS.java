@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package DTo;
+package BUS;
 
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
@@ -12,7 +12,7 @@ import java.util.Date;
  *
  * @author Thanh Tran
  */
-public class ChiTietTourDuLich {
+public class ChiTietTourDuLichBUS {
     private String ddtour;
     private String matour;
     private String khoihanh;
@@ -24,7 +24,7 @@ public class ChiTietTourDuLich {
     private int thutungay;
 
 
-    public ChiTietTourDuLich(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu) {
+    public ChiTietTourDuLichBUS(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu) {
         this.ddtour = ddtour;
         this.matour = matour;
         this.khoihanh = khoihanh;
@@ -108,18 +108,18 @@ public class ChiTietTourDuLich {
         this.thutungay = thutungay;
     }
     
-    private ArrayList<ChiTietTourDuLich> danhsach = new ArrayList<>();
+    private ArrayList<ChiTietTourDuLichBUS> danhsach = new ArrayList<>();
     config con = new config();
-    public ChiTietTourDuLich(){
+    public ChiTietTourDuLichBUS(){
         this.danhsach = con.LayDL_CTTour();
     }
     
-    public ChiTietTourDuLich traCTTour(int i){
+    public ChiTietTourDuLichBUS traCTTour(int i){
         return danhsach.get(i);
     }
     
-    public ChiTietTourDuLich traCTTour(String ma1, String ma2){
-        for(ChiTietTourDuLich ctt : danhsach){
+    public ChiTietTourDuLichBUS traCTTour(String ma1, String ma2){
+        for(ChiTietTourDuLichBUS ctt : danhsach){
             if(ma1.equalsIgnoreCase(ctt.getMatour()) && ma2.equalsIgnoreCase(ctt.getMaks())){
                 return ctt;
             }
@@ -127,12 +127,12 @@ public class ChiTietTourDuLich {
         return null;
     }
     
-    public void themCTTour(ChiTietTourDuLich ctt){
+    public void themCTTour(ChiTietTourDuLichBUS ctt){
         this.danhsach.add(ctt);
     }
     
     public void themCTTour(String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu){
-        ChiTietTourDuLich ctt = new ChiTietTourDuLich( ddtour,  matour,  khoihanh,  noiden,  thutungay,  maks,  tienan,  tienphong,  phidichvu);
+        ChiTietTourDuLichBUS ctt = new ChiTietTourDuLichBUS( ddtour,  matour,  khoihanh,  noiden,  thutungay,  maks,  tienan,  tienphong,  phidichvu);
         this.danhsach.add(ctt);
         con.UpdateSQL_CTTour(ctt, 1, "null");
     }
@@ -141,13 +141,13 @@ public class ChiTietTourDuLich {
         return this.danhsach.size();
     }
     
-    public boolean xoaCTTour(ChiTietTourDuLich ctt){
+    public boolean xoaCTTour(ChiTietTourDuLichBUS ctt){
         return this.danhsach.remove(ctt);
     }
     
     public boolean xoaCTTour(String ma){
         int i = 0;
-        for(ChiTietTourDuLich ctt : danhsach){
+        for(ChiTietTourDuLichBUS ctt : danhsach){
             if(ma.equalsIgnoreCase(ctt.getMatour())){
                 con.UpdateSQL_CTTour(ctt, 2, "null");
                 return true;
@@ -159,7 +159,7 @@ public class ChiTietTourDuLich {
     
     public boolean suaCTTour(String maOld, String ddtour, String matour, String khoihanh, String noiden, int thutungay, String maks, long tienan, long tienphong, long phidichvu){
         int i = 0;
-        for(ChiTietTourDuLich ctt : danhsach){
+        for(ChiTietTourDuLichBUS ctt : danhsach){
             if(maOld.equalsIgnoreCase(ctt.getMatour())){
                 this.danhsach.get(i).setDdtour(ddtour);
                 this.danhsach.get(i).setMatour(matour);
@@ -179,10 +179,10 @@ public class ChiTietTourDuLich {
         return false;
     }
     
-    public ArrayList<ChiTietTourDuLich> timCTTourUnlimit (String ma){
+    public ArrayList<ChiTietTourDuLichBUS> timCTTourUnlimit (String ma){
         int i = 0;
-        ArrayList<ChiTietTourDuLich> dstour = new ArrayList<>();
-        for(ChiTietTourDuLich ctt : danhsach){
+        ArrayList<ChiTietTourDuLichBUS> dstour = new ArrayList<>();
+        for(ChiTietTourDuLichBUS ctt : danhsach){
             if(ctt.getDdtour().equalsIgnoreCase(ma)){
                 dstour.add(ctt);
             }

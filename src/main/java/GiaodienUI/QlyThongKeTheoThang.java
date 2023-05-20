@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.HoaDon;
+import BUS.HoaDon;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.FeedBack;
+import BUS.FeedBack;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

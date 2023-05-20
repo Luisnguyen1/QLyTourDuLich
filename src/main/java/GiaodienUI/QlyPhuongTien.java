@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.PhuongTien;
+import BUS.PhuongTien;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import KetnoiSQL_DAL.config;

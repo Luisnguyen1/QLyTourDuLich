@@ -4,7 +4,7 @@
  */
 package Excel;
 
-import DTo.NhanVien;
+import BUS.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.io.File;
 import java.io.FileInputStream;

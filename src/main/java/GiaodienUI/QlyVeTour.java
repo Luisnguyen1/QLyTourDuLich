@@ -4,10 +4,10 @@
  */
 package GiaodienUI;
 
-import DTo.NhanVien;
-import DTo.Tour;
+import BUS.NhanVien;
+import BUS.Tour;
 import javax.swing.JOptionPane;
-import DTo.VeTour;
+import BUS.VeTour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

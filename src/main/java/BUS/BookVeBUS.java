@@ -1,5 +1,5 @@
 
-package DTo;
+package BUS;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Scanner;
  *
  * @author Thanh Tran
  */
-public class BookVe implements Comparable<BookVe>{
+public class BookVeBUS implements Comparable<BookVeBUS>{
     public String hoTen;
     public String diaChi;
     public String soDT;
@@ -20,7 +20,7 @@ public class BookVe implements Comparable<BookVe>{
     public String loaiTour;
     public long giaTour;
     
-    public BookVe(BookVe x) {
+    public BookVeBUS(BookVeBUS x) {
         hoTen = x.hoTen;
         diaChi = x.diaChi;
         soDT = x.soDT;
@@ -32,7 +32,7 @@ public class BookVe implements Comparable<BookVe>{
         giaTour = x.giaTour;
     }
 
-    public BookVe(String hoTen, String diaChi, String soDT, String email, String maVeTour, String noiDi, String noiDen, String loaiTour, long giaTour) {
+    public BookVeBUS(String hoTen, String diaChi, String soDT, String email, String maVeTour, String noiDi, String noiDen, String loaiTour, long giaTour) {
         this.hoTen = hoTen;
         this.diaChi = diaChi;
         this.soDT = soDT;
@@ -46,7 +46,7 @@ public class BookVe implements Comparable<BookVe>{
     }
 
     @Override
-    public int compareTo(BookVe o) {
+    public int compareTo(BookVeBUS o) {
         return this.maVeTour.compareTo(o.maVeTour);
     }
     

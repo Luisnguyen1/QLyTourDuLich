@@ -4,12 +4,12 @@
  */
 package GiaodienUI;
 
-import DTo.ChiTietHoaDonVe;
-import DTo.HoaDon;
-import DTo.KhachHang;
-import DTo.ModuleXuLy;
-import DTo.Tour;
-import DTo.VeTour;
+import BUS.ChiTietHoaDonVeBUS;
+import BUS.HoaDon;
+import BUS.KhachHang;
+import BUS.ModuleXuLy;
+import BUS.Tour;
+import BUS.VeTour;
 import KetnoiSQL_DAL.config;
 import java.awt.Window;
 import java.util.Date;
@@ -25,7 +25,7 @@ public class DatVeTour extends javax.swing.JPanel {
 
     VeTour danhSachVe = new VeTour();
     HoaDon danhSachHD = new HoaDon();
-    ChiTietHoaDonVe danhSaChiTietHoaDonVe = new ChiTietHoaDonVe();
+    ChiTietHoaDonVeBUS danhSaChiTietHoaDonVe = new ChiTietHoaDonVeBUS();
     Tour danhsachTour = new Tour();
     config con = new config();
 

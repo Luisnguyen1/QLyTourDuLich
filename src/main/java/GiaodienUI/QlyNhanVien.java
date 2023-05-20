@@ -1,6 +1,6 @@
 package GiaodienUI;
 
-import DTo.NhanVien;
+import BUS.NhanVien;
 import Excel.ExportExcel;
 import Excel.ImportExcel;
 import KetnoiSQL_DAL.config;

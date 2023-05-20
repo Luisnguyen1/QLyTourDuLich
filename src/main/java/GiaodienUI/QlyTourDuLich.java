@@ -4,8 +4,8 @@
  */
 package GiaodienUI;
 
-import DTo.DiaDiemVuiChoi;
-import DTo.Tour;
+import BUS.DiaDiemVuiChoi;
+import BUS.Tour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.ParseException;

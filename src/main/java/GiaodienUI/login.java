@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.ModuleXuLy;
+import BUS.ModuleXuLy;
 import KetnoiSQL_DAL.config;
 import java.awt.Menu;
 import java.awt.PopupMenu;

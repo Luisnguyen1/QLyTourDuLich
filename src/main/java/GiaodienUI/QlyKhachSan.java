@@ -4,9 +4,9 @@
  */
 package GiaodienUI;
 
-import DTo.KhachHang;
-import DTo.KhachSan;
-import DTo.NhanVien;
+import BUS.KhachHang;
+import BUS.KhachSan;
+import BUS.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

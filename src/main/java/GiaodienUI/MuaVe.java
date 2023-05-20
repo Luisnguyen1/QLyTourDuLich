@@ -4,11 +4,11 @@
  */
 package GiaodienUI;
 
-import DTo.ChiTietHoaDonVe;
-import DTo.HoaDon;
-import DTo.ModuleXuLy;
-import DTo.Tour;
-import DTo.VeTour;
+import BUS.ChiTietHoaDonVeBUS;
+import BUS.HoaDon;
+import BUS.ModuleXuLy;
+import BUS.Tour;
+import BUS.VeTour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

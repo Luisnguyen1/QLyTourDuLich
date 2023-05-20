@@ -4,14 +4,14 @@
  */
 package GiaodienUI;
 
-import DTo.KhachSan;
+import BUS.KhachSan;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
-import DTo.KhuyenMai;
-import DTo.Tour;
+import BUS.KhuyenMai;
+import BUS.Tour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

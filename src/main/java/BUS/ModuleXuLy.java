@@ -1,4 +1,4 @@
-package DTo;
+package BUS;
 
 import GiaodienUI.BieuMauHoaDon;
 import GiaodienUI.DatVeTour;
@@ -68,7 +68,7 @@ public class ModuleXuLy {
         
         String manv= setup.layDL_QTC();
         HoaDon hd = new HoaDon();
-        ChiTietHoaDonVe cthd = new ChiTietHoaDonVe();
+        ChiTietHoaDonVeBUS cthd = new ChiTietHoaDonVeBUS();
         VeTour vt = new VeTour();
         Tour tour = new Tour();
         KhachHang kh = new KhachHang();

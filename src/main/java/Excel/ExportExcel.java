@@ -4,7 +4,7 @@
  */
 package Excel;
 
-import DTo.NhanVien;
+import BUS.NhanVien;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;

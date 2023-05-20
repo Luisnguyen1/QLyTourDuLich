@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.ChiTietHoaDonVe;
+import BUS.ChiTietHoaDonVeBUS;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class HDVeTour_Details extends javax.swing.JPanel {
-    ChiTietHoaDonVe cthdv = new ChiTietHoaDonVe();
+    ChiTietHoaDonVeBUS cthdv = new ChiTietHoaDonVeBUS();
     /**
      * Creates new form VeTour_Details
      */
@@ -311,7 +311,7 @@ public class HDVeTour_Details extends javax.swing.JPanel {
             model.addColumn("Tiền Vé");
 
             // Thêm các khách hàng tìm được vào model
-            for (ChiTietHoaDonVe kh : cthdv.timCTHDVeUnlimit(dkTim)) {              
+            for (ChiTietHoaDonVeBUS kh : cthdv.timCTHDVeUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getMaHD(), kh.getMave(), kh.getMaCTHD(), kh.getSoluongve(),kh.getTienve()});
             }

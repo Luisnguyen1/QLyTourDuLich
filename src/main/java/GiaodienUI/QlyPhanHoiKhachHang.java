@@ -4,8 +4,8 @@
  */
 package GiaodienUI;
 
-import DTo.FeedBack;
-import DTo.NhanVien;
+import BUS.FeedBack;
+import BUS.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

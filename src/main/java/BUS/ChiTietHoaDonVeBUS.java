@@ -1,17 +1,17 @@
-package DTo;
+package BUS;
 
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-public class ChiTietHoaDonVe {
+public class ChiTietHoaDonVeBUS {
     private String mave;
     private String maHD;
     private String MaCTHD;
     private int soluongve;
     private long tienve;
 
-    public ChiTietHoaDonVe(String mave, String maHD, String MaCTHD, int soluongve, long tienve) {
+    public ChiTietHoaDonVeBUS(String mave, String maHD, String MaCTHD, int soluongve, long tienve) {
         this.mave = mave;
         this.maHD = maHD;
         this.MaCTHD = MaCTHD;
@@ -97,17 +97,17 @@ public class ChiTietHoaDonVe {
         System.out.println("Tien ve: " + tienve);
     }
     
-    private ArrayList<ChiTietHoaDonVe>danhSach = new ArrayList<ChiTietHoaDonVe>();
+    private ArrayList<ChiTietHoaDonVeBUS>danhSach = new ArrayList<ChiTietHoaDonVeBUS>();
     config con = new config();
-    public ChiTietHoaDonVe() 
+    public ChiTietHoaDonVeBUS() 
     {
         this.danhSach = con.LayDL_CTHD(); //cach khai bao 1 arrayList
     }
-    public ChiTietHoaDonVe traKH(int i){
+    public ChiTietHoaDonVeBUS traKH(int i){
         return danhSach.get(i);
     }
-    public ChiTietHoaDonVe traKH(String maKH){
-        for (ChiTietHoaDonVe khachHang : danhSach) {
+    public ChiTietHoaDonVeBUS traKH(String maKH){
+        for (ChiTietHoaDonVeBUS khachHang : danhSach) {
             if (maKH.equalsIgnoreCase(khachHang.getMaHD())) {
                 return khachHang;
             }
@@ -119,7 +119,7 @@ public class ChiTietHoaDonVe {
     this.danhSach = danhSach;
     }*/
     
-    public void themKhachHang(ChiTietHoaDonVe kh)
+    public void themKhachHang(ChiTietHoaDonVeBUS kh)
     {
         this.danhSach.add(kh);    
     }
@@ -127,7 +127,7 @@ public class ChiTietHoaDonVe {
     public String maCTHD(String MaHD)
     {
         int i= 0;
-        for (ChiTietHoaDonVe chiTietHoaDonVe : danhSach) {
+        for (ChiTietHoaDonVeBUS chiTietHoaDonVe : danhSach) {
             if (chiTietHoaDonVe.getMaHD().equals(MaHD)) {
                 i++;
             }
@@ -139,7 +139,7 @@ public class ChiTietHoaDonVe {
     
     public void themKhachHang(String mave,String MaCTHD, String maHD, int soluongve, long tienve)
     {
-        ChiTietHoaDonVe kh = new ChiTietHoaDonVe(mave,MaCTHD, maHD, soluongve, tienve);
+        ChiTietHoaDonVeBUS kh = new ChiTietHoaDonVeBUS(mave,MaCTHD, maHD, soluongve, tienve);
         this.danhSach.add(kh);    
         con.UpdateSQL_CTHD(kh, 1, "null");
     }
@@ -156,14 +156,14 @@ public class ChiTietHoaDonVe {
     
     
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
-    public boolean  xoaCTHD(ChiTietHoaDonVe kh)
+    public boolean  xoaCTHD(ChiTietHoaDonVeBUS kh)
     {
         return this.danhSach.remove(kh);
     }
     public boolean xoaKhachHang(String ma)
     {        
         int i = 0;
-        for (ChiTietHoaDonVe khachHang : danhSach) {
+        for (ChiTietHoaDonVeBUS khachHang : danhSach) {
             if (ma.equalsIgnoreCase(khachHang.getMaHD())) {
                 this.danhSach.remove(i); 
                 con.UpdateSQL_CTHD(khachHang, 2, "null");
@@ -179,7 +179,7 @@ public class ChiTietHoaDonVe {
     public boolean suaKhachHang(String maOld, String mave, String maHD, String MaCTHD, int soluongve, long tienve)
     {        
         int i = 0;
-        for (ChiTietHoaDonVe khachHang : danhSach) {
+        for (ChiTietHoaDonVeBUS khachHang : danhSach) {
             if (maOld.equalsIgnoreCase(khachHang.getMaHD())) {
                 this.danhSach.get(i).setMaHD(maHD); 
                 this.danhSach.get(i).setMave(mave);
@@ -200,7 +200,7 @@ public class ChiTietHoaDonVe {
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
     public void timKhachHang(String ma)
     {
-        for (ChiTietHoaDonVe khachHang : danhSach) 
+        for (ChiTietHoaDonVeBUS khachHang : danhSach) 
         {
             if(khachHang.getMaCTHD().contains(ma));
             System.out.println(khachHang);
@@ -211,11 +211,11 @@ public class ChiTietHoaDonVe {
         String s = "CTHD00" + Integer.toString(laySoLuong()+ 1 );
         return s;
     }
-    public ArrayList<ChiTietHoaDonVe> timCTHDVeUnlimit(String ma)
+    public ArrayList<ChiTietHoaDonVeBUS> timCTHDVeUnlimit(String ma)
     {   
         int i =0;
-        ArrayList<ChiTietHoaDonVe> dskh = new ArrayList<>();
-        for (ChiTietHoaDonVe khachHang : danhSach) 
+        ArrayList<ChiTietHoaDonVeBUS> dskh = new ArrayList<>();
+        for (ChiTietHoaDonVeBUS khachHang : danhSach) 
         {
             if(khachHang.getMaHD().equalsIgnoreCase(ma))
             {   

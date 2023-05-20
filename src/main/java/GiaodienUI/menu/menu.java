@@ -4,7 +4,7 @@
  */
 package GiaodienUI.menu;
 
-import DTo.SideMenuPanel;
+import BUS.SideMenuPanel;
 import GiaodienUI.menu.MenuItem;
 import java.awt.Color;
 import java.awt.Component;

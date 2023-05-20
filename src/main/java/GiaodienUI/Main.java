@@ -4,8 +4,8 @@
  */
 package GiaodienUI;
 
-import DTo.ModuleXuLy;
-import DTo.SideMenuPanel;
+import BUS.ModuleXuLy;
+import BUS.SideMenuPanel;
 import GiaodienUI.menu.MenuEvent;
 import java.awt.BorderLayout;
 import java.awt.Color;

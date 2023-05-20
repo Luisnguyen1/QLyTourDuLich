@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.DiaDiemVuiChoi;
+import BUS.DiaDiemVuiChoi;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

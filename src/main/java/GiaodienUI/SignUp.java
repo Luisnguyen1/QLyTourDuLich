@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.TaiKhoan;
+import BUS.TaiKhoan;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;

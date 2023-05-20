@@ -1,4 +1,4 @@
-package DTo;
+package BUS;
 
 import KetnoiSQL_DAL.config;
 import java.text.SimpleDateFormat;
@@ -18,7 +18,7 @@ public class VeTour implements Comparable<VeTour> {
     public Date ngaydatve;
     public Date hansudung;
 
-    public VeTour(DTo.VeTour x) {
+    public VeTour(BUS.VeTour x) {
         mavetour = x.mavetour;
         matour = x.matour;
 

@@ -4,21 +4,21 @@
  */
 package KetnoiSQL_DAL;
 
-import DTo.TaiKhoan;
-import DTo.HoaDon;
-import DTo.KhuyenMai;
-import DTo.NhanVien;
-import DTo.PhuongTien;
-import DTo.BookVe;
-import DTo.ChiTietHoaDonVe;
-import DTo.ChiTietTourDuLich;
-import DTo.DiaDiem;
-import DTo.DiaDiemVuiChoi;
-import DTo.FeedBack;
-import DTo.KhachHang;
-import DTo.KhachSan;
-import DTo.Tour;
-import DTo.VeTour;
+import BUS.TaiKhoan;
+import BUS.HoaDon;
+import BUS.KhuyenMai;
+import BUS.NhanVien;
+import BUS.PhuongTien;
+import BUS.BookVeBUS;
+import BUS.ChiTietHoaDonVeBUS;
+import BUS.ChiTietTourDuLichBUS;
+import BUS.DiaDiem;
+import BUS.DiaDiemVuiChoi;
+import BUS.FeedBack;
+import BUS.KhachHang;
+import BUS.KhachSan;
+import BUS.Tour;
+import BUS.VeTour;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -1067,7 +1067,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_CTHD(ChiTietHoaDonVe KhuyenMai, int i, String MaNV_OLD) {
+    public void UpdateSQL_CTHD(ChiTietHoaDonVeBUS KhuyenMai, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1352,7 +1352,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_CTTour(ChiTietTourDuLich fb, int i, String matour_old) {
+    public void UpdateSQL_CTTour(ChiTietTourDuLichBUS fb, int i, String matour_old) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1809,8 +1809,8 @@ public class config {
         return dd;
     }
 
-    public ArrayList<ChiTietHoaDonVe> LayDL_CTHD() {
-        ArrayList<ChiTietHoaDonVe> dd = new ArrayList<>();
+    public ArrayList<ChiTietHoaDonVeBUS> LayDL_CTHD() {
+        ArrayList<ChiTietHoaDonVeBUS> dd = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
@@ -1822,7 +1822,7 @@ public class config {
                 long tVe = rs.getLong("TienVe");
                 String Machitiethoadon = rs.getString("maCTHD");
                 
-                ChiTietHoaDonVe fb = new ChiTietHoaDonVe(maVe,Mahoadon,Machitiethoadon,sluong,tVe);
+                ChiTietHoaDonVeBUS fb = new ChiTietHoaDonVeBUS(maVe,Mahoadon,Machitiethoadon,sluong,tVe);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
@@ -1831,8 +1831,8 @@ public class config {
         return dd;
     }
     
-     public ArrayList<ChiTietTourDuLich> LayDL_CTTour() {
-        ArrayList<ChiTietTourDuLich> dsTour = new ArrayList<>();
+     public ArrayList<ChiTietTourDuLichBUS> LayDL_CTTour() {
+        ArrayList<ChiTietTourDuLichBUS> dsTour = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM chitiettour");
@@ -1848,7 +1848,7 @@ public class config {
                 long tienPhong = rs.getLong("TienPhong");
                 long phiDV = rs.getLong("TienDichVu");
                 
-                ChiTietTourDuLich ctt = new ChiTietTourDuLich(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
+                ChiTietTourDuLichBUS ctt = new ChiTietTourDuLichBUS(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
                 
                 dsTour.add(ctt);
             }

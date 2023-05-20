@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import DTo.VeTour;
+import BUS.VeTour;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
