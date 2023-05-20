@@ -58,26 +58,29 @@ public class config {
         }
     }
 
-    public ArrayList<TaiKhoan> layDL_TK() throws SQLException {
+    public ArrayList<TaiKhoan> layDL_TK(){ 
+                ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        Connection con = DriverManager.getConnection(url, user, password);
+        try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
         Statement stmt = con.createStatement();
         ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
 
-        ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
-
         while (rs.next()) {
-            TaiKhoan taikhoan = new TaiKhoan();
-            taikhoan.setMatk(rs.getString("tentaikhoan"));
-            taikhoan.setMatkhau(rs.getString("matkhau"));
-            taikhoan.setEmail(rs.getString("manv"));
-            taikhoan.setQuyentruycap(rs.getString("loaitk"));
-            danhSachTaiKhoan.add(taikhoan);
+            String user = rs.getString("tentaikhoan");
+            String password = rs.getString("matkhau");
+            String maNV = rs.getString("manv");
+            String qtruycap = rs.getString("loaitk");
+            TaiKhoan tk =  new TaiKhoan(user,password,maNV,qtruycap);
+            danhSachTaiKhoan.add(tk);
         }
+        }catch(SQLException e){
+                
+                }
         return danhSachTaiKhoan;
     }
+        
     public String layDL_QTC() {
         String s = null;
         try {
@@ -1484,7 +1487,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();
@@ -1538,7 +1541,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();

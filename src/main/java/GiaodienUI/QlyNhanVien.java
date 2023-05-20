@@ -436,7 +436,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
                         .addComponent(btnReset))
                     .addComponent(btnImport))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE))
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
