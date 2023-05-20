@@ -294,7 +294,7 @@ public class QlyVeTour extends javax.swing.JPanel {
                     .addComponent(btnXoa)
                     .addComponent(btnSua)
                     .addComponent(btnTimKiem)
-                    .addComponent(btnReset))
+                    .addComponent(btnReset, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(16, 16, 16))
         );
 
@@ -779,6 +779,13 @@ public class QlyVeTour extends javax.swing.JPanel {
             jTable1.setModel(model);
         }
     }//GEN-LAST:event_btnTimKiemActionPerformed
+
+    private void btnResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnResetActionPerformed
+        model = (DefaultTableModel) jTable1.getModel();
+        for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
+            model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(), danhSachVT.traKH(i).ngaydatve, danhSachVT.traKH(i).hansudung, danhSachVT.traKH(i).getTiengiam()});
+        }
+    }//GEN-LAST:event_btnResetActionPerformed
 
     private String ngayDVString;
     private String hanSDString;
