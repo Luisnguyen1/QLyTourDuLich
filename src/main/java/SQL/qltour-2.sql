@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Máy chủ: 127.0.0.1
--- Thời gian đã tạo: Th5 16, 2023 lúc 04:44 AM
+-- Thời gian đã tạo: Th5 20, 2023 lúc 06:36 AM
 -- Phiên bản máy phục vụ: 10.4.28-MariaDB
 -- Phiên bản PHP: 8.0.28
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 CREATE TABLE `chitiettour` (
   `DiaDiemTour` text NOT NULL,
   `MaTour` text NOT NULL,
-  `MaKh` text NOT NULL,
+  `MaKS` text NOT NULL,
   `DiaDiemDen` text NOT NULL,
   `DiaDiemKhoiHanh` text NOT NULL,
   `ThuTuNgay` int(11) NOT NULL,
@@ -38,6 +38,13 @@ CREATE TABLE `chitiettour` (
   `TienPhong` int(11) NOT NULL,
   `TienDichVu` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `chitiettour`
+--
+
+INSERT INTO `chitiettour` (`DiaDiemTour`, `MaTour`, `MaKS`, `DiaDiemDen`, `DiaDiemKhoiHanh`, `ThuTuNgay`, `TienAn`, `TienPhong`, `TienDichVu`) VALUES
+('Miền Trung - Đà Nẵng', 'CTT0004', 'KS0004', 'Đà Nẵng', 'Thành phố Hồ Chí Minh', 6, 3000000, 2000000, 5000000);
 
 -- --------------------------------------------------------
 
@@ -49,8 +56,42 @@ CREATE TABLE `cthd` (
   `MaHD` text NOT NULL,
   `MaVe` text NOT NULL,
   `SoLuongVe` int(11) NOT NULL,
-  `TienVe` int(11) NOT NULL
+  `TienVe` int(11) NOT NULL,
+  `maCTHD` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `cthd`
+--
+
+INSERT INTO `cthd` (`MaHD`, `MaVe`, `SoLuongVe`, `TienVe`, `maCTHD`) VALUES
+('10011', 'manh123', 1, 0, ''),
+('CTHD002', 'VT0004', 1, 905321652, 'HD001'),
+('CTHD003', 'VT0004', 2, 905444634, 'HD001'),
+('CTHD004', 'VT0004', 2, 905612215, 'HD001'),
+('CTHD005', 'VT0004', 123, 905820840, 'HD001'),
+('CTHD006', 'VT0004', 1, 905966324, 'HD001'),
+('CTHD007', 'VT0004', 1, 906490751, 'HD001'),
+('CTHD008', 'VT0004', 2, 906812748, 'HD001'),
+('CTHD008', 'VT0004', 1, 906909673, 'HD002'),
+('CTHD0010', 'VT0004', 1, 908371029, 'HD002'),
+('CTHD0011', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0012', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0013', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0014', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0015', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0016', 'VT0004', 1, 100000, 'HD002'),
+('CTHD0017', 'VT0004', 2, 100000, 'HD002'),
+('CTHD0018', 'VT0004', 12, 100000, 'HD002'),
+('CTHD0019', 'VT0004', 1, 100000, 'HD003'),
+('CTHD0020', 'VT0004', 1, 100000, 'HD004'),
+('CTHD0021', 'VT0004', 1, 100000, 'HD004'),
+('CTHD0022', 'VT0004', 2, 100000, 'HD006'),
+('CTHD0023', 'VT0004', 123123, 100000, 'HD007'),
+('CTHD0024', 'VT0004', 1, 100000, 'HD007'),
+('CTHD0025', 'VT0004', 3, 100000, 'HD008'),
+('CTHD0026', 'VT0004', 123123, 100000, 'HD009'),
+('CTHD0027', 'VT0004', 2, 100000, 'HD009');
 
 -- --------------------------------------------------------
 
@@ -64,6 +105,13 @@ CREATE TABLE `diadiem` (
   `ThuocTinh` text NOT NULL,
   `KhuVuc` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `diadiem`
+--
+
+INSERT INTO `diadiem` (`MaDD`, `TenDD`, `ThuocTinh`, `KhuVuc`) VALUES
+(0, '[Bà Rịa- Vũng Tàu]', '[TP Hồ Chí Minh]', '[Miền Nam]');
 
 -- --------------------------------------------------------
 
@@ -80,6 +128,31 @@ CREATE TABLE `diadiemvuichoi` (
 -- --------------------------------------------------------
 
 --
+-- Cấu trúc bảng cho bảng `feedback`
+--
+
+CREATE TABLE `feedback` (
+  `hoten` text DEFAULT NULL,
+  `sdt` text DEFAULT NULL,
+  `email` text DEFAULT NULL,
+  `diachi` text DEFAULT NULL,
+  `noidung` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `feedback`
+--
+
+INSERT INTO `feedback` (`hoten`, `sdt`, `email`, `diachi`, `noidung`) VALUES
+(NULL, NULL, NULL, NULL, NULL),
+('Lê Ngọc Chấn', '0917339754', 'chan@gmail.com', 'Phú Nhuận', 'Chưa bao giờ đi một cái công ty nào tuyệt vời như vậy '),
+(NULL, NULL, NULL, NULL, NULL),
+('Lê Thị Khánh Trâm', '0917338654', 'tram@gmail.com', 'Quận 10', 'Dịch vụ còn quá kém'),
+(NULL, NULL, NULL, NULL, NULL);
+
+-- --------------------------------------------------------
+
+--
 -- Cấu trúc bảng cho bảng `hoadon`
 --
 
@@ -90,6 +163,20 @@ CREATE TABLE `hoadon` (
   `NgayXuatHoaDon` date NOT NULL,
   `MaNV` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `hoadon`
+--
+
+INSERT INTO `hoadon` (`MaHD`, `MaKh`, `TongTien`, `NgayXuatHoaDon`, `MaNV`) VALUES
+('HD001', '0001230', 15000, '2023-05-20', '00012'),
+('HD002', 'KH0031', 1200000, '2023-05-20', '1121'),
+('HD003', 'KH0032', 100000, '2023-05-20', '1121'),
+('HD004', 'KH0033', 100000, '2023-05-20', '1121'),
+('HD004', 'KH0034', 100000, '2023-05-20', '1121'),
+('HD006', 'KH0035', 200000, '2023-05-20', '1121'),
+('HD007', 'KH0037', 100000, '2023-05-20', '1121'),
+('HD008', 'KH0038', 300000, '2023-05-20', '1121');
 
 -- --------------------------------------------------------
 
@@ -130,6 +217,14 @@ CREATE TABLE `khachsan` (
   `TienPhong` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Đang đổ dữ liệu cho bảng `khachsan`
+--
+
+INSERT INTO `khachsan` (`MaKS`, `TenKS`, `TienKS`, `SDT`, `TienPhong`) VALUES
+('KS0001', 'Paloma Hotel', 1000000, 917339863, 200000),
+('KS0004', 'Eden Garden Hotel', 3000000, 917339654, 400000);
+
 -- --------------------------------------------------------
 
 --
@@ -163,10 +258,10 @@ CREATE TABLE `nhanvien` (
 --
 
 INSERT INTO `nhanvien` (`MaNV`, `LoaiNV`, `TenNV`, `DiaChi`, `ChucVu`) VALUES
-('Mã Nhân Viên', 'Loại Nhân Viên', 'Tên Nhân Viên', 'Địa chỉ', 'Chức vụ'),
-('asd ád', 'Nhân Viên Bán Hàng', 'asd ád', 'asd asd a', 'asd asd a'),
-('asd ád', 'Nhân Viên Bán Hàng', 'asda sd', 'asd ád', 'asd ád'),
-('ádasd', 'Quản Lý Kho', 'ấdasd', 'ádasdasdasdasd', 'ádasdasdasdasd');
+('NV0001', 'Nhân Viên Bán Hàng', 'Võ Công Anh', 'Quận 10', 'Nhân Viên'),
+('NV0002', 'Quản Lý Kho', 'Trần Đức Thanh', 'Quận 4', 'Quản Lý'),
+('NV0003', 'Nhân Viên Bán Hàng', 'Nguyễn Hữu Quốc Bảo', 'Bình Tân', 'Nhân Viên'),
+('NV0004', 'Nhân Viên Bán Hàng', 'Nguyễn Văn Mạnh', 'Quận 7', 'Quản Lý');
 
 -- --------------------------------------------------------
 
@@ -187,7 +282,27 @@ CREATE TABLE `phuongtien` (
 --
 
 INSERT INTO `phuongtien` (`MaPT`, `LoaiPT`, `TenPT`, `SoChoTrong`, `SoChoConDu`) VALUES
-('123', 'Máy Bay', 'áda', 123, 123);
+('PT0001', 'Xe Bus', 'A01', 31, 2),
+('PT0002', 'Máy Bay', 'A02', 30, 3),
+('PT0003', 'Xe Lửa', 'A03', 40, 3),
+('PT0004', 'Thuyền', 'A04', 32, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Cấu trúc bảng cho bảng `quyentruycap`
+--
+
+CREATE TABLE `quyentruycap` (
+  `MaNV` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_vietnamese_ci;
+
+--
+-- Đang đổ dữ liệu cho bảng `quyentruycap`
+--
+
+INSERT INTO `quyentruycap` (`MaNV`) VALUES
+('1121');
 
 -- --------------------------------------------------------
 
@@ -207,7 +322,8 @@ CREATE TABLE `taikhoan` (
 --
 
 INSERT INTO `taikhoan` (`tentaikhoan`, `matkhau`, `manv`, `loaitk`) VALUES
-('admin', '123456', '1121', 'admin');
+('admin', '123456', '1121', 'admin'),
+('thanhtran', 'Thanh12345', '123', 'Nhân Viên');
 
 -- --------------------------------------------------------
 
@@ -225,9 +341,7 @@ CREATE TABLE `tour` (
   `DiaDiemDen` text NOT NULL,
   `LoaiTour` text NOT NULL,
   `SoNgay` int(11) NOT NULL,
-  `NgayKhoiHanh` date NOT NULL,
   `GiaTour` int(11) NOT NULL,
-  `NgayKetThuc` date NOT NULL,
   `GhiChu` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
@@ -235,10 +349,9 @@ CREATE TABLE `tour` (
 -- Đang đổ dữ liệu cho bảng `tour`
 --
 
-INSERT INTO `tour` (`MaTour`, `TongSoCho`, `SoChoConTrong`, `TenTour`, `Diadiemtour`, `DiaDiemDi`, `DiaDiemDen`, `LoaiTour`, `SoNgay`, `NgayKhoiHanh`, `GiaTour`, `NgayKetThuc`, `GhiChu`) VALUES
-('123123', 123, 23, 'manh123', '23', '23', '23', 'Quản Lý Kho', 23, '2023-02-01', 23, '2023-02-01', 'null'),
-('123', 123, 123, '123', '123', '123', '123', 'Quản Lý Kho', 123, '2023-03-02', 12, '2023-05-01', 'null'),
-('123323', 23, 232323, '11111111111111111111', '23', '32', '23', 'Nhân Viên Bán Hàng', 23, '2023-03-02', 23, '2023-05-01', 'null');
+INSERT INTO `tour` (`MaTour`, `TongSoCho`, `SoChoConTrong`, `TenTour`, `Diadiemtour`, `DiaDiemDi`, `DiaDiemDen`, `LoaiTour`, `SoNgay`, `GiaTour`, `GhiChu`) VALUES
+('Tour0001', 32, 2, 'Hồ Chí Minh - Đà Nẵng', 'Miền Trung -  Đà Nẵng', 'Hồ Chí Minh', 'Đà Nẵng', 'Tour Tham Quan', 10, 1000000, 'null'),
+('Tour0002', 40, 3, 'Hồ Chí Minh', 'Miền Trung - Huế', 'Hồ Chí Minh', 'Huế', 'Tour Ẩm Thực', 15, 5000000, 'null');
 
 -- --------------------------------------------------------
 
@@ -259,8 +372,9 @@ CREATE TABLE `ve` (
 --
 
 INSERT INTO `ve` (`MaVe`, `NgayTaoVe`, `HanSuDung`, `MaTour`, `tiengiam`) VALUES
-('123123123', '2023-05-04', '2023-03-02', '123123', 123123),
-('manh123', '2023-02-01', '2023-02-01', '123', 123123);
+('VT0001', '2023-02-02', '2023-03-04', 'Tour0001', 200000),
+('VT0002', '2023-04-03', '2023-04-06', 'Tour0002', 300000),
+('VT0003', '2023-05-05', '2023-06-06', 'Tour0003', 50000);
 
 --
 -- Chỉ mục cho các bảng đã đổ

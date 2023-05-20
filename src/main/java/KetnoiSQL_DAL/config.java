@@ -388,7 +388,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khachhang WHERE makh = '" + nhanvien.getMakh() + "'";
+                String delete = "DELETE FROM khachhang WHERE maKh = '" + nhanvien.getMakh() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -401,7 +401,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM khachhang WHERE makh = '" + nhanvien.getMakh() + "'";
+                String delete = "DELETE FROM khachhang WHERE maKh = '" + nhanvien.getMakh() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);

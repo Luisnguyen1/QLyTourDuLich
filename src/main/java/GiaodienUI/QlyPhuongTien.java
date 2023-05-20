@@ -27,7 +27,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
         initComponents();
         model = (DefaultTableModel) jTable1.getModel();
         for (int i = 0; i < danhSachPT.laySoLuongPhuongTien(); i++) {
-            model.addRow(new Object[]{danhSachPT.traPT(i).getBienso(), danhSachPT.traPT(i).getLoaipt(), danhSachPT.traPT(i).getMapt(), danhSachPT.traPT(i).getTongsocho(), danhSachPT.traPT(i).getSochocondu()});
+            model.addRow(new Object[]{danhSachPT.traPT(i).getBienso(), danhSachPT.traPT(i).getLoaipt(), danhSachPT.traPT(i).getMapt(), danhSachPT.traPT(i).getSochocondu(), danhSachPT.traPT(i).getTongsocho()});
         }
     }
 
