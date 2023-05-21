@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import BUS.PhuongTien;
+import DTO.PhuongTienDTO;
 import javax.swing.JOptionPane;
 import javax.swing.JComboBox;
 import KetnoiSQL_DAL.config;
@@ -490,7 +491,7 @@ public class QlyPhuongTien extends javax.swing.JPanel {
             model.addColumn("Số Chỗ Dư");
 
             // Thêm các khách hàng tìm được vào model
-            for (PhuongTien kh : danhSachPT.timPhuongTienUnlimit(dkTim)) {              
+            for (PhuongTienDTO kh : danhSachPT.timPhuongTienUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getBienso(), kh.getLoaipt(), kh.getMapt(), kh.getTongsocho(),kh.getSochocondu()});
             }
