@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import BUS.KhachHang;
+import BUS.KhachHangDTo;
 import BUS.TaiKhoan;
 import KetnoiSQL_DAL.config;
 import java.awt.Component;
@@ -548,7 +549,7 @@ return;
             model.addColumn("Email");
 
             // Thêm các khách hàng tìm được vào model
-            for (KhachHang kh : danhSachKH.timKhachHangUnlimit(dkTim)) {              
+            for (KhachHangDTo kh : danhSachKH.timKhachHangUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getTenkh(), kh.getMakh(), kh.getDiachi(), kh.getSdt(),kh.getEmail()});
             }

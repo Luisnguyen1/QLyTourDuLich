@@ -16,6 +16,7 @@ import BUS.DiaDiem;
 import BUS.DiaDiemVuiChoi;
 import BUS.FeedBack;
 import BUS.KhachHang;
+import BUS.KhachHangDTo;
 import BUS.KhachSan;
 import BUS.Tour;
 import BUS.VeTour;
@@ -345,7 +346,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_KhachHang(KhachHang nhanvien, int i, String MaNV_OLD) {
+    public void UpdateSQL_KhachHang(KhachHangDTo nhanvien, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1696,8 +1697,8 @@ public class config {
         return danhSachTour;
     }
 
-    public ArrayList<KhachHang> layDL_KhachHang(){
-         ArrayList<KhachHang> danhSachTour = new ArrayList<>();
+    public ArrayList<KhachHangDTo> layDL_KhachHang(){
+         ArrayList<KhachHangDTo> danhSachTour = new ArrayList<>();
         try (Connection con= DriverManager.getConnection(url, user, password)){
             
             // Thực hiện truy vấn và lấy kết quả
@@ -1714,7 +1715,7 @@ public class config {
                 String sdt = Integer.toString(rs.getInt("SDT"));
                 String email = rs.getString("email");
                 
-                KhachHang pt = new KhachHang(ten, makh, diachi, sdt, email); // tao ra dữ liệu con 
+                KhachHangDTo pt = new KhachHangDTo(ten, makh, diachi, sdt, email); // tao ra dữ liệu con 
                 danhSachTour.add(pt); // add dữ liệu con vào arraylist
             }
             
