@@ -193,6 +193,8 @@ public class Main extends javax.swing.JFrame {
 
         sideBar.setBackground(new java.awt.Color(25, 32, 56));
 
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Open/Close Menu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
