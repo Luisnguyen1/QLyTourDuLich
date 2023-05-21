@@ -1,5 +1,7 @@
 package BUS;
 
+import DTO.TourDTO;
+import DTO.VeTourDTO;
 import KetnoiSQL_DAL.config;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -9,90 +11,22 @@ import java.util.Date;
  *
  * @author Thanh Tran
  */
-public class VeTour implements Comparable<VeTour> {
+public class VeTour  {
 
-    public String mavetour;
-    public String matour;
-
-    public long tiengiam;
-    public Date ngaydatve;
-    public Date hansudung;
-
-    public VeTour(BUS.VeTour x) {
-        mavetour = x.mavetour;
-        matour = x.matour;
-
-        tiengiam = x.tiengiam;
-        ngaydatve = x.ngaydatve;
-        hansudung = x.hansudung;
-    }
-
-    public VeTour(String mavetour, String matour, long tiengiam, Date ngaydatve, Date hansudung) {
-        this.mavetour = mavetour;
-        this.matour = matour;
-
-        this.tiengiam = tiengiam;
-        this.ngaydatve = ngaydatve;
-        this.hansudung = hansudung;
-    }
-
-    public String getMavetour() {
-        return mavetour;
-    }
-
-    public void setMavetour(String mavetour) {
-        this.mavetour = mavetour;
-    }
-
-    public String getMatour() {
-        return matour;
-    }
-
-    public void setMatour(String matour) {
-        this.matour = matour;
-    }
-
-    public long getTiengiam() {
-        return tiengiam;
-    }
-
-    public void setTiengiam(long tiengiam) {
-        this.tiengiam = tiengiam;
-    }
-
-    public Date getNgaydatve() {
-        return ngaydatve;
-    }
-
-    public void setNgaydatve(Date ngaydatve) {
-        this.ngaydatve = ngaydatve;
-    }
-
-    public Date getHansudung() {
-        return hansudung;
-    }
-
-    public void setHansudung(Date hansudung) {
-        this.hansudung = hansudung;
-    }
-
-    @Override
-    public int compareTo(VeTour o) {
-        return this.mavetour.compareTo(o.mavetour);
-    }
-    private ArrayList<VeTour> danhSach = new ArrayList<VeTour>();
+   
+    private ArrayList<VeTourDTO> danhSach = new ArrayList<VeTourDTO>();
     config con = new config();
 
     public VeTour() {
         this.danhSach = con.layDL_VeTour(); //cach khai bao 1 arrayList
     }
 
-    public VeTour traKH(int i) {
+    public VeTourDTO traKH(int i) {
         return danhSach.get(i);
     }
 
-    public VeTour traKH(String maKH) {
-        for (VeTour vetour : danhSach) {
+    public VeTourDTO traKH(String maKH) {
+        for (VeTourDTO vetour : danhSach) {
             if (maKH.equalsIgnoreCase(vetour.getMavetour())) {
                 return vetour;
             }
@@ -102,7 +36,7 @@ public class VeTour implements Comparable<VeTour> {
 
     public Long tinhTongTien(int Sl, String Ma) {
         Tour tour = new Tour();
-        for (VeTour veTour : danhSach) {
+        for (VeTourDTO veTour : danhSach) {
             System.out.println(veTour.getMatour());
 
             return Sl * tour.traTour(veTour.getMatour()).getGiaTour();
@@ -114,12 +48,12 @@ public class VeTour implements Comparable<VeTour> {
     /*public KhachHang(ArrayList<KhachHang> danhSach) {
     this.danhSach = danhSach;
     }*/
-    public void themVeTour(VeTour kh) {
+    public void themVeTour(VeTourDTO kh) {
         this.danhSach.add(kh);
     }
 
     public void themVeTour(String mavetour, String matour, long tiengiam, Date ngaydatve, Date hansudung) {
-        VeTour vt = new VeTour(mavetour, matour, tiengiam, ngaydatve, hansudung);
+        VeTourDTO vt = new VeTourDTO(mavetour, matour, tiengiam, ngaydatve, hansudung);
         this.danhSach.add(vt);
         con.UpdateSQL_VeTour(vt, 1, "null");
     }
@@ -136,7 +70,7 @@ public class VeTour implements Comparable<VeTour> {
 
     public boolean xoaVeTour(String ma) {
         int i = 0;
-        for (VeTour khachHang : danhSach) {
+        for (VeTourDTO khachHang : danhSach) {
             if (ma.equalsIgnoreCase(khachHang.getMavetour())) {
                 this.danhSach.remove(i);
                 con.UpdateSQL_VeTour(khachHang, 2, "null");
@@ -151,7 +85,7 @@ public class VeTour implements Comparable<VeTour> {
 
     public boolean suaVeTour(String maOld, String mavetour, String matour, long tiengiam, Date ngaydatve, Date hansudung) {
         int i = 0;
-        for (VeTour khachHang : danhSach) {
+        for (VeTourDTO khachHang : danhSach) {
             if (maOld.equalsIgnoreCase(khachHang.getMavetour())) {
                 this.danhSach.get(i).setMatour(matour);
                 this.danhSach.get(i).setTiengiam(tiengiam);
@@ -171,16 +105,16 @@ public class VeTour implements Comparable<VeTour> {
 
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
     public void timVeTour(String ma) {
-        for (VeTour khachHang : danhSach) {
+        for (VeTourDTO khachHang : danhSach) {
             if (khachHang.getMavetour().contains(ma));
             System.out.println(khachHang);
         }
     }
 
-    public ArrayList<VeTour> timKhachHangUnlimit(String ma) {
+    public ArrayList<VeTourDTO> timKhachHangUnlimit(String ma) {
         int i = 0;
-        ArrayList<VeTour> dskh = new ArrayList<>();
-        for (VeTour khachHang : danhSach) {
+        ArrayList<VeTourDTO> dskh = new ArrayList<>();
+        for (VeTourDTO khachHang : danhSach) {
             if (khachHang.getMavetour().equalsIgnoreCase(ma)) {
                 dskh.add(khachHang);
             }

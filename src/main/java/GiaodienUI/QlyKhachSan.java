@@ -7,6 +7,7 @@ package GiaodienUI;
 import BUS.KhachHang;
 import BUS.KhachSan;
 import BUS.NhanVien;
+import DTO.KhachSanDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -563,7 +564,7 @@ public class QlyKhachSan extends javax.swing.JPanel {
 
     
     // Thêm các khách hàng tìm được vào model
-    for (KhachSan kh : danhsachks.timKhachSanUnlimit(tenKHCanTim)) {
+    for (KhachSanDTO kh : danhsachks.timKhachSanUnlimit(tenKHCanTim)) {
             model.addRow(new Object[]{kh.getTenKhachSan(), kh.getMaKhachSan(), kh.getSdt(), kh.getTienKhachSan(), kh.getTienPhong()});
     }
     

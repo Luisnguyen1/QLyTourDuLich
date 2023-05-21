@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import BUS.DiaDiemVuiChoi;
+import DTO.DiaDiemVuiChoiDTo;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -435,7 +436,7 @@ public class QlyDiaDiemVuiChoi extends javax.swing.JPanel {
             model.addColumn("Mã Địa Điểm");
         
             // Thêm các khách hàng tìm được vào model
-            for (DiaDiemVuiChoi kh : ddvc.timDiaDiemUnlimit(dkTim)) {              
+            for (DiaDiemVuiChoiDTo kh : ddvc.timDiaDiemUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getDiaDiemTour(), kh.getTenDiaDiem(), kh.getMaDiaDiem()});
             }

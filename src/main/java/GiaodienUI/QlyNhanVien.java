@@ -1,6 +1,7 @@
 package GiaodienUI;
 
 import BUS.NhanVien;
+import DTO.NhanVienDTO;
 import Excel.ExportExcel;
 import Excel.ImportExcel;
 import KetnoiSQL_DAL.config;
@@ -599,7 +600,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
             model.addColumn("Chức Vụ");
 
             // Thêm các khách hàng tìm được vào model
-            for (NhanVien kh : danhSachNV.timNhanVienUnlimit(dkTim)) {              
+            for (NhanVienDTO kh : danhSachNV.timNhanVienUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getTennv(), kh.getManv(), kh.getDiachi(), kh.getLoainv(),kh.getChucvu()});
             }

@@ -6,6 +6,7 @@ package GiaodienUI;
 
 import BUS.HoaDon;
 import BUS.NhanVien;
+import DTO.HoaDonDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -205,7 +206,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
         String maNVCanTim = JOptionPane.showInputDialog(null, "Nhập điều kiện tìm !"," ");
 
         // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<HoaDon> ketQuaTimKiem = new ArrayList<>();
+        ArrayList<HoaDonDTO> ketQuaTimKiem = new ArrayList<>();
 
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
@@ -229,7 +230,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
 
         // Thêm các khách hàng tìm được vào model
         model = (DefaultTableModel) jTable1.getModel();
-        for (HoaDon nv : ketQuaTimKiem) {
+        for (HoaDonDTO nv : ketQuaTimKiem) {
             model.addRow(new Object[]{nv.getMahd(), nv.getMakhachdatve(), nv.getManv(), nv.getNgayxuathoadon(), nv.getTongtien()});
         }
         
@@ -297,7 +298,7 @@ public class QlyHoaDon extends javax.swing.JPanel {
         String mahoadon = (String) model.getValueAt(selectedRow, 0);
         String old = mahoadon;
 // tìm khách hàng trong danh sách dựa vào mã
-        HoaDon hoadonCanSua = null;
+        HoaDonDTO hoadonCanSua = null;
         for (int i = 0; i < danhSachHD.laySoLuongHoaDon();i++) {
             if (danhSachHD.traHD(i).getMahd().equals(mahoadon)) {
                 hoadonCanSua = danhSachHD.traHD(i);

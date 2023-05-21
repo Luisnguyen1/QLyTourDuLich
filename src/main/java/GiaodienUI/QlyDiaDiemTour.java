@@ -7,6 +7,7 @@ package GiaodienUI;
 import BUS.DiaDiem;
 import BUS.DiaDiemVuiChoi;
 import BUS.NhanVien;
+import DTO.DiaDiemDTO;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JComboBox;
@@ -454,7 +455,7 @@ public class QlyDiaDiemTour extends javax.swing.JPanel {
             model.addColumn("Mã Địa Điểm");
 
             // Thêm các khách hàng tìm được vào model
-            for (DiaDiem kh : dd.timDiaDiemUnlimit(dkTim)) {              
+            for (DiaDiemDTO kh : dd.timDiaDiemUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getKhuvuc(), kh.getThuoctinh(), kh.getTendd(), kh.getMadd()});
             }

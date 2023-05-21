@@ -6,7 +6,7 @@ package KetnoiSQL_DAL;
 
 import BUS.TaiKhoan;
 import BUS.HoaDon;
-import BUS.KhuyenMai;
+import DTO.KhuyenMaiDTO;
 import BUS.NhanVien;
 import BUS.PhuongTien;
 import BUS.BookVeBUS;
@@ -16,10 +16,18 @@ import BUS.DiaDiem;
 import BUS.DiaDiemVuiChoi;
 import BUS.FeedBack;
 import BUS.KhachHang;
-import BUS.KhachHangDTo;
+import DTO.KhachHangDTo;
 import BUS.KhachSan;
-import BUS.Tour;
+import DTO.TourDTO;
 import BUS.VeTour;
+import DTO.ChiTietTourDuLichDTo;
+import DTO.DiaDiemDTO;
+import DTO.DiaDiemVuiChoiDTo;
+import DTO.HoaDonDTO;
+import DTO.KhachSanDTO;
+import DTO.NhanVienDTO;
+import DTO.PhuongTienDTO;
+import DTO.VeTourDTO;
 
 import java.sql.Connection;
 import java.sql.Date;
@@ -152,7 +160,7 @@ public class config {
         
     }
 
-    public void UpdateSQL_HoaDon(HoaDon HoaDon, int i, String MaNV_OLD) {
+    public void UpdateSQL_HoaDon(HoaDonDTO HoaDon, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -249,7 +257,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_NhanVien(NhanVien nhanvien, int i, String MaNV_OLD) {
+    public void UpdateSQL_NhanVien(NhanVienDTO nhanvien, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -443,7 +451,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_KhachSan(KhachSan nhanvien, int i, String MaNV_OLD) {
+    public void UpdateSQL_KhachSan(KhachSanDTO nhanvien, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -540,7 +548,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_VeTour(VeTour nhanvien, int i, String MaNV_OLD) {
+    public void UpdateSQL_VeTour(VeTourDTO nhanvien, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -640,7 +648,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_PhuongTien(PhuongTien PhuongTien, int i, String MaNV_OLD) {
+    public void UpdateSQL_PhuongTien(PhuongTienDTO PhuongTien, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -735,7 +743,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_Tour(Tour Tour, int i, String MaNV_OLD) {
+    public void UpdateSQL_Tour(TourDTO Tour, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -850,8 +858,8 @@ public class config {
         }
     }
 
-    public ArrayList<HoaDon> layDL_HoaDon() {
-        ArrayList<HoaDon> danhSachHoaDon = new ArrayList<>();
+    public ArrayList<HoaDonDTO> layDL_HoaDon() {
+        ArrayList<HoaDonDTO> danhSachHoaDon = new ArrayList<>();
         try {
             // Khởi tạo kết nối đến cơ sở dữ liệu
             Connection con = DriverManager.getConnection(url, user, password);
@@ -869,7 +877,7 @@ public class config {
                 long tongtien = Long.parseLong(rs.getString("tongtien"));
                 java.sql.Date ngayxuat = rs.getDate("ngayxuathoadon");
                 String manv = rs.getString("manv");
-                HoaDon HoaDon = new HoaDon(mahd, manv, makh, tongtien, ngayxuat);
+                HoaDonDTO HoaDon = new HoaDonDTO(mahd, manv, makh, tongtien, ngayxuat);
                 danhSachHoaDon.add(HoaDon);
             }
             return danhSachHoaDon;
@@ -880,7 +888,7 @@ public class config {
     }
 
     //-----------------------------------------------
-    public void UpdateSQL_DDVC(DiaDiemVuiChoi DDVC, int i, String MaNV_OLD) {
+    public void UpdateSQL_DDVC(DiaDiemVuiChoiDTo DDVC, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -971,7 +979,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_KhuyenMai(KhuyenMai KhuyenMai, int i, String MaNV_OLD) {
+    public void UpdateSQL_KhuyenMai(KhuyenMaiDTO KhuyenMai, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1164,7 +1172,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_DiaDiem(DiaDiem KhuyenMai, int i, String MaNV_OLD) {
+    public void UpdateSQL_DiaDiem(DiaDiemDTO KhuyenMai, int i, String MaNV_OLD) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1353,7 +1361,7 @@ public class config {
         }
     }
 
-    public void UpdateSQL_CTTour(ChiTietTourDuLichBUS fb, int i, String matour_old) {
+    public void UpdateSQL_CTTour(ChiTietTourDuLichDTo fb, int i, String matour_old) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -1555,8 +1563,8 @@ public class config {
       
     //--------------------------------------------------------
 
-    public ArrayList<KhuyenMai> layDL_KhuyenMai(){
-                ArrayList<KhuyenMai> danhSachTaiKhoan = new ArrayList<>();
+    public ArrayList<KhuyenMaiDTO> layDL_KhuyenMai(){
+                ArrayList<KhuyenMaiDTO> danhSachTaiKhoan = new ArrayList<>();
 
         // Khởi tạo kết nối đến cơ sở dữ liệu
         try(Connection con = DriverManager.getConnection(url, user, password)){
@@ -1571,7 +1579,7 @@ public class config {
             Date HANSD = rs.getDate("HanSuDung");
             long TIENGIAM = rs.getLong("TienGiam");
             
-            KhuyenMai km = new KhuyenMai(MAKM,TENKM,NGAYKM,HANSD,TIENGIAM);
+            KhuyenMaiDTO km = new KhuyenMaiDTO(MAKM,TENKM,NGAYKM,HANSD,TIENGIAM);
             danhSachTaiKhoan.add(km);
         }
         }catch(SQLException e){
@@ -1580,8 +1588,8 @@ public class config {
         return danhSachTaiKhoan;
     }
 
-    public ArrayList<VeTour> layDL_VeTour()  {
-        ArrayList<VeTour> danhSachVeTour = new ArrayList<>();
+    public ArrayList<VeTourDTO> layDL_VeTour()  {
+        ArrayList<VeTourDTO> danhSachVeTour = new ArrayList<>();
         try (Connection con= DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
@@ -1597,7 +1605,7 @@ public class config {
             Date hansudung = rs.getDate("HanSuDung");
             Date ngayTaove = rs.getDate("NgayTaoVe");
             long tiengiam = rs.getLong("tiengiam");
-            VeTour vt = new VeTour(mavt, maTour, tiengiam, ngayTaove, hansudung);
+            VeTourDTO vt = new VeTourDTO(mavt, maTour, tiengiam, ngayTaove, hansudung);
             danhSachVeTour.add(vt);
         }
         } catch (SQLException ex) {
@@ -1607,8 +1615,8 @@ public class config {
     }
 
     //--------------------------------------------------------------------
-    public ArrayList<NhanVien> layDL_NhanVien()  {
-         ArrayList<NhanVien> danhSachNhanVien = new ArrayList<>();
+    public ArrayList<NhanVienDTO> layDL_NhanVien()  {
+         ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<>();
         try (Connection con= DriverManager.getConnection(url, user, password)){
             
             // Thực hiện truy vấn và lấy kết quả
@@ -1625,7 +1633,7 @@ public class config {
                 String diachi = rs.getString("DiaChi");
                 String chucvu = rs.getString("ChucVu");
                 
-                NhanVien pt = new NhanVien(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
+                NhanVienDTO pt = new NhanVienDTO(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
                 danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
             }
             
@@ -1635,8 +1643,8 @@ public class config {
         return danhSachNhanVien;    
     }
 
-    public ArrayList<Tour> layDL_Tour(){
-                ArrayList<Tour> danhSachTour = new ArrayList<>();
+    public ArrayList<TourDTO> layDL_Tour(){
+                ArrayList<TourDTO> danhSachTour = new ArrayList<>();
 
         // Khởi tạo kết nối đến cơ sở dữ liệu
         try(Connection con = DriverManager.getConnection(url, user, password)){
@@ -1659,7 +1667,7 @@ public class config {
             long GiaTour = rs.getLong("GiaTour");
             
 
-            Tour tour = new Tour(TenTour,MaTour,LoaiTour,tongSocho,soChodu,diadiemTour,diaDiemDi,ddDen,Songaydi,GiaTour);
+            TourDTO tour = new TourDTO(TenTour,MaTour,LoaiTour,tongSocho,soChodu,diadiemTour,diaDiemDi,ddDen,Songaydi,GiaTour);
             danhSachTour.add(tour);
         }
         }catch(SQLException e){
@@ -1668,10 +1676,10 @@ public class config {
         return danhSachTour;
     }
 
-    public ArrayList<PhuongTien> layDL_PhuongTien() {
+    public ArrayList<PhuongTienDTO> layDL_PhuongTien() {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         
-         ArrayList<PhuongTien> danhSachTour = new ArrayList<>();
+         ArrayList<PhuongTienDTO> danhSachTour = new ArrayList<>();
         try(Connection con = DriverManager.getConnection(url, user, password)){
 
         // Thực hiện truy vấn và lấy kết quả
@@ -1688,7 +1696,7 @@ public class config {
             long Tongsocho = rs.getLong("SoChoTrong");
             long Sochodu = rs.getLong("SoChoConDu");
 
-            PhuongTien pt = new PhuongTien(Mapt,Loaipt,Tenpt,Tongsocho,Sochodu);
+            PhuongTienDTO pt = new PhuongTienDTO(Mapt,Loaipt,Tenpt,Tongsocho,Sochodu);
             danhSachTour.add(pt);
         }
         }catch(SQLException e){
@@ -1749,8 +1757,8 @@ public class config {
         return danhSachFB;
     }
 
-    public ArrayList<KhachSan> LayDL_KhachSan() {
-        ArrayList<KhachSan> danhSachKH = new ArrayList<>();
+    public ArrayList<KhachSanDTO> LayDL_KhachSan() {
+        ArrayList<KhachSanDTO> danhSachKH = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachsan");
@@ -1761,7 +1769,7 @@ public class config {
                 String soDT = rs.getString("SDT");
                 long tienPhong = rs.getLong("TienPhong");
                 
-                KhachSan ks = new KhachSan(tenKS, soDT, tienKS, tienPhong, maKS);
+                KhachSanDTO ks = new KhachSanDTO(tenKS, soDT, tienKS, tienPhong, maKS);
                 danhSachKH.add(ks);
             }
         } catch (SQLException ex) {
@@ -1771,8 +1779,8 @@ public class config {
     }
 
 
-    public ArrayList<DiaDiemVuiChoi> LayDL_DiaDiemVuiChoi() {
-        ArrayList<DiaDiemVuiChoi> DiaDiemVuiChoi = new ArrayList<>();
+    public ArrayList<DiaDiemVuiChoiDTo> LayDL_DiaDiemVuiChoi() {
+        ArrayList<DiaDiemVuiChoiDTo> DiaDiemVuiChoi = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiemvuichoi");
@@ -1781,7 +1789,7 @@ public class config {
                 String maddvc = rs.getString("MaDDVC");
                 String tenddvc = rs.getString("TenDDVC");
                 String diadiemTour = rs.getString("ThuocDiaDiemTour");
-                DiaDiemVuiChoi fb = new DiaDiemVuiChoi(diadiemTour,tenddvc,maddvc);
+                DiaDiemVuiChoiDTo fb = new DiaDiemVuiChoiDTo(diadiemTour,tenddvc,maddvc);
                 DiaDiemVuiChoi.add(fb);
             }
         } catch (SQLException ex) {
@@ -1790,8 +1798,8 @@ public class config {
         return DiaDiemVuiChoi;
     }
 
-    public ArrayList<DiaDiem> LayDL_DiaDiem() {
-        ArrayList<DiaDiem> dd = new ArrayList<>();
+    public ArrayList<DiaDiemDTO> LayDL_DiaDiem() {
+        ArrayList<DiaDiemDTO> dd = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
@@ -1801,7 +1809,7 @@ public class config {
                 String thuocTinh = rs.getString("ThuocTinh");
                 String khuVuc = rs.getString("KhuVuc");
                 
-                DiaDiem fb = new DiaDiem(maDD,tenDD,thuocTinh,khuVuc);
+                DiaDiemDTO fb = new DiaDiemDTO(maDD,tenDD,thuocTinh,khuVuc);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
@@ -1832,8 +1840,8 @@ public class config {
         return dd;
     }
     
-     public ArrayList<ChiTietTourDuLichBUS> LayDL_CTTour() {
-        ArrayList<ChiTietTourDuLichBUS> dsTour = new ArrayList<>();
+     public ArrayList<ChiTietTourDuLichDTo> LayDL_CTTour() {
+        ArrayList<ChiTietTourDuLichDTo> dsTour = new ArrayList<>();
         try (Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM chitiettour");
@@ -1849,7 +1857,7 @@ public class config {
                 long tienPhong = rs.getLong("TienPhong");
                 long phiDV = rs.getLong("TienDichVu");
                 
-                ChiTietTourDuLichBUS ctt = new ChiTietTourDuLichBUS(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
+                ChiTietTourDuLichDTo ctt = new ChiTietTourDuLichDTo(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
                 
                 dsTour.add(ctt);
             }

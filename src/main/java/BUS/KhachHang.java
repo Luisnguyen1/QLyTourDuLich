@@ -1,6 +1,7 @@
 package BUS;
 
 
+import DTO.KhachHangDTo;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;

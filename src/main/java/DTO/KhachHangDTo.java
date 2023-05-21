@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
-package BUS;
+package DTO;
 
 import java.util.Objects;
 import java.util.Scanner;
@@ -83,7 +83,7 @@ public class KhachHangDTo {
         this.email = email;
     }
 
-    @Override
+
     public String toString() {
         return "KhachHang{" + "makh=" + makh + ", tenkh=" + tenkh + ", diachi=" + diachi + ", sdt=" + sdt + ", email=" + email + '}';
     }

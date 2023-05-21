@@ -5,7 +5,7 @@
 package GiaodienUI;
 
 import BUS.KhachHang;
-import BUS.KhachHangDTo;
+import DTO.KhachHangDTo;
 import BUS.TaiKhoan;
 import KetnoiSQL_DAL.config;
 import java.awt.Component;

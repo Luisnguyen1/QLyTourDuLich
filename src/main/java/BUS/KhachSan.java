@@ -4,6 +4,7 @@
  */
 package BUS;
 
+import DTO.KhachSanDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -13,93 +14,22 @@ import java.util.Scanner;
  *
  * @author Huu Quoc Bao
  */
-public class KhachSan implements Comparable<KhachSan>{
+public class KhachSan {
     
-    public String tenKhachSan;
-    public String sdt;
-    public long tienKhachSan;
-    public long tienPhong;
-    public String maKhachSan;
    
 
-    public KhachSan( String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan) {
-       
-        this.tenKhachSan = tenKhachSan;
-        this.sdt = sdt;
-        this.tienKhachSan = tienKhachSan;
-        this.tienPhong = tienPhong;
-        this.maKhachSan = maKhachSan;
-        
-    }
-
-    public KhachSan(KhachSan x){
-       
-        tenKhachSan = x.tenKhachSan;
-        sdt = x.sdt;
-        tienKhachSan = x.tienKhachSan;
-        tienPhong = x.tienPhong;
-        maKhachSan = x.maKhachSan;
-      
-    }
-
-    @Override
-    public int compareTo(KhachSan o) {
-        return this.maKhachSan.compareTo(o.maKhachSan);
-    }
-
-
-    public String getTenKhachSan() {
-        return tenKhachSan;
-    }
-
-    public void setTenKhachSan(String tenKhachSan) {
-        this.tenKhachSan = tenKhachSan;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public long getTienKhachSan() {
-        return tienKhachSan;
-    }
-
-    public void setTienKhachSan(long tienKhachSan) {
-        this.tienKhachSan = tienKhachSan;
-    }
-
-    public long getTienPhong() {
-        return tienPhong;
-    }
-
-    public void setTienPhong(long tienPhong) {
-        this.tienPhong = tienPhong;
-    }
-
-    public String getMaKhachSan() {
-        return maKhachSan;
-    }
-
-    public void setMaKhachSan(String maKhachSan) {
-        this.maKhachSan = maKhachSan;
-    }
-
-     private ArrayList<KhachSan>danhSach = new ArrayList<KhachSan>();
+     private ArrayList<KhachSanDTO>danhSach = new ArrayList<KhachSanDTO>();
     config con = new config();
     public KhachSan() 
     {
         this.danhSach = con.LayDL_KhachSan(); //cach khai bao 1 arrayList
     }
     
-    public KhachSan traKH(int i){
+    public KhachSanDTO traKH(int i){
         return danhSach.get(i);
     }
-    public KhachSan traKH(String maKH){
-        for (KhachSan khachHang : danhSach) {
+    public KhachSanDTO traKH(String maKH){
+        for (KhachSanDTO khachHang : danhSach) {
             if (maKH.equalsIgnoreCase(khachHang.getMaKhachSan())) {
                 return khachHang;
             }
@@ -111,7 +41,7 @@ public class KhachSan implements Comparable<KhachSan>{
     this.danhSach = danhSach;
     }*/
     
-    public void themKhachSan(KhachSan kh)
+    public void themKhachSan(KhachSanDTO kh)
     {
         this.danhSach.add(kh);    
     }
@@ -120,7 +50,7 @@ public class KhachSan implements Comparable<KhachSan>{
     
     public void themKhachSan( String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
     {
-        KhachSan kh = new KhachSan(  tenKhachSan,  sdt,  tienKhachSan,  tienPhong,  maKhachSan);
+        KhachSanDTO kh = new KhachSanDTO(  tenKhachSan,  sdt,  tienKhachSan,  tienPhong,  maKhachSan);
         this.danhSach.add(kh);    
         con.UpdateSQL_KhachSan(kh, 1, "null");
     }
@@ -137,7 +67,7 @@ public class KhachSan implements Comparable<KhachSan>{
     
     
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
-    public boolean  xoaKhachSan(KhachSan kh)
+    public boolean  xoaKhachSan(KhachSanDTO kh)
     {
         return this.danhSach.remove(kh);
     }
@@ -145,7 +75,7 @@ public class KhachSan implements Comparable<KhachSan>{
     public boolean xoaKhachSan(String ma)
     {        
         int i = 0;
-        for (KhachSan khachHang : danhSach) {
+        for (KhachSanDTO khachHang : danhSach) {
             if (ma.equalsIgnoreCase(khachHang.getMaKhachSan())) {
                 this.danhSach.remove(i); 
                 con.UpdateSQL_KhachSan(khachHang, 2, "null");
@@ -161,7 +91,7 @@ public class KhachSan implements Comparable<KhachSan>{
     public boolean suaKhachSan(String maOld, String tenKhachSan, String sdt, long tienKhachSan, long tienPhong, String maKhachSan)
     {        
         int i = 0;
-        for (KhachSan khachHang : danhSach) {
+        for (KhachSanDTO khachHang : danhSach) {
             if (maOld.equalsIgnoreCase(khachHang.getMaKhachSan())) {
               
                 this.danhSach.get(i).setMaKhachSan(maKhachSan);
@@ -183,18 +113,18 @@ public class KhachSan implements Comparable<KhachSan>{
     //8. Tim kiem tat ca khach hang dua tren Ma khach hang duoc nhap tu ban phim
     public void timKhachSan(String ma)
     {
-        for (KhachSan khachHang : danhSach) 
+        for (KhachSanDTO khachHang : danhSach) 
         {
             if(khachHang.getMaKhachSan().contains(ma));
             System.out.println(khachHang);
         }
     }
     
-    public ArrayList<KhachSan> timKhachSanUnlimit(String ma)
+    public ArrayList<KhachSanDTO> timKhachSanUnlimit(String ma)
     {   
         int i =0;
-        ArrayList<KhachSan> dskh = new ArrayList<>();
-        for (KhachSan khachHang : danhSach) 
+        ArrayList<KhachSanDTO> dskh = new ArrayList<>();
+        for (KhachSanDTO khachHang : danhSach) 
         {
             if(khachHang.getMaKhachSan().equalsIgnoreCase(ma))
             {   

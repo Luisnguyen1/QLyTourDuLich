@@ -5,7 +5,7 @@
 package GiaodienUI;
 
 import BUS.HoaDon;
-import BUS.Tour;
+import BUS.TourDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;

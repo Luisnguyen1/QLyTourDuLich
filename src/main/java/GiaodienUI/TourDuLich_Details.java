@@ -6,6 +6,7 @@ package GiaodienUI;
 
 import BUS.ChiTietTourDuLichBUS;
 import BUS.Tour;
+import DTO.ChiTietTourDuLichDTo;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -523,7 +524,7 @@ public class TourDuLich_Details extends javax.swing.JPanel {
             model.addColumn("Tiền Phòng");
             model.addColumn("Phí Dịch Vụ");
             
-            for(ChiTietTourDuLichBUS a : ctt.timCTTourUnlimit(dkTim)){
+            for(ChiTietTourDuLichDTo a : ctt.timCTTourUnlimit(dkTim)){
                 model.addRow(new Object[]{a.getDdtour(),a.getMatour(),a.getKhoihanh(),a.getNoiden(),a.getThutungay(),a.getMaks(),a.getTienan(),a.getTienphong(),a.getPhidichvu()});
             }
             jTable1.setModel(model);

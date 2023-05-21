@@ -5,9 +5,10 @@
 package GiaodienUI;
 
 import BUS.NhanVien;
-import BUS.Tour;
+import BUS.VeTour;
 import javax.swing.JOptionPane;
 import BUS.VeTour;
+import DTO.VeTourDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -772,7 +773,7 @@ public class QlyVeTour extends javax.swing.JPanel {
             model.addColumn("Tiền vé giảm");
 
             // Thêm các khách hàng tìm được vào model
-            for (VeTour vt : danhSachVT.timKhachHangUnlimit(maNVCanTim)) {
+            for (VeTourDTO vt : danhSachVT.timKhachHangUnlimit(maNVCanTim)) {
                 model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
             }
 

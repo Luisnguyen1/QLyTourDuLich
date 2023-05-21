@@ -10,8 +10,9 @@ import java.util.Calendar;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
+import DTO.KhuyenMaiDTO;
+
 import BUS.KhuyenMai;
-import BUS.Tour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -896,7 +897,7 @@ if(thang.equals("2")){
             model.addColumn("Tiền Giảm");
 
             // Thêm các khách hàng tìm được vào model
-            for (KhuyenMai kh : dskm.timKhuyenMaiUnlimit(dkTim)) {              
+            for (KhuyenMaiDTO kh : dskm.timKhuyenMaiUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getTenkm(), kh.getMakm(), kh.getNgaykm(), kh.getHansudung(),kh.getTiengiam()});
             }

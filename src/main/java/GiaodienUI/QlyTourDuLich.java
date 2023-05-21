@@ -6,6 +6,7 @@ package GiaodienUI;
 
 import BUS.DiaDiemVuiChoi;
 import BUS.Tour;
+import DTO.TourDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.ParseException;
@@ -586,7 +587,7 @@ public class QlyTourDuLich extends javax.swing.JPanel {
             model.addColumn("Giá Tour");
 
             // Thêm các khách hàng tìm được vào model
-            for (Tour kh : tour.timTourUnlimit(dkTim)){              
+            for (TourDTO kh : tour.timTourUnlimit(dkTim)){              
                 model.addRow(new Object[]{kh.getTenTour(),kh.getMaTour(),kh.getLoaiTour(),kh.getTongsocho(),kh.getSochodu(),kh.getDiaDiemTour(),kh.getDiaDiemdi(),kh.getDiaDiemden(),kh.getSongaydi(),kh.getGiaTour()});
             }
 
