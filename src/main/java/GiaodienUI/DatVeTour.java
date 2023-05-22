@@ -337,7 +337,8 @@ public class DatVeTour extends javax.swing.JPanel {
             int input = JOptionPane.showOptionDialog(null, "Đặt Vé Thành Công", "The title", JOptionPane.OK_CANCEL_OPTION, JOptionPane.INFORMATION_MESSAGE, null, null, null);
             if (input == JOptionPane.OK_OPTION) {
                 ModuleXuLy md = new ModuleXuLy();
-                md.chuyenFrameMuaVe(mahoadon, mavt, makh, danhSachVe.traKH(mavt).getMatour(), Integer.parseInt(soluong), 1);
+                long c = danhsachTour.traTour(danhSachVe.traKH(mavt).getMatour()).getGiaTour();
+                md.chuyenFrameMuaVe(mahoadon, mavt, makh, danhSachVe.traKH(mavt).getMatour(), (int)(Long.parseLong(soluong )* c) , 1);
                 JComponent comp = (JComponent) evt.getSource();
                 Window win = SwingUtilities.getWindowAncestor(comp);
                 win.dispose();
