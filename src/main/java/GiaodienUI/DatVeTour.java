@@ -59,9 +59,9 @@ public class DatVeTour extends javax.swing.JPanel {
             txtSdt.setText("");
             txtEmail.setText("");
             txtMaVeTour.setText(MaVT);
-            txtNoiDi.setText(tour.getDiaDiemdi());
-            txtNoiDen.setText(tour.getDiaDiemden());
-            txtLoaiTour.setText(tour.getLoaiTour());
+            txtNoiDi.setText(tour.traTour(0).getDiaDiemdi());
+            txtNoiDen.setText(tour.traTour(0).getDiaDiemden());
+            txtLoaiTour.setText(tour.traTour(0).getLoaiTour());
 
             txtMaVeTour.setEditable(false);
             txtNoiDi.setEditable(false);

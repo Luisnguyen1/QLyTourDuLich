@@ -41,19 +41,23 @@ public class ImportExcel {
             Cell firstCell = firstRow.getCell(0);
             System.out.println(firstCell.getStringCellValue());
             List<NhanVien> listOfCustomer = new ArrayList<NhanVien>();
+            int i = 0;
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
                 NhanVien customer = new NhanVien();
-                customer.setManv(currentRow.getCell(0).getStringCellValue());
-                customer.setTennv(currentRow.getCell(1).getStringCellValue());
-                customer.setLoainv(currentRow.getCell(2).getStringCellValue());
-                customer.setChucvu(currentRow.getCell(3).getStringCellValue());
-                customer.setDiachi(currentRow.getCell(4).getStringCellValue());
+                customer.traNV(i).setManv(currentRow.getCell(0).getStringCellValue());
+                customer.traNV(i).setTennv(currentRow.getCell(1).getStringCellValue());
+                customer.traNV(i).setLoainv(currentRow.getCell(2).getStringCellValue());
+                customer.traNV(i).setChucvu(currentRow.getCell(3).getStringCellValue());
+                customer.traNV(i).setDiachi(currentRow.getCell(4).getStringCellValue());
                 listOfCustomer.add(customer);
+                i++;
             }
+            i = 0;
             for (NhanVien customer : listOfCustomer) {
                 System.out.println(customer);
-                con.UpdateSQL_NhanVien(customer, 1, "null");
+                con.UpdateSQL_NhanVien(customer.traNV(i), 1, "null");
+                i++;
             }
             workbook.close();
             

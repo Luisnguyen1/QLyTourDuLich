@@ -64,7 +64,7 @@ public class VeTour  {
     }
 
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
-    public boolean xoaVeTour(VeTour kh) {
+    public boolean xoaVeTour(VeTourDTO kh) {
         return this.danhSach.remove(kh);
     }
 

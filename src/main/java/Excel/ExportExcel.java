@@ -5,6 +5,7 @@
 package Excel;
 
 import BUS.NhanVien;
+import DTO.NhanVienDTO;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -31,7 +32,7 @@ public class ExportExcel {
 
     private static CellStyle cellStyleFormatNumber = null;
 
-    public void ExportNhanVien(ArrayList<NhanVien> array) {
+    public void ExportNhanVien(NhanVien array) {
         System.out.println("Xuat file excel");
         XSSFWorkbook workbook = new XSSFWorkbook();
         XSSFSheet sheet = workbook.createSheet("NhanVien");
@@ -56,22 +57,22 @@ public class ExportExcel {
             Cell celle = row1.createCell(4);
             celle.setCellValue("Địa chỉ");
             
-        for (NhanVien nv : array) {
+        for (int i = 0; i < array.laySoLuongNhanVien(); i ++) {
             Row row = sheet.createRow(rowNum++);
             Cell cell1 = row.createCell(0);
-            cell1.setCellValue(nv.getManv());
+            cell1.setCellValue(array.traNV(i).getManv());
 
             Cell cell2 = row.createCell(1);
-            cell2.setCellValue(nv.getTennv());
+            cell2.setCellValue(array.traNV(i).getTennv());
 
             Cell cell3 = row.createCell(2);
-            cell3.setCellValue(nv.getLoainv());
+            cell3.setCellValue(array.traNV(i).getLoainv());
 
             Cell cell4 = row.createCell(3);
-            cell4.setCellValue(nv.getDiachi());
+            cell4.setCellValue(array.traNV(i).getDiachi());
 
             Cell cell5 = row.createCell(4);
-            cell5.setCellValue(nv.getDiachi());
+            cell5.setCellValue(array.traNV(i).getDiachi());
 
         }
 

@@ -46,7 +46,7 @@ public class MuaVe extends javax.swing.JPanel {
         
         for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
             
-            model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(danhSachVT.traKH(i).getMatour()).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
+            model.addRow(new Object[]{danhSachVT.traKH(i).getMavetour(), danhSachVT.traKH(i).getMatour(),danhsachTour.traTour(i).getTenTour(), danhSachVT.traKH(i).getNgaydatve(), danhSachVT.traKH(i).getHansudung(), danhSachVT.traKH(i).getTiengiam()});
         }
     }
 

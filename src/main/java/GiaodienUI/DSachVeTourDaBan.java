@@ -196,13 +196,13 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
         String maNVCanTim = txtMaVeTour.getText();
 
         // Tạo một danh sách để lưu khách hàng tìm được
-        ArrayList<VeTour> ketQuaTimKiem = new ArrayList<>();
+        ArrayList<VeTourDTO> ketQuaTimKiem = new ArrayList<>();
 
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (VeTourDTO nv : danhSachVT) {
-            if (nv.getMavetour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
-                ketQuaTimKiem.add(nv);
+        for (int i = 0; i < danhSachVT.laySoLuongVeTour(); i++) {
+            if (danhSachVT.traKH(i).getMavetour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
+                ketQuaTimKiem.add(danhSachVT.traKH(i));
             }
         }
 

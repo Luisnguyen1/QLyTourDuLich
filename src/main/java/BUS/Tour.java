@@ -25,7 +25,7 @@ public class Tour {
    
    public TourDTO traTour(String ma){
        for(TourDTO t : ds){
-           if(ma.equalsIgnoreCase(t.getMaTour())){
+           if(ma.equals(t.getMaTour())){
                return t;
            }
        }
