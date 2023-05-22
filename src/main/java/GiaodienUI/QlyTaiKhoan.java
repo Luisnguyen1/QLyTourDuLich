@@ -4,8 +4,8 @@
  */
 package GiaodienUI;
 
-import BUS.FeedBack;
-import BUS.TaiKhoan;
+import BUS.FeedBackBUS;
+import BUS.TaiKhoanBUS;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -20,7 +20,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class QlyTaiKhoan extends javax.swing.JPanel {
-    TaiKhoan dstk = new TaiKhoan();
+    TaiKhoanBUS dstk = new TaiKhoanBUS();
     /**
      * Creates new form QlyTaiKhoan
      */
@@ -463,7 +463,7 @@ public class QlyTaiKhoan extends javax.swing.JPanel {
             model.addColumn("Quyền Truy Cập");
 
             // Thêm các khách hàng tìm được vào model
-            for (TaiKhoan kh : dstk.timKhachHangUnlimit(dkTim)) {              
+            for (TaiKhoanBUS kh : dstk.timKhachHangUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getMatk(), kh.getMatkhau(), kh.getEmail(), kh.getQuyentruycap()});
             }

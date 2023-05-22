@@ -6,6 +6,7 @@ package Excel;
 
 import BUS.NhanVien;
 import DTO.NhanVienDTO;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -40,24 +41,24 @@ public class ExportExcel {
         Row firstRow = sheet.createRow(rowNum++);
         Cell firstCell = firstRow.createCell(0);
         firstCell.setCellValue("Thong tin nhan vien");
-        
+
         Row row1 = sheet.createRow(rowNum++);
-            Cell cella = row1.createCell(0);
-            cella.setCellValue("Mã Nhân Viên");
+        Cell cella = row1.createCell(0);
+        cella.setCellValue("Mã Nhân Viên");
 
-            Cell cellb = row1.createCell(1);
-            cellb.setCellValue("Tên Nhân Viên");
+        Cell cellb = row1.createCell(1);
+        cellb.setCellValue("Tên Nhân Viên");
 
-            Cell cellc = row1.createCell(2);
-            cellc.setCellValue("Loại Nhân Viên");
+        Cell cellc = row1.createCell(2);
+        cellc.setCellValue("Loại Nhân Viên");
 
-            Cell celld = row1.createCell(3);
-            celld.setCellValue("Chức vụ");
+        Cell celld = row1.createCell(3);
+        celld.setCellValue("Chức vụ");
 
-            Cell celle = row1.createCell(4);
-            celle.setCellValue("Địa chỉ");
-            
-        for (int i = 0; i < array.laySoLuongNhanVien(); i ++) {
+        Cell celle = row1.createCell(4);
+        celle.setCellValue("Địa chỉ");
+
+        for (int i = 0; i < array.laySoLuongNhanVien(); i++) {
             Row row = sheet.createRow(rowNum++);
             Cell cell1 = row.createCell(0);
             cell1.setCellValue(array.traNV(i).getManv());
@@ -86,5 +87,14 @@ public class ExportExcel {
             e.printStackTrace();
         }
         System.out.println("Done");
+        Desktop desktop = Desktop.getDesktop();
+        File file = new File("NhanVien.xlsx");
+        if (file.exists()) {
+            try {
+                desktop.open(file);
+            } catch (IOException ex) {
+                Logger.getLogger(ExportExcel.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
     }
 }

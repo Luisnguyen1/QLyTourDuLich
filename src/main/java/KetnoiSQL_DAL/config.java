@@ -4,7 +4,7 @@
  */
 package KetnoiSQL_DAL;
 
-import BUS.TaiKhoan;
+import BUS.TaiKhoanBUS;
 import BUS.HoaDon;
 import DTO.KhuyenMaiDTO;
 import BUS.NhanVien;
@@ -14,7 +14,7 @@ import BUS.ChiTietHoaDonVeBUS;
 import BUS.ChiTietTourDuLichBUS;
 import BUS.DiaDiem;
 import BUS.DiaDiemVuiChoi;
-import BUS.FeedBack;
+import BUS.FeedBackBUS;
 import BUS.KhachHang;
 import DTO.KhachHangDTo;
 import BUS.KhachSan;
@@ -23,10 +23,12 @@ import BUS.VeTour;
 import DTO.ChiTietTourDuLichDTo;
 import DTO.DiaDiemDTO;
 import DTO.DiaDiemVuiChoiDTo;
+import DTO.FeedBack;
 import DTO.HoaDonDTO;
 import DTO.KhachSanDTO;
 import DTO.NhanVienDTO;
 import DTO.PhuongTienDTO;
+import DTO.TaiKhoan;
 import DTO.VeTourDTO;
 
 import java.sql.Connection;
@@ -1748,7 +1750,7 @@ public class config {
                 String dchi = rs.getString("diachi");
                 String ndung = rs.getString("noidung");
 
-                FeedBack fb = new FeedBack (hten, email, sodt, dchi, ndung);
+                FeedBack fb = new FeedBack(hten, email, sodt, dchi, ndung);
                 danhSachFB.add(fb);
             }
         } catch (SQLException ex) {

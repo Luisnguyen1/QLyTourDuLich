@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import BUS.TaiKhoan;
+import BUS.TaiKhoanBUS;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +15,7 @@ import javax.swing.JTextField;
  * @author Thanh Tran
  */
 public class SignUp extends javax.swing.JFrame {
-    TaiKhoan tk = new TaiKhoan();
+    TaiKhoanBUS tk = new TaiKhoanBUS();
     /**
      * Creates new form register
      */

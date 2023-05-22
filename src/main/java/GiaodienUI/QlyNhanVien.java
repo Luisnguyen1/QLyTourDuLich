@@ -611,8 +611,8 @@ public class QlyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_btnTimKiemActionPerformed
 
     private void btnExportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnExportActionPerformed
-        /*ExportExcel ex = new ExportExcel();
-        ex.ExportNhanVien(danhSachNV);*/
+        ExportExcel ex = new ExportExcel();
+        ex.ExportNhanVien(danhSachNV);
     }//GEN-LAST:event_btnExportActionPerformed
 
     private void btnImportActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnImportActionPerformed

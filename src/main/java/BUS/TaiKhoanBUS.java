@@ -1,68 +1,15 @@
 package BUS;
 
+import DTO.TaiKhoan;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 
-public class TaiKhoan {
-    private String matk;
-    private String matkhau;
-    private String email;
-    private String quyentruycap;
- 
-
-    public TaiKhoan(String matk, String matkhau, String email, String quyentruycap) {
-  
-        this.matk = matk;
-        this.matkhau = matkhau;
-        this.email = email;
-        this.quyentruycap = quyentruycap;
-     
-    }
-
-    TaiKhoan(String matk, String matkhau) {
-        this.matk = matk;
-        this.matkhau = matkhau;
-    }
-  
-
-    public String getMatk() {
-        return matk;
-
-      
-    }
-
-    public String getMatkhau() {
-        return matkhau;
-    }
-
-    public void setMatk(String matk) {
-        this.matk = matk;
-    }
-
-    public void setMatkhau(String matkhau) {
-        this.matkhau = matkhau;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-
-    public String getQuyentruycap() {
-        return quyentruycap;
-    }
-
-    public void setQuyentruycap(String quyentruycap) {
-        this.quyentruycap = quyentruycap;
-    }
+public class TaiKhoanBUS {
+    
     
     private ArrayList<TaiKhoan>danhSach = new ArrayList<TaiKhoan>();
     config con = new config();
-    public TaiKhoan() 
+    public TaiKhoanBUS() 
     {
         this.danhSach = con.layDL_TK(); //cach khai bao 1 arrayList
     }
@@ -70,9 +17,9 @@ public class TaiKhoan {
         return danhSach.get(i);
     }
     public TaiKhoan traKH(String maKH){
-        for (TaiKhoan khachHang : danhSach) {
-            if (maKH.equalsIgnoreCase(khachHang.getMatk())) {
-                return khachHang;
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (maKH.equalsIgnoreCase(danhSach.get(i).getMatk())) {
+                return danhSach.get(i);
             }
         }
         return null;
@@ -111,11 +58,11 @@ public class TaiKhoan {
    
     public boolean xoaKhachHang(String ma)
     {        
-        int i = 0;
-        for (TaiKhoan khachHang : danhSach) {
-            if (ma.equalsIgnoreCase(khachHang.getMatk())) {
+   
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (ma.equalsIgnoreCase(danhSach.get(i).getMatk())) {
                 this.danhSach.remove(i); 
-                con.UpdateSQL_TaiKhoan(khachHang, 2, "null");
+                con.UpdateSQL_TaiKhoan(danhSach.get(i), 2, "null");
                 return true;
             }
             i++;
@@ -127,9 +74,9 @@ public class TaiKhoan {
     
     public boolean suaKhachHang(String maOld, String matk, String matkhau, String email, String quyentruycap)
     {        
-        int i = 0;
-        for (TaiKhoan khachHang : danhSach) {
-            if (maOld.equalsIgnoreCase(khachHang.getMatk())) {
+
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (maOld.equalsIgnoreCase(danhSach.get(i).getMatk())) {
                 this.danhSach.get(i).setMatk(matk); 
                 this.danhSach.get(i).setMatkhau(matkhau);
                 this.danhSach.get(i).setEmail(email); 

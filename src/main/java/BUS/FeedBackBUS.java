@@ -4,6 +4,7 @@
  */
 package BUS;
 
+import DTO.FeedBack;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 
@@ -11,65 +12,12 @@ import java.util.ArrayList;
  *
  * @author Thanh Tran
  */
-public class FeedBack {
-    private String hoten;
-    private String email;
-    private String sdt;
-    private String diachi;
-    private String noidung;
-
-    public FeedBack(String hoten, String email, String sdt, String diachi, String noidung) {
-        this.hoten = hoten;
-        this.email = email;
-        this.sdt = sdt;
-        this.diachi = diachi;
-        this.noidung = noidung;
-    }
-
-    public String getHoten() {
-        return hoten;
-    }
-
-    public void setHoten(String hoten) {
-        this.hoten = hoten;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
+public class FeedBackBUS {
     
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getSdt() {
-        return sdt;
-    }
-
-    public void setSdt(String sdt) {
-        this.sdt = sdt;
-    }
-
-    public String getDiachi() {
-        return diachi;
-    }
-
-    public void setDiachi(String diachi) {
-        this.diachi = diachi;
-    }
-
-    public String getNoidung() {
-        return noidung;
-    }
-
-    public void setNoidung(String noidung) {
-        this.noidung = noidung;
-    }
 
     private ArrayList<FeedBack>danhSach = new ArrayList<FeedBack>();
     config con = new config();
-    public FeedBack() 
+    public FeedBackBUS() 
     {
         this.danhSach = con.LayDL_Feedback(); //cach khai bao 1 arrayList
     }
@@ -78,9 +26,9 @@ public class FeedBack {
         return danhSach.get(i);
     }
     public FeedBack traFB(String ten){
-        for (FeedBack fb : danhSach) {
-            if (ten.equalsIgnoreCase(fb.getHoten())) {
-                return fb;
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (ten.equalsIgnoreCase(danhSach.get(i).getHoten())) {
+                return danhSach.get(i);
             }
         }
         return null;
@@ -106,13 +54,7 @@ public class FeedBack {
     
     
     //2. Them In danh sach khach hang ra man hinh
-    public void inDanhSachFeedBack()
-    {
-        for (FeedBack fb : danhSach) 
-        {
-            System.out.println(fb);
-        }
-    }
+    
     
    
     
@@ -122,18 +64,18 @@ public class FeedBack {
     }
   
     //7. Xoa mot khach hang ra khoi danh sach khach hang dua tren ma khach hang
-    public boolean  xoaFeedBack(FeedBack kh)
+    public boolean  xoaFeedBack(FeedBackBUS kh)
     {
         return this.danhSach.remove(kh);
     }
     
     public boolean xoaFeedBack(String ma)
     {        
-        int i = 0;
-        for (FeedBack fb : danhSach) {
-            if (ma.equalsIgnoreCase(fb.getHoten())) {
+
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (ma.equalsIgnoreCase(danhSach.get(i).getHoten())) {
                 this.danhSach.remove(i); 
-                con.UpdateSQL_FeedBack(fb, 2, "null");
+                con.UpdateSQL_FeedBack(danhSach.get(i), 2, "null");
                 return true;
             }
             i++;
@@ -145,9 +87,9 @@ public class FeedBack {
     
     public boolean suaFeedBack(String maOld, String hoten, String email, String sdt, String diachi, String noidung)
     {        
-        int i = 0;
-        for (FeedBack fb : danhSach) {
-            if (maOld.equalsIgnoreCase(fb.getHoten())) {
+
+        for (int i = 0; i < danhSach.size(); i ++) {
+            if (maOld.equalsIgnoreCase(danhSach.get(i).getHoten())) {
                 this.danhSach.get(i).setHoten(hoten); 
                 this.danhSach.get(i).setEmail(email);
                 this.danhSach.get(i).setSdt(sdt); 
@@ -168,29 +110,29 @@ public class FeedBack {
     
     public ArrayList<FeedBack> timFeedBackUnlimit(String ma)
     {   
-        int i =0;
+
         ArrayList<FeedBack> dskh = new ArrayList<>();
-        for (FeedBack fb : danhSach) 
+        for (int i = 0; i < danhSach.size(); i ++) 
         {
-            if(fb.getHoten().equalsIgnoreCase(ma))
+            if(danhSach.get(i).getHoten().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
+                dskh.add(danhSach.get(i));
             }
-            if(fb.getEmail().equalsIgnoreCase(ma))
+            if(danhSach.get(i).getEmail().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
+                dskh.add(danhSach.get(i));
             }
-            if(fb.getSdt().equalsIgnoreCase(ma))
+            if(danhSach.get(i).getSdt().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
+                dskh.add(danhSach.get(i));
             }
-            if(fb.getDiachi().equalsIgnoreCase(ma))
+            if(danhSach.get(i).getDiachi().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
+                dskh.add(danhSach.get(i));
             }
-            if(fb.getNoidung().equalsIgnoreCase(ma))
+            if(danhSach.get(i).getNoidung().equalsIgnoreCase(ma))
             {   
-                dskh.add(fb);
+                dskh.add(danhSach.get(i));
             }
             i++;
         }

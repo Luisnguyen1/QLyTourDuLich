@@ -4,7 +4,7 @@
  */
 package GiaodienUI;
 
-import BUS.FeedBack;
+import BUS.FeedBackBUS;
 import BUS.NhanVien;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  */
 public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
 
-    FeedBack fb = new FeedBack();
+    FeedBackBUS fb = new FeedBackBUS();
     config con = new config();
     /**
      * Creates new form QlyPhanHoiKhachHang
@@ -222,7 +222,7 @@ public class QlyPhanHoiKhachHang extends javax.swing.JPanel {
             
 
             // Thêm các khách hàng tìm được vào model
-            for (FeedBack kh : fb.timFeedBackUnlimit(dkTim)) {              
+            for (FeedBackBUS kh : fb.timFeedBackUnlimit(dkTim)) {              
             
                 model.addRow(new Object[]{kh.getHoten(), kh.getSdt(), kh.getEmail(), kh.getDiachi(),kh.getNoidung()});
             }

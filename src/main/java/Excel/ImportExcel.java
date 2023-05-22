@@ -5,7 +5,9 @@
 package Excel;
 
 import BUS.NhanVien;
+import DTO.NhanVienDTO;
 import KetnoiSQL_DAL.config;
+import java.awt.Desktop;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -40,7 +42,7 @@ public class ImportExcel {
             Row firstRow = iterator.next();
             Cell firstCell = firstRow.getCell(0);
             System.out.println(firstCell.getStringCellValue());
-            List<NhanVien> listOfCustomer = new ArrayList<NhanVien>();
+            List<NhanVienDTO> listOfCustomer = new ArrayList<NhanVienDTO>();
             int i = 0;
             while (iterator.hasNext()) {
                 Row currentRow = iterator.next();
@@ -50,13 +52,13 @@ public class ImportExcel {
                 customer.traNV(i).setLoainv(currentRow.getCell(2).getStringCellValue());
                 customer.traNV(i).setChucvu(currentRow.getCell(3).getStringCellValue());
                 customer.traNV(i).setDiachi(currentRow.getCell(4).getStringCellValue());
-                listOfCustomer.add(customer);
+                listOfCustomer.add(customer.traNV(i));
                 i++;
             }
             i = 0;
-            for (NhanVien customer : listOfCustomer) {
+            for (NhanVienDTO customer : listOfCustomer) {
                 System.out.println(customer);
-                con.UpdateSQL_NhanVien(customer.traNV(i), 1, "null");
+                con.UpdateSQL_NhanVien(customer, 1, "null");
                 i++;
             }
             workbook.close();

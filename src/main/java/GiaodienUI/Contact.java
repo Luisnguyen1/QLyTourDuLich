@@ -4,7 +4,8 @@
  */
 package GiaodienUI;
 
-import BUS.FeedBack;
+import BUS.FeedBackBUS;
+import DTO.FeedBack;
 import KetnoiSQL_DAL.config;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
@@ -15,7 +16,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class Contact extends javax.swing.JPanel {
-    FeedBack fb = new FeedBack();
+    FeedBackBUS fb = new FeedBackBUS();
     config con = new config();
     /**
      * Creates new form Contact
@@ -381,7 +382,7 @@ public class Contact extends javax.swing.JPanel {
             
             fb.themFeedBack(hoTen, Email, soDT, dchi, ndung);
             //Save to database
-            Send_Feedback(fb);
+            Send_Feedback(fb.traFB(maxMaKH));
             
             JOptionPane.showMessageDialog(null,"Gửi Thành Công");
             
