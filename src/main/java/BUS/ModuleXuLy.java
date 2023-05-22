@@ -70,7 +70,7 @@ public class ModuleXuLy {
         HoaDon hd = new HoaDon();
         ChiTietHoaDonVeBUS cthd = new ChiTietHoaDonVeBUS();
         VeTour vt = new VeTour();
-        TourDTO tour = new TourDTO();
+        Tour tour = new Tour();
         KhachHang kh = new KhachHang();
         
         System.out.println(manv);

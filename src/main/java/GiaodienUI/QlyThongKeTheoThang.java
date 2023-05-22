@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import BUS.HoaDon;
+import DTO.HoaDonDTO;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
@@ -246,7 +247,7 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         java.sql.Date ngayXuat = new java.sql.Date(ngayDiDate.getTime());
         System.out.println(ngayXuat);
 
-        ArrayList<HoaDon> tempHD = new ArrayList<>();
+        ArrayList<HoaDonDTO> tempHD = new ArrayList<>();
         for (int i = 0; i < danhSachHD.laySoLuongHoaDon(); i++) {
             System.out.println(danhSachHD.traHD(i).getNgayxuathoadon());
 
@@ -259,7 +260,7 @@ public class QlyThongKeTheoThang extends javax.swing.JPanel {
         }
         model = (DefaultTableModel) jTable1.getModel();
         long tong = 0;
-        for (HoaDon nv : tempHD) {
+        for (HoaDonDTO nv : tempHD) {
             model.addRow(new Object[]{nv.getMahd(), nv.getNgayxuathoadon(), nv.getTongtien()});
             tong = tong + nv.getTongtien();
         }

@@ -8,7 +8,8 @@ import BUS.ChiTietHoaDonVeBUS;
 import BUS.HoaDon;
 import BUS.KhachHang;
 import BUS.ModuleXuLy;
-import BUS.TourDTO;
+import BUS.Tour;
+
 import BUS.VeTour;
 import KetnoiSQL_DAL.config;
 import java.awt.Window;
@@ -26,7 +27,7 @@ public class DatVeTour extends javax.swing.JPanel {
     VeTour danhSachVe = new VeTour();
     HoaDon danhSachHD = new HoaDon();
     ChiTietHoaDonVeBUS danhSaChiTietHoaDonVe = new ChiTietHoaDonVeBUS();
-    TourDTO danhsachTour = new TourDTO();
+    Tour danhsachTour = new Tour();
     config con = new config();
 
     String mavt;
@@ -42,14 +43,14 @@ public class DatVeTour extends javax.swing.JPanel {
             VeTour vt = new VeTour();
             for (int i = 0; i < danhSachVe.laySoLuongVeTour(); i++) {
                 if (danhSachVe.traKH(i).getMavetour().equals(MaVT)) {
-                    vt = danhSachVe.traKH(i);
+                    vt.themVeTour(danhSachVe.traKH(i));
                     break;
                 }
             }
-            TourDTO tour = new TourDTO();
+            Tour tour = new Tour();
             for (int i = 0; i < danhsachTour.laySoLuongTour(); i++) {
-                if (danhsachTour.traTour(i).getMaTour().equals(vt.getMatour())) {
-                    tour = danhsachTour.traTour(i);
+                if (danhsachTour.traTour(i).getMaTour().equals(vt.traKH(i).getMatour())) {
+                    tour.themTour(danhsachTour.traTour(i));
                     break;
                 }
             }

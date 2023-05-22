@@ -34,7 +34,7 @@ public class PhuongTien{
     this.danhSach = danhSach;
     }*/
     
-    public void themPhuongTien(PhuongTien pt)
+    public void themPhuongTien(PhuongTienDTO pt)
     {
         this.danhSachPT.add(pt);    
     }

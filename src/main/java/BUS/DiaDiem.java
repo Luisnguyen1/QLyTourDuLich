@@ -80,7 +80,7 @@ public class DiaDiem {
 
     public void timDiaDiem(String maDD) {
         for (DiaDiemDTO diaDiem : danhSach) {
-            if (diaDiem.getMadd().contains(madd)) {
+            if (diaDiem.getMadd().contains(maDD)) {
                 System.out.println(diaDiem);
             }
         }

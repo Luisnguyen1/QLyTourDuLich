@@ -7,7 +7,8 @@ package GiaodienUI;
 import BUS.ChiTietHoaDonVeBUS;
 import BUS.HoaDon;
 import BUS.ModuleXuLy;
-import BUS.TourDTO;
+import BUS.Tour;
+
 import BUS.VeTour;
 import KetnoiSQL_DAL.config;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ public class MuaVe extends javax.swing.JPanel {
 
     VeTour danhSachVT = new VeTour();
     HoaDon danhSachHD = new HoaDon();
-    TourDTO danhsachTour = new TourDTO();
+    Tour danhsachTour = new Tour();
     config con = new config();
     String MaHD;
     String MaVeTour;

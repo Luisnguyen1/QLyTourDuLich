@@ -34,7 +34,7 @@ public class ChiTietTourDuLichBUS {
         return null;
     }
     
-    public void themCTTour(ChiTietTourDuLichBUS ctt){
+    public void themCTTour(ChiTietTourDuLichDTo ctt){
         this.danhsach.add(ctt);
     }
     

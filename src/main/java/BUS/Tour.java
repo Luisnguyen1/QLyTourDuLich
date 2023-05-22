@@ -1,6 +1,7 @@
 package BUS;
 
 import DTO.TourDTO;
+import DTO.VeTourDTO;
 import KetnoiSQL_DAL.config;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -34,7 +35,9 @@ public class Tour {
    public int laySoLuongTour(){
        return this.ds.size();
    }
-   
+   public void themTour(TourDTO kh) {
+        this.ds.add(kh);
+    }
    public void themTour(String tenTour, String maTour, String loaiTour, int Tongsocho, int Sochodu, String DiaDiemTour, String DiaDiemdi, String DiaDiemden, int songaydi, long giaTour){
         TourDTO tour = new TourDTO( tenTour,  maTour,  loaiTour,  Tongsocho,  Sochodu,  DiaDiemTour,  DiaDiemdi,  DiaDiemden,  songaydi,  giaTour);
         con.UpdateSQL_Tour(tour, 1, "null");

@@ -5,6 +5,7 @@
 package GiaodienUI;
 
 import BUS.VeTour;
+import DTO.VeTourDTO;
 import java.sql.SQLException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ import javax.swing.table.DefaultTableModel;
  * @author Thanh Tran
  */
 public class DSachVeTourDaBan extends javax.swing.JPanel {
-    ArrayList<VeTour> danhSachVT = new ArrayList<>();
+      VeTour danhSachVT = new VeTour();
     /**
      * Creates new form DSachVeTourDaBan
      */
@@ -171,10 +172,10 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
         
         String maVT = (String) model.getValueAt(selectedRow, 0);
         
-        VeTour veTourCanXoa = null;
-        for(VeTour vt : danhSachVT){
-            if(vt.getMavetour().equals(maVT)){
-                veTourCanXoa = vt;
+        VeTourDTO veTourCanXoa = null;
+        for(int i=0;i<danhSachVT.laySoLuongVeTour();i++){
+            if(danhSachVT.traKH(i).getMavetour().equals(maVT)){
+                veTourCanXoa = danhSachVT.traKH(i);
                 break;
             }
         }
@@ -183,7 +184,7 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
             JOptionPane.showMessageDialog(null,"Vé Tour Không Tồn Tại");
         }
         
-        danhSachVT.remove(veTourCanXoa);
+        danhSachVT.xoaVeTour(veTourCanXoa);
         model.removeRow(selectedRow);
         
         jTable1.setModel(model);
@@ -199,7 +200,7 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
 
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
         // Lặp qua danh sách khách hàng hiện tại để tìm kiếm
-        for (VeTour nv : danhSachVT) {
+        for (VeTourDTO nv : danhSachVT) {
             if (nv.getMavetour().toLowerCase().contains(maNVCanTim.toLowerCase())) {
                 ketQuaTimKiem.add(nv);
             }
@@ -221,7 +222,7 @@ public class DSachVeTourDaBan extends javax.swing.JPanel {
         
 
         // Thêm các khách hàng tìm được vào model
-        for (VeTour vt : ketQuaTimKiem) {
+        for (VeTourDTO vt : ketQuaTimKiem) {
              model.addRow(new Object[]{vt.getMavetour(), vt.getMatour(), ngayDVString, hanSDString, vt.getTiengiam()});
         }
 
