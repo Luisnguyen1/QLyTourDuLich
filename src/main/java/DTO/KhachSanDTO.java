@@ -13,7 +13,7 @@ import java.util.Scanner;
  *
  * @author Huu Quoc Bao
  */
-public class KhachSanDTO implements Comparable<KhachSanDTO>{
+public class KhachSanDTO {
     
     public String tenKhachSan;
     public String sdt;
@@ -42,7 +42,7 @@ public class KhachSanDTO implements Comparable<KhachSanDTO>{
       
     }
 
-    @Override
+    
     public int compareTo(KhachSanDTO o) {
         return this.maKhachSan.compareTo(o.maKhachSan);
     }
