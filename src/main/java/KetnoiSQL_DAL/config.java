@@ -122,7 +122,7 @@ public class config {
             String selectAll = "SELECT * FROM quyentruycap";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -171,7 +171,7 @@ public class config {
             String selectAll = "SELECT * FROM hoadon";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -227,7 +227,7 @@ public class config {
             String selectAll = "SELECT * FROM hoadon";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -268,7 +268,7 @@ public class config {
             String selectAll = "SELECT * FROM nhanvien";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -324,7 +324,7 @@ public class config {
             String selectAll = "SELECT * FROM nhanvien";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -365,7 +365,7 @@ public class config {
             String selectAll = "SELECT * FROM khachhang";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -422,7 +422,7 @@ public class config {
             String selectAll = "SELECT * FROM khachhang";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -462,7 +462,7 @@ public class config {
             String selectAll = "SELECT * FROM khachsan";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -519,7 +519,7 @@ public class config {
             String selectAll = "SELECT * FROM khachsan";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -559,7 +559,7 @@ public class config {
             String selectAll = "SELECT * FROM ve";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -616,7 +616,7 @@ public class config {
             String selectAll = "SELECT * FROM ve";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -659,7 +659,7 @@ public class config {
             String selectAll = "SELECT * FROM phuongtien";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -714,7 +714,7 @@ public class config {
             String selectAll = "SELECT * FROM phuongtien";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -754,7 +754,7 @@ public class config {
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -822,7 +822,7 @@ public class config {
             String selectAll = "SELECT * FROM tour";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -899,7 +899,7 @@ public class config {
             String selectAll = "SELECT * FROM diadiemvuichoi";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -952,7 +952,7 @@ public class config {
             String selectAll = "SELECT * FROM diadiemvuichoi";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -990,7 +990,7 @@ public class config {
             String selectAll = "SELECT * FROM khuyenmai";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1047,7 +1047,7 @@ public class config {
             String selectAll = "SELECT * FROM khuyenmai";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1087,7 +1087,7 @@ public class config {
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1143,7 +1143,7 @@ public class config {
             String selectAll = "SELECT * FROM cthd";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1183,7 +1183,7 @@ public class config {
             String selectAll = "SELECT * FROM diadiem";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1239,7 +1239,7 @@ public class config {
         String selectAll = "SELECT * FROM diadiem";
         try {
             // connect to database
-            Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             con = DriverManager.getConnection(url, user, password);
 
             // crate statement to insert student
@@ -1277,7 +1277,7 @@ public class config {
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1332,7 +1332,7 @@ public class config {
             String selectAll = "SELECT * FROM feedback";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1372,7 +1372,7 @@ public class config {
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1432,7 +1432,7 @@ public class config {
             String selectAll = "SELECT * FROM chitiettour";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1478,7 +1478,7 @@ public class config {
             String selectAll = "SELECT * FROM taikhoan";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
@@ -1532,7 +1532,7 @@ public class config {
             String selectAll = "SELECT * FROM taikhoan";
             try {
                 // connect to database
-                Class.forName("com.mysql.jdbc.Driver");
+                Class.forName("com.mysql.cj.jdbc.Driver");
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
