@@ -4,22 +4,14 @@
  */
 package KetnoiSQL_DAL;
 
-import BUS.TaiKhoanBUS;
-import BUS.HoaDon;
 import DTO.KhuyenMaiDTO;
-import BUS.NhanVien;
-import BUS.PhuongTien;
-import BUS.BookVeBUS;
+
 import BUS.ChiTietHoaDonVeBUS;
-import BUS.ChiTietTourDuLichBUS;
-import BUS.DiaDiem;
-import BUS.DiaDiemVuiChoi;
-import BUS.FeedBackBUS;
-import BUS.KhachHang;
+
 import DTO.KhachHangDTo;
-import BUS.KhachSan;
+
 import DTO.TourDTO;
-import BUS.VeTour;
+
 import DTO.ChiTietTourDuLichDTo;
 import DTO.DiaDiemDTO;
 import DTO.DiaDiemVuiChoiDTo;
@@ -38,21 +30,11 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.io.FileOutputStream;
-import java.io.IOException;
+
 import java.util.ArrayList;
-
-import org.apache.poi.ss.usermodel.Cell;
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.ss.usermodel.Workbook;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-
-import java.sql.*;
 
 public class config {
 
@@ -60,8 +42,29 @@ public class config {
     private final String user = "root";
     private final String password = "";
 
+    public void Update(String Ma, NhanVienDTO nv) { // theo mã
+        String sqlUpdate = "UPDATE nhanvien SET LoaiNV = ?, TenNV = ? , DiaChi = ?,  ChucVu = ? WHERE MaNV = ?;";
+
+        try {
+            Connection con = DriverManager.getConnection(url, user, password);
+            PreparedStatement stmt = con.prepareStatement(sqlUpdate);
+            
+            stmt.setString(1, nv.getLoainv());
+            stmt.setString(2, nv.getTennv());
+            stmt.setString(3, nv.getDiachi());
+            stmt.setString(4, nv.getChucvu());
+            stmt.setString(5, Ma);
+            
+            stmt.execute();         
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
+        } 
+
+    }
+
     public void CheckConnect() {
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             System.out.println("Thành công");
             System.out.println(con.getCatalog());
         } catch (SQLException ex) {
@@ -69,51 +72,49 @@ public class config {
         }
     }
 
-    public ArrayList<TaiKhoan> layDL_TK(){ 
-                ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
+    public ArrayList<TaiKhoan> layDL_TK() {
+        ArrayList<TaiKhoan> danhSachTaiKhoan = new ArrayList<>();
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        try(Connection con = DriverManager.getConnection(url, user, password)){
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
 
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM taikhoan");
 
-        while (rs.next()) {
-            String user = rs.getString("tentaikhoan");
-            String password = rs.getString("matkhau");
-            String maNV = rs.getString("manv");
-            String qtruycap = rs.getString("loaitk");
-            TaiKhoan tk =  new TaiKhoan(user,password,maNV,qtruycap);
-            danhSachTaiKhoan.add(tk);
+            while (rs.next()) {
+                String user = rs.getString("tentaikhoan");
+                String password = rs.getString("matkhau");
+                String maNV = rs.getString("manv");
+                String qtruycap = rs.getString("loaitk");
+                TaiKhoan tk = new TaiKhoan(user, password, maNV, qtruycap);
+                danhSachTaiKhoan.add(tk);
+            }
+        } catch (SQLException e) {
+
         }
-        }catch(SQLException e){
-                
-                }
         return danhSachTaiKhoan;
     }
-        
+
     public String layDL_QTC() {
         String s = null;
         try {
             // Khởi tạo kết nối đến cơ sở dữ liệu
             Connection con = DriverManager.getConnection(url, user, password);
-            
+
             // Thực hiện truy vấn và lấy kết quả
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM quyentruycap");
-            
-            
-            
+
             while (rs.next()) {
-                s=rs.getString("MaNV");
+                s = rs.getString("MaNV");
             }
         } catch (SQLException ex) {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
         return s;
     }
-    
-    public void UpdateSQL_QTC(int i,String maNV) {
+
+    public void UpdateSQL_QTC(int i, String maNV) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
         //1 là thêm
@@ -121,14 +122,13 @@ public class config {
             String sqlInsert = "INSERT INTO quyentruycap VALUES(?)";
             String selectAll = "SELECT * FROM quyentruycap";
             try {
-                // connect to database
-                Class.forName("com.mysql.cj.jdbc.Driver");
+
                 con = DriverManager.getConnection(url, user, password);
 
                 // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, maNV);
-                
+
                 stmt.execute();
 
                 // select all student
@@ -143,8 +143,6 @@ public class config {
                 con.close();
             } catch (SQLException ex) {
                 ex.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                e.printStackTrace();
             }
         }
         if (i == 2) { // xóa
@@ -152,14 +150,14 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM quyentruycap WHERE MaNV = '" + maNV+ "'";
+                String delete = "DELETE FROM quyentruycap WHERE MaNV = '" + maNV + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
 
         }
-        
+
     }
 
     public void UpdateSQL_HoaDon(HoaDonDTO HoaDon, int i, String MaNV_OLD) {
@@ -267,11 +265,9 @@ public class config {
             String sqlInsert = "INSERT INTO nhanvien VALUES(?, ?, ?,?,?)";
             String selectAll = "SELECT * FROM nhanvien";
             try {
-                // connect to database
-                Class.forName("com.mysql.cj.jdbc.Driver");
+
                 con = DriverManager.getConnection(url, user, password);
 
-                // crate statement to insert student
                 PreparedStatement stmt = con.prepareStatement(sqlInsert);
                 stmt.setString(1, nhanvien.getManv());
                 stmt.setString(2, nhanvien.getLoainv());
@@ -282,19 +278,11 @@ public class config {
 
                 // select all student
                 stmt = con.prepareStatement(selectAll);
-                // get data from table 'student'
-                ResultSet rs = stmt.executeQuery();
-                // show data
-                while (rs.next()) {
-                    System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
-                }
+
                 stmt.close();
                 con.close();
             } catch (SQLException ex) {
-                //ex.printStackTrace();
-            } catch (ClassNotFoundException e) {
-                //e.printStackTrace();
+                ex.printStackTrace();
             }
         }
         if (i == 2) { // xóa                      
@@ -569,7 +557,7 @@ public class config {
                 stmt.setDate(2, ngayDV);
                 java.sql.Date ngaySD = new java.sql.Date(nhanvien.getHansudung().getTime());
                 stmt.setDate(3, ngaySD);
-                stmt.setString(4, nhanvien.getMatour());               
+                stmt.setString(4, nhanvien.getMatour());
                 stmt.setLong(5, nhanvien.getTiengiam());
                 stmt.execute();
 
@@ -580,7 +568,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) );
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();
@@ -627,7 +615,7 @@ public class config {
                 java.sql.Date ngaySD = new java.sql.Date(nhanvien.getHansudung().getTime());
                 stmt.setDate(3, ngaySD);
                 stmt.setString(4, nhanvien.getMatour());
-                
+
                 stmt.setLong(5, nhanvien.getTiengiam());
                 stmt.execute();
 
@@ -768,9 +756,9 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                
+
                 stmt.setLong(10, Tour.getGiaTour());
-                
+
                 stmt.setString(11, "null");
                 stmt.execute();
 
@@ -814,9 +802,8 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
-            // Khởi tạo kết nối đến cơ sở dữ liệu
 
+            // Khởi tạo kết nối đến cơ sở dữ liệu
             //1 là thêm
             String sqlInsert = "INSERT INTO tour VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
             String selectAll = "SELECT * FROM tour";
@@ -836,9 +823,9 @@ public class config {
                 stmt.setString(7, Tour.getDiaDiemden());
                 stmt.setString(8, Tour.getLoaiTour());
                 stmt.setInt(9, Tour.getSongaydi());
-                
+
                 stmt.setLong(10, Tour.getGiaTour());
-                
+
                 stmt.setString(11, "null");
                 stmt.execute();
                 // select all student
@@ -865,15 +852,13 @@ public class config {
         try {
             // Khởi tạo kết nối đến cơ sở dữ liệu
             Connection con = DriverManager.getConnection(url, user, password);
-            
+
             // Thực hiện truy vấn và lấy kết quả
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM hoadon");
-            
-            
-            
+
             while (rs.next()) {
-                
+
                 String mahd = rs.getString("MaHD");
                 String makh = rs.getString("makh");
                 long tongtien = Long.parseLong(rs.getString("tongtien"));
@@ -1095,9 +1080,9 @@ public class config {
                 stmt.setString(1, KhuyenMai.getMaHD());
                 stmt.setString(2, KhuyenMai.getMave());
                 stmt.setInt(3, KhuyenMai.getSoluongve());
-                stmt.setInt(4, (int)KhuyenMai.getTienve());
+                stmt.setInt(4, (int) KhuyenMai.getTienve());
                 stmt.setString(5, KhuyenMai.getMaCTHD());
-                
+
                 stmt.execute();
 
                 // select all student
@@ -1107,7 +1092,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4)+ "  " + rs.getString(5));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5));
                 }
                 stmt.close();
                 con.close();
@@ -1122,7 +1107,7 @@ public class config {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD()+ "'";
+                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1130,11 +1115,11 @@ public class config {
 
         }
         if (i == 3) {//sửa
-           try {
+            try {
 
                 con = DriverManager.getConnection(url, user, password);
                 Statement stmt = con.createStatement();
-                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD()+ "'";
+                String delete = "DELETE FROM cthd WHERE MaHD = '" + KhuyenMai.getMaCTHD() + "'";
                 stmt.executeUpdate(delete);
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
@@ -1153,7 +1138,6 @@ public class config {
                 stmt.setLong(3, KhuyenMai.getSoluongve());
                 stmt.setLong(4, KhuyenMai.getTienve());
                 stmt.setString(5, KhuyenMai.getMaCTHD());
-
 
                 // select all student
                 stmt = con.prepareStatement(selectAll);
@@ -1201,7 +1185,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) );
+                            + "  " + rs.getString(3) + "  " + rs.getString(4));
                 }
                 stmt.close();
                 con.close();
@@ -1233,7 +1217,7 @@ public class config {
             } catch (SQLException ex) {
                 Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
             }
-            
+
         }
         String sqlInsert = "INSERT INTO diadiem VALUES(?, ?, ?,?)";
         String selectAll = "SELECT * FROM diadiem";
@@ -1257,7 +1241,7 @@ public class config {
             // show data
             while (rs.next()) {
                 System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                        + "  " + rs.getString(3) + "  " + rs.getString(4) );
+                        + "  " + rs.getString(3) + "  " + rs.getString(4));
             }
             stmt.close();
             con.close();
@@ -1351,7 +1335,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5)+ "  " + rs.getString(6));
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + "  " + rs.getString(6));
                 }
                 stmt.close();
                 con.close();
@@ -1383,10 +1367,10 @@ public class config {
                 stmt.setString(4, fb.getNoiden());
                 stmt.setString(5, fb.getKhoihanh());
                 stmt.setInt(6, fb.getThutungay());
-                stmt.setLong(7,fb.getTienan());
+                stmt.setLong(7, fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
-                
+
                 stmt.execute();
 
                 // select all student
@@ -1396,7 +1380,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9));
                 }
                 stmt.close();
                 con.close();
@@ -1443,10 +1427,10 @@ public class config {
                 stmt.setString(4, fb.getNoiden());
                 stmt.setString(5, fb.getKhoihanh());
                 stmt.setInt(6, fb.getThutungay());
-                stmt.setLong(7,fb.getTienan());
+                stmt.setLong(7, fb.getTienan());
                 stmt.setLong(8, fb.getTienphong());
                 stmt.setLong(9, fb.getPhidichvu());
-                
+
                 stmt.execute();
 
                 // select all student
@@ -1456,7 +1440,7 @@ public class config {
                 // show data
                 while (rs.next()) {
                     System.out.println(rs.getInt(1) + "  " + rs.getString(2)
-                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9) );
+                            + "  " + rs.getString(3) + "  " + rs.getString(4) + "  " + rs.getString(5) + rs.getString(6) + "  " + rs.getString(7) + "  " + rs.getString(8) + "  " + rs.getString(9));
                 }
                 stmt.close();
                 con.close();
@@ -1468,7 +1452,6 @@ public class config {
         }
     }
 
-    
     public void UpdateSQL_TaiKhoan(TaiKhoan tk, int i, String matkhau_old) {
         // Khởi tạo kết nối đến cơ sở dữ liệu
         Connection con;
@@ -1561,55 +1544,51 @@ public class config {
             }
         }
     }
-     
-      
-    //--------------------------------------------------------
 
-    public ArrayList<KhuyenMaiDTO> layDL_KhuyenMai(){
-                ArrayList<KhuyenMaiDTO> danhSachTaiKhoan = new ArrayList<>();
+    //--------------------------------------------------------
+    public ArrayList<KhuyenMaiDTO> layDL_KhuyenMai() {
+        ArrayList<KhuyenMaiDTO> danhSachTaiKhoan = new ArrayList<>();
 
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        try(Connection con = DriverManager.getConnection(url, user, password)){
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
 
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM khuyenmai");
-        while (rs.next()) {
-            String MAKM = rs.getString("MaKhuyenMai");
-            String TENKM = rs.getString("TenKM");
-            Date NGAYKM = rs.getDate("NgayKM");
-            Date HANSD = rs.getDate("HanSuDung");
-            long TIENGIAM = rs.getLong("TienGiam");
-            
-            KhuyenMaiDTO km = new KhuyenMaiDTO(MAKM,TENKM,NGAYKM,HANSD,TIENGIAM);
-            danhSachTaiKhoan.add(km);
-        }
-        }catch(SQLException e){
-            
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM khuyenmai");
+            while (rs.next()) {
+                String MAKM = rs.getString("MaKhuyenMai");
+                String TENKM = rs.getString("TenKM");
+                Date NGAYKM = rs.getDate("NgayKM");
+                Date HANSD = rs.getDate("HanSuDung");
+                long TIENGIAM = rs.getLong("TienGiam");
+
+                KhuyenMaiDTO km = new KhuyenMaiDTO(MAKM, TENKM, NGAYKM, HANSD, TIENGIAM);
+                danhSachTaiKhoan.add(km);
+            }
+        } catch (SQLException e) {
+
         }
         return danhSachTaiKhoan;
     }
 
-    public ArrayList<VeTourDTO> layDL_VeTour()  {
+    public ArrayList<VeTourDTO> layDL_VeTour() {
         ArrayList<VeTourDTO> danhSachVeTour = new ArrayList<>();
-        try (Connection con= DriverManager.getConnection(url, user, password)){
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
 
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM ve");
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM ve");
 
-        
+            while (rs.next()) {
 
-        while (rs.next()) {
-            
-            String mavt = rs.getString("MaVe"); 
-            String maTour = rs.getString("MaTour"); 
-            Date hansudung = rs.getDate("HanSuDung");
-            Date ngayTaove = rs.getDate("NgayTaoVe");
-            long tiengiam = rs.getLong("tiengiam");
-            VeTourDTO vt = new VeTourDTO(mavt, maTour, tiengiam, ngayTaove, hansudung);
-            danhSachVeTour.add(vt);
-        }
+                String mavt = rs.getString("MaVe");
+                String maTour = rs.getString("MaTour");
+                Date hansudung = rs.getDate("HanSuDung");
+                Date ngayTaove = rs.getDate("NgayTaoVe");
+                long tiengiam = rs.getLong("tiengiam");
+                VeTourDTO vt = new VeTourDTO(mavt, maTour, tiengiam, ngayTaove, hansudung);
+                danhSachVeTour.add(vt);
+            }
         } catch (SQLException ex) {
             //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1617,129 +1596,120 @@ public class config {
     }
 
     //--------------------------------------------------------------------
-    public ArrayList<NhanVienDTO> layDL_NhanVien()  {
-         ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<>();
-        try (Connection con= DriverManager.getConnection(url, user, password)){
-            
+    public ArrayList<NhanVienDTO> layDL_NhanVien() {
+        ArrayList<NhanVienDTO> danhSachNhanVien = new ArrayList<>();
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
+
             // Thực hiện truy vấn và lấy kết quả
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM nhanvien");
-            
-            
-            
+
             while (rs.next()) {
-                
+
                 String manv = rs.getString("MaNV");
                 String tennv = rs.getString("TenNV");
                 String loainv = rs.getString("LoaiNV");
                 String diachi = rs.getString("DiaChi");
                 String chucvu = rs.getString("ChucVu");
-                
-                NhanVienDTO pt = new NhanVienDTO(manv, tennv, loainv, diachi, chucvu); // tao ra dữ liệu con 
+
+                NhanVienDTO pt = new NhanVienDTO(tennv, manv, diachi,loainv, chucvu); // tao ra dữ liệu con 
                 danhSachNhanVien.add(pt); // add dữ liệu con vào arraylist
             }
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return danhSachNhanVien;    
+        return danhSachNhanVien;
     }
 
-    public ArrayList<TourDTO> layDL_Tour(){
-                ArrayList<TourDTO> danhSachTour = new ArrayList<>();
+    public ArrayList<TourDTO> layDL_Tour() {
+        ArrayList<TourDTO> danhSachTour = new ArrayList<>();
 
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        try(Connection con = DriverManager.getConnection(url, user, password)){
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
 
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM tour");
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM tour");
 
-        while (rs.next()) {
-            String MaTour = rs.getString("MaTour");
-            int tongSocho = rs.getInt("TongSoCho");
-            int soChodu = rs.getInt("SoChoConTrong");
-            String TenTour = rs.getString("TenTour");
-            String diadiemTour = rs.getString("DiaDiemTour");
-            String diaDiemDi = rs.getString("DiaDiemDi");
-            String ddDen = rs.getString("DiaDiemDen");
-            String LoaiTour = rs.getString("LoaiTour");
-            int Songaydi = rs.getInt("SoNgay");
-            
-            long GiaTour = rs.getLong("GiaTour");
-            
+            while (rs.next()) {
+                String MaTour = rs.getString("MaTour");
+                int tongSocho = rs.getInt("TongSoCho");
+                int soChodu = rs.getInt("SoChoConTrong");
+                String TenTour = rs.getString("TenTour");
+                String diadiemTour = rs.getString("DiaDiemTour");
+                String diaDiemDi = rs.getString("DiaDiemDi");
+                String ddDen = rs.getString("DiaDiemDen");
+                String LoaiTour = rs.getString("LoaiTour");
+                int Songaydi = rs.getInt("SoNgay");
 
-            TourDTO tour = new TourDTO(TenTour,MaTour,LoaiTour,tongSocho,soChodu,diadiemTour,diaDiemDi,ddDen,Songaydi,GiaTour);
-            danhSachTour.add(tour);
-        }
-        }catch(SQLException e){
-            
+                long GiaTour = rs.getLong("GiaTour");
+
+                TourDTO tour = new TourDTO(TenTour, MaTour, LoaiTour, tongSocho, soChodu, diadiemTour, diaDiemDi, ddDen, Songaydi, GiaTour);
+                danhSachTour.add(tour);
+            }
+        } catch (SQLException e) {
+
         }
         return danhSachTour;
     }
 
     public ArrayList<PhuongTienDTO> layDL_PhuongTien() {
         // Khởi tạo kết nối đến cơ sở dữ liệu
-        
-         ArrayList<PhuongTienDTO> danhSachTour = new ArrayList<>();
-        try(Connection con = DriverManager.getConnection(url, user, password)){
 
-        // Thực hiện truy vấn và lấy kết quả
-        Statement stmt = con.createStatement();
-        ResultSet rs = stmt.executeQuery("SELECT * FROM phuongtien");
+        ArrayList<PhuongTienDTO> danhSachTour = new ArrayList<>();
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
 
-       
+            // Thực hiện truy vấn và lấy kết quả
+            Statement stmt = con.createStatement();
+            ResultSet rs = stmt.executeQuery("SELECT * FROM phuongtien");
 
-        while (rs.next()) {
-            
-            String Mapt = rs.getString("MaPT");
-            String Loaipt = rs.getString("LoaiPT");
-            String Tenpt = rs.getString("TenPT");
-            long Tongsocho = rs.getLong("SoChoTrong");
-            long Sochodu = rs.getLong("SoChoConDu");
+            while (rs.next()) {
 
-            PhuongTienDTO pt = new PhuongTienDTO(Mapt,Loaipt,Tenpt,Tongsocho,Sochodu);
-            danhSachTour.add(pt);
-        }
-        }catch(SQLException e){
-            
+                String Mapt = rs.getString("MaPT");
+                String Loaipt = rs.getString("LoaiPT");
+                String Tenpt = rs.getString("TenPT");
+                long Tongsocho = rs.getLong("SoChoTrong");
+                long Sochodu = rs.getLong("SoChoConDu");
+
+                PhuongTienDTO pt = new PhuongTienDTO(Mapt, Loaipt, Tenpt, Tongsocho, Sochodu);
+                danhSachTour.add(pt);
+            }
+        } catch (SQLException e) {
+
         }
         return danhSachTour;
     }
 
-    public ArrayList<KhachHangDTo> layDL_KhachHang(){
-         ArrayList<KhachHangDTo> danhSachTour = new ArrayList<>();
-        try (Connection con= DriverManager.getConnection(url, user, password)){
-            
+    public ArrayList<KhachHangDTo> layDL_KhachHang() {
+        ArrayList<KhachHangDTo> danhSachTour = new ArrayList<>();
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
+
             // Thực hiện truy vấn và lấy kết quả
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachhang");
-            
-            
-            
+
             while (rs.next()) {
-                
+
                 String makh = rs.getString("MaKh");
                 String ten = rs.getString("TenKh");
                 String diachi = rs.getString("DiaChi");
                 String sdt = Integer.toString(rs.getInt("SDT"));
                 String email = rs.getString("email");
-                
+
                 KhachHangDTo pt = new KhachHangDTo(ten, makh, diachi, sdt, email); // tao ra dữ liệu con 
                 danhSachTour.add(pt); // add dữ liệu con vào arraylist
             }
-            
+
         } catch (SQLException ex) {
             //Logger.getLogger(config.class.getName()).log(Level.SEVERE, null, ex);
         }
-        return danhSachTour;           
+        return danhSachTour;
     }
-    
-   
-    
+
     public ArrayList<FeedBack> LayDL_Feedback() {
         ArrayList<FeedBack> danhSachFB = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM feedback");
             while (rs.next()) {
@@ -1761,16 +1731,16 @@ public class config {
 
     public ArrayList<KhachSanDTO> LayDL_KhachSan() {
         ArrayList<KhachSanDTO> danhSachKH = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM khachsan");
             while (rs.next()) {
-                 String maKS = rs.getString("MaKS");
+                String maKS = rs.getString("MaKS");
                 String tenKS = rs.getString("TenKS");
                 long tienKS = rs.getLong("TienKS");
                 String soDT = rs.getString("SDT");
                 long tienPhong = rs.getLong("TienPhong");
-                
+
                 KhachSanDTO ks = new KhachSanDTO(tenKS, soDT, tienKS, tienPhong, maKS);
                 danhSachKH.add(ks);
             }
@@ -1780,18 +1750,17 @@ public class config {
         return danhSachKH;
     }
 
-
     public ArrayList<DiaDiemVuiChoiDTo> LayDL_DiaDiemVuiChoi() {
         ArrayList<DiaDiemVuiChoiDTo> DiaDiemVuiChoi = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiemvuichoi");
             while (rs.next()) {
-                
+
                 String maddvc = rs.getString("MaDDVC");
                 String tenddvc = rs.getString("TenDDVC");
                 String diadiemTour = rs.getString("ThuocDiaDiemTour");
-                DiaDiemVuiChoiDTo fb = new DiaDiemVuiChoiDTo(diadiemTour,tenddvc,maddvc);
+                DiaDiemVuiChoiDTo fb = new DiaDiemVuiChoiDTo(diadiemTour, tenddvc, maddvc);
                 DiaDiemVuiChoi.add(fb);
             }
         } catch (SQLException ex) {
@@ -1802,7 +1771,7 @@ public class config {
 
     public ArrayList<DiaDiemDTO> LayDL_DiaDiem() {
         ArrayList<DiaDiemDTO> dd = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM diadiem");
             while (rs.next()) {
@@ -1810,8 +1779,8 @@ public class config {
                 String tenDD = rs.getString("TenDD");
                 String thuocTinh = rs.getString("ThuocTinh");
                 String khuVuc = rs.getString("KhuVuc");
-                
-                DiaDiemDTO fb = new DiaDiemDTO(maDD,tenDD,thuocTinh,khuVuc);
+
+                DiaDiemDTO fb = new DiaDiemDTO(maDD, tenDD, thuocTinh, khuVuc);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
@@ -1822,18 +1791,18 @@ public class config {
 
     public ArrayList<ChiTietHoaDonVeBUS> LayDL_CTHD() {
         ArrayList<ChiTietHoaDonVeBUS> dd = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM cthd");
             while (rs.next()) {
-                
+
                 String Mahoadon = rs.getString("MaHD");
                 String maVe = rs.getString("MaVe");
                 int sluong = rs.getInt("SoLuongVe");
                 long tVe = rs.getLong("TienVe");
                 String Machitiethoadon = rs.getString("maCTHD");
-                
-                ChiTietHoaDonVeBUS fb = new ChiTietHoaDonVeBUS(maVe,Mahoadon,Machitiethoadon,sluong,tVe);
+
+                ChiTietHoaDonVeBUS fb = new ChiTietHoaDonVeBUS(maVe, Mahoadon, Machitiethoadon, sluong, tVe);
                 dd.add(fb);
             }
         } catch (SQLException ex) {
@@ -1841,14 +1810,14 @@ public class config {
         }
         return dd;
     }
-    
-     public ArrayList<ChiTietTourDuLichDTo> LayDL_CTTour() {
+
+    public ArrayList<ChiTietTourDuLichDTo> LayDL_CTTour() {
         ArrayList<ChiTietTourDuLichDTo> dsTour = new ArrayList<>();
-        try (Connection con = DriverManager.getConnection(url, user, password)) {
+        try ( Connection con = DriverManager.getConnection(url, user, password)) {
             Statement stmt = con.createStatement();
             ResultSet rs = stmt.executeQuery("SELECT * FROM chitiettour");
             while (rs.next()) {
-                
+
                 String ddTour = rs.getString("DiaDiemTour");
                 String MaTour = rs.getString("MaTour");
                 String khoiHanh = rs.getString("DiaDiemKhoiHanh");
@@ -1858,15 +1827,15 @@ public class config {
                 long tienAn = rs.getLong("TienAn");
                 long tienPhong = rs.getLong("TienPhong");
                 long phiDV = rs.getLong("TienDichVu");
-                
-                ChiTietTourDuLichDTo ctt = new ChiTietTourDuLichDTo(ddTour,MaTour,khoiHanh,noiDen,thuTuNgay,maKS,tienAn,tienPhong,phiDV);
-                
+
+                ChiTietTourDuLichDTo ctt = new ChiTietTourDuLichDTo(ddTour, MaTour, khoiHanh, noiDen, thuTuNgay, maKS, tienAn, tienPhong, phiDV);
+
                 dsTour.add(ctt);
             }
         } catch (SQLException ex) {
 
         }
         return dsTour;
-     }
+    }
 
 }

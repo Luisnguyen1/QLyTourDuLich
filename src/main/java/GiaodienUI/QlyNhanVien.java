@@ -515,7 +515,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
-
+        System.out.println(maNV);
         boolean a = danhSachNV.xoaNhanVien(maNV);
         
         model.removeRow(selectedRow);
@@ -543,7 +543,7 @@ public class QlyNhanVien extends javax.swing.JPanel {
 
 // lấy mã khách hàng của hàng được chọn
         String maNV = (String) model.getValueAt(selectedRow, 1);
-
+        System.out.println(maNV);
         danhSachNV.traNV(maNV);
 // hiển thị form sửa thông tin khách hàng
         String tenNV = JOptionPane.showInputDialog(null, "Nhập tên nhân viên", danhSachNV.traNV(maNV).getTennv());
@@ -571,11 +571,11 @@ public class QlyNhanVien extends javax.swing.JPanel {
        danhSachNV.suaNhanVien(maNV, tenNV, maNVNew, diaChi, loaiNV, chucVu);
 
 // cập nhật lại model cho JTable
-        model.setValueAt(tenNV, selectedRow, 0);
-        model.setValueAt(maNVNew, selectedRow, 1);
-        model.setValueAt(diaChi, selectedRow, 2);
-        model.setValueAt(loaiNV, selectedRow, 3);
-        model.setValueAt(chucVu, selectedRow, 4);
+        model.setValueAt(danhSachNV.traNV(maNVNew).getTennv(), selectedRow, 0);
+        model.setValueAt(danhSachNV.traNV(maNVNew).getManv(), selectedRow, 1);
+        model.setValueAt(danhSachNV.traNV(maNVNew).getDiachi(), selectedRow, 2);
+        model.setValueAt(danhSachNV.traNV(maNVNew).getLoainv(), selectedRow, 3);
+        model.setValueAt(danhSachNV.traNV(maNVNew).getChucvu(), selectedRow, 4);
 // thông báo thành công
         JOptionPane.showMessageDialog(null, "Sửa Thông Tin Nhân Viên Thành Công");
 

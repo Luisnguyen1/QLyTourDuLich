@@ -85,7 +85,7 @@ public class NhanVien  {
                 this.danhSach.get(i).setLoainv(loainv);
                 this.danhSach.get(i).setChucvu(chucvu);
                 
-                con.UpdateSQL_NhanVien(this.danhSach.get(i), 3, maOld);
+                con.Update(maOld,this.danhSach.get(i));
                 
                 return true;
             }
